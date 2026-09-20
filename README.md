@@ -558,8 +558,8 @@ __pycache__/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/JanMitra.git
-cd JanMitra
+git clone https://github.com/tulsikumar18/JanMitra_in_Django.git
+cd JanMitra_in_Django
 ```
 
 ### 2. Create a virtual environment
@@ -801,9 +801,6 @@ Open a pull request with:
 - Any deployment/configuration changes
 
 ---
-
-
-
 
 ### Core concept
 
