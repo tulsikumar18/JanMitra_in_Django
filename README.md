@@ -737,62 +737,6 @@ For production, persistent object/file storage should be configured rather than 
 
 ---
 
-## 💡 Design Philosophy
-
-JanMitra's interface follows a **civic-tech dashboard** visual language rather than a conventional administrative portal.
-
-### Visual principles
-
-**01 — Dark civic interface**
-
-A deep navy foundation provides strong contrast and gives the application a modern technology-oriented identity.
-
-**02 — Glassmorphism**
-
-Cards, navigation, wallet controls and overlays use translucent surfaces, borders and depth to separate information without visually overwhelming the user.
-
-**03 — Network visualization**
-
-The animated network background represents the relationship between:
-
-```text
-Citizens ↔ Issues ↔ Government ↔ Community
-```
-
-**04 — Color-coded actions**
-
-Blue is used heavily for primary interactions, while status/category accents provide quick visual differentiation.
-
-**05 — Progressive information**
-
-The interface exposes the most important action first and keeps secondary information inside cards, maps, details and notifications.
-
-**06 — Localization-first UI**
-
-The design accounts for different text lengths and scripts instead of treating translation as an afterthought.
-
----
-
-## 🌍 Accessibility & Inclusion
-
-JanMitra is designed around multiple ways of interacting with a civic reporting system:
-
-```text
-Typing
-  +
-Images
-  +
-Voice
-  +
-Multiple Indian languages
-  +
-Map-based interaction
-```
-
-This reduces dependence on a single input method and helps make civic participation more approachable.
-
----
-
 ## 🔄 Data & Domain Model
 
 At the domain level, JanMitra revolves around four major areas:
@@ -858,38 +802,8 @@ Open a pull request with:
 
 ---
 
-## 🔒 Responsible Use
 
-JanMitra is a civic engagement and issue-management project.
 
-Users should avoid submitting:
-
-- sensitive personal information
-- malicious content
-- fraudulent reports
-- content unrelated to civic issues
-
-AI-generated classifications should be treated as assistance to the reporting workflow rather than a substitute for human government review.
-
----
-
-## 👨‍💻 Project
-
-**JanMitra — AI-Assisted Multilingual Civic Issue Reporting Platform**
-
-Built with:
-
-```text
-Python
-Django
-JavaScript
-HTML
-CSS
-Gemini AI
-SQLite / PostgreSQL
-OpenStreetMap-based mapping
-Django i18n
-```
 
 ### Core concept
 
