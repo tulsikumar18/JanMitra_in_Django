@@ -1,0 +1,371 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+
+{% block title %}
+    {% translate "Notifications" %} | JanMitra
+{% endblock %}
+
+
+{% block content %}
+
+<section class="notifications-page">
+
+    <div class="notifications-container">
+
+
+        <!-- =====================================================
+             PAGE HERO
+        ====================================================== -->
+
+        <header class="notifications-header">
+
+            <div class="notifications-heading">
+
+                <p class="notifications-eyebrow">
+                    {% translate "JANMITRA UPDATES" %}
+                </p>
+
+
+                <h1 class="notifications-title">
+                    {% translate "Notifications" %}
+                </h1>
+
+
+                <p class="notifications-subtitle">
+                    {% translate "Stay updated about your civic issues." %}
+                </p>
+
+
+                {% if unread_count > 0 %}
+
+                    <div
+                        class="notifications-count"
+                        aria-label="{% translate 'Unread notifications' %}"
+                    >
+
+                        <span
+                            class="notifications-count-dot"
+                            aria-hidden="true"
+                        ></span>
+
+                        <span>
+                            {{ unread_count }}
+                        </span>
+
+                        {% if unread_count == 1 %}
+
+                            <span>
+                                {% translate "unread notification" %}
+                            </span>
+
+                        {% else %}
+
+                            <span>
+                                {% translate "unread notifications" %}
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- =================================================
+                 MARK ALL AS READ
+            ================================================== -->
+
+            {% if unread_count > 0 %}
+
+                <a
+                    href="/notifications/mark-all-read/"
+                    class="mark-all-button"
+                    aria-label="{% translate 'Mark all notifications as read' %}"
+                    title="{% translate 'Mark all notifications as read' %}"
+                >
+
+                    <i
+                        class="bi bi-check2-all"
+                        aria-hidden="true"
+                    ></i>
+
+                    <span>
+                        {% translate "Mark all as read" %}
+                    </span>
+
+                </a>
+
+            {% endif %}
+
+        </header>
+
+
+
+        <!-- =====================================================
+             NOTIFICATION LIST
+        ====================================================== -->
+
+        {% if notifications %}
+
+            <div class="notifications-list">
+
+
+                {% for notification in notifications %}
+
+
+                    <!-- =========================================
+                         NOTIFICATION CARD
+                    ========================================== -->
+
+                    <article
+                        class="
+                            notification-card
+                            {% if not notification.is_read %}
+                                unread
+                            {% endif %}
+                        "
+                    >
+
+
+                        <!-- =====================================
+                             NOTIFICATION ICON
+                        ====================================== -->
+
+                        <div
+                            class="
+                                notification-icon
+
+                                {% if notification.notification_type == 'resolved' %}
+                                    resolved
+
+                                {% elif notification.notification_type == 'in_progress' %}
+                                    in-progress
+
+                                {% elif notification.notification_type == 'under_review' %}
+                                    under-review
+
+                                {% elif notification.notification_type == 'rejected' %}
+                                    rejected
+
+                                {% elif notification.notification_type == 'reward' %}
+                                    reward
+
+                                {% else %}
+                                    default
+                                {% endif %}
+                            "
+                            aria-hidden="true"
+                        >
+
+                            {% if notification.notification_type == "resolved" %}
+
+                                <i class="bi bi-check-circle"></i>
+
+
+                            {% elif notification.notification_type == "in_progress" %}
+
+                                <i class="bi bi-tools"></i>
+
+
+                            {% elif notification.notification_type == "under_review" %}
+
+                                <i class="bi bi-search"></i>
+
+
+                            {% elif notification.notification_type == "rejected" %}
+
+                                <i class="bi bi-x-circle"></i>
+
+
+                            {% elif notification.notification_type == "reward" %}
+
+                                <i class="bi bi-coin"></i>
+
+
+                            {% elif notification.notification_type == "issue_submitted" %}
+
+                                <i class="bi bi-send-check"></i>
+
+
+                            {% else %}
+
+                                <i class="bi bi-bell"></i>
+
+                            {% endif %}
+
+                        </div>
+
+
+
+                        <!-- =====================================
+                             NOTIFICATION CONTENT
+                        ====================================== -->
+
+                        <div class="notification-content">
+
+
+                            <!-- =================================
+                                 TITLE + TIME
+                            ================================== -->
+
+                            <div class="notification-top">
+
+
+                                <h2 class="notification-title">
+
+                                    {{ notification.get_localized_title }}
+
+
+                                    {% if not notification.is_read %}
+
+                                        <span
+                                            class="notification-new"
+                                            aria-label="{% translate 'New notification' %}"
+                                        >
+                                            {% translate "NEW" %}
+                                        </span>
+
+                                    {% endif %}
+
+                                </h2>
+
+
+                                <time
+                                    class="notification-time"
+                                    datetime="{{ notification.created_at|date:'c' }}"
+                                    title="{{ notification.created_at|date:'DATETIME_FORMAT' }}"
+                                >
+
+                                    {{ notification.created_at|timesince }}
+                                    {% translate "ago" %}
+
+                                </time>
+
+
+                            </div>
+
+
+
+                            <!-- =================================
+                                 MESSAGE
+                            ================================== -->
+
+                            <p class="notification-message">
+
+                                {{ notification.get_localized_message }}
+
+                            </p>
+
+
+
+                            <!-- =================================
+                                 ACTIONS
+                            ================================== -->
+
+                            <div class="notification-actions">
+
+
+                                {% if notification.issue %}
+
+                                    <a
+                                        href="{% url 'issues:issue_detail' issue_id=notification.issue.id %}"
+                                        class="notification-action primary"
+                                        aria-label="{% translate 'View Issue' %}"
+                                        title="{% translate 'View Issue' %}"
+                                    >
+
+                                        <i
+                                            class="bi bi-arrow-up-right-circle"
+                                            aria-hidden="true"
+                                        ></i>
+
+                                        <span>
+                                            {% translate "View Issue" %}
+                                        </span>
+
+                                    </a>
+
+                                {% endif %}
+
+
+
+                                {% if not notification.is_read %}
+
+                                    <a
+                                        href="/notifications/{{ notification.id }}/read/"
+                                        class="notification-action"
+                                        aria-label="{% translate 'Mark notification as read' %}"
+                                        title="{% translate 'Mark notification as read' %}"
+                                    >
+
+                                        <i
+                                            class="bi bi-check2"
+                                            aria-hidden="true"
+                                        ></i>
+
+                                        <span>
+                                            {% translate "Mark as read" %}
+                                        </span>
+
+                                    </a>
+
+                                {% endif %}
+
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+        {% else %}
+
+
+            <!-- =================================================
+                 EMPTY STATE
+            ================================================== -->
+
+            <div class="notifications-empty">
+
+                <div
+                    class="notifications-empty-icon"
+                    aria-hidden="true"
+                >
+
+                    <i class="bi bi-bell-slash"></i>
+
+                </div>
+
+
+                <h3>
+                    {% translate "No notifications yet" %}
+                </h3>
+
+
+                <p>
+                    {% translate "You will see updates about your reported civic issues here." %}
+                </p>
+
+            </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "JanMitra | Your Voice. Your Impact." %}{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-inner">
+
+        <div class="hero-badge">
+            <span class="live-dot"></span>
+            {% translate "CITIZEN POWERED PLATFORM" %}
+        </div>
+
+        <h1>
+            {% translate "Your Voice." %}<br>
+            <span class="gradient-text">{% translate "Your Impact." %}</span>
+        </h1>
+
+        <p class="hero-subtitle">
+            {% translate "Report civic issues, track real change and help build a better community." %}
+        </p>
+
+        <div class="hero-actions">
+
+            <!-- Citizen Registration -->
+            <a
+                href="{% url 'users:register' %}"
+                class="hero-primary"
+            >
+                <i class="bi bi-person-plus-fill"></i>
+                {% translate "Join JanMitra" %}
+            </a>
+
+            <!-- Citizen Login -->
+            <a
+                href="{% url 'users:login' %}"
+                class="hero-secondary"
+            >
+                <i class="bi bi-arrow-right"></i>
+                {% translate "Login" %}
+            </a>
+
+        </div>
+
+        <div class="hero-government-login">
+            <span>{% translate "Government official?" %}</span>
+
+            <a href="{% url 'users:login' %}">
+                <i class="bi bi-shield-lock-fill"></i>
+                {% translate "Government Portal Login" %}
+            </a>
+        </div>
+
+        <br>
+
+        <div class="hero-mini-stats">
+
+            <div class="mini-stat">
+                <strong>{% translate "Report" %}</strong>
+                <span>{% translate "Civic Issues" %}</span>
+            </div>
+
+            <div class="mini-stat">
+                <strong>{% translate "Track" %}</strong>
+                <span>{% translate "Progress" %}</span>
+            </div>
+
+            <div class="mini-stat">
+                <strong>{% translate "Earn" %}</strong>
+                <span>{% translate "Rewards" %}</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

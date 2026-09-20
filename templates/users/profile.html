@@ -1,0 +1,644 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}{% translate "My Profile" %} | JanMitra{% endblock %}
+
+{% block content %}
+
+<section class="profile-page">
+
+    <div class="profile-container">
+
+        <!-- ==========================================
+             PAGE HEADER
+        =========================================== -->
+
+        <div class="profile-heading">
+
+            <br><br>
+
+
+            <div class="eyebrow">
+                <i class="bi bi-person-circle me-1"></i>
+                {% translate "MY ACCOUNT" %}
+            </div>
+
+            <h1>
+                {% translate "Your" %} <span>{% translate "Profile." %}</span>
+            </h1>
+
+            <p>
+                {% translate "Manage your personal information and preferences." %}
+            </p>
+
+        </div>
+
+
+        <!-- ==========================================
+             PROFILE CARD
+        =========================================== -->
+
+        <div class="profile-card">
+
+            <div class="profile-card-header">
+
+                <div class="profile-avatar-wrapper">
+
+                    {% if profile_user.profile_image %}
+
+                        <img
+                            src="{{ profile_user.profile_image.url }}"
+                            alt="{{ profile_user.first_name }}"
+                            class="profile-avatar"
+                        >
+
+                    {% else %}
+
+                        <div class="profile-avatar profile-avatar-placeholder">
+
+                            <i class="bi bi-person-fill"></i>
+
+                        </div>
+
+                    {% endif %}
+
+                    <div class="profile-avatar-status">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+
+                </div>
+
+
+                <div class="profile-header-info">
+
+                    <h2>
+                        {{ profile_user.first_name }}
+                        {{ profile_user.last_name }}
+                    </h2>
+
+                    <p>
+                        <i class="bi bi-envelope me-1"></i>
+                        {{ profile_user.email }}
+                    </p>
+
+                    <span class="profile-role-badge">
+                        <i class="bi bi-person-badge-fill"></i>
+                        {% translate "Citizen" %}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==========================================
+                 PROFILE FORM
+            =========================================== -->
+
+            <form
+                method="POST"
+                enctype="multipart/form-data"
+                class="profile-form"
+            >
+
+                {% csrf_token %}
+
+
+                {% if form.non_field_errors %}
+
+                    <div class="form-error-box">
+
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+
+                        <div>
+
+                            {% for error in form.non_field_errors %}
+
+                                {{ error }}
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- ======================================
+                     PERSONAL INFORMATION
+                ======================================= -->
+
+                <div class="profile-section">
+
+                    <div class="profile-section-heading">
+
+                        <div class="profile-section-icon">
+                            <i class="bi bi-person-vcard-fill"></i>
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                {% translate "Personal Information" %}
+                            </h3>
+
+                            <p>
+                                {% translate "Keep your personal details up to date." %}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-form-grid">
+
+                        <!-- FIRST NAME -->
+
+                        <div class="profile-field">
+
+                            <label
+                                for="{{ form.first_name.id_for_label }}"
+                                class="form-label"
+                            >
+                                <i class="bi bi-person me-1"></i>
+                                {% translate "First Name" %}
+                            </label>
+
+                            {{ form.first_name }}
+
+                            {% if form.first_name.errors %}
+
+                                <div class="field-error">
+                                    {{ form.first_name.errors|striptags }}
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- LAST NAME -->
+
+                        <div class="profile-field">
+
+                            <label
+                                for="{{ form.last_name.id_for_label }}"
+                                class="form-label"
+                            >
+                                <i class="bi bi-person me-1"></i>
+                                {% translate "Last Name" %}
+                            </label>
+
+                            {{ form.last_name }}
+
+                            {% if form.last_name.errors %}
+
+                                <div class="field-error">
+                                    {{ form.last_name.errors|striptags }}
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- PHONE -->
+
+                        <div class="profile-field">
+
+                            <label
+                                for="{{ form.phone_number.id_for_label }}"
+                                class="form-label"
+                            >
+                                <i class="bi bi-phone me-1"></i>
+                                {% translate "Phone Number" %}
+                            </label>
+
+                            {{ form.phone_number }}
+
+                            {% if form.phone_number.errors %}
+
+                                <div class="field-error">
+                                    {{ form.phone_number.errors|striptags }}
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="profile-field">
+
+                            <label class="form-label">
+
+                                <i class="bi bi-envelope me-1"></i>
+
+                                {% translate "Email Address" %}
+
+                            </label>
+
+                            <div class="profile-readonly-field">
+
+                                <i class="bi bi-lock-fill"></i>
+
+                                <span>
+                                    {{ profile_user.email }}
+                                </span>
+
+                            </div>
+
+                            <small class="profile-field-help">
+                                {% translate "Email address cannot be changed here." %}
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ======================================
+                     PROFILE PHOTO
+                ======================================= -->
+
+                <div class="profile-section">
+
+                    <div class="profile-section-heading">
+
+                        <div class="profile-section-icon">
+                            <i class="bi bi-camera-fill"></i>
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                {% translate "Profile Photo" %}
+                            </h3>
+
+                            <p>
+                                {% translate "Add a photo so your account feels more personal." %}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-image-upload">
+
+                        <div class="profile-upload-preview">
+
+                            {% if profile_user.profile_image %}
+
+                                <img
+                                    src="{{ profile_user.profile_image.url }}"
+                                    alt="{% translate 'Current profile photo' %}"
+                                    id="profile-image-preview"
+                                >
+
+                            {% else %}
+
+                                <div
+                                    class="profile-upload-placeholder"
+                                    id="profile-image-placeholder"
+                                >
+
+                                    <i class="bi bi-person"></i>
+
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="profile-upload-content">
+
+                            <label
+                                for="{{ form.profile_image.id_for_label }}"
+                                class="profile-upload-button"
+                            >
+
+                                <i class="bi bi-cloud-arrow-up-fill"></i>
+
+                                {% translate "Choose Photo" %}
+
+                            </label>
+
+                            <div class="d-none">
+                                {{ form.profile_image }}
+                            </div>
+
+                            <p>
+                                {% translate "JPG, PNG or WEBP. Choose a clear profile picture." %}
+                            </p>
+
+                            {% if form.profile_image.errors %}
+
+                                <div class="field-error">
+                                    {{ form.profile_image.errors|striptags }}
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ======================================
+                     LANGUAGE PREFERENCE
+                ======================================= -->
+
+                <div class="profile-section">
+
+                    <div class="profile-section-heading">
+
+                        <div class="profile-section-icon">
+                            <i class="bi bi-translate"></i>
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                {% translate "Language Preference" %}
+                            </h3>
+
+                            <p>
+                                {% translate "Choose the language you prefer to use on JanMitra." %}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="language-selector">
+
+                        <div class="language-option">
+
+                            {{ form.preferred_language }}
+
+                        </div>
+
+                    </div>
+
+
+                    {% if form.preferred_language.errors %}
+
+                        <div class="field-error">
+
+                            {{ form.preferred_language.errors|striptags }}
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- ======================================
+                     ACCOUNT INFORMATION
+                ======================================= -->
+
+                <div class="profile-section">
+
+                    <div class="profile-section-heading">
+
+                        <div class="profile-section-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                {% translate "Account Information" %}
+                            </h3>
+
+                            <p>
+                                {% translate "Basic information about your JanMitra account." %}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-account-grid">
+
+                        <div class="profile-account-item">
+
+                            <span>
+                                <i class="bi bi-person-badge-fill"></i>
+                                {% translate "Account Type" %}
+                            </span>
+
+                            <strong>
+                                {% translate "Citizen" %}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="profile-account-item">
+
+                            <span>
+                                <i class="bi bi-calendar-check"></i>
+                                {% translate "Member Since" %}
+                            </span>
+
+                            <strong>
+                                {{ profile_user.date_joined|date:"d M Y" }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="profile-account-item">
+
+                            <span>
+                                <i class="bi bi-patch-check-fill"></i>
+                                {% translate "Verification" %}
+                            </span>
+
+                            {% if profile_user.is_verified %}
+
+                                <strong class="profile-verified">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    {% translate "Verified" %}
+                                </strong>
+
+                            {% else %}
+
+                                <strong class="profile-unverified">
+                                    <i class="bi bi-clock-fill"></i>
+                                    {% translate "Not Verified" %}
+                                </strong>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="profile-account-item">
+
+                            <span>
+                                <i class="bi bi-clock-history"></i>
+                                {% translate "Last Updated" %}
+                            </span>
+
+                            <strong>
+                                {{ profile_user.updated_at|date:"d M Y" }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ======================================
+                     ACTIONS
+                ======================================= -->
+
+                <div class="profile-actions">
+
+                    <a
+                        href="{% url 'users:dashboard' %}"
+                        class="profile-cancel-button"
+                    >
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        {% translate "Back to Dashboard" %}
+
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="profile-save-button"
+                    >
+
+                        <i class="bi bi-check2-circle"></i>
+
+                        {% translate "Save Changes" %}
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==============================================
+     PROFILE IMAGE PREVIEW
+================================================ -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const imageInput =
+            document.getElementById(
+                "{{ form.profile_image.id_for_label }}"
+            );
+
+        const preview =
+            document.getElementById(
+                "profile-image-preview"
+            );
+
+        const placeholder =
+            document.getElementById(
+                "profile-image-placeholder"
+            );
+
+
+        if (!imageInput) {
+            return;
+        }
+
+
+        imageInput.addEventListener(
+            "change",
+            function (event) {
+
+                const file =
+                    event.target.files[0];
+
+
+                if (!file) {
+                    return;
+                }
+
+
+                if (!file.type.startsWith("image/")) {
+
+                    alert(
+                        "{% translate 'Please select an image file.' %}"
+                    );
+
+                    imageInput.value = "";
+
+                    return;
+
+                }
+
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    function (e) {
+
+                        if (preview) {
+
+                            preview.src =
+                                e.target.result;
+
+                            preview.style.display =
+                                "block";
+
+                        }
+
+
+                        if (placeholder) {
+
+                            placeholder.style.display =
+                                "none";
+
+                        }
+
+                    };
+
+
+                reader.readAsDataURL(file);
+
+            }
+        );
+
+    }
+);
+
+</script>
+
+{% endblock %}

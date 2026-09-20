@@ -1,0 +1,1900 @@
+# Hindi translations for JanMitra.
+# Language: Hindi
+msgid ""
+msgstr ""
+"Project-Id-Version: JanMitra 1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-09-19 00:33+0000\n"
+"PO-Revision-Date: 2026-09-20 00:00+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: hi\n"
+"Language-Team: hi <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: apps/issues/forms.py:29
+msgid "e.g. Large pothole near main road"
+msgstr "जैसे: मुख्य सड़क के पास बड़ा गड्ढा"
+
+#: apps/issues/forms.py:38
+msgid "Describe the issue clearly..."
+msgstr "समस्या का स्पष्ट रूप से वर्णन करें..."
+
+#: apps/issues/forms.py:54
+msgid "Select a location on the map"
+msgstr "मानचित्र पर एक स्थान चुनें"
+
+#: apps/issues/forms.py:80
+msgid "Title must contain at least 5 characters."
+msgstr "शीर्षक में कम से कम 5 अक्षर होने चाहिए।"
+
+#: apps/issues/forms.py:94
+msgid "Please provide a little more information about the issue."
+msgstr "कृपया समस्या के बारे में थोड़ी और जानकारी दें।"
+
+#: apps/issues/forms.py:109
+msgid "Please select a valid location on the map."
+msgstr "कृपया मानचित्र पर एक मान्य स्थान चुनें।"
+
+#: apps/issues/forms.py:123 apps/issues/forms.py:137
+msgid "Please select the issue location on the map."
+msgstr "कृपया मानचित्र पर समस्या का स्थान चुनें।"
+
+#: apps/issues/models.py:9
+msgid "Road & Potholes"
+msgstr "सड़क और गड्ढे"
+
+#: apps/issues/models.py:10
+msgid "Street Lights"
+msgstr "स्ट्रीट लाइटें"
+
+#: apps/issues/models.py:11
+msgid "Garbage & Sanitation"
+msgstr "कचरा और स्वच्छता"
+
+#: apps/issues/models.py:12
+msgid "Water Supply"
+msgstr "जल आपूर्ति"
+
+#: apps/issues/models.py:13
+msgid "Drainage"
+msgstr "जल निकासी"
+
+#: apps/issues/models.py:14
+msgid "Electricity"
+msgstr "बिजली"
+
+#: apps/issues/models.py:15
+msgid "Traffic"
+msgstr "यातायात"
+
+#: apps/issues/models.py:16 templates/issues/report_issue.html:11
+msgid "Other"
+msgstr "अन्य"
+
+#: apps/issues/models.py:20 templates/issues/issue_map.html:217 templates/issues/issue_map.html:322
+#: templates/issues/report_issue.html:10 templates/users/government_analytics.html:123
+#: templates/users/government_dashboard.html:278
+msgid "Reported"
+msgstr "रिपोर्ट की गई"
+
+#: apps/issues/models.py:21 templates/issues/issue_map.html:224 templates/issues/issue_map.html:338
+#: templates/users/government_dashboard.html:293
+msgid "Under Review"
+msgstr "समीक्षा में"
+
+#: apps/issues/models.py:22 templates/issues/issue_map.html:231 templates/issues/issue_map.html:354
+#: templates/users/government_analytics.html:175 templates/users/government_dashboard.html:308
+msgid "In Progress"
+msgstr "प्रगति में"
+
+#: apps/issues/models.py:23 templates/issues/issue_map.html:238 templates/issues/issue_map.html:370
+#: templates/users/government_analytics.html:201 templates/users/government_analytics.html:396
+#: templates/users/government_analytics.html:422 templates/users/government_dashboard.html:166
+#: templates/users/government_dashboard.html:323
+msgid "Resolved"
+msgstr "समाधान हो गया"
+
+#: apps/issues/models.py:24 templates/issues/issue_map.html:245 templates/issues/issue_map.html:386
+#: templates/users/government_analytics.html:227
+msgid "Rejected"
+msgstr "अस्वीकृत"
+
+#: apps/users/forms.py:14 templates/users/login.html:51 templates/users/register.html:133
+msgid "Password"
+msgstr "पासवर्ड"
+
+#: apps/users/forms.py:18
+msgid "Enter password"
+msgstr "पासवर्ड दर्ज करें"
+
+#: apps/users/forms.py:24 templates/users/register.html:167
+msgid "Confirm Password"
+msgstr "पासवर्ड की पुष्टि करें"
+
+#: apps/users/forms.py:28
+msgid "Confirm password"
+msgstr "पासवर्ड की पुष्टि करें"
+
+#: apps/users/forms.py:39 templates/users/register.html:203
+msgid "Request Government Official Access"
+msgstr "सरकारी अधिकारी की पहुँच का अनुरोध करें"
+
+#: apps/users/forms.py:41 templates/users/register.html:207
+msgid "Your account will remain a citizen account until an administrator approves your request."
+msgstr "जब तक कोई प्रशासक आपके अनुरोध को मंज़ूरी नहीं देता, आपका खाता नागरिक खाते के रूप में रहेगा।"
+
+#: apps/users/forms.py:61
+msgid "Enter first name"
+msgstr "पहला नाम दर्ज करें"
+
+#: apps/users/forms.py:68
+msgid "Enter last name"
+msgstr "अंतिम नाम दर्ज करें"
+
+#: apps/users/forms.py:75
+msgid "Enter email address"
+msgstr "ईमेल पता दर्ज करें"
+
+#: apps/users/forms.py:82
+msgid "Enter phone number"
+msgstr "फ़ोन नंबर दर्ज करें"
+
+#: apps/users/forms.py:96
+msgid "An account with this email already exists."
+msgstr "इस ईमेल से एक खाता पहले से मौजूद है।"
+
+#: apps/users/forms.py:113
+msgid "Passwords do not match."
+msgstr "पासवर्ड मेल नहीं खाते।"
+
+#: apps/users/forms.py:137 templates/users/profile.html:167 templates/users/register.html:47
+msgid "First Name"
+msgstr "पहला नाम"
+
+#: apps/users/forms.py:138 templates/users/profile.html:192 templates/users/register.html:68
+msgid "Last Name"
+msgstr "अंतिम नाम"
+
+#: apps/users/forms.py:139 templates/users/profile.html:217 templates/users/register.html:112
+msgid "Phone Number"
+msgstr "फ़ोन नंबर"
+
+#: apps/users/forms.py:140 templates/users/profile.html:281
+msgid "Profile Photo"
+msgstr "प्रोफ़ाइल फ़ोटो"
+
+#: apps/users/forms.py:141 templates/users/profile.html:372
+msgid "Language Preference"
+msgstr "भाषा प्राथमिकता"
+
+#: apps/users/forms.py:149
+msgid "Enter your first name"
+msgstr "अपना पहला नाम दर्ज करें"
+
+#: apps/users/forms.py:157
+msgid "Enter your last name"
+msgstr "अपना अंतिम नाम दर्ज करें"
+
+#: apps/users/forms.py:165
+msgid "Enter your phone number"
+msgstr "अपना फ़ोन नंबर दर्ज करें"
+
+#: apps/users/forms.py:197
+msgid "Please enter a valid phone number."
+msgstr "कृपया एक मान्य फ़ोन नंबर दर्ज करें।"
+
+#: templates/base.html:163
+msgid "Open navigation menu"
+msgstr "नेविगेशन मेनू खोलें"
+
+#: templates/base.html:206 templates/base.html:270 templates/base.html:591 templates/base.html:718
+#: templates/users/citizen_dashboard.html:6 templates/users/government_analytics.html:55
+msgid "Dashboard"
+msgstr "डैशबोर्ड"
+
+#: templates/base.html:220 templates/base.html:607 templates/users/citizen_dashboard.html:72
+msgid "Report Issue"
+msgstr "समस्या की रिपोर्ट करें"
+
+#: templates/base.html:234 templates/base.html:623 templates/issues/issue_detail.html:765
+#: templates/issues/my_issues.html:6 templates/users/citizen_dashboard.html:107
+msgid "My Issues"
+msgstr "मेरी समस्याएँ"
+
+#: templates/base.html:248 templates/base.html:639 templates/issues/issue_map.html:7
+#: templates/users/citizen_dashboard.html:142
+msgid "Issue Map"
+msgstr "समस्या मानचित्र"
+
+#: templates/base.html:284 templates/base.html:734 templates/users/government_analytics.html:67
+msgid "Manage Issues"
+msgstr "समस्याओं का प्रबंधन करें"
+
+#: templates/base.html:323 templates/base.html:476 templates/base.html:798
+msgid "Select language"
+msgstr "भाषा चुनें"
+
+#: templates/base.html:367 templates/base.html:368 templates/base.html:658
+#: templates/rewards/wallet.html:5 templates/rewards/wallet.html:25
+msgid "My Rewards"
+msgstr "मेरे पुरस्कार"
+
+#: templates/base.html:400 templates/base.html:401 templates/base.html:686
+#: templates/notifications/notification_list.html:7 templates/notifications/notification_list.html:32
+msgid "Notifications"
+msgstr "सूचनाएँ"
+
+#: templates/base.html:437 templates/base.html:835
+msgid "Logout"
+msgstr "लॉग आउट"
+
+#: templates/base.html:535 templates/base.html:937 templates/home.html:43 templates/users/login.html:4
+#: templates/users/login.html:83 templates/users/register.html:232
+msgid "Login"
+msgstr "लॉगिन"
+
+#: templates/base.html:551 templates/base.html:955
+msgid "Get Started"
+msgstr "शुरू करें"
+
+#: templates/base.html:755 templates/users/citizen_dashboard.html:177 templates/users/profile.html:5
+msgid "My Profile"
+msgstr "मेरी प्रोफ़ाइल"
+
+#: templates/base.html:772 templates/base.html:855
+msgid "Language"
+msgstr "भाषा"
+
+#: templates/home.html:4
+msgid "JanMitra | Your Voice. Your Impact."
+msgstr "जनमित्र | आपकी आवाज़। आपका प्रभाव।"
+
+#: templates/home.html:14
+msgid "CITIZEN POWERED PLATFORM"
+msgstr "नागरिकों द्वारा संचालित मंच"
+
+#: templates/home.html:18
+msgid "Your Voice."
+msgstr "आपकी आवाज़।"
+
+#: templates/home.html:19
+msgid "Your Impact."
+msgstr "आपका प्रभाव।"
+
+#: templates/home.html:23
+msgid "Report civic issues, track real change and help build a better community."
+msgstr "नागरिक समस्याओं की रिपोर्ट करें, वास्तविक बदलाव को ट्रैक करें और बेहतर समुदाय बनाने में मदद करें।"
+
+#: templates/home.html:34 templates/users/register.html:4 templates/users/register.html:20
+msgid "Join JanMitra"
+msgstr "जनमित्र से जुड़ें"
+
+#: templates/home.html:49
+msgid "Government official?"
+msgstr "सरकारी अधिकारी हैं?"
+
+#: templates/home.html:53
+msgid "Government Portal Login"
+msgstr "सरकारी पोर्टल लॉगिन"
+
+#: templates/home.html:62
+msgid "Report"
+msgstr "रिपोर्ट करें"
+
+#: templates/home.html:63
+msgid "Civic Issues"
+msgstr "नागरिक समस्याएँ"
+
+#: templates/home.html:67 templates/users/citizen_dashboard.html:102
+msgid "Track"
+msgstr "ट्रैक करें"
+
+#: templates/home.html:68
+msgid "Progress"
+msgstr "प्रगति"
+
+#: templates/home.html:72
+msgid "Earn"
+msgstr "कमाएँ"
+
+#: templates/home.html:73
+msgid "Rewards"
+msgstr "पुरस्कार"
+
+#: templates/issues/government_issue_list.html:7
+msgid "Government Issue Management | JanMitra"
+msgstr "सरकारी समस्या प्रबंधन | जनमित्र"
+
+#: templates/issues/government_issue_list.html:22
+msgid "Issue Management"
+msgstr "समस्या प्रबंधन"
+
+#: templates/issues/government_issue_list.html:26
+msgid "Review and manage civic issues reported by citizens."
+msgstr "नागरिकों द्वारा रिपोर्ट की गई नागरिक समस्याओं की समीक्षा और प्रबंधन करें।"
+
+#: templates/issues/government_issue_list.html:49 templates/issues/government_issue_list.html:140
+#: templates/issues/issue_map.html:97 templates/issues/issue_map.html:98
+#: templates/issues/issue_map.html:101 templates/issues/issue_map.html:510
+#: templates/issues/report_issue.html:396 templates/issues/report_issue.html:3392
+#: templates/issues/report_issue_backup.html:321 templates/issues/report_issue_backup.html:336
+#: templates/issues/report_issue_backup.html:358
+msgid "Search"
+msgstr "खोजें"
+
+#: templates/issues/government_issue_list.html:57
+msgid "Search by title, location, citizen..."
+msgstr "शीर्षक, स्थान या नागरिक के आधार पर खोजें..."
+
+#: templates/issues/government_issue_list.html:68 templates/issues/issue_detail.html:217
+#: templates/issues/issue_map.html:157 templates/issues/issue_map.html:164
+#: templates/issues/report_issue.html:57 templates/issues/report_issue.html:311
+#: templates/issues/report_issue_backup.html:251
+msgid "Category"
+msgstr "श्रेणी"
+
+#: templates/issues/government_issue_list.html:77 templates/issues/issue_map.html:169
+msgid "All Categories"
+msgstr "सभी श्रेणियाँ"
+
+#: templates/issues/government_issue_list.html:103 templates/issues/issue_map.html:198
+#: templates/issues/issue_map.html:205
+msgid "Status"
+msgstr "स्थिति"
+
+#: templates/issues/government_issue_list.html:112 templates/issues/issue_map.html:210
+msgid "All Statuses"
+msgstr "सभी स्थितियाँ"
+
+#: templates/issues/government_issue_list.html:164
+#, python-format
+msgid ""
+"\n"
+"                %(counter)s issue found\n"
+"            "
+msgid_plural ""
+"\n"
+"                %(counter)s issues found\n"
+"            "
+msgstr[0] ""
+"                %(counter)s समस्या मिली\n"
+"            "
+msgstr[1] ""
+"                %(counter)s समस्याएँ मिलीं\n"
+"            "
+
+#: templates/issues/government_issue_list.html:177
+msgid "Clear Filters"
+msgstr "फ़िल्टर साफ़ करें"
+
+#: templates/issues/government_issue_list.html:244
+msgid "Reported by"
+msgstr "रिपोर्टकर्ता"
+
+#: templates/issues/government_issue_list.html:311
+msgid "View Details"
+msgstr "विवरण देखें"
+
+#: templates/issues/government_issue_list.html:344
+msgid "No issues found"
+msgstr "कोई समस्या नहीं मिली"
+
+#: templates/issues/government_issue_list.html:348
+msgid "Try changing your search or filters."
+msgstr "अपनी खोज या फ़िल्टर बदलकर देखें।"
+
+#: templates/issues/issue_detail.html:37
+msgid "Back to Issue Map"
+msgstr "समस्या मानचित्र पर वापस जाएँ"
+
+#: templates/issues/issue_detail.html:57
+msgid "CIVIC ISSUE"
+msgstr "नागरिक समस्या"
+
+#: templates/issues/issue_detail.html:106
+msgid "Reported By"
+msgstr "रिपोर्ट करने वाला"
+
+#: templates/issues/issue_detail.html:166
+msgid "Citizen Evidence"
+msgstr "नागरिक प्रमाण"
+
+#: templates/issues/issue_detail.html:192 templates/issues/report_issue.html:59
+#: templates/issues/report_issue.html:279 templates/issues/report_issue_backup.html:219
+#: templates/rewards/wallet.html:191
+msgid "Description"
+msgstr "विवरण"
+
+#: templates/issues/issue_detail.html:236
+msgid "Reported On"
+msgstr "रिपोर्ट की गई तारीख"
+
+#: templates/issues/issue_detail.html:257
+msgid "Latitude"
+msgstr "अक्षांश"
+
+#: templates/issues/issue_detail.html:276
+msgid "Longitude"
+msgstr "देशांतर"
+
+#: templates/issues/issue_detail.html:314
+msgid "Community Support"
+msgstr "सामुदायिक समर्थन"
+
+#: templates/issues/issue_detail.html:328
+msgid ""
+"\n"
+"\n"
+"                                        citizen supporting\n"
+"\n"
+"                                    "
+msgid_plural ""
+"\n"
+"\n"
+"                                        citizens supporting\n"
+"\n"
+"                                    "
+msgstr[0] "                                        <strong>%(count)s</strong> नागरिक समर्थन कर रहा है\n"
+msgstr[1] "                                        <strong>%(count)s</strong> नागरिक समर्थन कर रहे हैं\n"
+
+#: templates/issues/issue_detail.html:347
+msgid "Support this report instead of creating a duplicate."
+msgstr "डुप्लिकेट रिपोर्ट बनाने के बजाय इस रिपोर्ट का समर्थन करें।"
+
+#: templates/issues/issue_detail.html:372 templates/issues/issue_detail.html:373
+#: templates/issues/issue_detail.html:379 templates/issues/report_issue.html:14
+msgid "Your Issue"
+msgstr "आपकी समस्या"
+
+#: templates/issues/issue_detail.html:390 templates/issues/issue_detail.html:391
+#: templates/issues/issue_detail.html:397 templates/issues/report_issue.html:12
+msgid "Supported"
+msgstr "समर्थित"
+
+#: templates/issues/issue_detail.html:408 templates/issues/issue_detail.html:409
+#: templates/issues/issue_detail.html:415 templates/issues/report_issue.html:13
+msgid "Support Issue"
+msgstr "समस्या का समर्थन करें"
+
+#: templates/issues/issue_detail.html:441
+msgid "Issue Progress"
+msgstr "समस्या की प्रगति"
+
+#: templates/issues/issue_detail.html:445
+msgid "Track the progress of your civic issue."
+msgstr "अपनी नागरिक समस्या की प्रगति को ट्रैक करें।"
+
+#: templates/issues/issue_detail.html:472
+msgid "Issue Reported"
+msgstr "समस्या रिपोर्ट की गई"
+
+#: templates/issues/issue_detail.html:483
+msgid "Your civic issue was successfully reported."
+msgstr "आपकी नागरिक समस्या सफलतापूर्वक रिपोर्ट की गई।"
+
+#: templates/issues/issue_detail.html:551
+msgid "Updated by"
+msgstr "द्वारा अपडेट किया गया"
+
+#: templates/issues/issue_detail.html:590
+msgid "Government Resolution Evidence"
+msgstr "सरकारी समाधान प्रमाण"
+
+#: templates/issues/issue_detail.html:596
+msgid "Photos uploaded by government officials showing investigation, progress or resolution."
+msgstr "सरकारी अधिकारियों द्वारा जांच, प्रगति या समाधान दिखाने वाली अपलोड की गई तस्वीरें।"
+
+#: templates/issues/issue_detail.html:621
+#, python-format
+msgid "Government proof for %(title)s"
+msgstr "%(title)s के लिए सरकारी प्रमाण"
+
+#: templates/issues/issue_detail.html:629
+msgid "View Evidence"
+msgstr "प्रमाण देखें"
+
+#: templates/issues/issue_detail.html:638
+msgid "Government Evidence"
+msgstr "सरकारी प्रमाण"
+
+#: templates/issues/issue_detail.html:671 templates/issues/report_issue.html:353
+#: templates/issues/report_issue_backup.html:293
+msgid "Issue Location"
+msgstr "समस्या का स्थान"
+
+#: templates/issues/issue_detail.html:677
+msgid "Use the map to view the reported location."
+msgstr "रिपोर्ट किए गए स्थान को देखने के लिए मानचित्र का उपयोग करें।"
+
+#: templates/issues/issue_detail.html:702 templates/issues/issue_detail.html:703
+#: templates/issues/issue_detail.html:708
+msgid "Copy Coordinates"
+msgstr "निर्देशांक कॉपी करें"
+
+#: templates/issues/issue_detail.html:717 templates/issues/issue_detail.html:718
+#: templates/issues/issue_detail.html:723
+msgid "Navigate to Location"
+msgstr "स्थान पर जाएँ"
+
+#: templates/issues/issue_detail.html:753
+msgid "View Issue Map"
+msgstr "समस्या मानचित्र देखें"
+
+#: templates/issues/issue_detail.html:857
+msgid "Coordinates copied:"
+msgstr "निर्देशांक कॉपी किए गए:"
+
+#: templates/issues/issue_detail.html:860
+msgid "Unable to copy coordinates."
+msgstr "निर्देशांक कॉपी नहीं किए जा सके।"
+
+#: templates/issues/issue_map.html:38
+msgid "JANMITRA CIVIC MAP"
+msgstr "जनमित्र नागरिक मानचित्र"
+
+#: templates/issues/issue_map.html:45
+msgid "Issues"
+msgstr "समस्याएं"
+
+#: templates/issues/issue_map.html:49
+msgid "Across Bengaluru."
+msgstr "बेंगलुरु भर में।"
+
+#: templates/issues/issue_map.html:58
+msgid "Explore civic issues reported by the community."
+msgstr "समुदाय द्वारा रिपोर्ट की गई नागरिक समस्याओं को देखें।"
+
+#: templates/issues/issue_map.html:88 templates/issues/issue_map.html:90
+msgid "Search a Bengaluru location..."
+msgstr "बेंगलुरु में कोई स्थान खोजें..."
+
+#: templates/issues/issue_map.html:113 templates/issues/issue_map.html:114
+#: templates/issues/issue_map.html:121 templates/issues/issue_map.html:522
+msgid "My Location"
+msgstr "मेरा स्थान"
+
+#: templates/issues/issue_map.html:269 templates/issues/issue_map.html:552
+#: templates/users/government_analytics.html:522 templates/users/government_analytics.html:547
+msgid "issues"
+msgstr "समस्याएँ"
+
+#: templates/issues/issue_map.html:276
+msgid "Within 10 km"
+msgstr "10 किमी के भीतर"
+
+#: templates/issues/issue_map.html:305
+msgid "Issue Status"
+msgstr "समस्या की स्थिति"
+
+#: templates/issues/issue_map.html:507 templates/issues/report_issue.html:38
+msgid "Searching..."
+msgstr "खोज रहे हैं..."
+
+#: templates/issues/issue_map.html:513
+msgid "No Bengaluru locations found."
+msgstr "बेंगलुरु में कोई स्थान नहीं मिला।"
+
+#: templates/issues/issue_map.html:516
+msgid "Unable to search right now."
+msgstr "अभी खोज करने में असमर्थ हैं।"
+
+#: templates/issues/issue_map.html:519
+msgid "Locating..."
+msgstr "स्थान पता किया जा रहा है..."
+
+#: templates/issues/issue_map.html:525
+msgid "Location is not supported by your browser."
+msgstr "आपका ब्राउज़र स्थान सुविधा का समर्थन नहीं करता है।"
+
+#: templates/issues/issue_map.html:528
+msgid "JanMitra currently supports locations within Bengaluru."
+msgstr "जनमित्र वर्तमान में केवल बेंगलुरु के भीतर के स्थानों का समर्थन करता है।"
+
+#: templates/issues/issue_map.html:531
+msgid "Please allow location access to find issues near you."
+msgstr "अपने आस-पास की समस्याओं को खोजने के लिए स्थान की अनुमति दें।"
+
+#: templates/issues/issue_map.html:534
+msgid "Your Location"
+msgstr "आपका स्थान"
+
+#: templates/issues/issue_map.html:537 templates/issues/report_issue.html:18
+#: templates/notifications/notification_list.html:258
+msgid "View Issue"
+msgstr "समस्या देखें"
+
+#: templates/issues/issue_map.html:540
+msgid "citizen"
+msgstr "नागरिक"
+
+#: templates/issues/issue_map.html:543
+msgid "citizens"
+msgstr "नागरिक"
+
+#: templates/issues/issue_map.html:546
+msgid "supporting"
+msgstr "समर्थन कर रहे हैं"
+
+#: templates/issues/issue_map.html:549
+msgid "issue"
+msgstr "समस्या"
+
+#: templates/issues/my_issues.html:19
+msgid "MY REPORTS"
+msgstr "मेरी रिपोर्ट"
+
+#: templates/issues/my_issues.html:23
+msgid "My"
+msgstr "मेरी"
+
+#: templates/issues/my_issues.html:24
+msgid "Issues."
+msgstr "समस्याएँ।"
+
+#: templates/issues/my_issues.html:28
+msgid "Track the civic issues you have reported."
+msgstr "आपके द्वारा रिपोर्ट की गई नागरिक समस्याओं को ट्रैक करें।"
+
+#: templates/issues/my_issues.html:76
+#, python-format
+msgid ""
+"\n"
+"                                            <strong>%(count)s</strong> citizen supporting\n"
+"                                        "
+msgid_plural ""
+"\n"
+"                                            <strong>%(count)s</strong> citizens supporting\n"
+"                                        "
+msgstr[0] "                                        <strong>%(count)s</strong> नागरिक समर्थन कर रहा है\n"
+msgstr[1] "                                        <strong>%(count)s</strong> नागरिक समर्थन कर रहे हैं\n"
+
+#: templates/issues/my_issues.html:110 templates/issues/my_issues.html:111
+msgid "View issue"
+msgstr "समस्या देखें"
+
+#: templates/issues/my_issues.html:139
+msgid "No issues reported yet"
+msgstr "अभी तक कोई समस्या रिपोर्ट नहीं की गई है"
+
+#: templates/issues/my_issues.html:144
+msgid "Found a civic problem? Be the voice that gets it noticed."
+msgstr "कोई नागरिक समस्या मिली? अपनी आवाज़ उठाएँ और इसे ध्यान में लाएँ।"
+
+#: templates/issues/my_issues.html:155 templates/issues/report_issue.html:64
+#: templates/issues/report_issue_backup.html:4
+msgid "Report an Issue"
+msgstr "समस्या रिपोर्ट करें"
+
+#: templates/issues/report_issue.html:8
+msgid "Civic Issue"
+msgstr "नागरिक समस्या"
+
+#: templates/issues/report_issue.html:9
+msgid "Bengaluru"
+msgstr "बेंगलुरु"
+
+#: templates/issues/report_issue.html:15
+msgid "m away"
+msgstr "मीटर दूर"
+
+#: templates/issues/report_issue.html:16
+msgid "supporter"
+msgstr "समर्थक"
+
+#: templates/issues/report_issue.html:17
+msgid "supporters"
+msgstr "समर्थक"
+
+#: templates/issues/report_issue.html:19
+msgid "Updating..."
+msgstr "अपडेट किया जा रहा है..."
+
+#: templates/issues/report_issue.html:20
+msgid "Unable to update support."
+msgstr "समर्थन अपडेट नहीं किया जा सका।"
+
+#: templates/issues/report_issue.html:21
+msgid "Unable to support this issue."
+msgstr "इस समस्या का समर्थन नहीं किया जा सका।"
+
+#: templates/issues/report_issue.html:22
+msgid "nearby"
+msgstr "आस-पास"
+
+#: templates/issues/report_issue.html:23
+msgid "existing issue"
+msgstr "मौजूदा समस्या"
+
+#: templates/issues/report_issue.html:24
+msgid "existing issues"
+msgstr "मौजूदा समस्याएँ"
+
+#: templates/issues/report_issue.html:25
+msgid "Check these reports before creating a duplicate."
+msgstr "डुप्लिकेट रिपोर्ट बनाने से पहले इन रिपोर्टों की जाँच करें।"
+
+#: templates/issues/report_issue.html:26
+msgid "If this is the same problem, support the existing issue instead of creating a duplicate."
+msgstr "यदि यह वही समस्या है, तो डुप्लिकेट रिपोर्ट बनाने के बजाय मौजूदा समस्या का समर्थन करें।"
+
+#: templates/issues/report_issue.html:27
+msgid "Checking for nearby reported issues..."
+msgstr "आस-पास रिपोर्ट की गई समस्याओं की जाँच की जा रही है..."
+
+#: templates/issues/report_issue.html:28
+msgid "No existing issue found nearby"
+msgstr "आस-पास कोई मौजूदा समस्या नहीं मिली"
+
+#: templates/issues/report_issue.html:29
+msgid "You can continue and report this issue."
+msgstr "आप आगे बढ़कर इस समस्या की रिपोर्ट कर सकते हैं।"
+
+#: templates/issues/report_issue.html:30
+msgid "Unable to check nearby issues"
+msgstr "आस-पास की समस्याओं की जाँच नहीं की जा सकी"
+
+#: templates/issues/report_issue.html:31
+msgid "You can still continue with your report."
+msgstr "आप फिर भी अपनी रिपोर्ट जारी रख सकते हैं।"
+
+#: templates/issues/report_issue.html:32
+msgid "Please select a location within Bengaluru."
+msgstr "कृपया बेंगलुरु के भीतर कोई स्थान चुनें।"
+
+#: templates/issues/report_issue.html:33
+msgid "Please keep the marker within Bengaluru."
+msgstr "कृपया मार्कर को बेंगलुरु के भीतर रखें।"
+
+#: templates/issues/report_issue.html:34
+msgid "Your Selected Location"
+msgstr "आपका चयनित स्थान"
+
+#: templates/issues/report_issue.html:35
+msgid "Issue location"
+msgstr "समस्या का स्थान"
+
+#: templates/issues/report_issue.html:36
+msgid "Nearby issues within 500 metres will appear automatically."
+msgstr "500 मीटर के भीतर की समस्याएँ अपने आप दिखाई देंगी।"
+
+#: templates/issues/report_issue.html:37
+msgid "Getting location name..."
+msgstr "स्थान का नाम प्राप्त किया जा रहा है..."
+
+#: templates/issues/report_issue.html:39
+msgid "No matching location found in Bengaluru."
+msgstr "बेंगलुरु में कोई मिलान वाला स्थान नहीं मिला।"
+
+#: templates/issues/report_issue.html:40
+msgid "Unable to search for the location. Please try again."
+msgstr "स्थान खोजा नहीं जा सका। कृपया फिर से प्रयास करें।"
+
+#: templates/issues/report_issue.html:41
+msgid "Please enter a location."
+msgstr "कृपया कोई स्थान दर्ज करें।"
+
+#: templates/issues/report_issue.html:42
+msgid "We could not find this location in Bengaluru."
+msgstr "हमें बेंगलुरु में यह स्थान नहीं मिला।"
+
+#: templates/issues/report_issue.html:43
+msgid "The selected location is outside Bengaluru."
+msgstr "चयनित स्थान बेंगलुरु के बाहर है।"
+
+#: templates/issues/report_issue.html:44
+msgid "Unable to find this location. Please try again."
+msgstr "यह स्थान नहीं मिला। कृपया फिर से प्रयास करें।"
+
+#: templates/issues/report_issue.html:45
+msgid "The map is not ready yet. Please try again."
+msgstr "मानचित्र अभी तैयार नहीं है। कृपया फिर से प्रयास करें।"
+
+#: templates/issues/report_issue.html:46
+msgid "Review the information below before filling your report."
+msgstr "अपनी रिपोर्ट भरने से पहले नीचे दी गई जानकारी की समीक्षा करें।"
+
+#: templates/issues/report_issue.html:47
+msgid "Security token not found."
+msgstr "सुरक्षा टोकन नहीं मिला।"
+
+#: templates/issues/report_issue.html:48
+msgid "Gemini analysis failed."
+msgstr "Gemini विश्लेषण विफल रहा।"
+
+#: templates/issues/report_issue.html:49
+msgid "Unable to connect to Gemini."
+msgstr "Gemini से कनेक्ट नहीं किया जा सका।"
+
+#: templates/issues/report_issue.html:50
+msgid "Gemini identified this civic issue category."
+msgstr "Gemini ने इस नागरिक समस्या की श्रेणी की पहचान की।"
+
+#: templates/issues/report_issue.html:51
+msgid "Analyzing..."
+msgstr "विश्लेषण किया जा रहा है..."
+
+#: templates/issues/report_issue.html:52
+msgid "Please select a valid image."
+msgstr "कृपया एक मान्य इमेज चुनें।"
+
+#: templates/issues/report_issue.html:53
+msgid "This image is larger than 5 MB. Do you want to continue?"
+msgstr "यह इमेज 5 MB से बड़ी है। क्या आप जारी रखना चाहते हैं?"
+
+#: templates/issues/report_issue.html:54
+msgid "Unable to preview this image."
+msgstr "इस इमेज का पूर्वावलोकन नहीं किया जा सका।"
+
+#: templates/issues/report_issue.html:55 templates/issues/report_issue_backup.html:666
+msgid "Photo selected"
+msgstr "फ़ोटो चयनित"
+
+#: templates/issues/report_issue.html:56
+msgid "Title"
+msgstr "समस्या का शीर्षक"
+
+#: templates/issues/report_issue.html:58 templates/issues/report_issue.html:526
+#: templates/issues/report_issue_backup.html:468
+msgid "Location"
+msgstr "स्थान"
+
+#: templates/issues/report_issue.html:60 templates/issues/report_issue_backup.html:670
+msgid "Ready to upload"
+msgstr "अपलोड के लिए तैयार"
+
+#: templates/issues/report_issue.html:82 templates/issues/report_issue_backup.html:22
+msgid "REPORT AN ISSUE"
+msgstr "समस्या की रिपोर्ट करें"
+
+#: templates/issues/report_issue.html:89 templates/issues/report_issue_backup.html:29
+msgid "Make your"
+msgstr "अपनी"
+
+#: templates/issues/report_issue.html:89 templates/issues/report_issue_backup.html:29
+msgid "voice heard."
+msgstr "आवाज़ बुलंद करें।"
+
+#: templates/issues/report_issue.html:96 templates/issues/report_issue_backup.html:36
+msgid "Help improve Bengaluru by reporting a civic issue."
+msgstr "नागरिक समस्या की रिपोर्ट करके बेंगलुरु को बेहतर बनाने में मदद करें।"
+
+#: templates/issues/report_issue.html:143 templates/issues/report_issue.html:161
+#: templates/issues/report_issue.html:821 templates/issues/report_issue.html:866
+#: templates/issues/report_issue_backup.html:83 templates/issues/report_issue_backup.html:101
+#: templates/issues/report_issue_backup.html:763 templates/issues/report_issue_backup.html:808
+msgid "JANMITRA ASSISTANT"
+msgstr "जनमित्र सहायक"
+
+#: templates/issues/report_issue.html:168 templates/issues/report_issue_backup.html:108
+msgid "Need help reporting your issue?"
+msgstr "अपनी समस्या की रिपोर्ट करने में मदद चाहिए?"
+
+#: templates/issues/report_issue.html:175 templates/issues/report_issue_backup.html:115
+msgid "Answer a few simple questions and JanMitra will help prepare your report."
+msgstr "कुछ सरल प्रश्नों के उत्तर दें और जनमित्र आपकी रिपोर्ट तैयार करने में मदद करेगा।"
+
+#: templates/issues/report_issue.html:192 templates/issues/report_issue_backup.html:132
+msgid "Use JanMitra Assistant"
+msgstr "जनमित्र सहायक का उपयोग करें"
+
+#: templates/issues/report_issue.html:220 templates/issues/report_issue_backup.html:160
+msgid "Issue Details"
+msgstr "समस्या विवरण"
+
+#: templates/issues/report_issue.html:227 templates/issues/report_issue_backup.html:167
+msgid "Tell us what is happening."
+msgstr "हमें बताएं कि क्या हो रहा है।"
+
+#: templates/issues/report_issue.html:247 templates/issues/report_issue_backup.html:187
+msgid "Issue Title"
+msgstr "समस्या का शीर्षक"
+
+#: templates/issues/report_issue.html:360 templates/issues/report_issue_backup.html:300
+msgid "Select the exact location on the Bengaluru map."
+msgstr "बेंगलुरु के मानचित्र पर सटीक स्थान चुनें।"
+
+#: templates/issues/report_issue.html:381
+msgid "Search a place in Bengaluru..."
+msgstr "बेंगलुरु में कोई स्थान खोजें..."
+
+#: templates/issues/report_issue.html:418
+msgid ""
+"Search for a location, select a result, or click directly on the map. You can drag the marker to "
+"adjust the exact position."
+msgstr ""
+"कोई स्थान खोजें, परिणाम चुनें, या सीधे मानचित्र पर क्लिक करें। सटीक स्थिति को समायोजित करने के "
+"लिए आप मार्कर को खींच सकते हैं।"
+
+#: templates/issues/report_issue.html:433 templates/issues/report_issue.html:448
+#: templates/issues/report_issue_backup.html:375 templates/issues/report_issue_backup.html:390
+msgid "SELECTED LOCATION"
+msgstr "चयनित स्थान"
+
+#: templates/issues/report_issue.html:455 templates/issues/report_issue_backup.html:397
+msgid "No location selected"
+msgstr "कोई स्थान चयनित नहीं"
+
+#: templates/issues/report_issue.html:494 templates/issues/report_issue_backup.html:436
+msgid "Existing issue found nearby"
+msgstr "आस-पास मौजूदा समस्या मिली"
+
+#: templates/issues/report_issue.html:595 templates/issues/report_issue_backup.html:537
+msgid "Evidence"
+msgstr "साक्ष्य"
+
+#: templates/issues/report_issue.html:598 templates/issues/report_issue_backup.html:540
+msgid "Add a photo to help authorities understand the issue better."
+msgstr "अधिकारियों को समस्या बेहतर ढंग से समझने में मदद के लिए एक फ़ोटो जोड़ें।"
+
+#: templates/issues/report_issue.html:647 templates/issues/report_issue_backup.html:589
+msgid "Take Photo"
+msgstr "फ़ोटो लें"
+
+#: templates/issues/report_issue.html:650 templates/issues/report_issue_backup.html:592
+msgid "Use your camera"
+msgstr "अपने कैमरे का उपयोग करें"
+
+#: templates/issues/report_issue.html:673 templates/issues/report_issue_backup.html:615
+#: templates/users/profile.html:330
+msgid "Choose Photo"
+msgstr "फ़ोटो चुनें"
+
+#: templates/issues/report_issue.html:676 templates/issues/report_issue_backup.html:618
+msgid "Select from your device"
+msgstr "अपने डिवाइस से चुनें"
+
+#: templates/issues/report_issue.html:701
+msgid "Selected evidence"
+msgstr "साक्ष्य"
+
+#: templates/issues/report_issue.html:709 templates/issues/report_issue_backup.html:651
+msgid "Remove photo"
+msgstr "फ़ोटो हटाएं"
+
+#: templates/issues/report_issue.html:738 templates/issues/report_issue_backup.html:680
+msgid "Ready"
+msgstr "तैयार"
+
+#: templates/issues/report_issue.html:752 templates/issues/report_issue_backup.html:694
+msgid "JPG, PNG or WEBP. Maximum recommended size: 5 MB."
+msgstr "JPG, PNG या WEBP। अधिकतम अनुशंसित आकार: 5 MB।"
+
+#: templates/issues/report_issue.html:786 templates/issues/report_issue_backup.html:728
+msgid "Cancel"
+msgstr "रद्द करें"
+
+#: templates/issues/report_issue.html:798 templates/issues/report_issue_backup.html:740
+msgid "Submit Issue"
+msgstr "समस्या सबमिट करें"
+
+#: templates/issues/report_issue.html:873 templates/issues/report_issue_backup.html:815
+msgid "Let's report your issue"
+msgstr "आइए अपनी समस्या दर्ज करें"
+
+#: templates/issues/report_issue.html:886 templates/issues/report_issue_backup.html:828
+msgid "Close assistant"
+msgstr "सहायक बंद करें"
+
+#: templates/issues/report_issue.html:914 templates/issues/report_issue_backup.html:856
+msgid "Step 1 of 5"
+msgstr "चरण 1 में से 5"
+
+#: templates/issues/report_issue.html:938 templates/issues/report_issue_backup.html:880
+msgid "JanMitra Assistant"
+msgstr "जनमित्र सहायक"
+
+#: templates/issues/report_issue.html:945 templates/issues/report_issue_backup.html:887
+msgid "What problem are you facing?"
+msgstr "आपको क्या समस्या हो रही है?"
+
+#: templates/issues/report_issue.html:952 templates/issues/report_issue_backup.html:894
+msgid "Tell me about the civic issue in your own words."
+msgstr "अपने शब्दों में नागरिक समस्या के बारे में बताएं।"
+
+#: templates/issues/report_issue.html:970 templates/issues/report_issue_backup.html:912
+msgid "For example: There is a large pothole near my street..."
+msgstr "उदाहरण के लिए: मेरी सड़क के पास एक बड़ा गड्ढा है..."
+
+#: templates/issues/report_issue.html:986 templates/issues/report_issue_backup.html:928
+msgid "Voice"
+msgstr "आवाज़"
+
+#: templates/issues/report_issue.html:995 templates/issues/report_issue_backup.html:937
+msgid "You can type or use your voice."
+msgstr "आप टाइप कर सकते हैं या अपनी आवाज़ का उपयोग कर सकते हैं।"
+
+#: templates/issues/report_issue.html:1021 templates/issues/report_issue_backup.html:963
+msgid "Back"
+msgstr "वापस"
+
+#: templates/issues/report_issue.html:1032 templates/issues/report_issue_backup.html:974
+msgid "Continue"
+msgstr "जारी रखें"
+
+#: templates/notifications/notification_list.html:27
+msgid "JANMITRA UPDATES"
+msgstr "जनमित्र अपडेट"
+
+#: templates/notifications/notification_list.html:37
+msgid "Stay updated about your civic issues."
+msgstr "अपनी नागरिक समस्याओं से जुड़े अपडेट पाते रहें।"
+
+#: templates/notifications/notification_list.html:51
+msgid "unread notification"
+msgstr "अपठित सूचना"
+
+#: templates/notifications/notification_list.html:55
+msgid "unread notifications"
+msgstr "अपठित सूचनाएँ"
+
+#: templates/notifications/notification_list.html:80
+msgid "Mark all as read"
+msgstr "सभी को पढ़ा हुआ चिह्नित करें"
+
+#: templates/notifications/notification_list.html:208
+msgid "NEW"
+msgstr "नया"
+
+#: templates/notifications/notification_list.html:222
+msgid "ago"
+msgstr "पहले"
+
+#: templates/notifications/notification_list.html:277
+msgid "Mark as read"
+msgstr "पढ़ा हुआ चिह्नित करें"
+
+#: templates/notifications/notification_list.html:315
+msgid "No notifications yet"
+msgstr "अभी कोई सूचनाएँ नहीं हैं"
+
+#: templates/notifications/notification_list.html:320
+msgid "You will see updates about your reported civic issues here."
+msgstr "आपकी रिपोर्ट की गई नागरिक समस्याओं के अपडेट यहाँ दिखाई देंगे।"
+
+#: templates/rewards/wallet.html:29
+msgid "Your contribution to a better Bengaluru is rewarded."
+msgstr "बेहतर बेंगलुरु के लिए आपके योगदान को पुरस्कृत किया जाता है।"
+
+#: templates/rewards/wallet.html:50
+msgid "Current Balance"
+msgstr "वर्तमान शेष राशि"
+
+#: templates/rewards/wallet.html:58
+msgid "coins available"
+msgstr "कॉइन उपलब्ध हैं"
+
+#: templates/rewards/wallet.html:73
+msgid "Total Earned"
+msgstr "कुल अर्जित"
+
+#: templates/rewards/wallet.html:81
+msgid "coins earned through civic contributions"
+msgstr "नागरिक योगदान के माध्यम से अर्जित कॉइन"
+
+#: templates/rewards/wallet.html:96
+msgid "Total Redeemed"
+msgstr "कुल रिडीम किए गए"
+
+#: templates/rewards/wallet.html:104
+msgid "coins converted into rewards"
+msgstr "पुरस्कारों में परिवर्तित किए गए कॉइन"
+
+#: templates/rewards/wallet.html:125
+msgid "JanMitra Coin Value"
+msgstr "जनमित्र कॉइन मूल्य"
+
+#: templates/rewards/wallet.html:129
+msgid "coins"
+msgstr "कॉइन"
+
+#: templates/rewards/wallet.html:133
+msgid "Earn 50 coins when a civic issue you reported is successfully resolved."
+msgstr "जब आपके द्वारा रिपोर्ट की गई नागरिक समस्या सफलतापूर्वक हल हो जाती है, तो 50 कॉइन अर्जित करें।"
+
+#: templates/rewards/wallet.html:158
+msgid "Transaction History"
+msgstr "लेन-देन का इतिहास"
+
+#: templates/rewards/wallet.html:162
+msgid "Track every coin earned through your civic participation."
+msgstr "अपने नागरिक योगदान के माध्यम से अर्जित प्रत्येक कॉइन को ट्रैक करें।"
+
+#: templates/rewards/wallet.html:183
+msgid "Type"
+msgstr "प्रकार"
+
+#: templates/rewards/wallet.html:187
+msgid "Coins"
+msgstr "कॉइन"
+
+#: templates/rewards/wallet.html:195
+msgid "Issue"
+msgstr "समस्या"
+
+#: templates/rewards/wallet.html:199
+msgid "Date"
+msgstr "दिनांक"
+
+#: templates/rewards/wallet.html:221
+msgid "Earned"
+msgstr "अर्जित"
+
+#: templates/rewards/wallet.html:231
+msgid "Redeemed"
+msgstr "रिडीम किया गया"
+
+#: templates/rewards/wallet.html:271
+#, python-format
+msgid "View issue #%(id)s"
+msgstr "समस्या #%(id)s देखें"
+
+#: templates/rewards/wallet.html:311
+msgid "No rewards yet"
+msgstr "अभी तक कोई पुरस्कार नहीं"
+
+#: templates/rewards/wallet.html:315
+msgid ""
+"Report genuine civic issues, help your community, and earn JanMitra coins when your issue gets "
+"resolved."
+msgstr ""
+"वास्तविक नागरिक समस्याओं की रिपोर्ट करें, अपने समुदाय की मदद करें और समस्या हल होने पर जनमित्र "
+"कॉइन अर्जित करें।"
+
+#: templates/rewards/wallet.html:325
+msgid "Report a Civic Issue"
+msgstr "नागरिक समस्या रिपोर्ट करें"
+
+#: templates/users/citizen_dashboard.html:24
+msgid "CITIZEN PORTAL"
+msgstr "नागरिक पोर्टल"
+
+#: templates/users/citizen_dashboard.html:29 templates/users/government_dashboard.html:31
+msgid "Hello,"
+msgstr "नमस्ते,"
+
+#: templates/users/citizen_dashboard.html:38
+msgid "What would you like to do today?"
+msgstr "आज आप क्या करना चाहेंगे?"
+
+#: templates/users/citizen_dashboard.html:67
+msgid "Contribute"
+msgstr "योगदान करें"
+
+#: templates/users/citizen_dashboard.html:77
+msgid "Tell us about a problem in your community."
+msgstr "अपने समुदाय की किसी समस्या के बारे में हमें बताएं।"
+
+#: templates/users/citizen_dashboard.html:112
+msgid "See the progress of your reports."
+msgstr "अपनी रिपोर्टों की प्रगति देखें।"
+
+#: templates/users/citizen_dashboard.html:137
+msgid "Explore"
+msgstr "एक्सप्लोर करें"
+
+#: templates/users/citizen_dashboard.html:147
+msgid "Explore civic issues reported around the community."
+msgstr "समुदाय के आसपास रिपोर्ट की गई नागरिक समस्याओं को देखें।"
+
+#: templates/users/citizen_dashboard.html:172
+msgid "Account"
+msgstr "खाता"
+
+#: templates/users/citizen_dashboard.html:182
+msgid "Manage your personal information."
+msgstr "अपनी व्यक्तिगत जानकारी प्रबंधित करें।"
+
+#: templates/users/government_analytics.html:29
+msgid "GOVERNMENT ANALYTICS"
+msgstr "सरकारी विश्लेषण"
+
+#: templates/users/government_analytics.html:35
+msgid "Civic Issue Intelligence"
+msgstr "नागरिक समस्याएँ"
+
+#: templates/users/government_analytics.html:40
+msgid "Monitor issue trends, categories, workload and resolution performance."
+msgstr "समस्या के रुझान, श्रेणियाँ, कार्यभार और समाधान प्रदर्शन की निगरानी करें।"
+
+#: templates/users/government_analytics.html:97 templates/users/government_analytics.html:409
+msgid "Total Issues"
+msgstr "कुल समस्याएँ"
+
+#: templates/users/government_analytics.html:149 templates/users/government_analytics.html:435
+#: templates/users/government_dashboard.html:122
+msgid "Pending"
+msgstr "लंबित"
+
+#: templates/users/government_analytics.html:258
+msgid "Issue Status Distribution"
+msgstr "समस्या स्थिति वितरण"
+
+#: templates/users/government_analytics.html:262
+msgid "Current state of all civic issues."
+msgstr "सभी नागरिक समस्याओं की वर्तमान स्थिति।"
+
+#: templates/users/government_analytics.html:291
+msgid "Issues by Category"
+msgstr "श्रेणी के अनुसार समस्याएँ"
+
+#: templates/users/government_analytics.html:295
+msgid "Identify the most common civic problems."
+msgstr "सबसे आम नागरिक समस्याओं की पहचान करें।"
+
+#: templates/users/government_analytics.html:328
+msgid "Monthly Issue Trend"
+msgstr "मासिक समस्या रुझान"
+
+#: templates/users/government_analytics.html:332
+msgid "Number of issues reported over time."
+msgstr "समय के साथ रिपोर्ट की गई समस्याओं की संख्या।"
+
+#: templates/users/government_analytics.html:368
+msgid "Resolution Performance"
+msgstr "समाधान प्रदर्शन"
+
+#: templates/users/government_analytics.html:372
+msgid "Percentage of all reported issues that have been resolved."
+msgstr "रिपोर्ट की गई सभी समस्याओं में से हल की गई समस्याओं का प्रतिशत।"
+
+#: templates/users/government_analytics.html:461
+msgid "Government Insights"
+msgstr "सरकारी जानकारी"
+
+#: templates/users/government_analytics.html:465
+msgid "Quick overview of the current workload."
+msgstr "वर्तमान कार्यभार का संक्षिप्त अवलोकन।"
+
+#: templates/users/government_analytics.html:489
+msgid "Most Reported Category"
+msgstr "सबसे अधिक रिपोर्ट की गई श्रेणी"
+
+#: templates/users/government_analytics.html:496
+msgid "No data yet"
+msgstr "अभी कोई डेटा नहीं है"
+
+#: templates/users/government_analytics.html:517
+msgid "Current Backlog"
+msgstr "वर्तमान लंबित कार्य"
+
+#: templates/users/government_analytics.html:542
+msgid "Successful Resolutions"
+msgstr "सफल समाधान"
+
+#: templates/users/government_dashboard.html:5
+msgid "Government Portal"
+msgstr "सरकारी पोर्टल"
+
+#: templates/users/government_dashboard.html:24
+msgid "GOVERNMENT PORTAL"
+msgstr "सरकारी पोर्टल"
+
+#: templates/users/government_dashboard.html:41
+msgid "Manage and resolve citizen issues."
+msgstr "नागरिक समस्याओं का प्रबंधन और समाधान करें।"
+
+#: templates/users/government_dashboard.html:62
+msgid "View reported issues"
+msgstr "समस्या देखें"
+
+#: templates/users/government_dashboard.html:73
+msgid "Incoming"
+msgstr "आने वाली समस्याएँ"
+
+#: templates/users/government_dashboard.html:78
+msgid "Reported Issues"
+msgstr "रिपोर्ट की गई समस्याएँ"
+
+#: templates/users/government_dashboard.html:88
+msgid "issues waiting for review."
+msgstr "समस्याएँ समीक्षा की प्रतीक्षा में हैं।"
+
+#: templates/users/government_dashboard.html:106
+msgid "View pending issues"
+msgstr "समस्या देखें"
+
+#: templates/users/government_dashboard.html:117
+msgid "Action"
+msgstr "स्थान"
+
+#: templates/users/government_dashboard.html:132
+msgid "issues requiring action."
+msgstr "समस्याएँ जिन पर कार्रवाई आवश्यक है।"
+
+#: templates/users/government_dashboard.html:150
+msgid "View resolved issues"
+msgstr "समस्या देखें"
+
+#: templates/users/government_dashboard.html:161
+msgid "Completed"
+msgstr "पूर्ण"
+
+#: templates/users/government_dashboard.html:176
+msgid "issues successfully resolved."
+msgstr "समस्याएँ सफलतापूर्वक हल की गई हैं।"
+
+#: templates/users/government_dashboard.html:194
+msgid "View analytics"
+msgstr "विश्लेषण देखें"
+
+#: templates/users/government_dashboard.html:205
+msgid "Overview"
+msgstr "समीक्षा में"
+
+#: templates/users/government_dashboard.html:210
+msgid "Analytics"
+msgstr "विश्लेषण"
+
+#: templates/users/government_dashboard.html:220
+msgid "total issues reported."
+msgstr "अभी तक कोई समस्या रिपोर्ट नहीं की गई है"
+
+#: templates/users/government_dashboard.html:256
+msgid "Government Response Workflow"
+msgstr "सरकारी प्रतिक्रिया कार्यप्रवाह"
+
+#: templates/users/government_dashboard.html:261
+msgid ""
+"Review citizen submissions, verify evidence, update issue status, and upload resolution proof "
+"before completing an issue."
+msgstr ""
+"नागरिक प्रस्तुतियों की समीक्षा करें, साक्ष्य सत्यापित करें, समस्या की स्थिति अपडेट करें और समस्या"
+" पूरी करने से पहले समाधान का प्रमाण अपलोड करें।"
+
+#: templates/users/login.html:20
+msgid "Welcome back"
+msgstr "वापसी पर स्वागत है"
+
+#: templates/users/login.html:22
+msgid "Continue making a difference."
+msgstr "बदलाव लाने में अपना योगदान जारी रखें।"
+
+#: templates/users/login.html:34 templates/users/profile.html:241 templates/users/register.html:91
+msgid "Email Address"
+msgstr "ईमेल पता"
+
+#: templates/users/login.html:61
+msgid "Enter your password"
+msgstr "अपना पासवर्ड दर्ज करें"
+
+#: templates/users/login.html:69 templates/users/register.html:144 templates/users/register.html:178
+msgid "Show password"
+msgstr "पासवर्ड दिखाएं"
+
+#: templates/users/login.html:89
+msgid "Don't have an account?"
+msgstr "क्या आपका खाता नहीं है?"
+
+#: templates/users/login.html:91
+msgid "Create one"
+msgstr "खाता बनाएं"
+
+#: templates/users/profile.html:24
+msgid "MY ACCOUNT"
+msgstr "मेरा खाता"
+
+#: templates/users/profile.html:28
+msgid "Your"
+msgstr "आपकी"
+
+#: templates/users/profile.html:28
+msgid "Profile."
+msgstr "प्रोफ़ाइल।"
+
+#: templates/users/profile.html:32
+msgid "Manage your personal information and preferences."
+msgstr "अपनी व्यक्तिगत जानकारी और प्राथमिकताओं को प्रबंधित करें।"
+
+#: templates/users/profile.html:87 templates/users/profile.html:445
+msgid "Citizen"
+msgstr "नागरिक"
+
+#: templates/users/profile.html:144
+msgid "Personal Information"
+msgstr "व्यक्तिगत जानकारी"
+
+#: templates/users/profile.html:148
+msgid "Keep your personal details up to date."
+msgstr "अपनी व्यक्तिगत जानकारी को अद्यतन रखें।"
+
+#: templates/users/profile.html:256
+msgid "Email address cannot be changed here."
+msgstr "ईमेल पता यहां नहीं बदला जा सकता।"
+
+#: templates/users/profile.html:285
+msgid "Add a photo so your account feels more personal."
+msgstr "अपने खाते को और व्यक्तिगत बनाने के लिए एक फ़ोटो जोड़ें।"
+
+#: templates/users/profile.html:301
+msgid "Current profile photo"
+msgstr "वर्तमान प्रोफ़ाइल फ़ोटो"
+
+#: templates/users/profile.html:339
+msgid "JPG, PNG or WEBP. Choose a clear profile picture."
+msgstr "JPG, PNG या WEBP। एक स्पष्ट प्रोफ़ाइल फ़ोटो चुनें।"
+
+#: templates/users/profile.html:376
+msgid "Choose the language you prefer to use on JanMitra."
+msgstr "JanMitra पर उपयोग करने के लिए अपनी पसंदीदा भाषा चुनें।"
+
+#: templates/users/profile.html:423
+msgid "Account Information"
+msgstr "खाता जानकारी"
+
+#: templates/users/profile.html:427
+msgid "Basic information about your JanMitra account."
+msgstr "आपके JanMitra खाते की मूल जानकारी।"
+
+#: templates/users/profile.html:441
+msgid "Account Type"
+msgstr "खाते का प्रकार"
+
+#: templates/users/profile.html:455
+msgid "Member Since"
+msgstr "सदस्य बने"
+
+#: templates/users/profile.html:469
+msgid "Verification"
+msgstr "सत्यापन"
+
+#: templates/users/profile.html:476
+msgid "Verified"
+msgstr "सत्यापित"
+
+#: templates/users/profile.html:483
+msgid "Not Verified"
+msgstr "सत्यापित नहीं"
+
+#: templates/users/profile.html:495
+msgid "Last Updated"
+msgstr "अंतिम अपडेट"
+
+#: templates/users/profile.html:522
+msgid "Back to Dashboard"
+msgstr "डैशबोर्ड पर वापस जाएं"
+
+#: templates/users/profile.html:534
+msgid "Save Changes"
+msgstr "परिवर्तन सहेजें"
+
+#: templates/users/profile.html:596
+msgid "Please select an image file."
+msgstr "कृपया एक इमेज फ़ाइल चुनें।"
+
+#: templates/users/register.html:4
+msgid "Register"
+msgstr "पंजीकरण करें"
+
+#: templates/users/register.html:22
+msgid "One account. A stronger community."
+msgstr "एक खाता। एक मजबूत समुदाय।"
+
+#: templates/users/register.html:221
+msgid "Create Account"
+msgstr "खाता बनाएं"
+
+#: templates/users/register.html:229
+msgid "Already have an account?"
+msgstr "क्या आपके पास पहले से खाता है?"
+
+msgid "Government"
+msgstr "सरकार"
+
+msgid "Back to All Issues"
+msgstr "सभी समस्याओं पर वापस जाएँ"
+
+msgid "GOVERNMENT ISSUE MANAGEMENT"
+msgstr "सरकारी समस्या प्रबंधन"
+
+msgid "Original image submitted by the citizen."
+msgstr "नागरिक द्वारा प्रस्तुत की गई मूल इमेज।"
+
+msgid "View Full Image"
+msgstr "पूरी इमेज देखें"
+
+msgid "Citizen evidence image"
+msgstr "नागरिक द्वारा प्रस्तुत प्रमाण की इमेज"
+
+msgid "Issue Description"
+msgstr "समस्या का विवरण"
+
+msgid "Issue ID"
+msgstr "समस्या आईडी"
+
+msgid "Citizen information"
+msgstr "नागरिक की जानकारी"
+
+msgid "Citizen Name"
+msgstr "नागरिक का नाम"
+
+msgid "Email"
+msgstr "ईमेल"
+
+msgid "Phone"
+msgstr "फ़ोन"
+
+msgid "Not provided"
+msgstr "प्रदान नहीं किया गया"
+
+msgid "Update Issue Status"
+msgstr "समस्या की स्थिति अपडेट करें"
+
+msgid "Keep citizens informed about the progress."
+msgstr "नागरिकों को प्रगति की जानकारी देते रहें।"
+
+msgid "This issue has been resolved and its status is final."
+msgstr "यह समस्या हल हो गई है और इसकी स्थिति अंतिम है।"
+
+msgid "This issue has been rejected and its status is final."
+msgstr "यह समस्या अस्वीकृत कर दी गई है और इसकी स्थिति अंतिम है।"
+
+msgid "Update Status"
+msgstr "स्थिति अपडेट करें"
+
+msgid "Government Proof / Resolution Evidence"
+msgstr "सरकारी प्रमाण / समाधान साक्ष्य"
+
+msgid "Upload photographs showing investigation, progress or completed resolution."
+msgstr "जांच, प्रगति या पूर्ण समाधान दिखाने वाली तस्वीरें अपलोड करें।"
+
+msgid "Select Proof Images"
+msgstr "प्रमाण की इमेज चुनें"
+
+msgid "You can select multiple images"
+msgstr "आप कई इमेज चुन सकते हैं"
+
+msgid "Upload Proof Images"
+msgstr "प्रमाण की इमेज अपलोड करें"
+
+msgid "Uploaded Government Evidence"
+msgstr "अपलोड किया गया सरकारी प्रमाण"
+
+msgid "Evidence visible to the reporting citizen."
+msgstr "रिपोर्ट करने वाले नागरिक को दिखाई देने वाला साक्ष्य।"
+
+msgid "View proof image"
+msgstr "प्रमाण की इमेज देखें"
+
+msgid "View"
+msgstr "देखें"
+
+msgid "Exact location submitted with the report."
+msgstr "रिपोर्ट के साथ प्रस्तुत किया गया सटीक स्थान।"
+
+msgid "Issue location map"
+msgstr "समस्या के स्थान का मानचित्र"
+
+msgid "Copied"
+msgstr "कॉपी किया गया"
+
+msgid "Coordinates"
+msgstr "निर्देशांक"
+
+msgid "All Issues"
+msgstr "सभी समस्याएँ"
+
+msgid "Government Dashboard"
+msgstr "सरकारी डैशबोर्ड"
+
+#, python-format
+msgid "%s PB"
+msgstr "%s PB"
+
+msgid "p.m."
+msgstr "अपराह्न"
+
+msgid "a.m."
+msgstr "पूर्वाह्न"
+
+msgid "PM"
+msgstr "अपराह्न"
+
+msgid "AM"
+msgstr "पूर्वाह्न"
+
+msgid "midnight"
+msgstr "मध्यरात्रि"
+
+msgid "noon"
+msgstr "दोपहर"
+
+msgid "Monday"
+msgstr "सोमवार"
+
+msgid "Tuesday"
+msgstr "मंगलवार"
+
+msgid "Wednesday"
+msgstr "बुधवार"
+
+msgid "Thursday"
+msgstr "गुरुवार"
+
+msgid "Friday"
+msgstr "शुक्रवार"
+
+msgid "Saturday"
+msgstr "शनिवार"
+
+msgid "Sunday"
+msgstr "रविवार"
+
+msgid "Mon"
+msgstr "सोम"
+
+msgid "Tue"
+msgstr "मंगल"
+
+msgid "Wed"
+msgstr "बुध"
+
+msgid "Thu"
+msgstr "गुरु"
+
+msgid "Fri"
+msgstr "शुक्र"
+
+msgid "Sat"
+msgstr "शनि"
+
+msgid "Sun"
+msgstr "रवि"
+
+msgid "January"
+msgstr "जनवरी"
+
+msgid "February"
+msgstr "फ़रवरी"
+
+msgid "March"
+msgstr "मार्च"
+
+msgid "April"
+msgstr "अप्रैल"
+
+msgid "May"
+msgstr "मई"
+
+msgid "June"
+msgstr "जून"
+
+msgid "July"
+msgstr "जुलाई"
+
+msgid "August"
+msgstr "अगस्त"
+
+msgid "September"
+msgstr "सितंबर"
+
+msgid "October"
+msgstr "अक्टूबर"
+
+msgid "November"
+msgstr "नवंबर"
+
+msgid "December"
+msgstr "दिसंबर"
+
+msgid "jan"
+msgstr "जनवरी"
+
+msgid "feb"
+msgstr "फ़रवरी"
+
+msgid "mar"
+msgstr "मार्च"
+
+msgid "apr"
+msgstr "अप्रैल"
+
+msgid "may"
+msgstr "मई"
+
+msgid "jun"
+msgstr "जून"
+
+msgid "jul"
+msgstr "जुलाई"
+
+msgid "aug"
+msgstr "अगस्त"
+
+msgid "sep"
+msgstr "सितंबर"
+
+msgid "oct"
+msgstr "अक्टूबर"
+
+msgid "nov"
+msgstr "नवंबर"
+
+msgid "dec"
+msgstr "दिसंबर"
+
+msgctxt "abbrev. month"
+msgid "Jan."
+msgstr "जन."
+
+msgctxt "abbrev. month"
+msgid "Feb."
+msgstr "फ़र."
+
+msgctxt "abbrev. month"
+msgid "March"
+msgstr "मार्च"
+
+msgctxt "abbrev. month"
+msgid "April"
+msgstr "अप्रैल"
+
+msgctxt "abbrev. month"
+msgid "May"
+msgstr "मई"
+
+msgctxt "abbrev. month"
+msgid "June"
+msgstr "जून"
+
+msgctxt "abbrev. month"
+msgid "July"
+msgstr "जुलाई"
+
+msgctxt "abbrev. month"
+msgid "Aug."
+msgstr "अग."
+
+msgctxt "abbrev. month"
+msgid "Sept."
+msgstr "सितं."
+
+msgctxt "abbrev. month"
+msgid "Oct."
+msgstr "अक्तू."
+
+msgctxt "abbrev. month"
+msgid "Nov."
+msgstr "नवं."
+
+msgctxt "abbrev. month"
+msgid "Dec."
+msgstr "दिसं."
+
+msgctxt "alt. month"
+msgid "January"
+msgstr "जनवरी"
+
+msgctxt "alt. month"
+msgid "February"
+msgstr "फ़रवरी"
+
+msgctxt "alt. month"
+msgid "March"
+msgstr "मार्च"
+
+msgctxt "alt. month"
+msgid "April"
+msgstr "अप्रैल"
+
+msgctxt "alt. month"
+msgid "May"
+msgstr "मई"
+
+msgctxt "alt. month"
+msgid "June"
+msgstr "जून"
+
+msgctxt "alt. month"
+msgid "July"
+msgstr "जुलाई"
+
+msgctxt "alt. month"
+msgid "August"
+msgstr "अगस्त"
+
+msgctxt "alt. month"
+msgid "September"
+msgstr "सितंबर"
+
+msgctxt "alt. month"
+msgid "October"
+msgstr "अक्टूबर"
+
+msgctxt "alt. month"
+msgid "November"
+msgstr "नवंबर"
+
+msgctxt "alt. month"
+msgid "December"
+msgstr "दिसंबर"
+
+
+
+
+msgid "citizen supporting"
+msgid_plural "citizens supporting"
+msgstr[0] "नागरिक समर्थन कर रहा है"
+msgstr[1] "नागरिक समर्थन कर रहे हैं"
+
+# Notification translations and Django timesince translations.
+
+msgid "Issue Submitted"
+msgstr "समस्या रिपोर्ट की गई"
+
+msgid "Issue Under Review"
+msgstr "समस्या समीक्षा में है"
+
+msgid "Issue In Progress"
+msgstr "समस्या पर काम चल रहा है"
+
+msgid "Issue Resolved"
+msgstr "समस्या का समाधान हो गया"
+
+msgid "Issue Rejected"
+msgstr "समस्या अस्वीकृत कर दी गई"
+
+msgid "Reward"
+msgstr "पुरस्कार"
+
+#, python-format
+msgid "Your issue \"%(title)s\" has been reported successfully."
+msgstr "आपकी समस्या \"%(title)s\" सफलतापूर्वक रिपोर्ट की गई है।"
+
+#, python-format
+msgid "Your reported issue \"%(title)s\" is now under review."
+msgstr "आपके द्वारा रिपोर्ट की गई \"%(title)s\" समस्या अब समीक्षा में है।"
+
+#, python-format
+msgid "Work has started on your reported issue \"%(title)s\"."
+msgstr "आपके द्वारा रिपोर्ट की गई \"%(title)s\" समस्या पर काम शुरू हो गया है।"
+
+#, python-format
+msgid "Your reported issue \"%(title)s\" has been successfully resolved."
+msgstr "आपके द्वारा रिपोर्ट की गई \"%(title)s\" समस्या का सफलतापूर्वक समाधान हो गया है।"
+
+#, python-format
+msgid "Your reported issue \"%(title)s\" has been rejected."
+msgstr "आपके द्वारा रिपोर्ट की गई \"%(title)s\" समस्या अस्वीकृत कर दी गई है।"
+
+msgid "All notifications have been marked as read."
+msgstr "सभी सूचनाओं को पढ़ा हुआ चिह्नित कर दिया गया है।"
+
+#, python-format
+msgid "%(num)d minute"
+msgid_plural "%(num)d minutes"
+msgstr[0] "%(num)d मिनट"
+msgstr[1] "%(num)d मिनट"
+
+#, python-format
+msgid "%(num)d hour"
+msgid_plural "%(num)d hours"
+msgstr[0] "%(num)d घंटा"
+msgstr[1] "%(num)d घंटे"
+
+#, python-format
+msgid "%(num)d day"
+msgid_plural "%(num)d days"
+msgstr[0] "%(num)d दिन"
+msgstr[1] "%(num)d दिन"
+
+#, python-format
+msgid "%(num)d week"
+msgid_plural "%(num)d weeks"
+msgstr[0] "%(num)d सप्ताह"
+msgstr[1] "%(num)d सप्ताह"
+
+#, python-format
+msgid "%(num)d month"
+msgid_plural "%(num)d months"
+msgstr[0] "%(num)d महीना"
+msgstr[1] "%(num)d महीने"
+
+#, python-format
+msgid "%(num)d year"
+msgid_plural "%(num)d years"
+msgstr[0] "%(num)d वर्ष"
+msgstr[1] "%(num)d वर्ष"

@@ -1,0 +1,1263 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+{% endblock %}
+
+
+{% block title %}
+    {{ issue.title }} | {% translate "Government" %} | JanMitra
+{% endblock %}
+
+
+{% block content %}
+
+<section class="government-issue-detail-page">
+
+    <div class="government-issue-container">
+
+
+        <!-- =====================================================
+             BACK
+        ====================================================== -->
+
+        <a
+            href="{% url 'issues:government_issue_list' %}"
+            class="government-back-link"
+            aria-label="{% translate 'Back to All Issues' %}"
+            title="{% translate 'Back to All Issues' %}"
+        >
+
+            <i
+                class="bi bi-arrow-left"
+                aria-hidden="true"
+            ></i>
+
+            {% translate "Back to All Issues" %}
+
+        </a>
+
+
+
+        <!-- =====================================================
+             MAIN CARD
+        ====================================================== -->
+
+        <div class="government-issue-card">
+
+
+            <!-- ==================================================
+                 HEADER
+            ================================================== -->
+
+            <div class="government-issue-header">
+
+                <div>
+
+                    <div class="government-eyebrow">
+
+                        <i
+                            class="bi bi-shield-check"
+                            aria-hidden="true"
+                        ></i>
+
+                        {% translate "GOVERNMENT ISSUE MANAGEMENT" %}
+
+                    </div>
+
+
+                    <h1>
+                        {{ issue.title }}
+                    </h1>
+
+
+                    {% if issue.location %}
+
+                    <div class="government-location">
+
+                        <i
+                            class="bi bi-geo-alt-fill"
+                            aria-hidden="true"
+                        ></i>
+
+                        <span>
+                            {{ issue.location }}
+                        </span>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div
+                    class="government-status-badge status-{{ issue.status }}"
+                >
+                    {{ issue.get_status_display }}
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================================
+                 CITIZEN EVIDENCE
+            ================================================== -->
+
+            {% if issue.image %}
+
+            <div class="government-evidence-section">
+
+                <div class="government-section-heading">
+
+                    <i
+                        class="bi bi-camera-fill"
+                        aria-hidden="true"
+                    ></i>
+
+                    <div>
+
+                        <h2>
+                            {% translate "Citizen Evidence" %}
+                        </h2>
+
+                        <p>
+                            {% translate "Original image submitted by the citizen." %}
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="government-citizen-image">
+
+                    <a
+                        href="{{ issue.image.url }}"
+                        target="_blank"
+                        aria-label="{% translate 'View Full Image' %}"
+                        title="{% translate 'View Full Image' %}"
+                    >
+
+                        <img
+                            src="{{ issue.image.url }}"
+                            alt="{% translate 'Citizen evidence image' %}"
+                        >
+
+                        <div class="image-open-overlay">
+
+                            <i
+                                class="bi bi-arrows-fullscreen"
+                                aria-hidden="true"
+                            ></i>
+
+                            {% translate "View Full Image" %}
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+
+
+            <!-- ==================================================
+                 ISSUE DESCRIPTION
+            ================================================== -->
+
+            <div class="government-content">
+
+
+                <div class="government-description-section">
+
+                    <div class="government-section-heading">
+
+                        <i
+                            class="bi bi-file-text-fill"
+                            aria-hidden="true"
+                        ></i>
+
+                        <div>
+
+                            <h2>
+                                {% translate "Issue Description" %}
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="government-description">
+                        {{ issue.description }}
+                    </p>
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     ISSUE INFORMATION
+                ================================================== -->
+
+                <div class="government-info-grid">
+
+
+                    <div class="government-info-card">
+
+                        <span>
+
+                            <i
+                                class="bi bi-hash"
+                                aria-hidden="true"
+                            ></i>
+
+                            {% translate "Issue ID" %}
+
+                        </span>
+
+                        <strong>
+                            #{{ issue.id }}
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="government-info-card">
+
+                        <span>
+
+                            <i
+                                class="bi bi-grid-fill"
+                                aria-hidden="true"
+                            ></i>
+
+                            {% translate "Category" %}
+
+                        </span>
+
+                        <strong>
+                            {{ issue.get_category_display }}
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="government-info-card">
+
+                        <span>
+
+                            <i
+                                class="bi bi-calendar3"
+                                aria-hidden="true"
+                            ></i>
+
+                            {% translate "Reported On" %}
+
+                        </span>
+
+                        <strong>
+                            {{ issue.created_at|date:"d M Y, h:i A" }}
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="government-info-card">
+
+                        <span>
+
+                            <i
+                                class="bi bi-clock-history"
+                                aria-hidden="true"
+                            ></i>
+
+                            {% translate "Last Updated" %}
+
+                        </span>
+
+                        <strong>
+                            {{ issue.updated_at|date:"d M Y, h:i A" }}
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     REPORTED BY
+                ================================================== -->
+
+                <div class="government-section">
+
+                    <div class="government-section-heading">
+
+                        <i
+                            class="bi bi-person-fill"
+                            aria-hidden="true"
+                        ></i>
+
+                        <div>
+
+                            <h2>
+                                {% translate "Reported By" %}
+                            </h2>
+
+                            <p>
+                                {% translate "Citizen information" %}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="citizen-information-grid">
+
+
+                        <div class="citizen-information-card">
+
+                            <span>
+
+                                <i
+                                    class="bi bi-person"
+                                    aria-hidden="true"
+                                ></i>
+
+                                {% translate "Citizen Name" %}
+
+                            </span>
+
+                            <strong>
+                                {{ issue.citizen.get_full_name }}
+                            </strong>
+
+                        </div>
+
+
+
+                        <div class="citizen-information-card">
+
+                            <span>
+
+                                <i
+                                    class="bi bi-envelope"
+                                    aria-hidden="true"
+                                ></i>
+
+                                {% translate "Email" %}
+
+                            </span>
+
+                            <strong>
+                                {{ issue.citizen.email }}
+                            </strong>
+
+                        </div>
+
+
+
+                        <div class="citizen-information-card">
+
+                            <span>
+
+                                <i
+                                    class="bi bi-telephone"
+                                    aria-hidden="true"
+                                ></i>
+
+                                {% translate "Phone" %}
+
+                            </span>
+
+                            <strong>
+
+                                {% if issue.citizen.phone_number %}
+
+                                    {{ issue.citizen.phone_number }}
+
+                                {% else %}
+
+                                    {% translate "Not provided" %}
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     STATUS UPDATE
+                ================================================== -->
+
+                <div class="government-section status-update-section">
+
+                    <div class="government-section-heading">
+
+                        <i
+                            class="bi bi-arrow-repeat"
+                            aria-hidden="true"
+                        ></i>
+
+                        <div>
+
+                            <h2>
+                                {% translate "Update Issue Status" %}
+                            </h2>
+
+                            <p>
+                                {% translate "Keep citizens informed about the progress." %}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    {% if issue.status == "resolved" %}
+
+
+                        <!-- ==========================================
+                             RESOLVED - FINAL STATUS
+                        =========================================== -->
+
+                        <div class="status-update-form">
+
+                            <div class="status-select-wrapper">
+
+                                <label for="status">
+                                    {% translate "Issue Status" %}
+                                </label>
+
+                                <select
+                                    id="status"
+                                    class="government-status-select"
+                                    disabled
+                                >
+
+                                    <option selected>
+                                        {{ issue.get_status_display }}
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="status-final-message">
+
+                                <i
+                                    class="bi bi-check-circle-fill"
+                                    aria-hidden="true"
+                                ></i>
+
+                                <span>
+                                    {% translate "This issue has been resolved and its status is final." %}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                    {% elif issue.status == "rejected" %}
+
+
+                        <!-- ==========================================
+                             REJECTED - FINAL STATUS
+                        =========================================== -->
+
+                        <div class="status-update-form">
+
+                            <div class="status-select-wrapper">
+
+                                <label for="status">
+                                    {% translate "Issue Status" %}
+                                </label>
+
+                                <select
+                                    id="status"
+                                    class="government-status-select"
+                                    disabled
+                                >
+
+                                    <option selected>
+                                        {{ issue.get_status_display }}
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="status-final-message">
+
+                                <i
+                                    class="bi bi-x-circle-fill"
+                                    aria-hidden="true"
+                                ></i>
+
+                                <span>
+                                    {% translate "This issue has been rejected and its status is final." %}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                    {% else %}
+
+
+                        <!-- ==========================================
+                             ACTIVE STATUS - CAN BE UPDATED
+                        =========================================== -->
+
+                        <form
+                            method="POST"
+                            class="status-update-form"
+                        >
+
+                            {% csrf_token %}
+
+                            <input
+                                type="hidden"
+                                name="update_status"
+                                value="1"
+                            >
+
+
+                            <div class="status-select-wrapper">
+
+                                <label for="status">
+                                    {% translate "Issue Status" %}
+                                </label>
+
+                                <select
+                                    name="status"
+                                    id="status"
+                                    class="government-status-select"
+                                    required
+                                >
+
+                                    {% for value, label in status_choices %}
+
+                                        <option
+                                            value="{{ value }}"
+                                            {% if issue.status == value %}
+                                                selected
+                                            {% endif %}
+                                        >
+                                            {{ label }}
+                                        </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="government-update-button"
+                                aria-label="{% translate 'Update Status' %}"
+                                title="{% translate 'Update Status' %}"
+                            >
+
+                                <i
+                                    class="bi bi-check-circle"
+                                    aria-hidden="true"
+                                ></i>
+
+                                {% translate "Update Status" %}
+
+                            </button>
+
+                        </form>
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     GOVERNMENT PROOF UPLOAD
+                ================================================== -->
+
+                <div class="government-section proof-upload-section">
+
+                    <div class="government-section-heading">
+
+                        <i
+                            class="bi bi-images"
+                            aria-hidden="true"
+                        ></i>
+
+                        <div>
+
+                            <h2>
+                                {% translate "Government Proof / Resolution Evidence" %}
+                            </h2>
+
+                            <p>
+                                {% translate "Upload photographs showing investigation, progress or completed resolution." %}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <form
+                        method="POST"
+                        enctype="multipart/form-data"
+                        class="proof-upload-form"
+                    >
+
+                        {% csrf_token %}
+
+                        <input
+                            type="hidden"
+                            name="upload_proof"
+                            value="1"
+                        >
+
+
+                        <label
+                            for="proof-images"
+                            class="proof-upload-box"
+                            aria-label="{% translate 'Select Proof Images' %}"
+                        >
+
+                            <i
+                                class="bi bi-cloud-arrow-up"
+                                aria-hidden="true"
+                            ></i>
+
+                            <strong>
+                                {% translate "Select Proof Images" %}
+                            </strong>
+
+                            <span>
+                                {% translate "You can select multiple images" %}
+                            </span>
+
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="proof-images"
+                            name="images"
+                            accept="image/*"
+                            multiple
+                            class="proof-hidden-input"
+                            aria-label="{% translate 'Select proof images' %}"
+                        >
+
+
+                        <div
+                            id="proof-file-preview"
+                            class="proof-file-preview"
+                            aria-live="polite"
+                        ></div>
+
+
+                        <button
+                            type="submit"
+                            class="government-upload-button"
+                            aria-label="{% translate 'Upload Proof Images' %}"
+                            title="{% translate 'Upload Proof Images' %}"
+                        >
+
+                            <i
+                                class="bi bi-cloud-upload"
+                                aria-hidden="true"
+                            ></i>
+
+                            {% translate "Upload Proof Images" %}
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     EXISTING GOVERNMENT PROOF
+                ================================================== -->
+
+                {% if proof_images %}
+
+                <div class="government-section">
+
+                    <div class="government-section-heading">
+
+                        <i
+                            class="bi bi-check2-square"
+                            aria-hidden="true"
+                        ></i>
+
+                        <div>
+
+                            <h2>
+                                {% translate "Uploaded Government Evidence" %}
+                            </h2>
+
+                            <p>
+                                {% translate "Evidence visible to the reporting citizen." %}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="government-proof-grid">
+
+                        {% for proof in proof_images %}
+
+                        <div class="government-proof-card">
+
+                            <a
+                                href="{{ proof.image.url }}"
+                                target="_blank"
+                                aria-label="{% translate 'View proof image' %}"
+                                title="{% translate 'View proof image' %}"
+                            >
+
+                                <img
+                                    src="{{ proof.image.url }}"
+                                    alt="{% blocktranslate with title=issue.title %}Government proof for {{ title }}{% endblocktranslate %}"
+                                >
+
+                                <div class="proof-card-overlay">
+
+                                    <i
+                                        class="bi bi-arrows-fullscreen"
+                                        aria-hidden="true"
+                                    ></i>
+
+                                    {% translate "View" %}
+
+                                </div>
+
+                            </a>
+
+
+                            <div class="proof-card-footer">
+
+                                <span>
+
+                                    <i
+                                        class="bi bi-calendar3"
+                                        aria-hidden="true"
+                                    ></i>
+
+                                    {{ proof.created_at|date:"d M Y, h:i A" }}
+
+                                </span>
+
+
+                                {% if proof.uploaded_by %}
+
+                                <span>
+
+                                    <i
+                                        class="bi bi-person-check"
+                                        aria-hidden="true"
+                                    ></i>
+
+                                    {{ proof.uploaded_by.get_full_name }}
+
+                                </span>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+
+                <!-- ==================================================
+                     LOCATION
+                ================================================== -->
+
+                {% if issue.latitude and issue.longitude %}
+
+                <div class="government-section">
+
+                    <div class="government-section-heading">
+
+                        <i
+                            class="bi bi-map-fill"
+                            aria-hidden="true"
+                        ></i>
+
+                        <div>
+
+                            <h2>
+                                {% translate "Issue Location" %}
+                            </h2>
+
+                            <p>
+                                {% translate "Exact location submitted with the report." %}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="government-location-actions">
+
+                        <div class="coordinates-display">
+
+                            <div>
+
+                                <span>
+                                    {% translate "Latitude" %}
+                                </span>
+
+                                <strong>
+                                    {{ issue.latitude }}
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    {% translate "Longitude" %}
+                                </span>
+
+                                <strong>
+                                    {{ issue.longitude }}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="location-buttons">
+
+                            <button
+                                type="button"
+                                class="location-action-button secondary"
+                                id="copy-coordinates"
+                                aria-label="{% translate 'Copy Coordinates' %}"
+                                title="{% translate 'Copy Coordinates' %}"
+                            >
+
+                                <i
+                                    class="bi bi-copy"
+                                    aria-hidden="true"
+                                ></i>
+
+                                <span id="copy-coordinates-text">
+                                    {% translate "Copy Coordinates" %}
+                                </span>
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="location-action-button primary"
+                                id="navigate-location"
+                                aria-label="{% translate 'Navigate to Location' %}"
+                                title="{% translate 'Navigate to Location' %}"
+                            >
+
+                                <i
+                                    class="bi bi-sign-turn-right-fill"
+                                    aria-hidden="true"
+                                ></i>
+
+                                {% translate "Navigate to Location" %}
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="government-issue-map"
+                        class="government-issue-map"
+                        aria-label="{% translate 'Issue location map' %}"
+                    ></div>
+
+                </div>
+
+                {% endif %}
+
+
+            </div>
+
+
+
+            <!-- ==================================================
+                 FOOTER
+            ================================================== -->
+
+            <div class="government-detail-footer">
+
+                <a
+                    href="{% url 'issues:government_issue_list' %}"
+                    class="government-footer-secondary"
+                    aria-label="{% translate 'All Issues' %}"
+                    title="{% translate 'All Issues' %}"
+                >
+
+                    <i
+                        class="bi bi-list-ul"
+                        aria-hidden="true"
+                    ></i>
+
+                    {% translate "All Issues" %}
+
+                </a>
+
+
+                <a
+                    href="{% url 'users:dashboard' %}"
+                    class="government-footer-primary"
+                    aria-label="{% translate 'Government Dashboard' %}"
+                    title="{% translate 'Government Dashboard' %}"
+                >
+
+                    <i
+                        class="bi bi-speedometer2"
+                        aria-hidden="true"
+                    ></i>
+
+                    {% translate "Government Dashboard" %}
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+
+{% if issue.latitude and issue.longitude %}
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const latitude = {{ issue.latitude }};
+        const longitude = {{ issue.longitude }};
+
+
+        /* ============================================
+           TRANSLATIONS
+        ============================================ */
+
+        const JANMITRA_TRANSLATIONS = {
+
+            copied:
+                "{% translate 'Copied' %}",
+
+            copyCoordinates:
+                "{% translate 'Copy Coordinates' %}",
+
+            coordinates:
+                "{% translate 'Coordinates' %}",
+
+            issueLocation:
+                "{% translate 'Issue Location' %}"
+
+        };
+
+
+        /* ============================================
+           LEAFLET MAP
+        ============================================ */
+
+        const map = L.map(
+            "government-issue-map"
+        ).setView(
+            [latitude, longitude],
+            16
+        );
+
+
+        L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {
+                maxZoom: 19,
+
+                attribution:
+                    "&copy; OpenStreetMap contributors"
+            }
+        ).addTo(map);
+
+
+        const marker = L.marker(
+            [latitude, longitude]
+        ).addTo(map);
+
+
+        marker.bindPopup(
+            "<strong>{{ issue.title|escapejs }}</strong><br>{{ issue.location|escapejs }}"
+        ).openPopup();
+
+
+        setTimeout(
+            function () {
+
+                map.invalidateSize();
+
+            },
+            300
+        );
+
+
+
+        /* ============================================
+           COPY COORDINATES
+        ============================================ */
+
+        const copyButton =
+            document.getElementById(
+                "copy-coordinates"
+            );
+
+
+        const copyButtonText =
+            document.getElementById(
+                "copy-coordinates-text"
+            );
+
+
+        if (copyButton) {
+
+            copyButton.addEventListener(
+                "click",
+                async function () {
+
+                    const coordinates =
+                        `${latitude}, ${longitude}`;
+
+
+                    try {
+
+                        await navigator.clipboard.writeText(
+                            coordinates
+                        );
+
+
+                        copyButton.innerHTML =
+                            '<i class="bi bi-check-circle"></i> ' +
+                            JANMITRA_TRANSLATIONS.copied;
+
+
+                        setTimeout(
+                            function () {
+
+                                copyButton.innerHTML =
+                                    '<i class="bi bi-copy"></i> ' +
+                                    JANMITRA_TRANSLATIONS.copyCoordinates;
+
+                            },
+                            1800
+                        );
+
+
+                    } catch (error) {
+
+                        alert(
+                            JANMITRA_TRANSLATIONS.coordinates +
+                            ": " +
+                            coordinates
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        /* ============================================
+           GOOGLE MAPS NAVIGATION
+        ============================================ */
+
+        const navigateButton =
+            document.getElementById(
+                "navigate-location"
+            );
+
+
+        if (navigateButton) {
+
+            navigateButton.addEventListener(
+                "click",
+                function () {
+
+                    const mapsUrl =
+                        "https://www.google.com/maps/dir/?api=1"
+                        + "&destination="
+                        + encodeURIComponent(
+                            `${latitude},${longitude}`
+                        )
+                        + "&travelmode=driving"
+                        + "&dir_action=navigate";
+
+
+                    window.open(
+                        mapsUrl,
+                        "_blank"
+                    );
+
+                }
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+{% endif %}
+
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        const input =
+            document.getElementById(
+                "proof-images"
+            );
+
+
+        const preview =
+            document.getElementById(
+                "proof-file-preview"
+            );
+
+
+        if (!input || !preview) {
+            return;
+        }
+
+
+        input.addEventListener(
+            "change",
+            function () {
+
+                preview.innerHTML = "";
+
+
+                const files =
+                    Array.from(input.files);
+
+
+                if (!files.length) {
+                    return;
+                }
+
+
+                files.forEach(
+                    function (file) {
+
+                        const item =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        item.className =
+                            "proof-selected-file";
+
+
+                        item.innerHTML = `
+                            <i
+                                class="bi bi-image"
+                                aria-hidden="true"
+                            ></i>
+
+                            <span>${file.name}</span>
+                        `;
+
+
+                        preview.appendChild(
+                            item
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    }
+);
+
+</script>
+
+
+{% endblock %}

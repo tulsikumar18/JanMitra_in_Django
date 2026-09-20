@@ -1,0 +1,2027 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: JanMitra\n"
+"Report-Msgid-Bugs-To: \n" 
+"POT-Creation-Date: 2026-09-19 01:32+0530\n"
+"PO-Revision-Date: 2026-09-18 22:55+0530\n"
+"Last-Translator: \n"
+"Language: kn\n"
+"Language-Team: kn <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: apps/issues/forms.py:29
+msgid "e.g. Large pothole near main road"
+msgstr "ಉದಾಹರಣೆ: ಮುಖ್ಯ ರಸ್ತೆಯ ಬಳಿ ದೊಡ್ಡ ಗುಂಡಿ"
+
+#: apps/issues/forms.py:38
+msgid "Describe the issue clearly..."
+msgstr "ಸಮಸ್ಯೆಯನ್ನು ಸ್ಪಷ್ಟವಾಗಿ ವಿವರಿಸಿ..."
+
+#: apps/issues/forms.py:54
+msgid "Select a location on the map"
+msgstr "ನಕ್ಷೆಯಲ್ಲಿ ಒಂದು ಸ್ಥಳವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+
+#: apps/issues/forms.py:80
+msgid "Title must contain at least 5 characters."
+msgstr "ಶೀರ್ಷಿಕೆಯಲ್ಲಿ ಕನಿಷ್ಠ 5 ಅಕ್ಷರಗಳಿರಬೇಕು."
+
+#: apps/issues/forms.py:94
+msgid "Please provide a little more information about the issue."
+msgstr "ದಯವಿಟ್ಟು ಸಮಸ್ಯೆಯ ಕುರಿತು ಸ್ವಲ್ಪ ಹೆಚ್ಚಿನ ಮಾಹಿತಿಯನ್ನು ನೀಡಿ."
+
+#: apps/issues/forms.py:109
+msgid "Please select a valid location on the map."
+msgstr "ದಯವಿಟ್ಟು ನಕ್ಷೆಯಲ್ಲಿ ಮಾನ್ಯವಾದ ಸ್ಥಳವನ್ನು ಆಯ್ಕೆಮಾಡಿ."
+
+#: apps/issues/forms.py:123 apps/issues/forms.py:137
+msgid "Please select the issue location on the map."
+msgstr "ದಯವಿಟ್ಟು ನಕ್ಷೆಯಲ್ಲಿ ಸಮಸ್ಯೆಯ ಸ್ಥಳವನ್ನು ಆಯ್ಕೆಮಾಡಿ."
+
+#: apps/issues/models.py:9
+msgid "Road & Potholes"
+msgstr "ರಸ್ತೆಗಳು ಮತ್ತು ಗುಂಡಿಗಳು"
+
+#: apps/issues/models.py:10
+msgid "Street Lights"
+msgstr "ಬೀದಿ ದೀಪಗಳು"
+
+#: apps/issues/models.py:11
+msgid "Garbage & Sanitation"
+msgstr "ಕಸ ಮತ್ತು ನೈರ್ಮಲ್ಯ"
+
+#: apps/issues/models.py:12
+msgid "Water Supply"
+msgstr "ನೀರಿನ ಸರಬರಾಜು"
+
+#: apps/issues/models.py:13
+msgid "Drainage"
+msgstr "ಚರಂಡಿ ವ್ಯವಸ್ಥೆ"
+
+#: apps/issues/models.py:14
+msgid "Electricity"
+msgstr "ವಿದ್ಯುತ್"
+
+#: apps/issues/models.py:15
+msgid "Traffic"
+msgstr "ಸಂಚಾರ"
+
+#: apps/issues/models.py:16 templates/issues/report_issue.html:11
+msgid "Other"
+msgstr "ಇತರೆ"
+
+#: apps/issues/models.py:20 templates/issues/issue_map.html:217 templates/issues/issue_map.html:322
+#: templates/issues/report_issue.html:10 templates/users/government_analytics.html:123
+#: templates/users/government_dashboard.html:278
+msgid "Reported"
+msgstr "ವರದಿಯಾಗಿದೆ"
+
+#: apps/issues/models.py:21 templates/issues/issue_map.html:224 templates/issues/issue_map.html:338
+#: templates/users/government_dashboard.html:293
+msgid "Under Review"
+msgstr "ಪರಿಶೀಲನೆಯಲ್ಲಿದೆ"
+
+#: apps/issues/models.py:22 templates/issues/issue_map.html:231 templates/issues/issue_map.html:354
+#: templates/users/government_analytics.html:175 templates/users/government_dashboard.html:308
+msgid "In Progress"
+msgstr "ಪ್ರಗತಿಯಲ್ಲಿದೆ"
+
+#: apps/issues/models.py:23 templates/issues/issue_map.html:238 templates/issues/issue_map.html:370
+#: templates/users/government_analytics.html:201 templates/users/government_analytics.html:396
+#: templates/users/government_analytics.html:422 templates/users/government_dashboard.html:166
+#: templates/users/government_dashboard.html:323
+msgid "Resolved"
+msgstr "ಪರಿಹರಿಸಲಾಗಿದೆ"
+
+#: apps/issues/models.py:24 templates/issues/issue_map.html:245 templates/issues/issue_map.html:386
+#: templates/users/government_analytics.html:227
+msgid "Rejected"
+msgstr "ತಿರಸ್ಕರಿಸಲಾಗಿದೆ"
+
+#: apps/issues/views.py:52
+#, python-format
+msgid "Your issue has been reported successfully. Issue #%(issue_id)s is now being tracked."
+msgstr "ನಿಮ್ಮ ಸಮಸ್ಯೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ವರದಿ ಮಾಡಲಾಗಿದೆ. ಸಮಸ್ಯೆ #%(issue_id)s ಅನ್ನು ಈಗ ಟ್ರ್ಯಾಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ."
+
+#: apps/issues/views.py:177
+msgid "Invalid request method."
+msgstr "ಅಮಾನ್ಯವಾದ ವಿನಂತಿ ವಿಧಾನ."
+
+# | msgid "You can type or use your voice."
+#: apps/issues/views.py:190
+msgid "You cannot upvote your own issue."
+msgstr "ನಿಮ್ಮದೇ ಸಮಸ್ಯೆಗೆ ಅಪ್‌ವೋಟ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ."
+
+#: apps/issues/views.py:251
+msgid "Invalid latitude or longitude."
+msgstr "ಅಮಾನ್ಯ ಅಕ್ಷಾಂಶ ಅಥವಾ ರೇಖಾಂಶ."
+
+#: apps/issues/views.py:442 apps/issues/views.py:622
+msgid "You do not have permission to access government issue management."
+msgstr "ಸರ್ಕಾರಿ ಸಮಸ್ಯೆ ನಿರ್ವಹಣೆಯನ್ನು ಪ್ರವೇಶಿಸಲು ನಿಮಗೆ ಅನುಮತಿ ಇಲ್ಲ."
+
+# | msgid "Issue Status"
+#: apps/issues/views.py:682
+msgid "Invalid issue status."
+msgstr "ಅಮಾನ್ಯ ಸಮಸ್ಯೆಯ ಸ್ಥಿತಿ."
+
+#: apps/issues/views.py:706
+#, python-format
+msgid "An issue cannot move directly from '%(current_status)s' to '%(new_status)s'."
+msgstr "'%(current_status)s' ರಿಂದ '%(new_status)s' ಗೆ ಸಮಸ್ಯೆಯನ್ನು ನೇರವಾಗಿ ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ."
+
+#: apps/issues/views.py:746
+msgid "Please upload at least one resolution proof image before marking this issue as resolved."
+msgstr ""
+"ಈ ಸಮಸ್ಯೆಯನ್ನು ಪರಿಹರಿಸಲಾಗಿದೆ ಎಂದು ಗುರುತಿಸುವ ಮೊದಲು ಕನಿಷ್ಠ ಒಂದು ಪರಿಹಾರದ ಪುರಾವೆ ಚಿತ್ರವನ್ನು ಅಪ್‌ಲೋಡ್ "
+"ಮಾಡಿ."
+
+# | msgid "Under Review"
+#: apps/issues/views.py:794
+msgid "Issue Under Review"
+msgstr "ಸಮಸ್ಯೆ ಪರಿಶೀಲನೆಯಲ್ಲಿದೆ"
+
+#: apps/issues/views.py:797
+#, python-format
+msgid "Your reported issue \"%(title)s\" is now under review."
+msgstr "ನೀವು ವರದಿ ಮಾಡಿದ \"%(title)s\" ಸಮಸ್ಯೆ ಈಗ ಪರಿಶೀಲನೆಯಲ್ಲಿದೆ."
+
+# | msgid "Issue Progress"
+#: apps/issues/views.py:809
+msgid "Issue In Progress"
+msgstr "ಸಮಸ್ಯೆ ಪ್ರಗತಿಯಲ್ಲಿದೆ"
+
+#: apps/issues/views.py:812
+#, python-format
+msgid "Work has started on your reported issue \"%(title)s\"."
+msgstr "ನೀವು ವರದಿ ಮಾಡಿದ \"%(title)s\" ಸಮಸ್ಯೆಯ ಮೇಲೆ ಕೆಲಸ ಪ್ರಾರಂಭವಾಗಿದೆ."
+
+# | msgid "Issue Reported"
+#: apps/issues/views.py:824
+msgid "Issue Resolved"
+msgstr "ಸಮಸ್ಯೆ ಪರಿಹರಿಸಲಾಗಿದೆ"
+
+# | msgid "Your civic issue was successfully reported."
+#: apps/issues/views.py:827
+#, python-format
+msgid "Your reported issue \"%(title)s\" has been successfully resolved."
+msgstr "ನೀವು ವರದಿ ಮಾಡಿದ \"%(title)s\" ಸಮಸ್ಯೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಪರಿಹರಿಸಲಾಗಿದೆ."
+
+# | msgid "Issue Reported"
+#: apps/issues/views.py:839
+msgid "Issue Rejected"
+msgstr "ಸಮಸ್ಯೆ ತಿರಸ್ಕರಿಸಲಾಗಿದೆ"
+
+# | msgid "Percentage of all reported issues that have been resolved."
+#: apps/issues/views.py:842
+#, python-format
+msgid "Your reported issue \"%(title)s\" has been rejected."
+msgstr "ನೀವು ವರದಿ ಮಾಡಿದ \"%(title)s\" ಸಮಸ್ಯೆಯನ್ನು ತಿರಸ್ಕರಿಸಲಾಗಿದೆ."
+
+# | msgid "issues successfully resolved."
+#: apps/issues/views.py:945
+#, python-format
+msgid "Issue #%(issue_id)s successfully resolved"
+msgstr "ಸಮಸ್ಯೆ #%(issue_id)s ಅನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಪರಿಹರಿಸಲಾಗಿದೆ"
+
+#: apps/issues/views.py:958
+#, python-format
+msgid "Issue #%(issue_id)s moved to %(status)s."
+msgstr "ಸಮಸ್ಯೆ #%(issue_id)s ಅನ್ನು %(status)s ಸ್ಥಿತಿಗೆ ಬದಲಾಯಿಸಲಾಗಿದೆ."
+
+# | msgid "Please select a valid image."
+#: apps/issues/views.py:989
+msgid "Please select at least one proof image."
+msgstr "ದಯವಿಟ್ಟು ಕನಿಷ್ಠ ಒಂದು ಪುರಾವೆ ಚಿತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ."
+
+#: apps/issues/views.py:1029
+#, python-format
+msgid "%(count)s proof image(s) uploaded successfully."
+msgstr "%(count)s ಪುರಾವೆ ಚಿತ್ರಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗಿದೆ."
+
+#: apps/issues/views.py:1040
+msgid "No valid image files were uploaded."
+msgstr "ಯಾವುದೇ ಮಾನ್ಯವಾದ ಚಿತ್ರ ಫೈಲ್‌ಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗಿಲ್ಲ."
+
+#: apps/issues/views.py:1148
+msgid "Please provide a more detailed problem."
+msgstr "ದಯವಿಟ್ಟು ಸಮಸ್ಯೆಯ ಕುರಿತು ಹೆಚ್ಚಿನ ವಿವರಗಳನ್ನು ನೀಡಿ."
+
+# | msgid "Unable to search right now."
+#: apps/issues/views.py:1180
+msgid "Unable to analyze the issue right now."
+msgstr "ಈಗ ಸಮಸ್ಯೆಯನ್ನು ವಿಶ್ಲೇಷಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ."
+
+#: apps/users/forms.py:14 templates/users/login.html:51 templates/users/register.html:133
+msgid "Password"
+msgstr "ಪಾಸ್‌ವರ್ಡ್"
+
+#: apps/users/forms.py:18
+msgid "Enter password"
+msgstr "ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ"
+
+#: apps/users/forms.py:24 templates/users/register.html:167
+msgid "Confirm Password"
+msgstr "ಪಾಸ್‌ವರ್ಡ್ ದೃಢೀಕರಿಸಿ"
+
+#: apps/users/forms.py:28
+msgid "Confirm password"
+msgstr "ಪಾಸ್‌ವರ್ಡ್ ದೃಢೀಕರಿಸಿ"
+
+#: apps/users/forms.py:39 templates/users/register.html:203
+msgid "Request Government Official Access"
+msgstr "ಸರ್ಕಾರಿ ಅಧಿಕಾರಿ ಪ್ರವೇಶಕ್ಕಾಗಿ ವಿನಂತಿಸಿ"
+
+#: apps/users/forms.py:41 templates/users/register.html:207
+msgid "Your account will remain a citizen account until an administrator approves your request."
+msgstr "ನಿರ್ವಾಹಕರು ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ಅನುಮೋದಿಸುವವರೆಗೆ ನಿಮ್ಮ ಖಾತೆಯು ನಾಗರಿಕ ಖಾತೆಯಾಗಿಯೇ ಇರುತ್ತದೆ."
+
+#: apps/users/forms.py:61
+msgid "Enter first name"
+msgstr "ಮೊದಲ ಹೆಸರು ನಮೂದಿಸಿ"
+
+#: apps/users/forms.py:68
+msgid "Enter last name"
+msgstr "ಕೊನೆಯ ಹೆಸರು ನಮೂದಿಸಿ"
+
+#: apps/users/forms.py:75
+msgid "Enter email address"
+msgstr "ಇಮೇಲ್ ವಿಳಾಸ ನಮೂದಿಸಿ"
+
+#: apps/users/forms.py:82
+msgid "Enter phone number"
+msgstr "ಫೋನ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ"
+
+#: apps/users/forms.py:96
+msgid "An account with this email already exists."
+msgstr "ಈ ಇಮೇಲ್‌ನೊಂದಿಗೆ ಈಗಾಗಲೇ ಒಂದು ಖಾತೆ ಇದೆ."
+
+#: apps/users/forms.py:113
+msgid "Passwords do not match."
+msgstr "ಪಾಸ್‌ವರ್ಡ್‌ಗಳು ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ."
+
+#: apps/users/forms.py:137 templates/users/profile.html:167 templates/users/register.html:47
+msgid "First Name"
+msgstr "ಮೊದಲ ಹೆಸರು"
+
+#: apps/users/forms.py:138 templates/users/profile.html:192 templates/users/register.html:68
+msgid "Last Name"
+msgstr "ಕೊನೆಯ ಹೆಸರು"
+
+#: apps/users/forms.py:139 templates/users/profile.html:217 templates/users/register.html:112
+msgid "Phone Number"
+msgstr "ಫೋನ್ ಸಂಖ್ಯೆ"
+
+#: apps/users/forms.py:140 templates/users/profile.html:281
+msgid "Profile Photo"
+msgstr "ಪ್ರೊಫೈಲ್ ಫೋಟೋ"
+
+#: apps/users/forms.py:141 templates/users/profile.html:372
+msgid "Language Preference"
+msgstr "ಭಾಷೆಯ ಆದ್ಯತೆ"
+
+#: apps/users/forms.py:149
+msgid "Enter your first name"
+msgstr "ನಿಮ್ಮ ಮೊದಲ ಹೆಸರನ್ನು ನಮೂದಿಸಿ"
+
+#: apps/users/forms.py:157
+msgid "Enter your last name"
+msgstr "ನಿಮ್ಮ ಕೊನೆಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ"
+
+#: apps/users/forms.py:165
+msgid "Enter your phone number"
+msgstr "ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
+
+#: apps/users/forms.py:197
+msgid "Please enter a valid phone number."
+msgstr "ದಯವಿಟ್ಟು ಮಾನ್ಯವಾದ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ."
+
+#: templates/base.html:163
+msgid "Open navigation menu"
+msgstr "ನ್ಯಾವಿಗೇಶನ್ ಮೆನು ತೆರೆಯಿರಿ"
+
+#: templates/base.html:206 templates/base.html:270 templates/base.html:591 templates/base.html:718
+#: templates/users/citizen_dashboard.html:6 templates/users/government_analytics.html:55
+msgid "Dashboard"
+msgstr "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್"
+
+#: templates/base.html:220 templates/base.html:607 templates/users/citizen_dashboard.html:72
+msgid "Report Issue"
+msgstr "ಸಮಸ್ಯೆಯನ್ನು ವರದಿ ಮಾಡಿ"
+
+#: templates/base.html:234 templates/base.html:623 templates/issues/issue_detail.html:765
+#: templates/issues/my_issues.html:6 templates/users/citizen_dashboard.html:107
+msgid "My Issues"
+msgstr "ನನ್ನ ಸಮಸ್ಯೆಗಳು"
+
+#: templates/base.html:248 templates/base.html:639 templates/issues/issue_map.html:7
+#: templates/users/citizen_dashboard.html:142
+msgid "Issue Map"
+msgstr "ಸಮಸ್ಯೆಗಳ ನಕ್ಷೆ"
+
+#: templates/base.html:284 templates/base.html:734 templates/users/government_analytics.html:67
+msgid "Manage Issues"
+msgstr "ಸಮಸ್ಯೆಗಳನ್ನು ನಿರ್ವಹಿಸಿ"
+
+#: templates/base.html:323 templates/base.html:476 templates/base.html:798
+msgid "Select language"
+msgstr "ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+
+#: templates/base.html:367 templates/base.html:368 templates/base.html:658
+#: templates/rewards/wallet.html:5 templates/rewards/wallet.html:25
+msgid "My Rewards"
+msgstr "ನನ್ನ ಬಹುಮಾನಗಳು"
+
+#: templates/base.html:400 templates/base.html:401 templates/base.html:686
+#: templates/notifications/notification_list.html:7 templates/notifications/notification_list.html:32
+msgid "Notifications"
+msgstr "ಅಧಿಸೂಚನೆಗಳು"
+
+#: templates/base.html:437 templates/base.html:835
+msgid "Logout"
+msgstr "ಲಾಗ್ ಔಟ್"
+
+#: templates/base.html:535 templates/base.html:937 templates/home.html:43 templates/users/login.html:4
+#: templates/users/login.html:83 templates/users/register.html:232
+msgid "Login"
+msgstr "ಲಾಗಿನ್"
+
+#: templates/base.html:551 templates/base.html:955
+msgid "Get Started"
+msgstr "ಪ್ರಾರಂಭಿಸಿ"
+
+#: templates/base.html:755 templates/users/citizen_dashboard.html:177 templates/users/profile.html:5
+msgid "My Profile"
+msgstr "ನನ್ನ ಪ್ರೊಫೈಲ್"
+
+#: templates/base.html:772 templates/base.html:855
+msgid "Language"
+msgstr "ಭಾಷೆ"
+
+#: templates/home.html:4
+msgid "JanMitra | Your Voice. Your Impact."
+msgstr "ಜನಮಿತ್ರ | ನಿಮ್ಮ ಧ್ವನಿ. ನಿಮ್ಮ ಪ್ರಭಾವ."
+
+#: templates/home.html:14
+msgid "CITIZEN POWERED PLATFORM"
+msgstr "ಪ್ರಜೆಗಳಿಂದ ಶಕ್ತಿ ಪಡೆದ ವೇದಿಕೆ"
+
+#: templates/home.html:18
+msgid "Your Voice."
+msgstr "ನಿಮ್ಮ ಧ್ವನಿ."
+
+#: templates/home.html:19
+msgid "Your Impact."
+msgstr "ನಿಮ್ಮ ಪ್ರಭಾವ."
+
+#: templates/home.html:23
+msgid "Report civic issues, track real change and help build a better community."
+msgstr ""
+"ನಾಗರಿಕ ಸಮಸ್ಯೆಗಳನ್ನು ವರದಿ ಮಾಡಿ, ನೈಜ ಬದಲಾವಣೆಯನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ ಮತ್ತು ಉತ್ತಮ ಸಮುದಾಯವನ್ನು ನಿರ್ಮಿಸಲು "
+"ಸಹಾಯ ಮಾಡಿ."
+
+#: templates/home.html:34 templates/users/register.html:4 templates/users/register.html:20
+msgid "Join JanMitra"
+msgstr "ಜನಮಿತ್ರಕ್ಕೆ ಸೇರಿ"
+
+#: templates/home.html:49
+msgid "Government official?"
+msgstr "ಸರ್ಕಾರಿ ಅಧಿಕಾರಿ?"
+
+#: templates/home.html:53
+msgid "Government Portal Login"
+msgstr "ಸರ್ಕಾರಿ ಪೋರ್ಟಲ್ ಲಾಗಿನ್"
+
+#: templates/home.html:62
+msgid "Report"
+msgstr "ವರದಿ ಮಾಡಿ"
+
+#: templates/home.html:63
+msgid "Civic Issues"
+msgstr "ನಾಗರಿಕ ಸಮಸ್ಯೆಗಳು"
+
+#: templates/home.html:67 templates/users/citizen_dashboard.html:102
+msgid "Track"
+msgstr "ಟ್ರ್ಯಾಕ್ ಮಾಡಿ"
+
+#: templates/home.html:68
+msgid "Progress"
+msgstr "ಪ್ರಗತಿ"
+
+#: templates/home.html:72
+msgid "Earn"
+msgstr "ಗಳಿಸಿ"
+
+#: templates/home.html:73
+msgid "Rewards"
+msgstr "ಬಹುಮಾನಗಳು"
+
+#: templates/issues/government_issue_detail.html:17
+msgid "Government"
+msgstr "ಸರ್ಕಾರ"
+
+#: templates/issues/government_issue_detail.html:35 templates/issues/government_issue_detail.html:36
+#: templates/issues/government_issue_detail.html:44
+msgid "Back to All Issues"
+msgstr "ಎಲ್ಲಾ ಸಮಸ್ಯೆಗಳಿಗೆ ಹಿಂತಿರುಗಿ"
+
+#: templates/issues/government_issue_detail.html:72
+msgid "GOVERNMENT ISSUE MANAGEMENT"
+msgstr "ಸರ್ಕಾರಿ ಸಮಸ್ಯೆಗಳ ನಿರ್ವಹಣೆ"
+
+#: templates/issues/government_issue_detail.html:130 templates/issues/issue_detail.html:166
+msgid "Citizen Evidence"
+msgstr "ನಾಗರಿಕರು ಸಲ್ಲಿಸಿದ ಸಾಕ್ಷ್ಯ"
+
+# | msgid "Original image submitted by the citizen"
+#: templates/issues/government_issue_detail.html:134
+msgid "Original image submitted by the citizen."
+msgstr "ನಾಗರಿಕರು ಸಲ್ಲಿಸಿದ ಮೂಲ ಚಿತ್ರ."
+
+#: templates/issues/government_issue_detail.html:147 templates/issues/government_issue_detail.html:148
+#: templates/issues/government_issue_detail.html:163
+msgid "View Full Image"
+msgstr "ಪೂರ್ಣ ಚಿತ್ರ ವೀಕ್ಷಿಸಿ"
+
+# | msgid "Citizen Evidence"
+#: templates/issues/government_issue_detail.html:153
+msgid "Citizen evidence image"
+msgstr "ನಾಗರಿಕರ ಸಾಕ್ಷ್ಯ ಚಿತ್ರ"
+
+#: templates/issues/government_issue_detail.html:196
+msgid "Issue Description"
+msgstr "ಸಮಸ್ಯೆಯ ವಿವರಣೆ"
+
+#: templates/issues/government_issue_detail.html:228
+msgid "Issue ID"
+msgstr "ಸಮಸ್ಯೆ ID"
+
+#: templates/issues/government_issue_detail.html:249 templates/issues/government_issue_list.html:68
+#: templates/issues/issue_detail.html:217 templates/issues/issue_map.html:157
+#: templates/issues/issue_map.html:164 templates/issues/report_issue.html:57
+#: templates/issues/report_issue.html:311 templates/issues/report_issue_backup.html:251
+msgid "Category"
+msgstr "ವರ್ಗ"
+
+#: templates/issues/government_issue_detail.html:270 templates/issues/issue_detail.html:236
+msgid "Reported On"
+msgstr "ವರದಿ ದಿನಾಂಕ"
+
+#: templates/issues/government_issue_detail.html:291 templates/users/profile.html:495
+msgid "Last Updated"
+msgstr "ಕೊನೆಯ ನವೀಕರಣ"
+
+#: templates/issues/government_issue_detail.html:322 templates/issues/issue_detail.html:106
+msgid "Reported By"
+msgstr "ವರದಿ ಮಾಡಿದವರು"
+
+#: templates/issues/government_issue_detail.html:326
+msgid "Citizen information"
+msgstr "ನಾಗರಿಕರ ಮಾಹಿತಿ"
+
+#: templates/issues/government_issue_detail.html:346
+msgid "Citizen Name"
+msgstr "ನಾಗರಿಕರ ಹೆಸರು"
+
+#: templates/issues/government_issue_detail.html:367
+msgid "Email"
+msgstr "ಇಮೇಲ್"
+
+#: templates/issues/government_issue_detail.html:388
+msgid "Phone"
+msgstr "ದೂರವಾಣಿ"
+
+#: templates/issues/government_issue_detail.html:400
+msgid "Not provided"
+msgstr "ನೀಡಲಾಗಿಲ್ಲ"
+
+#: templates/issues/government_issue_detail.html:431
+msgid "Update Issue Status"
+msgstr "ಸಮಸ್ಯೆಯ ಸ್ಥಿತಿಯನ್ನು ನವೀಕರಿಸಿ"
+
+# | msgid "Keep citizens informed about the progress"
+#: templates/issues/government_issue_detail.html:435
+msgid "Keep citizens informed about the progress."
+msgstr "ಸಮಸ್ಯೆಯ ಪ್ರಗತಿಯ ಕುರಿತು ನಾಗರಿಕರಿಗೆ ಮಾಹಿತಿ ನೀಡಿ."
+
+#: templates/issues/government_issue_detail.html:455 templates/issues/government_issue_detail.html:501
+#: templates/issues/government_issue_detail.html:559 templates/issues/issue_map.html:305
+msgid "Issue Status"
+msgstr "ಸಮಸ್ಯೆಯ ಸ್ಥಿತಿ"
+
+# | msgid "This issue has been resolved and its status is final"
+#: templates/issues/government_issue_detail.html:481
+msgid "This issue has been resolved and its status is final."
+msgstr "ಈ ಸಮಸ್ಯೆಯನ್ನು ಪರಿಹರಿಸಲಾಗಿದೆ. ಇದರ ಸ್ಥಿತಿ ಅಂತಿಮವಾಗಿದೆ."
+
+# | msgid "This issue has been rejected and its status is final"
+#: templates/issues/government_issue_detail.html:527
+msgid "This issue has been rejected and its status is final."
+msgstr "ಈ ಸಮಸ್ಯೆಯನ್ನು ತಿರಸ್ಕರಿಸಲಾಗಿದೆ. ಇದರ ಸ್ಥಿತಿ ಅಂತಿಮವಾಗಿದೆ."
+
+#: templates/issues/government_issue_detail.html:590 templates/issues/government_issue_detail.html:591
+#: templates/issues/government_issue_detail.html:599
+msgid "Update Status"
+msgstr "ಸ್ಥಿತಿಯನ್ನು ನವೀಕರಿಸಿ"
+
+#: templates/issues/government_issue_detail.html:627
+msgid "Government Proof / Resolution Evidence"
+msgstr "ಸರ್ಕಾರದ ಪುರಾವೆ / ಪರಿಹಾರದ ಸಾಕ್ಷ್ಯ"
+
+# | msgid ""
+# | "Upload photographs showing investigation, progress or completed resolution"
+#: templates/issues/government_issue_detail.html:631
+msgid "Upload photographs showing investigation, progress or completed resolution."
+msgstr "ತನಿಖೆ, ಪ್ರಗತಿ ಅಥವಾ ಪೂರ್ಣಗೊಂಡ ಪರಿಹಾರವನ್ನು ತೋರಿಸುವ ಛಾಯಾಚಿತ್ರಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ."
+
+#: templates/issues/government_issue_detail.html:657 templates/issues/government_issue_detail.html:666
+msgid "Select Proof Images"
+msgstr "ಪುರಾವೆ ಚಿತ್ರಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+
+#: templates/issues/government_issue_detail.html:670
+msgid "You can select multiple images"
+msgstr "ನೀವು ಹಲವು ಚಿತ್ರಗಳನ್ನು ಆಯ್ಕೆಮಾಡಬಹುದು"
+
+# | msgid "Select Proof Images"
+#: templates/issues/government_issue_detail.html:683
+msgid "Select proof images"
+msgstr "ಪುರಾವೆ ಚಿತ್ರಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+
+#: templates/issues/government_issue_detail.html:697 templates/issues/government_issue_detail.html:698
+#: templates/issues/government_issue_detail.html:706
+msgid "Upload Proof Images"
+msgstr "ಪುರಾವೆ ಚಿತ್ರಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ"
+
+#: templates/issues/government_issue_detail.html:734
+msgid "Uploaded Government Evidence"
+msgstr "ಅಪ್‌ಲೋಡ್ ಮಾಡಿದ ಸರ್ಕಾರಿ ಸಾಕ್ಷ್ಯ"
+
+# | msgid "Evidence visible to the reporting citizen"
+#: templates/issues/government_issue_detail.html:738
+msgid "Evidence visible to the reporting citizen."
+msgstr "ವರದಿ ಮಾಡಿದ ನಾಗರಿಕರಿಗೆ ಕಾಣುವ ಸಾಕ್ಷ್ಯ."
+
+#: templates/issues/government_issue_detail.html:755 templates/issues/government_issue_detail.html:756
+msgid "View proof image"
+msgstr "ಪುರಾವೆ ಚಿತ್ರ ವೀಕ್ಷಿಸಿ"
+
+#: templates/issues/government_issue_detail.html:761 templates/issues/issue_detail.html:621
+#, python-format
+msgid "Government proof for %(title)s"
+msgstr "%(title)s ಗಾಗಿ ಸರ್ಕಾರಿ ಸಾಕ್ಷ್ಯ"
+
+#: templates/issues/government_issue_detail.html:771
+msgid "View"
+msgstr "ವೀಕ್ಷಿಸಿ"
+
+#: templates/issues/government_issue_detail.html:839 templates/issues/government_issue_detail.html:1023
+#: templates/issues/issue_detail.html:671 templates/issues/report_issue.html:353
+#: templates/issues/report_issue_backup.html:293
+msgid "Issue Location"
+msgstr "ಸಮಸ್ಯೆಯ ಸ್ಥಳ"
+
+# | msgid "Exact location submitted with the report"
+#: templates/issues/government_issue_detail.html:843
+msgid "Exact location submitted with the report."
+msgstr "ವರದಿಯಲ್ಲಿ ನೀಡಲಾದ ನಿಖರ ಸ್ಥಳ."
+
+#: templates/issues/government_issue_detail.html:858 templates/issues/issue_detail.html:257
+msgid "Latitude"
+msgstr "ಅಕ್ಷಾಂಶ"
+
+#: templates/issues/government_issue_detail.html:871 templates/issues/issue_detail.html:276
+msgid "Longitude"
+msgstr "ರೇಖಾಂಶ"
+
+#: templates/issues/government_issue_detail.html:889 templates/issues/government_issue_detail.html:890
+#: templates/issues/government_issue_detail.html:899 templates/issues/government_issue_detail.html:1017
+#: templates/issues/issue_detail.html:702 templates/issues/issue_detail.html:703
+#: templates/issues/issue_detail.html:708
+msgid "Copy Coordinates"
+msgstr "ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನಕಲಿಸಿ"
+
+#: templates/issues/government_issue_detail.html:909 templates/issues/government_issue_detail.html:910
+#: templates/issues/government_issue_detail.html:918 templates/issues/issue_detail.html:717
+#: templates/issues/issue_detail.html:718 templates/issues/issue_detail.html:723
+msgid "Navigate to Location"
+msgstr "ಸ್ಥಳಕ್ಕೆ ಮಾರ್ಗದರ್ಶನ ಪಡೆಯಿರಿ"
+
+# | msgid "Issue location"
+#: templates/issues/government_issue_detail.html:930
+msgid "Issue location map"
+msgstr "ಸಮಸ್ಯೆಯ ಸ್ಥಳದ ನಕ್ಷೆ"
+
+#: templates/issues/government_issue_detail.html:951 templates/issues/government_issue_detail.html:952
+#: templates/issues/government_issue_detail.html:960
+msgid "All Issues"
+msgstr "ಎಲ್ಲಾ ಸಮಸ್ಯೆಗಳು"
+
+# | msgid "Government Portal"
+#: templates/issues/government_issue_detail.html:968 templates/issues/government_issue_detail.html:969
+#: templates/issues/government_issue_detail.html:977
+msgid "Government Dashboard"
+msgstr "ಸರ್ಕಾರಿ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್"
+
+#: templates/issues/government_issue_detail.html:1014
+msgid "Copied"
+msgstr "ನಕಲಿಸಲಾಗಿದೆ"
+
+#: templates/issues/government_issue_detail.html:1020
+msgid "Coordinates"
+msgstr "ನಿರ್ದೇಶಾಂಕಗಳು"
+
+#: templates/issues/government_issue_list.html:7
+msgid "Government Issue Management | JanMitra"
+msgstr "ಸರ್ಕಾರಿ ಸಮಸ್ಯೆ ನಿರ್ವಹಣೆ | ಜನಮಿತ್ರ"
+
+#: templates/issues/government_issue_list.html:22
+msgid "Issue Management"
+msgstr "ಸಮಸ್ಯೆ ನಿರ್ವಹಣೆ"
+
+#: templates/issues/government_issue_list.html:26
+msgid "Review and manage civic issues reported by citizens."
+msgstr "ನಾಗರಿಕರು ವರದಿ ಮಾಡಿದ ನಾಗರಿಕ ಸಮಸ್ಯೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ನಿರ್ವಹಿಸಿ."
+
+#: templates/issues/government_issue_list.html:49 templates/issues/government_issue_list.html:140
+#: templates/issues/issue_map.html:97 templates/issues/issue_map.html:98
+#: templates/issues/issue_map.html:101 templates/issues/issue_map.html:510
+#: templates/issues/report_issue.html:396 templates/issues/report_issue.html:3392
+#: templates/issues/report_issue_backup.html:321 templates/issues/report_issue_backup.html:336
+#: templates/issues/report_issue_backup.html:358
+msgid "Search"
+msgstr "ಹುಡುಕಿ"
+
+#: templates/issues/government_issue_list.html:57
+msgid "Search by title, location, citizen..."
+msgstr "ಶೀರ್ಷಿಕೆ, ಸ್ಥಳ, ನಾಗರಿಕರ ಮೂಲಕ ಹುಡುಕಿ..."
+
+#: templates/issues/government_issue_list.html:77 templates/issues/issue_map.html:169
+msgid "All Categories"
+msgstr "ಎಲ್ಲಾ ವರ್ಗಗಳು"
+
+#: templates/issues/government_issue_list.html:103 templates/issues/issue_map.html:198
+#: templates/issues/issue_map.html:205
+msgid "Status"
+msgstr "ಸ್ಥಿತಿ"
+
+#: templates/issues/government_issue_list.html:112 templates/issues/issue_map.html:210
+msgid "All Statuses"
+msgstr "ಎಲ್ಲಾ ಸ್ಥಿತಿಗಳು"
+
+#: templates/issues/government_issue_list.html:164
+#, python-format
+msgid ""
+"\n"
+"                %(counter)s issue found\n"
+"            "
+msgid_plural ""
+"\n"
+"                %(counter)s issues found\n"
+"            "
+msgstr[0] ""
+"\n"
+"                %(counter)s ಸಮಸ್ಯೆ ಕಂಡುಬಂದಿದೆ\n"
+"            "
+msgstr[1] ""
+"\n"
+"                %(counter)s ಸಮಸ್ಯೆಗಳು ಕಂಡುಬಂದಿವೆ\n"
+"            "
+
+#: templates/issues/government_issue_list.html:177
+msgid "Clear Filters"
+msgstr "ಫಿಲ್ಟರ್‌ಗಳನ್ನು ತೆರವುಗೊಳಿಸಿ"
+
+#: templates/issues/government_issue_list.html:244
+msgid "Reported by"
+msgstr "ವರದಿ ಮಾಡಿದವರು"
+
+#: templates/issues/government_issue_list.html:311
+msgid "View Details"
+msgstr "ಸಮಸ್ಯೆಯ ವಿವರಗಳು"
+
+#: templates/issues/government_issue_list.html:344
+msgid "No issues found"
+msgstr "ಯಾವುದೇ ಸಮಸ್ಯೆಗಳು ಕಂಡುಬಂದಿಲ್ಲ"
+
+#: templates/issues/government_issue_list.html:348
+msgid "Try changing your search or filters."
+msgstr "ನಿಮ್ಮ ಹುಡುಕಾಟ ಅಥವಾ ಫಿಲ್ಟರ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಿ ಪ್ರಯತ್ನಿಸಿ."
+
+#: templates/issues/issue_detail.html:37
+msgid "Back to Issue Map"
+msgstr "ಸಮಸ್ಯೆ ನಕ್ಷೆಗೆ ಹಿಂತಿರುಗಿ"
+
+#: templates/issues/issue_detail.html:57
+msgid "CIVIC ISSUE"
+msgstr "ನಾಗರಿಕ ಸಮಸ್ಯೆ"
+
+#: templates/issues/issue_detail.html:192 templates/issues/report_issue.html:59
+#: templates/issues/report_issue.html:279 templates/issues/report_issue_backup.html:219
+#: templates/rewards/wallet.html:191
+msgid "Description"
+msgstr "ವಿವರಣೆ"
+
+#: templates/issues/issue_detail.html:314
+msgid "Community Support"
+msgstr "ಸಮುದಾಯದ ಬೆಂಬಲ"
+
+# | msgid ""
+# | "\n"
+# | "                                            <strong>%(count)s</strong> "
+# | "citizen supporting\n"
+# | "                                        "
+# | msgid_plural ""
+# | "citizens supporting\n"
+#: templates/issues/issue_detail.html:328
+msgid ""
+"\n"
+"\n"
+"                                        citizen supporting\n"
+"\n"
+"                                    "
+msgid_plural ""
+"\n"
+"\n"
+"                                        citizens supporting\n"
+"\n"
+"                                    "
+msgstr[0] ""
+"\n"
+"<strong>%(count)s</strong> ನಾಗರಿಕರು ಬೆಂಬಲಿಸುತ್ತಿದ್ದಾರೆ"
+msgstr[1] ""
+"\n"
+"<strong>%(count)s</strong> ನಾಗರಿಕರು ಬೆಂಬಲಿಸುತ್ತಿದ್ದಾರೆ"
+
+#: templates/issues/issue_detail.html:347
+msgid "Support this report instead of creating a duplicate."
+msgstr "ನಕಲಿ ವರದಿ ಮಾಡುವ ಬದಲು ಈ ವರದಿಯನ್ನು ಬೆಂಬಲಿಸಿ."
+
+#: templates/issues/issue_detail.html:372 templates/issues/issue_detail.html:373
+#: templates/issues/issue_detail.html:379 templates/issues/report_issue.html:14
+msgid "Your Issue"
+msgstr "ನಿಮ್ಮ ಸಮಸ್ಯೆ"
+
+#: templates/issues/issue_detail.html:390 templates/issues/issue_detail.html:391
+#: templates/issues/issue_detail.html:397 templates/issues/report_issue.html:12
+msgid "Supported"
+msgstr "ಬೆಂಬಲಿಸಲಾಗಿದೆ"
+
+#: templates/issues/issue_detail.html:408 templates/issues/issue_detail.html:409
+#: templates/issues/issue_detail.html:415 templates/issues/report_issue.html:13
+msgid "Support Issue"
+msgstr "ಸಮಸ್ಯೆಯನ್ನು ಬೆಂಬಲಿಸಿ"
+
+#: templates/issues/issue_detail.html:441
+msgid "Issue Progress"
+msgstr "ಸಮಸ್ಯೆಯ ಪ್ರಗತಿ"
+
+#: templates/issues/issue_detail.html:445
+msgid "Track the progress of your civic issue."
+msgstr "ನಿಮ್ಮ ನಾಗರಿಕ ಸಮಸ್ಯೆಯ ಪ್ರಗತಿಯನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ."
+
+#: templates/issues/issue_detail.html:472
+msgid "Issue Reported"
+msgstr "ಸಮಸ್ಯೆಯನ್ನು ವರದಿ ಮಾಡಲಾಗಿದೆ"
+
+#: templates/issues/issue_detail.html:483
+msgid "Your civic issue was successfully reported."
+msgstr "ನಿಮ್ಮ ನಾಗರಿಕ ಸಮಸ್ಯೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ವರದಿ ಮಾಡಲಾಗಿದೆ."
+
+#: templates/issues/issue_detail.html:551
+msgid "Updated by"
+msgstr "ನವೀಕರಿಸಿದವರು"
+
+#: templates/issues/issue_detail.html:590
+msgid "Government Resolution Evidence"
+msgstr "ಸರ್ಕಾರದ ಪರಿಹಾರದ ಸಾಕ್ಷ್ಯ"
+
+#: templates/issues/issue_detail.html:596
+msgid "Photos uploaded by government officials showing investigation, progress or resolution."
+msgstr "ತನಿಖೆ, ಪ್ರಗತಿ ಅಥವಾ ಪರಿಹಾರವನ್ನು ತೋರಿಸುವ ಸರ್ಕಾರಿ ಅಧಿಕಾರಿಗಳು ಅಪ್‌ಲೋಡ್ ಮಾಡಿದ ಚಿತ್ರಗಳು."
+
+#: templates/issues/issue_detail.html:629
+msgid "View Evidence"
+msgstr "ಸಾಕ್ಷ್ಯವನ್ನು ವೀಕ್ಷಿಸಿ"
+
+#: templates/issues/issue_detail.html:638
+msgid "Government Evidence"
+msgstr "ಸರ್ಕಾರದ ಸಾಕ್ಷ್ಯ"
+
+#: templates/issues/issue_detail.html:677
+msgid "Use the map to view the reported location."
+msgstr "ವರದಿ ಮಾಡಿದ ಸ್ಥಳವನ್ನು ವೀಕ್ಷಿಸಲು ನಕ್ಷೆಯನ್ನು ಬಳಸಿ."
+
+#: templates/issues/issue_detail.html:753
+msgid "View Issue Map"
+msgstr "ಸಮಸ್ಯೆ ನಕ್ಷೆಯನ್ನು ವೀಕ್ಷಿಸಿ"
+
+#: templates/issues/issue_detail.html:857
+msgid "Coordinates copied:"
+msgstr "ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನಕಲಿಸಲಾಗಿದೆ:"
+
+#: templates/issues/issue_detail.html:860
+msgid "Unable to copy coordinates."
+msgstr "ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನಕಲಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ."
+
+#: templates/issues/issue_map.html:38
+msgid "JANMITRA CIVIC MAP"
+msgstr "ಜನಮಿತ್ರ ನಾಗರಿಕ ನಕ್ಷೆ"
+
+#: templates/issues/issue_map.html:45
+msgid "Issues"
+msgstr "ಸಮಸ್ಯೆಗಳು"
+
+#: templates/issues/issue_map.html:49
+msgid "Across Bengaluru."
+msgstr "ಬೆಂಗಳೂರಿನಾದ್ಯಂತ."
+
+#: templates/issues/issue_map.html:58
+msgid "Explore civic issues reported by the community."
+msgstr "ಸಮುದಾಯವು ವರದಿ ಮಾಡಿರುವ ನಾಗರಿಕ ಸಮಸ್ಯೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ."
+
+#: templates/issues/issue_map.html:88 templates/issues/issue_map.html:90
+msgid "Search a Bengaluru location..."
+msgstr "ಬೆಂಗಳೂರಿನ ಸ್ಥಳವನ್ನು ಹುಡುಕಿ..."
+
+#: templates/issues/issue_map.html:113 templates/issues/issue_map.html:114
+#: templates/issues/issue_map.html:121 templates/issues/issue_map.html:522
+msgid "My Location"
+msgstr "ನನ್ನ ಸ್ಥಳ"
+
+#: templates/issues/issue_map.html:269 templates/issues/issue_map.html:552
+#: templates/users/government_analytics.html:522 templates/users/government_analytics.html:547
+msgid "issues"
+msgstr "ಸಮಸ್ಯೆಗಳು"
+
+#: templates/issues/issue_map.html:276
+msgid "Within 10 km"
+msgstr "10 ಕಿ.ಮೀ. ವ್ಯಾಪ್ತಿಯಲ್ಲಿ"
+
+#: templates/issues/issue_map.html:507 templates/issues/report_issue.html:38
+msgid "Searching..."
+msgstr "ಹುಡುಕಲಾಗುತ್ತಿದೆ..."
+
+#: templates/issues/issue_map.html:513
+msgid "No Bengaluru locations found."
+msgstr "ಬೆಂಗಳೂರಿನಲ್ಲಿ ಯಾವುದೇ ಸ್ಥಳಗಳು ಕಂಡುಬಂದಿಲ್ಲ."
+
+#: templates/issues/issue_map.html:516
+msgid "Unable to search right now."
+msgstr "ಈಗ ಹುಡುಕಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ."
+
+#: templates/issues/issue_map.html:519
+msgid "Locating..."
+msgstr "ಸ್ಥಳವನ್ನು ಪತ್ತೆಹಚ್ಚಲಾಗುತ್ತಿದೆ..."
+
+#: templates/issues/issue_map.html:525
+msgid "Location is not supported by your browser."
+msgstr "ನಿಮ್ಮ ಬ್ರೌಸರ್ ಸ್ಥಳ ಸೌಲಭ್ಯವನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ."
+
+#: templates/issues/issue_map.html:528
+msgid "JanMitra currently supports locations within Bengaluru."
+msgstr "ಜನಮಿತ್ರ ಪ್ರಸ್ತುತ ಬೆಂಗಳೂರಿನೊಳಗಿನ ಸ್ಥಳಗಳನ್ನು ಮಾತ್ರ ಬೆಂಬಲಿಸುತ್ತದೆ."
+
+#: templates/issues/issue_map.html:531
+msgid "Please allow location access to find issues near you."
+msgstr "ನಿಮ್ಮ ಸುತ್ತಮುತ್ತಲಿನ ಸಮಸ್ಯೆಗಳನ್ನು ಹುಡುಕಲು ಸ್ಥಳದ ಅನುಮತಿಯನ್ನು ನೀಡಿ."
+
+#: templates/issues/issue_map.html:534
+msgid "Your Location"
+msgstr "ನಿಮ್ಮ ಸ್ಥಳ"
+
+#: templates/issues/issue_map.html:537 templates/issues/report_issue.html:18
+#: templates/notifications/notification_list.html:275
+#: templates/notifications/notification_list.html:276
+#: templates/notifications/notification_list.html:285
+msgid "View Issue"
+msgstr "ಸಮಸ್ಯೆಯನ್ನು ವೀಕ್ಷಿಸಿ"
+
+#: templates/issues/issue_map.html:540
+msgid "citizen"
+msgstr "ನಾಗರಿಕ"
+
+#: templates/issues/issue_map.html:543
+msgid "citizens"
+msgstr "ನಾಗರಿಕರು"
+
+#: templates/issues/issue_map.html:546
+msgid "supporting"
+msgstr "ಬೆಂಬಲಿಸುತ್ತಿದ್ದಾರೆ"
+
+# | msgid "issues"
+#: templates/issues/issue_map.html:549
+msgid "issue"
+msgstr "ಸಮಸ್ಯೆ"
+
+#: templates/issues/my_issues.html:19
+msgid "MY REPORTS"
+msgstr "ನನ್ನ ವರದಿಗಳು"
+
+#: templates/issues/my_issues.html:23
+msgid "My"
+msgstr "ನನ್ನ"
+
+#: templates/issues/my_issues.html:24
+msgid "Issues."
+msgstr "ಸಮಸ್ಯೆಗಳು."
+
+#: templates/issues/my_issues.html:28
+msgid "Track the civic issues you have reported."
+msgstr "ನೀವು ವರದಿ ಮಾಡಿದ ನಾಗರಿಕ ಸಮಸ್ಯೆಗಳನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ."
+
+#: templates/issues/my_issues.html:75
+#, python-format
+msgid ""
+"\n"
+"                                            <strong>%(count)s</strong> citizen supporting\n"
+"                                        "
+msgid_plural ""
+"\n"
+"                                            <strong>%(count)s</strong> citizens supporting\n"
+"                                        "
+msgstr[0] ""
+"\n"
+"<strong>%(count)s</strong> ನಾಗರಿಕರು ಬೆಂಬಲಿಸುತ್ತಿದ್ದಾರೆ"
+msgstr[1] ""
+"\n"
+"<strong>%(count)s</strong> ನಾಗರಿಕರು ಬೆಂಬಲಿಸುತ್ತಿದ್ದಾರೆ"
+
+#: templates/issues/my_issues.html:108 templates/issues/my_issues.html:109
+msgid "View issue"
+msgstr "ಸಮಸ್ಯೆಯನ್ನು ವೀಕ್ಷಿಸಿ"
+
+#: templates/issues/my_issues.html:137
+msgid "No issues reported yet"
+msgstr "ಇನ್ನೂ ಯಾವುದೇ ಸಮಸ್ಯೆಗಳನ್ನು ವರದಿ ಮಾಡಲಾಗಿಲ್ಲ"
+
+#: templates/issues/my_issues.html:142
+msgid "Found a civic problem? Be the voice that gets it noticed."
+msgstr "ನಾಗರಿಕ ಸಮಸ್ಯೆ ಕಂಡುಬಂದಿದೆಯೇ? ಅದನ್ನು ಗಮನಕ್ಕೆ ತರುವ ಧ್ವನಿಯಾಗಿರಿ."
+
+#: templates/issues/my_issues.html:153 templates/issues/report_issue.html:64
+#: templates/issues/report_issue_backup.html:4
+msgid "Report an Issue"
+msgstr "ಸಮಸ್ಯೆಯನ್ನು ವರದಿ ಮಾಡಿ"
+
+#: templates/issues/report_issue.html:8
+msgid "Civic Issue"
+msgstr "ನಾಗರಿಕ ಸಮಸ್ಯೆ"
+
+#: templates/issues/report_issue.html:9
+msgid "Bengaluru"
+msgstr "ಬೆಂಗಳೂರು"
+
+#: templates/issues/report_issue.html:15
+msgid "m away"
+msgstr "ಮೀ. ದೂರದಲ್ಲಿ"
+
+#: templates/issues/report_issue.html:16
+msgid "supporter"
+msgstr "ಬೆಂಬಲಿಗ"
+
+#: templates/issues/report_issue.html:17
+msgid "supporters"
+msgstr "ಬೆಂಬಲಿಗರು"
+
+#: templates/issues/report_issue.html:19
+msgid "Updating..."
+msgstr "ನವೀಕರಿಸಲಾಗುತ್ತಿದೆ..."
+
+#: templates/issues/report_issue.html:20
+msgid "Unable to update support."
+msgstr "ಬೆಂಬಲವನ್ನು ನವೀಕರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ."
+
+#: templates/issues/report_issue.html:21
+msgid "Unable to support this issue."
+msgstr "ಈ ಸಮಸ್ಯೆಯನ್ನು ಬೆಂಬಲಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ."
+
+#: templates/issues/report_issue.html:22
+msgid "nearby"
+msgstr "ಹತ್ತಿರದಲ್ಲಿ"
+
+#: templates/issues/report_issue.html:23
+msgid "existing issue"
+msgstr "ಈಗಾಗಲೇ ಇರುವ ಸಮಸ್ಯೆ"
+
+#: templates/issues/report_issue.html:24
+msgid "existing issues"
+msgstr "ಈಗಾಗಲೇ ಇರುವ ಸಮಸ್ಯೆಗಳು"
+
+#: templates/issues/report_issue.html:25
+msgid "Check these reports before creating a duplicate."
+msgstr "ನಕಲಿ ವರದಿ ಮಾಡುವ ಮೊದಲು ಈ ವರದಿಗಳನ್ನು ಪರಿಶೀಲಿಸಿ."
+
+#: templates/issues/report_issue.html:26
+msgid "If this is the same problem, support the existing issue instead of creating a duplicate."
+msgstr "ಇದೇ ಸಮಸ್ಯೆಯಾಗಿದ್ದರೆ, ನಕಲಿ ವರದಿ ಮಾಡುವ ಬದಲು ಈಗಾಗಲೇ ಇರುವ ಸಮಸ್ಯೆಯನ್ನು ಬೆಂಬಲಿಸಿ."
+
+#: templates/issues/report_issue.html:27
+msgid "Checking for nearby reported issues..."
+msgstr "ಹತ್ತಿರದಲ್ಲಿ ವರದಿಯಾದ ಸಮಸ್ಯೆಗಳನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ..."
+
+#: templates/issues/report_issue.html:28
+msgid "No existing issue found nearby"
+msgstr "ಹತ್ತಿರದಲ್ಲಿ ಯಾವುದೇ ಈಗಾಗಲೇ ಇರುವ ಸಮಸ್ಯೆ ಕಂಡುಬಂದಿಲ್ಲ"
+
+#: templates/issues/report_issue.html:29
+msgid "You can continue and report this issue."
+msgstr "ನೀವು ಮುಂದುವರಿದು ಈ ಸಮಸ್ಯೆಯನ್ನು ವರದಿ ಮಾಡಬಹುದು."
+
+#: templates/issues/report_issue.html:30
+msgid "Unable to check nearby issues"
+msgstr "ಹತ್ತಿರದ ಸಮಸ್ಯೆಗಳನ್ನು ಪರಿಶೀಲಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ"
+
+#: templates/issues/report_issue.html:31
+msgid "You can still continue with your report."
+msgstr "ನೀವು ಇನ್ನೂ ನಿಮ್ಮ ವರದಿಯೊಂದಿಗೆ ಮುಂದುವರಿಯಬಹುದು."
+
+#: templates/issues/report_issue.html:32
+msgid "Please select a location within Bengaluru."
+msgstr "ದಯವಿಟ್ಟು ಬೆಂಗಳೂರಿನೊಳಗಿನ ಸ್ಥಳವನ್ನು ಆಯ್ಕೆಮಾಡಿ."
+
+#: templates/issues/report_issue.html:33
+msgid "Please keep the marker within Bengaluru."
+msgstr "ದಯವಿಟ್ಟು ಗುರುತನ್ನು ಬೆಂಗಳೂರಿನ ಗಡಿಯೊಳಗೆ ಇರಿಸಿ."
+
+#: templates/issues/report_issue.html:34
+msgid "Your Selected Location"
+msgstr "ನೀವು ಆಯ್ಕೆ ಮಾಡಿದ ಸ್ಥಳ"
+
+#: templates/issues/report_issue.html:35
+msgid "Issue location"
+msgstr "ಸಮಸ್ಯೆಯ ಸ್ಥಳ"
+
+#: templates/issues/report_issue.html:36
+msgid "Nearby issues within 500 metres will appear automatically."
+msgstr "500 ಮೀಟರ್ ವ್ಯಾಪ್ತಿಯಲ್ಲಿರುವ ಹತ್ತಿರದ ಸಮಸ್ಯೆಗಳು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಕಾಣಿಸುತ್ತವೆ."
+
+#: templates/issues/report_issue.html:37
+msgid "Getting location name..."
+msgstr "ಸ್ಥಳದ ಹೆಸರನ್ನು ಪಡೆಯಲಾಗುತ್ತಿದೆ..."
+
+#: templates/issues/report_issue.html:39
+msgid "No matching location found in Bengaluru."
+msgstr "ಬೆಂಗಳೂರಿನಲ್ಲಿ ಹೊಂದುವ ಯಾವುದೇ ಸ್ಥಳ ಕಂಡುಬಂದಿಲ್ಲ."
+
+#: templates/issues/report_issue.html:40
+msgid "Unable to search for the location. Please try again."
+msgstr "ಸ್ಥಳವನ್ನು ಹುಡುಕಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
+
+#: templates/issues/report_issue.html:41
+msgid "Please enter a location."
+msgstr "ದಯವಿಟ್ಟು ಸ್ಥಳವನ್ನು ನಮೂದಿಸಿ."
+
+#: templates/issues/report_issue.html:42
+msgid "We could not find this location in Bengaluru."
+msgstr "ಬೆಂಗಳೂರಿನಲ್ಲಿ ಈ ಸ್ಥಳವನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗಲಿಲ್ಲ."
+
+#: templates/issues/report_issue.html:43
+msgid "The selected location is outside Bengaluru."
+msgstr "ಆಯ್ಕೆ ಮಾಡಿದ ಸ್ಥಳವು ಬೆಂಗಳೂರಿನ ಹೊರಗಿದೆ."
+
+#: templates/issues/report_issue.html:44
+msgid "Unable to find this location. Please try again."
+msgstr "ಈ ಸ್ಥಳವನ್ನು ಕಂಡುಹಿಡಿಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
+
+#: templates/issues/report_issue.html:45
+msgid "The map is not ready yet. Please try again."
+msgstr "ನಕ್ಷೆ ಇನ್ನೂ ಸಿದ್ಧವಾಗಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
+
+#: templates/issues/report_issue.html:46
+msgid "Review the information below before filling your report."
+msgstr "ನಿಮ್ಮ ವರದಿಯನ್ನು ಭರ್ತಿ ಮಾಡುವ ಮೊದಲು ಕೆಳಗಿನ ಮಾಹಿತಿಯನ್ನು ಪರಿಶೀಲಿಸಿ."
+
+#: templates/issues/report_issue.html:47
+msgid "Security token not found."
+msgstr "ಭದ್ರತಾ ಟೋಕನ್ ಕಂಡುಬಂದಿಲ್ಲ."
+
+#: templates/issues/report_issue.html:48
+msgid "Gemini analysis failed."
+msgstr "Gemini ವಿಶ್ಲೇಷಣೆ ವಿಫಲವಾಗಿದೆ."
+
+#: templates/issues/report_issue.html:49
+msgid "Unable to connect to Gemini."
+msgstr "Gemini ಗೆ ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ."
+
+#: templates/issues/report_issue.html:50
+msgid "Gemini identified this civic issue category."
+msgstr "Gemini ಈ ನಾಗರಿಕ ಸಮಸ್ಯೆಯ ವರ್ಗವನ್ನು ಗುರುತಿಸಿದೆ."
+
+#: templates/issues/report_issue.html:51
+msgid "Analyzing..."
+msgstr "ವಿಶ್ಲೇಷಿಸಲಾಗುತ್ತಿದೆ..."
+
+#: templates/issues/report_issue.html:52
+msgid "Please select a valid image."
+msgstr "ದಯವಿಟ್ಟು ಮಾನ್ಯವಾದ ಚಿತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ."
+
+#: templates/issues/report_issue.html:53
+msgid "This image is larger than 5 MB. Do you want to continue?"
+msgstr "ಈ ಚಿತ್ರವು 5 MB ಗಿಂತ ದೊಡ್ಡದಾಗಿದೆ. ನೀವು ಮುಂದುವರಿಸಲು ಬಯಸುವಿರಾ?"
+
+#: templates/issues/report_issue.html:54
+msgid "Unable to preview this image."
+msgstr "ಈ ಚಿತ್ರದ ಪೂರ್ವವೀಕ್ಷಣೆಯನ್ನು ತೋರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ."
+
+#: templates/issues/report_issue.html:55 templates/issues/report_issue_backup.html:666
+msgid "Photo selected"
+msgstr "ಫೋಟೋ ಆಯ್ಕೆಮಾಡಲಾಗಿದೆ"
+
+#: templates/issues/report_issue.html:56
+msgid "Title"
+msgstr "ಶೀರ್ಷಿಕೆ"
+
+#: templates/issues/report_issue.html:58 templates/issues/report_issue.html:526
+#: templates/issues/report_issue_backup.html:468
+msgid "Location"
+msgstr "ಸ್ಥಳ"
+
+#: templates/issues/report_issue.html:60 templates/issues/report_issue_backup.html:670
+msgid "Ready to upload"
+msgstr "ಅಪ್‌ಲೋಡ್ ಮಾಡಲು ಸಿದ್ಧ"
+
+#: templates/issues/report_issue.html:82 templates/issues/report_issue_backup.html:22
+msgid "REPORT AN ISSUE"
+msgstr "ಸಮಸ್ಯೆಯನ್ನು ವರದಿ ಮಾಡಿ"
+
+#: templates/issues/report_issue.html:89 templates/issues/report_issue_backup.html:29
+msgid "Make your"
+msgstr "ನಿಮ್ಮ"
+
+#: templates/issues/report_issue.html:89 templates/issues/report_issue_backup.html:29
+msgid "voice heard."
+msgstr "ಧ್ವನಿಯನ್ನು ಕೇಳಿಸಿ."
+
+#: templates/issues/report_issue.html:96 templates/issues/report_issue_backup.html:36
+msgid "Help improve Bengaluru by reporting a civic issue."
+msgstr "ನಾಗರಿಕ ಸಮಸ್ಯೆಯನ್ನು ವರದಿ ಮಾಡುವ ಮೂಲಕ ಬೆಂಗಳೂರನ್ನು ಸುಧಾರಿಸಲು ಸಹಾಯ ಮಾಡಿ."
+
+#: templates/issues/report_issue.html:143 templates/issues/report_issue.html:161
+#: templates/issues/report_issue.html:821 templates/issues/report_issue.html:866
+#: templates/issues/report_issue_backup.html:83 templates/issues/report_issue_backup.html:101
+#: templates/issues/report_issue_backup.html:763 templates/issues/report_issue_backup.html:808
+msgid "JANMITRA ASSISTANT"
+msgstr "ಜನಮಿತ್ರ ಸಹಾಯಕ"
+
+#: templates/issues/report_issue.html:168 templates/issues/report_issue_backup.html:108
+msgid "Need help reporting your issue?"
+msgstr "ನಿಮ್ಮ ಸಮಸ್ಯೆಯನ್ನು ವರದಿ ಮಾಡಲು ಸಹಾಯ ಬೇಕೇ?"
+
+#: templates/issues/report_issue.html:175 templates/issues/report_issue_backup.html:115
+msgid "Answer a few simple questions and JanMitra will help prepare your report."
+msgstr "ಕೆಲವು ಸರಳ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಿ, ಜನಮಿತ್ರ ನಿಮ್ಮ ವರದಿಯನ್ನು ಸಿದ್ಧಪಡಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ."
+
+#: templates/issues/report_issue.html:192 templates/issues/report_issue_backup.html:132
+msgid "Use JanMitra Assistant"
+msgstr "ಜನಮಿತ್ರ ಸಹಾಯಕವನ್ನು ಬಳಸಿ"
+
+#: templates/issues/report_issue.html:220 templates/issues/report_issue_backup.html:160
+msgid "Issue Details"
+msgstr "ಸಮಸ್ಯೆಯ ವಿವರಗಳು"
+
+#: templates/issues/report_issue.html:227 templates/issues/report_issue_backup.html:167
+msgid "Tell us what is happening."
+msgstr "ಏನಾಗುತ್ತಿದೆ ಎಂಬುದನ್ನು ನಮಗೆ ತಿಳಿಸಿ."
+
+#: templates/issues/report_issue.html:247 templates/issues/report_issue_backup.html:187
+msgid "Issue Title"
+msgstr "ಸಮಸ್ಯೆಯ ಶೀರ್ಷಿಕೆ"
+
+#: templates/issues/report_issue.html:360 templates/issues/report_issue_backup.html:300
+msgid "Select the exact location on the Bengaluru map."
+msgstr "ಬೆಂಗಳೂರಿನ ನಕ್ಷೆಯಲ್ಲಿ ನಿಖರವಾದ ಸ್ಥಳವನ್ನು ಆಯ್ಕೆಮಾಡಿ."
+
+#: templates/issues/report_issue.html:381
+msgid "Search a place in Bengaluru..."
+msgstr "ಬೆಂಗಳೂರಿನ ಸ್ಥಳವನ್ನು ಹುಡುಕಿ..."
+
+#: templates/issues/report_issue.html:418
+msgid ""
+"Search for a location, select a result, or click directly on the map. You can drag the marker to "
+"adjust the exact position."
+msgstr ""
+"ಸ್ಥಳವನ್ನು ಹುಡುಕಿ, ಫಲಿತಾಂಶವನ್ನು ಆಯ್ಕೆಮಾಡಿ ಅಥವಾ ನಕ್ಷೆಯ ಮೇಲೆ ನೇರವಾಗಿ ಕ್ಲಿಕ್ ಮಾಡಿ. ನಿಖರವಾದ ಸ್ಥಾನವನ್ನು"
+" ಸರಿಹೊಂದಿಸಲು ಗುರುತನ್ನು ಎಳೆಯಬಹುದು."
+
+#: templates/issues/report_issue.html:433 templates/issues/report_issue.html:448
+#: templates/issues/report_issue_backup.html:375 templates/issues/report_issue_backup.html:390
+msgid "SELECTED LOCATION"
+msgstr "ಆಯ್ಕೆಮಾಡಿದ ಸ್ಥಳ"
+
+#: templates/issues/report_issue.html:455 templates/issues/report_issue_backup.html:397
+msgid "No location selected"
+msgstr "ಯಾವುದೇ ಸ್ಥಳವನ್ನು ಆಯ್ಕೆ ಮಾಡಲಾಗಿಲ್ಲ"
+
+#: templates/issues/report_issue.html:494 templates/issues/report_issue_backup.html:436
+msgid "Existing issue found nearby"
+msgstr "ಹತ್ತಿರದಲ್ಲಿ ಈಗಾಗಲೇ ವರದಿಯಾದ ಸಮಸ್ಯೆ ಕಂಡುಬಂದಿದೆ"
+
+#: templates/issues/report_issue.html:595 templates/issues/report_issue_backup.html:537
+msgid "Evidence"
+msgstr "ಸಾಕ್ಷ್ಯ"
+
+#: templates/issues/report_issue.html:598 templates/issues/report_issue_backup.html:540
+msgid "Add a photo to help authorities understand the issue better."
+msgstr "ಅಧಿಕಾರಿಗಳಿಗೆ ಸಮಸ್ಯೆಯನ್ನು ಉತ್ತಮವಾಗಿ ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಸಹಾಯವಾಗುವಂತೆ ಫೋಟೋವನ್ನು ಸೇರಿಸಿ."
+
+#: templates/issues/report_issue.html:647 templates/issues/report_issue_backup.html:589
+msgid "Take Photo"
+msgstr "ಫೋಟೋ ತೆಗೆಯಿರಿ"
+
+#: templates/issues/report_issue.html:650 templates/issues/report_issue_backup.html:592
+msgid "Use your camera"
+msgstr "ನಿಮ್ಮ ಕ್ಯಾಮೆರಾವನ್ನು ಬಳಸಿ"
+
+#: templates/issues/report_issue.html:673 templates/issues/report_issue_backup.html:615
+#: templates/users/profile.html:330
+msgid "Choose Photo"
+msgstr "ಫೋಟೋ ಆಯ್ಕೆಮಾಡಿ"
+
+#: templates/issues/report_issue.html:676 templates/issues/report_issue_backup.html:618
+msgid "Select from your device"
+msgstr "ನಿಮ್ಮ ಸಾಧನದಿಂದ ಆಯ್ಕೆಮಾಡಿ"
+
+#: templates/issues/report_issue.html:701
+msgid "Selected evidence"
+msgstr "ಆಯ್ಕೆಮಾಡಿದ ಸಾಕ್ಷ್ಯ"
+
+#: templates/issues/report_issue.html:709 templates/issues/report_issue_backup.html:651
+msgid "Remove photo"
+msgstr "ಫೋಟೋ ತೆಗೆದುಹಾಕಿ"
+
+#: templates/issues/report_issue.html:738 templates/issues/report_issue_backup.html:680
+msgid "Ready"
+msgstr "ಸಿದ್ಧ"
+
+#: templates/issues/report_issue.html:752 templates/issues/report_issue_backup.html:694
+msgid "JPG, PNG or WEBP. Maximum recommended size: 5 MB."
+msgstr "JPG, PNG ಅಥವಾ WEBP. ಶಿಫಾರಸು ಮಾಡಲಾದ ಗರಿಷ್ಠ ಗಾತ್ರ: 5 MB."
+
+#: templates/issues/report_issue.html:786 templates/issues/report_issue_backup.html:728
+msgid "Cancel"
+msgstr "ರದ್ದುಮಾಡಿ"
+
+#: templates/issues/report_issue.html:798 templates/issues/report_issue_backup.html:740
+msgid "Submit Issue"
+msgstr "ಸಮಸ್ಯೆಯನ್ನು ಸಲ್ಲಿಸಿ"
+
+#: templates/issues/report_issue.html:873 templates/issues/report_issue_backup.html:815
+msgid "Let's report your issue"
+msgstr "ನಿಮ್ಮ ಸಮಸ್ಯೆಯನ್ನು ವರದಿ ಮಾಡೋಣ"
+
+#: templates/issues/report_issue.html:886 templates/issues/report_issue_backup.html:828
+msgid "Close assistant"
+msgstr "ಸಹಾಯಕವನ್ನು ಮುಚ್ಚಿ"
+
+#: templates/issues/report_issue.html:914 templates/issues/report_issue_backup.html:856
+msgid "Step 1 of 5"
+msgstr "5ರಲ್ಲಿ 1ನೇ ಹಂತ"
+
+#: templates/issues/report_issue.html:938 templates/issues/report_issue_backup.html:880
+msgid "JanMitra Assistant"
+msgstr "ಜನಮಿತ್ರ ಸಹಾಯಕ"
+
+#: templates/issues/report_issue.html:945 templates/issues/report_issue_backup.html:887
+msgid "What problem are you facing?"
+msgstr "ನೀವು ಯಾವ ಸಮಸ್ಯೆಯನ್ನು ಎದುರಿಸುತ್ತಿದ್ದೀರಿ?"
+
+#: templates/issues/report_issue.html:952 templates/issues/report_issue_backup.html:894
+msgid "Tell me about the civic issue in your own words."
+msgstr "ನಾಗರಿಕ ಸಮಸ್ಯೆಯ ಬಗ್ಗೆ ನಿಮ್ಮದೇ ಮಾತುಗಳಲ್ಲಿ ನನಗೆ ತಿಳಿಸಿ."
+
+#: templates/issues/report_issue.html:970 templates/issues/report_issue_backup.html:912
+msgid "For example: There is a large pothole near my street..."
+msgstr "ಉದಾಹರಣೆಗೆ: ನನ್ನ ರಸ್ತೆಯ ಬಳಿ ದೊಡ್ಡ ಗುಂಡಿಯಿದೆ..."
+
+#: templates/issues/report_issue.html:986 templates/issues/report_issue_backup.html:928
+msgid "Voice"
+msgstr "ಧ್ವನಿ"
+
+#: templates/issues/report_issue.html:995 templates/issues/report_issue_backup.html:937
+msgid "You can type or use your voice."
+msgstr "ನೀವು ಟೈಪ್ ಮಾಡಬಹುದು ಅಥವಾ ನಿಮ್ಮ ಧ್ವನಿಯನ್ನು ಬಳಸಬಹುದು."
+
+#: templates/issues/report_issue.html:1021 templates/issues/report_issue_backup.html:963
+msgid "Back"
+msgstr "ಹಿಂದೆ"
+
+#: templates/issues/report_issue.html:1032 templates/issues/report_issue_backup.html:974
+msgid "Continue"
+msgstr "ಮುಂದುವರಿಸಿ"
+
+#: templates/notifications/notification_list.html:27
+msgid "JANMITRA UPDATES"
+msgstr "ಜನಮಿತ್ರ ನವೀಕರಣಗಳು"
+
+#: templates/notifications/notification_list.html:37
+msgid "Stay updated about your civic issues."
+msgstr "ನಿಮ್ಮ ನಾಗರಿಕ ಸಮಸ್ಯೆಗಳ ಕುರಿತು ನವೀಕರಣಗಳನ್ನು ಪಡೆಯುತ್ತಿರಿ."
+
+#: templates/notifications/notification_list.html:45
+msgid "Unread notifications"
+msgstr "ಓದದ ಅಧಿಸೂಚನೆಗಳು"
+
+#: templates/notifications/notification_list.html:60
+msgid "unread notification"
+msgstr "ಓದದ ಅಧಿಸೂಚನೆ"
+
+#: templates/notifications/notification_list.html:66
+msgid "unread notifications"
+msgstr "ಓದದ ಅಧಿಸೂಚನೆಗಳು"
+
+#: templates/notifications/notification_list.html:87 templates/notifications/notification_list.html:88
+msgid "Mark all notifications as read"
+msgstr "ಎಲ್ಲಾ ಅಧಿಸೂಚನೆಗಳನ್ನು ಓದಿದವು ಎಂದು ಗುರುತಿಸಿ"
+
+#: templates/notifications/notification_list.html:97
+msgid "Mark all as read"
+msgstr "ಎಲ್ಲವನ್ನೂ ಓದಿದವು ಎಂದು ಗುರುತಿಸಿ"
+
+#: templates/notifications/notification_list.html:227
+msgid "New notification"
+msgstr "ಹೊಸ ಅಧಿಸೂಚನೆ"
+
+#: templates/notifications/notification_list.html:229
+msgid "NEW"
+msgstr "ಹೊಸದು"
+
+#: templates/notifications/notification_list.html:244
+msgid "ago"
+msgstr "ಹಿಂದೆ"
+
+#: templates/notifications/notification_list.html:299
+#: templates/notifications/notification_list.html:300
+msgid "Mark notification as read"
+msgstr "ಅಧಿಸೂಚನೆಯನ್ನು ಓದಿದಂತೆ ಗುರುತಿಸಿ"
+
+#: templates/notifications/notification_list.html:309
+msgid "Mark as read"
+msgstr "ಓದಿದಂತೆ ಗುರುತಿಸಿ"
+
+#: templates/notifications/notification_list.html:350
+msgid "No notifications yet"
+msgstr "ಇನ್ನೂ ಯಾವುದೇ ಅಧಿಸೂಚನೆಗಳಿಲ್ಲ"
+
+#: templates/notifications/notification_list.html:355
+msgid "You will see updates about your reported civic issues here."
+msgstr "ನೀವು ವರದಿ ಮಾಡಿದ ನಾಗರಿಕ ಸಮಸ್ಯೆಗಳ ನವೀಕರಣಗಳನ್ನು ಇಲ್ಲಿ ನೋಡಬಹುದು."
+
+#: templates/rewards/wallet.html:29
+msgid "Your contribution to a better Bengaluru is rewarded."
+msgstr "ಉತ್ತಮ ಬೆಂಗಳೂರಿಗಾಗಿ ನಿಮ್ಮ ಕೊಡುಗೆಗೆ ಬಹುಮಾನ ನೀಡಲಾಗುತ್ತದೆ."
+
+#: templates/rewards/wallet.html:50
+msgid "Current Balance"
+msgstr "ಪ್ರಸ್ತುತ ಬಾಕಿ"
+
+#: templates/rewards/wallet.html:58
+msgid "coins available"
+msgstr "ಲಭ್ಯವಿರುವ ಕಾಯಿನ್‌ಗಳು"
+
+#: templates/rewards/wallet.html:73
+msgid "Total Earned"
+msgstr "ಒಟ್ಟು ಗಳಿಕೆ"
+
+#: templates/rewards/wallet.html:81
+msgid "coins earned through civic contributions"
+msgstr "ನಾಗರಿಕ ಕೊಡುಗೆಗಳ ಮೂಲಕ ಗಳಿಸಿದ ಕಾಯಿನ್‌ಗಳು"
+
+#: templates/rewards/wallet.html:96
+msgid "Total Redeemed"
+msgstr "ಒಟ್ಟು ರಿಡೀಮ್ ಮಾಡಲಾಗಿದೆ"
+
+#: templates/rewards/wallet.html:104
+msgid "coins converted into rewards"
+msgstr "ಬಹುಮಾನಗಳಾಗಿ ಪರಿವರ್ತಿಸಿದ ಕಾಯಿನ್‌ಗಳು"
+
+#: templates/rewards/wallet.html:125
+msgid "JanMitra Coin Value"
+msgstr "ಜನಮಿತ್ರ ಕಾಯಿನ್ ಮೌಲ್ಯ"
+
+#: templates/rewards/wallet.html:129
+msgid "coins"
+msgstr "ಕಾಯಿನ್‌ಗಳು"
+
+#: templates/rewards/wallet.html:133
+msgid "Earn 50 coins when a civic issue you reported is successfully resolved."
+msgstr "ನೀವು ವರದಿ ಮಾಡಿದ ನಾಗರಿಕ ಸಮಸ್ಯೆ ಯಶಸ್ವಿಯಾಗಿ ಪರಿಹಾರವಾದಾಗ 50 ಕಾಯಿನ್‌ಗಳನ್ನು ಗಳಿಸಿ."
+
+#: templates/rewards/wallet.html:158
+msgid "Transaction History"
+msgstr "ವಹಿವಾಟಿನ ಇತಿಹಾಸ"
+
+#: templates/rewards/wallet.html:162
+msgid "Track every coin earned through your civic participation."
+msgstr "ನಿಮ್ಮ ನಾಗರಿಕ ಭಾಗವಹಿಸುವಿಕೆಯ ಮೂಲಕ ಗಳಿಸಿದ ಪ್ರತಿಯೊಂದು ಕಾಯಿನ್ ಅನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ."
+
+#: templates/rewards/wallet.html:183
+msgid "Type"
+msgstr "ಪ್ರಕಾರ"
+
+#: templates/rewards/wallet.html:187
+msgid "Coins"
+msgstr "ಕಾಯಿನ್‌ಗಳು"
+
+#: templates/rewards/wallet.html:195
+msgid "Issue"
+msgstr "ಸಮಸ್ಯೆ"
+
+#: templates/rewards/wallet.html:199
+msgid "Date"
+msgstr "ದಿನಾಂಕ"
+
+#: templates/rewards/wallet.html:221
+msgid "Earned"
+msgstr "ಗಳಿಸಲಾಗಿದೆ"
+
+#: templates/rewards/wallet.html:231
+msgid "Redeemed"
+msgstr "ವಿನಿಮಯ ಮಾಡಲಾಗಿದೆ"
+
+#: templates/rewards/wallet.html:271
+#, python-format
+msgid "View issue #%(id)s"
+msgstr "ಸಮಸ್ಯೆ #%(id)s ಅನ್ನು ವೀಕ್ಷಿಸಿ"
+
+#: templates/rewards/wallet.html:311
+msgid "No rewards yet"
+msgstr "ಇನ್ನೂ ಯಾವುದೇ ಬಹುಮಾನಗಳಿಲ್ಲ"
+
+#: templates/rewards/wallet.html:315
+msgid ""
+"Report genuine civic issues, help your community, and earn JanMitra coins when your issue gets "
+"resolved."
+msgstr ""
+"ನಿಜವಾದ ನಾಗರಿಕ ಸಮಸ್ಯೆಗಳನ್ನು ವರದಿ ಮಾಡಿ, ನಿಮ್ಮ ಸಮುದಾಯಕ್ಕೆ ಸಹಾಯ ಮಾಡಿ ಮತ್ತು ನಿಮ್ಮ ಸಮಸ್ಯೆ ಪರಿಹಾರವಾದಾಗ "
+"ಜನಮಿತ್ರ ಕಾಯಿನ್‌ಗಳನ್ನು ಗಳಿಸಿ."
+
+#: templates/rewards/wallet.html:325
+msgid "Report a Civic Issue"
+msgstr "ಸಮಸ್ಯೆಯನ್ನು ವರದಿ ಮಾಡಿ"
+
+#: templates/users/citizen_dashboard.html:24
+msgid "CITIZEN PORTAL"
+msgstr "ನಾಗರಿಕ ಪೋರ್ಟಲ್"
+
+#: templates/users/citizen_dashboard.html:29 templates/users/government_dashboard.html:31
+msgid "Hello,"
+msgstr "ನಮಸ್ಕಾರ,"
+
+#: templates/users/citizen_dashboard.html:38
+msgid "What would you like to do today?"
+msgstr "ಇಂದು ನೀವು ಏನು ಮಾಡಲು ಬಯಸುತ್ತೀರಿ?"
+
+#: templates/users/citizen_dashboard.html:67
+msgid "Contribute"
+msgstr "ಕೊಡುಗೆ ನೀಡಿ"
+
+#: templates/users/citizen_dashboard.html:77
+msgid "Tell us about a problem in your community."
+msgstr "ನಿಮ್ಮ ಸಮುದಾಯದಲ್ಲಿರುವ ಸಮಸ್ಯೆಯ ಬಗ್ಗೆ ನಮಗೆ ತಿಳಿಸಿ."
+
+#: templates/users/citizen_dashboard.html:112
+msgid "See the progress of your reports."
+msgstr "ನಿಮ್ಮ ವರದಿಗಳ ಪ್ರಗತಿಯನ್ನು ನೋಡಿ."
+
+#: templates/users/citizen_dashboard.html:137
+msgid "Explore"
+msgstr "ಅನ್ವೇಷಿಸಿ"
+
+#: templates/users/citizen_dashboard.html:147
+msgid "Explore civic issues reported around the community."
+msgstr "ಸಮುದಾಯದ ಸುತ್ತಮುತ್ತ ವರದಿಯಾಗಿರುವ ನಾಗರಿಕ ಸಮಸ್ಯೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ."
+
+#: templates/users/citizen_dashboard.html:172
+msgid "Account"
+msgstr "ಖಾತೆ"
+
+#: templates/users/citizen_dashboard.html:182
+msgid "Manage your personal information."
+msgstr "ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿಯನ್ನು ನಿರ್ವಹಿಸಿ."
+
+#: templates/users/government_analytics.html:29
+msgid "GOVERNMENT ANALYTICS"
+msgstr "ಸರ್ಕಾರಿ ವಿಶ್ಲೇಷಣೆ"
+
+#: templates/users/government_analytics.html:35
+msgid "Civic Issue Intelligence"
+msgstr "ನಾಗರಿಕ ಸಮಸ್ಯೆಗಳ ಒಳನೋಟ"
+
+#: templates/users/government_analytics.html:40
+msgid "Monitor issue trends, categories, workload and resolution performance."
+msgstr "ಸಮಸ್ಯೆಗಳ ಪ್ರವೃತ್ತಿಗಳು, ವರ್ಗಗಳು, ಕಾರ್ಯಭಾರ ಮತ್ತು ಪರಿಹಾರದ ಕಾರ್ಯಕ್ಷಮತೆಯನ್ನು ಮೇಲ್ವಿಚಾರಣೆ ಮಾಡಿ."
+
+#: templates/users/government_analytics.html:97 templates/users/government_analytics.html:409
+msgid "Total Issues"
+msgstr "ಒಟ್ಟು ಸಮಸ್ಯೆಗಳು"
+
+#: templates/users/government_analytics.html:149 templates/users/government_analytics.html:435
+#: templates/users/government_dashboard.html:122
+msgid "Pending"
+msgstr "ಬಾಕಿಯಿರುವವು"
+
+#: templates/users/government_analytics.html:258
+msgid "Issue Status Distribution"
+msgstr "ಸಮಸ್ಯೆಗಳ ಸ್ಥಿತಿ ವಿತರಣೆ"
+
+#: templates/users/government_analytics.html:262
+msgid "Current state of all civic issues."
+msgstr "ಎಲ್ಲಾ ನಾಗರಿಕ ಸಮಸ್ಯೆಗಳ ಪ್ರಸ್ತುತ ಸ್ಥಿತಿ."
+
+#: templates/users/government_analytics.html:291
+msgid "Issues by Category"
+msgstr "ವರ್ಗವಾರು ಸಮಸ್ಯೆಗಳು"
+
+#: templates/users/government_analytics.html:295
+msgid "Identify the most common civic problems."
+msgstr "ಸಾಮಾನ್ಯವಾಗಿ ವರದಿಯಾಗುವ ನಾಗರಿಕ ಸಮಸ್ಯೆಗಳನ್ನು ಗುರುತಿಸಿ."
+
+#: templates/users/government_analytics.html:328
+msgid "Monthly Issue Trend"
+msgstr "ಮಾಸಿಕ ಸಮಸ್ಯೆ ಪ್ರವೃತ್ತಿ"
+
+#: templates/users/government_analytics.html:332
+msgid "Number of issues reported over time."
+msgstr "ಕಾಲಕ್ರಮೇಣ ವರದಿಯಾದ ಸಮಸ್ಯೆಗಳ ಸಂಖ್ಯೆ."
+
+#: templates/users/government_analytics.html:368
+msgid "Resolution Performance"
+msgstr "ಪರಿಹಾರದ ಕಾರ್ಯಕ್ಷಮತೆ"
+
+#: templates/users/government_analytics.html:372
+msgid "Percentage of all reported issues that have been resolved."
+msgstr "ವರದಿ ಮಾಡಲಾದ ಎಲ್ಲಾ ಸಮಸ್ಯೆಗಳಲ್ಲಿ ಪರಿಹಾರಗೊಂಡಿರುವ ಸಮಸ್ಯೆಗಳ ಶೇಕಡಾವಾರು."
+
+#: templates/users/government_analytics.html:461
+msgid "Government Insights"
+msgstr "ಸರ್ಕಾರಿ ಒಳನೋಟಗಳು"
+
+#: templates/users/government_analytics.html:465
+msgid "Quick overview of the current workload."
+msgstr "ಪ್ರಸ್ತುತ ಕಾರ್ಯಭಾರದ ತ್ವರಿತ ಅವಲೋಕನ."
+
+#: templates/users/government_analytics.html:489
+msgid "Most Reported Category"
+msgstr "ಹೆಚ್ಚು ವರದಿಯಾದ ವರ್ಗ"
+
+#: templates/users/government_analytics.html:496
+msgid "No data yet"
+msgstr "ಇನ್ನೂ ಯಾವುದೇ ಡೇಟಾ ಇಲ್ಲ"
+
+#: templates/users/government_analytics.html:517
+msgid "Current Backlog"
+msgstr "ಪ್ರಸ್ತುತ ಬಾಕಿ ಕಾರ್ಯಭಾರ"
+
+#: templates/users/government_analytics.html:542
+msgid "Successful Resolutions"
+msgstr "ಯಶಸ್ವಿ ಪರಿಹಾರಗಳು"
+
+#: templates/users/government_dashboard.html:5
+msgid "Government Portal"
+msgstr "ಸರ್ಕಾರಿ ಪೋರ್ಟಲ್"
+
+#: templates/users/government_dashboard.html:24
+msgid "GOVERNMENT PORTAL"
+msgstr "ಸರ್ಕಾರಿ ಪೋರ್ಟಲ್"
+
+#: templates/users/government_dashboard.html:41
+msgid "Manage and resolve citizen issues."
+msgstr "ನಾಗರಿಕರ ಸಮಸ್ಯೆಗಳನ್ನು ನಿರ್ವಹಿಸಿ ಮತ್ತು ಪರಿಹರಿಸಿ."
+
+#: templates/users/government_dashboard.html:62
+msgid "View reported issues"
+msgstr "ವರದಿಯಾದ ಸಮಸ್ಯೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
+
+#: templates/users/government_dashboard.html:73
+msgid "Incoming"
+msgstr "ಒಳಬರುತ್ತಿರುವವು"
+
+#: templates/users/government_dashboard.html:78
+msgid "Reported Issues"
+msgstr "ವರದಿಯಾದ ಸಮಸ್ಯೆಗಳು"
+
+#: templates/users/government_dashboard.html:88
+msgid "issues waiting for review."
+msgstr "ಸಮಸ್ಯೆಗಳು ಪರಿಶೀಲನೆಗಾಗಿ ಕಾಯುತ್ತಿವೆ."
+
+#: templates/users/government_dashboard.html:106
+msgid "View pending issues"
+msgstr "ಬಾಕಿ ಇರುವ ಸಮಸ್ಯೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
+
+#: templates/users/government_dashboard.html:117
+msgid "Action"
+msgstr "ಕ್ರಮ"
+
+#: templates/users/government_dashboard.html:132
+msgid "issues requiring action."
+msgstr "ಸಮಸ್ಯೆಗಳಿಗೆ ಕ್ರಮದ ಅಗತ್ಯವಿದೆ."
+
+#: templates/users/government_dashboard.html:150
+msgid "View resolved issues"
+msgstr "ಪರಿಹರಿಸಿದ ಸಮಸ್ಯೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
+
+#: templates/users/government_dashboard.html:161
+msgid "Completed"
+msgstr "ಪೂರ್ಣಗೊಂಡಿದೆ"
+
+#: templates/users/government_dashboard.html:176
+msgid "issues successfully resolved."
+msgstr "ಸಮಸ್ಯೆಗಳು ಯಶಸ್ವಿಯಾಗಿ ಪರಿಹರಿಸಲಾಗಿದೆ."
+
+#: templates/users/government_dashboard.html:194
+msgid "View analytics"
+msgstr "ವಿಶ್ಲೇಷಣೆಯನ್ನು ವೀಕ್ಷಿಸಿ"
+
+#: templates/users/government_dashboard.html:205
+msgid "Overview"
+msgstr "ಅವಲೋಕನ"
+
+#: templates/users/government_dashboard.html:210
+msgid "Analytics"
+msgstr "ವಿಶ್ಲೇಷಣೆ"
+
+#: templates/users/government_dashboard.html:220
+msgid "total issues reported."
+msgstr "ಒಟ್ಟು ವರದಿಯಾದ ಸಮಸ್ಯೆಗಳು."
+
+#: templates/users/government_dashboard.html:256
+msgid "Government Response Workflow"
+msgstr "ಸರ್ಕಾರಿ ಪ್ರತಿಕ್ರಿಯೆ ಕಾರ್ಯಪ್ರವಾಹ"
+
+#: templates/users/government_dashboard.html:261
+msgid ""
+"Review citizen submissions, verify evidence, update issue status, and upload resolution proof "
+"before completing an issue."
+msgstr ""
+"ನಾಗರಿಕರ ಸಲ್ಲಿಕೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ, ಸಾಕ್ಷ್ಯವನ್ನು ದೃಢೀಕರಿಸಿ, ಸಮಸ್ಯೆಯ ಸ್ಥಿತಿಯನ್ನು ನವೀಕರಿಸಿ ಮತ್ತು "
+"ಸಮಸ್ಯೆಯನ್ನು ಪೂರ್ಣಗೊಳಿಸುವ ಮೊದಲು ಪರಿಹಾರದ ಪುರಾವೆಯನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ."
+
+#: templates/users/login.html:20
+msgid "Welcome back"
+msgstr "ಮತ್ತೆ ಸ್ವಾಗತ"
+
+#: templates/users/login.html:22
+msgid "Continue making a difference."
+msgstr "ಬದಲಾವಣೆಯನ್ನು ತರಲು ನಿಮ್ಮ ಕೊಡುಗೆಯನ್ನು ಮುಂದುವರಿಸಿ."
+
+#: templates/users/login.html:34 templates/users/profile.html:241 templates/users/register.html:91
+msgid "Email Address"
+msgstr "ಇಮೇಲ್ ವಿಳಾಸ"
+
+#: templates/users/login.html:61
+msgid "Enter your password"
+msgstr "ನಿಮ್ಮ ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ"
+
+#: templates/users/login.html:69 templates/users/register.html:144 templates/users/register.html:178
+msgid "Show password"
+msgstr "ಪಾಸ್‌ವರ್ಡ್ ತೋರಿಸಿ"
+
+#: templates/users/login.html:89
+msgid "Don't have an account?"
+msgstr "ನೀವು ಖಾತೆಯನ್ನು ಹೊಂದಿಲ್ಲವೇ?"
+
+#: templates/users/login.html:91
+msgid "Create one"
+msgstr "ಖಾತೆ ರಚಿಸಿ"
+
+#: templates/users/profile.html:24
+msgid "MY ACCOUNT"
+msgstr "ನನ್ನ ಖಾತೆ"
+
+#: templates/users/profile.html:28
+msgid "Your"
+msgstr "ನಿಮ್ಮ"
+
+#: templates/users/profile.html:28
+msgid "Profile."
+msgstr "ಪ್ರೊಫೈಲ್."
+
+#: templates/users/profile.html:32
+msgid "Manage your personal information and preferences."
+msgstr "ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿ ಮತ್ತು ಆದ್ಯತೆಗಳನ್ನು ನಿರ್ವಹಿಸಿ."
+
+#: templates/users/profile.html:87 templates/users/profile.html:445
+msgid "Citizen"
+msgstr "ನಾಗರಿಕ"
+
+#: templates/users/profile.html:144
+msgid "Personal Information"
+msgstr "ವೈಯಕ್ತಿಕ ಮಾಹಿತಿ"
+
+#: templates/users/profile.html:148
+msgid "Keep your personal details up to date."
+msgstr "ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ವಿವರಗಳನ್ನು ನವೀಕೃತವಾಗಿರಿಸಿ."
+
+#: templates/users/profile.html:256
+msgid "Email address cannot be changed here."
+msgstr "ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ಇಲ್ಲಿ ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ."
+
+#: templates/users/profile.html:285
+msgid "Add a photo so your account feels more personal."
+msgstr "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಇನ್ನಷ್ಟು ವೈಯಕ್ತಿಕವಾಗಿಸಲು ಫೋಟೋ ಸೇರಿಸಿ."
+
+#: templates/users/profile.html:301
+msgid "Current profile photo"
+msgstr "ಪ್ರಸ್ತುತ ಪ್ರೊಫೈಲ್ ಫೋಟೋ"
+
+#: templates/users/profile.html:339
+msgid "JPG, PNG or WEBP. Choose a clear profile picture."
+msgstr "JPG, PNG ಅಥವಾ WEBP. ಸ್ಪಷ್ಟವಾದ ಪ್ರೊಫೈಲ್ ಚಿತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ."
+
+#: templates/users/profile.html:376
+msgid "Choose the language you prefer to use on JanMitra."
+msgstr "JanMitra ನಲ್ಲಿ ನೀವು ಬಳಸಲು ಬಯಸುವ ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ."
+
+#: templates/users/profile.html:423
+msgid "Account Information"
+msgstr "ಖಾತೆ ಮಾಹಿತಿ"
+
+#: templates/users/profile.html:427
+msgid "Basic information about your JanMitra account."
+msgstr "ನಿಮ್ಮ JanMitra ಖಾತೆಯ ಮೂಲ ಮಾಹಿತಿ."
+
+#: templates/users/profile.html:441
+msgid "Account Type"
+msgstr "ಖಾತೆಯ ಪ್ರಕಾರ"
+
+#: templates/users/profile.html:455
+msgid "Member Since"
+msgstr "ಸದಸ್ಯರಾದ ದಿನಾಂಕ"
+
+#: templates/users/profile.html:469
+msgid "Verification"
+msgstr "ಪರಿಶೀಲನೆ"
+
+#: templates/users/profile.html:476
+msgid "Verified"
+msgstr "ಪರಿಶೀಲಿಸಲಾಗಿದೆ"
+
+#: templates/users/profile.html:483
+msgid "Not Verified"
+msgstr "ಪರಿಶೀಲಿಸಲಾಗಿಲ್ಲ"
+
+#: templates/users/profile.html:522
+msgid "Back to Dashboard"
+msgstr "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಹಿಂತಿರುಗಿ"
+
+#: templates/users/profile.html:534
+msgid "Save Changes"
+msgstr "ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ"
+
+#: templates/users/profile.html:596
+msgid "Please select an image file."
+msgstr "ದಯವಿಟ್ಟು ಇಮೇಜ್ ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ."
+
+#: templates/users/register.html:4
+msgid "Register"
+msgstr "ನೋಂದಣಿ ಮಾಡಿ"
+
+#: templates/users/register.html:22
+msgid "One account. A stronger community."
+msgstr "ಒಂದು ಖಾತೆ. ಇನ್ನಷ್ಟು ಬಲವಾದ ಸಮುದಾಯ."
+
+#: templates/users/register.html:221
+msgid "Create Account"
+msgstr "ಖಾತೆ ರಚಿಸಿ"
+
+#: templates/users/register.html:229
+msgid "Already have an account?"
+msgstr "ಈಗಾಗಲೇ ಖಾತೆಯನ್ನು ಹೊಂದಿದ್ದೀರಾ?"
+
+# Notification model localization
+
+msgid "Issue Submitted"
+msgstr "ಸಮಸ್ಯೆ ವರದಿಯಾಗಿದೆ"
+
+msgid "Reward"
+msgstr "ಬಹುಮಾನ"
+
+#, python-format
+msgid "Your issue \"%(title)s\" has been reported successfully."
+msgstr "ನಿಮ್ಮ ಸಮಸ್ಯೆಯನ್ನು \"%(title)s\" ಯಶಸ್ವಿಯಾಗಿ ವರದಿ ಮಾಡಲಾಗಿದೆ."
+
+# Django timesince translations
+
+
+# Django date/time translations used by localized wallet and other date displays.
+
+msgid "p.m."
+msgstr "ಅಪರಾಹ್ನ"
+
+msgid "a.m."
+msgstr "ಪೂರ್ವಾಹ್ನ"
+
+msgid "PM"
+msgstr "ಅಪರಾಹ್ನ"
+
+msgid "AM"
+msgstr "ಪೂರ್ವಾಹ್ನ"
+
+msgid "midnight"
+msgstr "ಮಧ್ಯರಾತ್ರಿ"
+
+msgid "noon"
+msgstr "ಮಧ್ಯಾಹ್ನ"
+
+msgid "Monday"
+msgstr "ಸೋಮವಾರ"
+
+msgid "Tuesday"
+msgstr "ಮಂಗಳವಾರ"
+
+msgid "Wednesday"
+msgstr "ಬುಧವಾರ"
+
+msgid "Thursday"
+msgstr "ಗುರುವಾರ"
+
+msgid "Friday"
+msgstr "ಶುಕ್ರವಾರ"
+
+msgid "Saturday"
+msgstr "ಶನಿವಾರ"
+
+msgid "Sunday"
+msgstr "ಭಾನುವಾರ"
+
+msgid "Mon"
+msgstr "ಸೋಮ"
+
+msgid "Tue"
+msgstr "ಮಂಗಳ"
+
+msgid "Wed"
+msgstr "ಬುಧ"
+
+msgid "Thu"
+msgstr "ಗುರು"
+
+msgid "Fri"
+msgstr "ಶುಕ್ರ"
+
+msgid "Sat"
+msgstr "ಶನಿ"
+
+msgid "Sun"
+msgstr "ಭಾನು"
+
+msgid "January"
+msgstr "ಜನವರಿ"
+
+msgid "February"
+msgstr "ಫೆಬ್ರವರಿ"
+
+msgid "March"
+msgstr "ಮಾರ್ಚ್"
+
+msgid "April"
+msgstr "ಏಪ್ರಿಲ್"
+
+msgid "May"
+msgstr "ಮೇ"
+
+msgid "June"
+msgstr "ಜೂನ್"
+
+msgid "July"
+msgstr "ಜುಲೈ"
+
+msgid "August"
+msgstr "ಆಗಸ್ಟ್"
+
+msgid "September"
+msgstr "ಸೆಪ್ಟೆಂಬರ್"
+
+msgid "October"
+msgstr "ಅಕ್ಟೋಬರ್"
+
+msgid "November"
+msgstr "ನವೆಂಬರ್"
+
+msgid "December"
+msgstr "ಡಿಸೆಂಬರ್"
+
+msgid "jan"
+msgstr "ಜನವರಿ"
+
+msgid "feb"
+msgstr "ಫೆಬ್ರವರಿ"
+
+msgid "mar"
+msgstr "ಮಾರ್ಚ್"
+
+msgid "apr"
+msgstr "ಏಪ್ರಿಲ್"
+
+msgid "may"
+msgstr "ಮೇ"
+
+msgid "jun"
+msgstr "ಜೂನ್"
+
+msgid "jul"
+msgstr "ಜುಲೈ"
+
+msgid "aug"
+msgstr "ಆಗಸ್ಟ್"
+
+msgid "sep"
+msgstr "ಸೆಪ್ಟೆಂಬರ್"
+
+msgid "oct"
+msgstr "ಅಕ್ಟೋಬರ್"
+
+msgid "nov"
+msgstr "ನವೆಂಬರ್"
+
+msgid "dec"
+msgstr "ಡಿಸೆಂಬರ್"
+
+msgctxt "abbrev. month"
+msgid "Jan."
+msgstr "ಜನ."
+
+msgctxt "abbrev. month"
+msgid "Feb."
+msgstr "ಫೆಬ್ರ."
+
+msgctxt "abbrev. month"
+msgid "March"
+msgstr "ಮಾರ್ಚ್"
+
+msgctxt "abbrev. month"
+msgid "April"
+msgstr "ಏಪ್ರಿಲ್"
+
+msgctxt "abbrev. month"
+msgid "May"
+msgstr "ಮೇ"
+
+msgctxt "abbrev. month"
+msgid "June"
+msgstr "ಜೂನ್"
+
+msgctxt "abbrev. month"
+msgid "July"
+msgstr "ಜುಲೈ"
+
+msgctxt "abbrev. month"
+msgid "Aug."
+msgstr "ಆಗ."
+
+msgctxt "abbrev. month"
+msgid "Sept."
+msgstr "ಸೆಪ್ಟೆಂ."
+
+msgctxt "abbrev. month"
+msgid "Oct."
+msgstr "ಅಕ್ಟೋ."
+
+msgctxt "abbrev. month"
+msgid "Nov."
+msgstr "ನವೆಂ."
+
+msgctxt "abbrev. month"
+msgid "Dec."
+msgstr "ಡಿಸೆಂ."
+
+
+#, python-format
+msgid "%(num)d year"
+msgid_plural "%(num)d years"
+msgstr[0] "%(num)d ವರ್ಷ"
+msgstr[1] "%(num)d ವರ್ಷಗಳು"
+
+#, python-format
+msgid "%(num)d month"
+msgid_plural "%(num)d months"
+msgstr[0] "%(num)d ತಿಂಗಳು"
+msgstr[1] "%(num)d ತಿಂಗಳುಗಳು"
+
+#, python-format
+msgid "%(num)d week"
+msgid_plural "%(num)d weeks"
+msgstr[0] "%(num)d ವಾರ"
+msgstr[1] "%(num)d ವಾರಗಳು"
+
+#, python-format
+msgid "%(num)d day"
+msgid_plural "%(num)d days"
+msgstr[0] "%(num)d ದಿನ"
+msgstr[1] "%(num)d ದಿನಗಳು"
+
+#, python-format
+msgid "%(num)d hour"
+msgid_plural "%(num)d hours"
+msgstr[0] "%(num)d ಗಂಟೆ"
+msgstr[1] "%(num)d ಗಂಟೆಗಳು"
+
+#, python-format
+msgid "%(num)d minute"
+msgid_plural "%(num)d minutes"
+msgstr[0] "%(num)d ನಿಮಿಷ"
+msgstr[1] "%(num)d ನಿಮಿಷಗಳು"
+

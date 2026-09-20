@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+    {% translate "My Issues" %} | JanMitra
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <div class="dashboard-container">
+
+        <div class="dashboard-heading">
+
+            <div class="eyebrow">
+                <i class="bi bi-activity me-1"></i>
+                {% translate "MY REPORTS" %}
+            </div>
+
+            <h1>
+                {% translate "My" %}
+                <span>{% translate "Issues." %}</span>
+            </h1>
+
+            <p>
+                {% translate "Track the civic issues you have reported." %}
+            </p>
+
+        </div>
+
+
+        {% if issues %}
+
+            <div class="issues-list">
+
+                {% for issue in issues %}
+
+                    <div class="issue-list-card">
+
+                        <a
+                            href="{% url 'issues:issue_detail' issue.id %}"
+                            class="issue-list-main"
+                        >
+
+                            <div class="issue-list-icon">
+                                <i class="bi bi-megaphone-fill"></i>
+                            </div>
+
+
+                            <div class="issue-list-content">
+
+                                <h3>
+                                    {{ issue.title }}
+                                </h3>
+
+
+                                <p class="issue-location">
+
+                                    <i class="bi bi-geo-alt-fill"></i>
+
+                                    {{ issue.location }}
+
+                                </p>
+
+
+                                <div class="issue-support">
+
+                                    <span class="support-icon">
+                                        <i class="bi bi-hand-thumbs-up-fill"></i>
+                                    </span>
+
+                                    <span>
+                                        {% blocktranslate count count=issue.upvoted_by.count %}
+                                            <strong>{{ count }}</strong> citizen supporting
+                                        {% plural %}
+                                            <strong>{{ count }}</strong> citizens supporting
+                                        {% endblocktranslate %}
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </a>
+
+
+                        <div class="issue-list-meta">
+
+                            <span class="issue-status status-{{ issue.status }}">
+                                {{ issue.get_status_display }}
+                            </span>
+
+
+                            <small>
+
+                                <i class="bi bi-calendar3"></i>
+
+                                {{ issue.created_at|date:"d M Y" }}
+
+                            </small>
+
+
+                            <a
+                                href="{% url 'issues:issue_detail' issue.id %}"
+                                class="issue-open-button"
+                                aria-label="{% translate 'View issue' %}"
+                                title="{% translate 'View issue' %}"
+                            >
+
+                                <i class="bi bi-arrow-up-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+
+        {% else %}
+
+            <div class="empty-issues">
+
+                <div class="empty-issues-icon">
+
+                    <i class="bi bi-inbox"></i>
+
+                </div>
+
+
+                <h3>
+                    {% translate "No issues reported yet" %}
+                </h3>
+
+
+                <p>
+                    {% translate "Found a civic problem? Be the voice that gets it noticed." %}
+                </p>
+
+
+                <a
+                    href="{% url 'issues:report_issue' %}"
+                    class="hero-primary"
+                >
+
+                    <i class="bi bi-plus-circle me-1"></i>
+
+                    {% translate "Report an Issue" %}
+
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

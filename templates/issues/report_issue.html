@@ -1,0 +1,7465 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% get_current_language as CURRENT_LANGUAGE %}
+
+<script>
+    /* Django-translated strings used by JavaScript-generated UI. */
+    window.janmitraI18n = {
+        civicIssue: "{% translate 'Civic Issue' %}",
+        bengaluru: "{% translate 'Bengaluru' %}",
+        reported: "{% translate 'Reported' %}",
+        other: "{% translate 'Other' %}",
+        supported: "{% translate 'Supported' %}",
+        supportIssue: "{% translate 'Support Issue' %}",
+        yourIssue: "{% translate 'Your Issue' %}",
+        metersAway: "{% translate 'm away' %}",
+        supporterSingular: "{% translate 'supporter' %}",
+        supporterPlural: "{% translate 'supporters' %}",
+        viewIssue: "{% translate 'View Issue' %}",
+        updating: "{% translate 'Updating...' %}",
+        unableUpdateSupport: "{% translate 'Unable to update support.' %}",
+        unableSupportIssue: "{% translate 'Unable to support this issue.' %}",
+        nearby: "{% translate 'nearby' %}",
+        existingIssue: "{% translate 'existing issue' %}",
+        existingIssues: "{% translate 'existing issues' %}",
+        checkReports: "{% translate 'Check these reports before creating a duplicate.' %}",
+        sameProblem: "{% translate 'If this is the same problem, support the existing issue instead of creating a duplicate.' %}",
+        checkingNearby: "{% translate 'Checking for nearby reported issues...' %}",
+        noExistingNearby: "{% translate 'No existing issue found nearby' %}",
+        continueReport: "{% translate 'You can continue and report this issue.' %}",
+        unableNearby: "{% translate 'Unable to check nearby issues' %}",
+        stillContinue: "{% translate 'You can still continue with your report.' %}",
+        selectWithinBengaluru: "{% translate 'Please select a location within Bengaluru.' %}",
+        keepWithinBengaluru: "{% translate 'Please keep the marker within Bengaluru.' %}",
+        selectedLocation: "{% translate 'Your Selected Location' %}",
+        issueLocation: "{% translate 'Issue location' %}",
+        nearbyWithin500: "{% translate 'Nearby issues within 500 metres will appear automatically.' %}",
+        gettingLocationName: "{% translate 'Getting location name...' %}",
+        searching: "{% translate 'Searching...' %}",
+        noMatchingLocation: "{% translate 'No matching location found in Bengaluru.' %}",
+        unableSearchLocation: "{% translate 'Unable to search for the location. Please try again.' %}",
+        enterLocation: "{% translate 'Please enter a location.' %}",
+        locationNotFoundBengaluru: "{% translate 'We could not find this location in Bengaluru.' %}",
+        outsideBengaluru: "{% translate 'The selected location is outside Bengaluru.' %}",
+        unableFindLocation: "{% translate 'Unable to find this location. Please try again.' %}",
+        mapNotReady: "{% translate 'The map is not ready yet. Please try again.' %}",
+        reviewBeforeReport: "{% translate 'Review the information below before filling your report.' %}",
+        securityToken: "{% translate 'Security token not found.' %}",
+        geminiFailed: "{% translate 'Gemini analysis failed.' %}",
+        geminiConnect: "{% translate 'Unable to connect to Gemini.' %}",
+        geminiIdentified: "{% translate 'Gemini identified this civic issue category.' %}",
+        analyzing: "{% translate 'Analyzing...' %}",
+        validImage: "{% translate 'Please select a valid image.' %}",
+        largeImage: "{% translate 'This image is larger than 5 MB. Do you want to continue?' %}",
+        unablePreview: "{% translate 'Unable to preview this image.' %}",
+        photoSelected: "{% translate 'Photo selected' %}",
+        titleLabel: "{% translate 'Title' %}",
+        categoryLabel: "{% translate 'Category' %}",
+        locationLabel: "{% translate 'Location' %}",
+        descriptionLabel: "{% translate 'Description' %}",
+        readyUpload: "{% translate 'Ready to upload' %}"
+    };
+</script>
+
+{% block title %}{% translate "Report an Issue" %} | JanMitra{% endblock %}
+
+{% block content %}
+
+<section class="report-page">
+
+    <div class="report-container">
+
+        <!-- =====================================================
+             PAGE HEADING
+        ====================================================== -->
+
+        <div class="report-heading">
+
+            <div class="eyebrow">
+
+                <i class="bi bi-megaphone-fill me-1"></i>
+
+                {% translate "REPORT AN ISSUE" %}
+
+            </div>
+
+
+            <h1>
+
+                {% translate "Make your" %} <span>{% translate "voice heard." %}</span>
+
+            </h1>
+
+
+            <p>
+
+                {% translate "Help improve Bengaluru by reporting a civic issue." %}
+
+            </p>
+
+        </div>
+
+
+        <!-- =====================================================
+             FORM ERRORS
+        ====================================================== -->
+
+        {% if form.non_field_errors %}
+
+            <div class="form-error-box">
+
+                <i class="bi bi-exclamation-triangle-fill"></i>
+
+                <div>
+
+                    {% for error in form.non_field_errors %}
+
+                        {{ error }}
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        {% endif %}
+
+
+        <!-- =====================================================
+             REPORT CARD
+        ====================================================== -->
+
+        <div class="report-card">
+
+            <form
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+                {% csrf_token %}
+
+
+                <!-- =================================================
+                     {% translate "JANMITRA ASSISTANT" %} LAUNCHER
+                ================================================== -->
+
+                <div class="assistant-launcher">
+
+                    <div class="assistant-launcher-content">
+
+                        <div class="assistant-launcher-icon">
+
+                            <i class="bi bi-stars"></i>
+
+                        </div>
+
+
+                        <div class="assistant-launcher-text">
+
+                            <span class="assistant-label">
+
+                                {% translate "JANMITRA ASSISTANT" %}
+
+                            </span>
+
+
+                            <h3>
+
+                                {% translate "Need help reporting your issue?" %}
+
+                            </h3>
+
+
+                            <p>
+
+                                {% translate "Answer a few simple questions and JanMitra will help prepare your report." %}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="open-assistant"
+                        class="assistant-launch-button"
+                    >
+
+                        <i class="bi bi-chat-dots-fill"></i>
+
+                        {% translate "Use JanMitra Assistant" %}
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     ISSUE DETAILS
+                ================================================== -->
+
+                <div class="report-section">
+
+                    <div class="section-heading">
+
+                        <div class="section-icon">
+
+                            <i class="bi bi-file-earmark-text-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+
+                                {% translate "Issue Details" %}
+
+                            </h3>
+
+
+                            <p>
+
+                                {% translate "Tell us what is happening." %}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ISSUE TITLE -->
+
+                    <div class="mb-3">
+
+                        <label
+                            for="{{ form.title.id_for_label }}"
+                            class="form-label"
+                        >
+
+                            <i class="bi bi-pencil me-1"></i>
+
+                            {% translate "Issue Title" %}
+
+                        </label>
+
+
+                        {{ form.title }}
+
+
+                        {% if form.title.errors %}
+
+                            <div class="field-error">
+
+                                {{ form.title.errors|striptags }}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="mb-3">
+
+                        <label
+                            for="{{ form.description.id_for_label }}"
+                            class="form-label"
+                        >
+
+                            <i class="bi bi-card-text me-1"></i>
+
+                            {% translate "Description" %}
+
+                        </label>
+
+
+                        {{ form.description }}
+
+
+                        {% if form.description.errors %}
+
+                            <div class="field-error">
+
+                                {{ form.description.errors|striptags }}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- CATEGORY -->
+
+                    <div class="mb-3">
+
+                        <label
+                            for="{{ form.category.id_for_label }}"
+                            class="form-label"
+                        >
+
+                            <i class="bi bi-grid-fill me-1"></i>
+
+                            {% translate "Category" %}
+
+                        </label>
+
+
+                        {{ form.category }}
+
+
+                        {% if form.category.errors %}
+
+                            <div class="field-error">
+
+                                {{ form.category.errors|striptags }}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     ISSUE LOCATION
+                ================================================== -->
+
+                <div class="report-section">
+
+                    <div class="section-heading">
+
+                        <div class="section-icon">
+
+                            <i class="bi bi-geo-alt-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+
+                               {% translate "Issue Location" %}
+
+                            </h3>
+
+
+                            <p>
+
+                                {% translate "Select the exact location on the Bengaluru map." %}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LOCATION SEARCH -->
+
+                    <div class="location-search-box">
+
+                        <div class="location-search-input">
+
+                            <i class="bi bi-search"></i>
+
+
+                            <input
+                                type="text"
+                                id="location-search"
+                                placeholder="{% translate "Search a place in Bengaluru..." %}"
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="search-location"
+                            class="location-search-button"
+                        >
+
+                            <i class="bi bi-search"></i>
+
+                            {% translate "Search" %}
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="search-results"
+                        class="search-results"
+                    ></div>
+
+
+                    <!-- MAP INSTRUCTION -->
+
+                    <div class="map-instruction">
+
+                        <i class="bi bi-info-circle-fill"></i>
+
+
+                        <span>
+
+                            {% translate "Search for a location, select a result, or click directly on the map. You can drag the marker to adjust the exact position." %}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- MAP -->
+
+                    <div
+                        id="issue-map"
+                        class="report-map"
+                    ></div>
+
+
+                    <!-- {% translate "SELECTED LOCATION" %} -->
+
+                    <div class="selected-location">
+
+                        <div class="selected-location-icon">
+
+                            <i class="bi bi-geo-alt-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <small>
+
+                                {% translate "SELECTED LOCATION" %}
+
+                            </small>
+
+
+                            <p id="selected-location-text">
+
+                                {% translate "No location selected" %}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         NEARBY ISSUES
+                    ================================================== -->
+
+                    <div
+                        id="nearby-issues-container"
+                        class="nearby-issues-container d-none"
+                    ></div>
+
+
+                    <!-- =================================================
+                         DUPLICATE WARNING
+                    ================================================== -->
+
+                    <div
+                        id="duplicate-warning"
+                        class="duplicate-warning d-none"
+                    >
+
+                        <div class="duplicate-warning-icon">
+
+                            <i class="bi bi-shield-exclamation"></i>
+
+                        </div>
+
+
+                        <div class="duplicate-warning-content">
+
+                            <strong>
+
+                                {% translate "Existing issue found nearby" %}
+
+                            </strong>
+
+
+                            <p>
+
+                                An issue has already been reported within
+                                500 metres of your selected location.
+                                If it is the same problem, consider
+                                supporting the existing report instead.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         LOCATION FIELD
+                    ================================================== -->
+
+                    <div class="location-field">
+
+                        <label
+                            for="{{ form.location.id_for_label }}"
+                            class="form-label"
+                        >
+
+                            <i class="bi bi-pin-map me-1"></i>
+
+                            {% translate "Location" %}
+
+                        </label>
+
+
+                        {{ form.location }}
+
+
+                        {% if form.location.errors %}
+
+                            <div class="field-error">
+
+                                {{ form.location.errors|striptags }}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- LATITUDE -->
+
+                    {{ form.latitude }}
+
+
+                    <!-- LONGITUDE -->
+
+                    {{ form.longitude }}
+
+
+                    {% if form.latitude.errors %}
+
+                        <div class="field-error">
+
+                            {{ form.latitude.errors|striptags }}
+
+                        </div>
+
+                    {% endif %}
+
+
+                    {% if form.longitude.errors %}
+
+                        <div class="field-error">
+
+                            {{ form.longitude.errors|striptags }}
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+
+            <!-- =====================================================
+                EVIDENCE
+            ====================================================== -->
+
+            <div class="report-section">
+
+                <div class="section-heading">
+
+                    <div class="section-icon">
+                        <i class="bi bi-camera-fill"></i>
+                    </div>
+
+                    <div>
+                        <h3>{% translate "Evidence" %}</h3>
+
+                        <p>
+                            {% translate "Add a photo to help authorities understand the issue better." %}
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="evidence-upload-card">
+
+                    <!-- =================================================
+                        ACTUAL DJANGO FILE INPUT
+
+                        IMPORTANT:
+                        name="image" must match IssueForm field name.
+                    ================================================== -->
+
+                    <input
+                        type="file"
+                        name="image"
+                        id="evidence-file-input"
+                        class="evidence-file-input"
+                        accept="image/*"
+                    >
+
+
+                    <!-- =================================================
+                        PHOTO ACTIONS
+                    ================================================== -->
+
+                    <div
+                        class="evidence-actions"
+                        id="evidence-actions"
+                    >
+
+                        <button
+                            type="button"
+                            id="take-photo-button"
+                            class="evidence-action"
+                        >
+
+                            <span class="evidence-action-icon">
+
+                                <i class="bi bi-camera-fill"></i>
+
+                            </span>
+
+
+                            <span class="evidence-action-text">
+
+                                <strong>{% translate "Take Photo" %}</strong>
+
+                                <small>
+                                    {% translate "Use your camera" %}
+                                </small>
+
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="choose-photo-button"
+                            class="evidence-action"
+                        >
+
+                            <span class="evidence-action-icon">
+
+                                <i class="bi bi-images"></i>
+
+                            </span>
+
+
+                            <span class="evidence-action-text">
+
+                                <strong>{% translate "Choose Photo" %}</strong>
+
+                                <small>
+                                    {% translate "Select from your device" %}
+                                </small>
+
+                            </span>
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- =================================================
+                        IMAGE PREVIEW
+                    ================================================== -->
+
+                    <div
+                        id="evidence-preview"
+                        class="evidence-preview"
+                        hidden
+                    >
+
+                        <div class="evidence-preview-image-wrapper">
+
+                            <img
+                                id="evidence-preview-image"
+                                src=""
+                                alt="{% translate "Selected evidence" %}"
+                            >
+
+
+                            <button
+                                type="button"
+                                id="remove-evidence-button"
+                                class="evidence-remove-button"
+                                aria-label="{% translate "Remove photo" %}"
+                            >
+
+                                <i class="bi bi-x-lg"></i>
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="evidence-preview-info">
+
+                            <div>
+
+                                <strong id="evidence-file-name">
+                                    {% translate janmitraI18n.photoSelected %}
+                                </strong>
+
+                                <small id="evidence-file-size">
+                                   {% translate janmitraI18n.readyUpload %}
+                                </small>
+
+                            </div>
+
+
+                            <span class="evidence-ready">
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                                {% translate "Ready" %}
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="evidence-hint">
+
+                        <i class="bi bi-info-circle"></i>
+
+                        <span>
+                            {% translate "JPG, PNG or WEBP. Maximum recommended size: 5 MB." %}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                {% if form.image.errors %}
+
+                    <div class="field-error">
+
+                        {{ form.image.errors|striptags }}
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+                <!-- =================================================
+                     FORM ACTIONS
+                ================================================== -->
+
+                <div class="report-actions">
+
+                    <a
+                        href="{% url 'users:dashboard' %}"
+                        class="report-cancel"
+                    >
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        {% translate "Cancel" %}
+
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="report-submit"
+                    >
+
+                        <i class="bi bi-send-fill"></i>
+
+                        {% translate "Submit Issue" %}
+
+                    </button>
+
+                </div>
+
+
+                <input
+                    type="hidden"
+                    id="nearby-issues-found"
+                    value="0"
+                >
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     {% translate "JANMITRA ASSISTANT" %} MODAL
+============================================================= -->
+
+<div
+    id="assistant-modal"
+    class="assistant-modal"
+    aria-hidden="true"
+>
+
+    <!-- BACKDROP -->
+
+    <div
+        id="assistant-backdrop"
+        class="assistant-backdrop"
+    ></div>
+
+
+    <!-- DIALOG -->
+
+    <div
+        class="assistant-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="assistant-question"
+    >
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+
+        <div class="assistant-header">
+
+            <div class="assistant-header-left">
+
+                <div class="assistant-header-icon">
+
+                    <i class="bi bi-stars"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span class="assistant-label">
+
+                        {% translate "JANMITRA ASSISTANT" %}
+
+                    </span>
+
+
+                    <h2>
+
+                        {% translate "Let's report your issue" %}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="close-assistant"
+                class="assistant-close"
+                aria-label="{% translate "Close assistant" %}"
+            >
+
+                <i class="bi bi-x-lg"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- =====================================================
+             PROGRESS
+        ====================================================== -->
+
+        <div class="assistant-progress">
+
+            <div class="assistant-progress-bar">
+
+                <span
+                    id="assistant-progress-fill"
+                    style="width: 20%;"
+                ></span>
+
+            </div>
+
+
+            <span id="assistant-progress-text">
+
+                {% translate "Step 1 of 5" %}
+
+            </span>
+
+        </div>
+
+
+        <!-- =====================================================
+             BODY
+        ====================================================== -->
+
+        <div class="assistant-body">
+
+            <div class="assistant-avatar">
+
+                <i class="bi bi-stars"></i>
+
+            </div>
+
+
+            <div class="assistant-message">
+
+                <span class="assistant-message-label">
+
+                    {% translate "JanMitra Assistant" %}
+
+                </span>
+
+
+                <h3 id="assistant-question">
+
+                    {% translate "What problem are you facing?" %}
+
+                </h3>
+
+
+                <p id="assistant-help-text">
+
+                    {% translate "Tell me about the civic issue in your own words." %}
+
+                </p>
+
+            </div>
+
+
+            <!-- ANSWER AREA -->
+
+            <div
+                id="assistant-answer-area"
+                class="assistant-answer-area"
+            >
+
+                <textarea
+                    id="assistant-answer"
+                    class="assistant-answer-input"
+                    rows="4"
+                    placeholder="{% translate "For example: There is a large pothole near my street..." %}"
+                ></textarea>
+
+
+                <div class="assistant-input-actions">
+
+                    <button
+                        type="button"
+                        id="assistant-voice"
+                        class="assistant-voice-button"
+                    >
+
+                        <i class="bi bi-mic-fill"></i>
+
+                        <span>
+
+                            {% translate "Voice" %}
+
+                        </span>
+
+                    </button>
+
+
+                    <span class="assistant-input-hint">
+
+                        {% translate "You can type or use your voice." %}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <div class="assistant-footer">
+
+            <button
+                type="button"
+                id="assistant-back"
+                class="assistant-back-button"
+                disabled
+            >
+
+                <i class="bi bi-arrow-left"></i>
+
+                {% translate "Back" %}
+
+            </button>
+
+
+            <button
+                type="button"
+                id="assistant-next"
+                class="assistant-next-button"
+            >
+
+                {% translate "Continue" %}
+
+                <i class="bi bi-arrow-right"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =============================================================
+     LEAFLET CSS
+============================================================= -->
+
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+>
+
+
+<!-- =============================================================
+     LEAFLET JAVASCRIPT
+============================================================= -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+></script>
+
+
+<!-- =============================================================
+     MAP JAVASCRIPT
+============================================================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        console.log(
+            "JanMitra: Report map initialized"
+        );
+
+
+        /* =====================================================
+           CHECK LEAFLET
+        ====================================================== */
+
+        if (
+            typeof L === "undefined"
+        ) {
+
+            console.error(
+                "JanMitra: Leaflet failed to load."
+            );
+
+            return;
+
+        }
+
+
+        console.log(
+            "JanMitra: Leaflet loaded successfully"
+        );
+
+
+        /* =====================================================
+           MAP
+        ====================================================== */
+
+        const BENGALURU_CENTER = [
+            12.9716,
+            77.5946
+        ];
+
+
+        const map =
+            L.map(
+                "issue-map"
+            ).setView(
+                BENGALURU_CENTER,
+                12
+            );
+
+
+        L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {
+                maxZoom: 19,
+
+                attribution:
+                    "&copy; OpenStreetMap contributors"
+            }
+        ).addTo(map);
+
+
+        /* =====================================================
+           MARKERS
+        ====================================================== */
+
+        let marker = null;
+
+        let nearbyIssueMarkers = [];
+
+
+        /* =====================================================
+           FORM ELEMENTS
+        ====================================================== */
+
+        const latitudeInput =
+            document.getElementById(
+                "id_latitude"
+            );
+
+
+        const longitudeInput =
+            document.getElementById(
+                "id_longitude"
+            );
+
+
+        const locationInput =
+            document.getElementById(
+                "id_location"
+            );
+
+
+        const selectedLocationText =
+            document.getElementById(
+                "selected-location-text"
+            );
+
+
+        const searchInput =
+            document.getElementById(
+                "location-search"
+            );
+
+
+        const searchButton =
+            document.getElementById(
+                "search-location"
+            );
+
+
+        const searchResults =
+            document.getElementById(
+                "search-results"
+            );
+
+
+        const nearbyContainer =
+            document.getElementById(
+                "nearby-issues-container"
+            );
+
+
+        const duplicateWarning =
+            document.getElementById(
+                "duplicate-warning"
+            );
+
+
+        const nearbyIssuesFound =
+            document.getElementById(
+                "nearby-issues-found"
+            );
+
+
+        /* =====================================================
+           BENGALURU BOUNDARY
+        ====================================================== */
+
+        function isBengaluru(
+            latitude,
+            longitude
+        ) {
+
+            return (
+
+                latitude >= 12.7 &&
+
+                latitude <= 13.2 &&
+
+                longitude >= 77.3 &&
+
+                longitude <= 77.8
+
+            );
+
+        }
+
+
+        /* =====================================================
+           SELECTED LOCATION ICON
+        ====================================================== */
+
+        function createSelectedLocationIcon() {
+
+            return L.divIcon({
+
+                className:
+                    "selected-location-marker",
+
+                html: `
+
+                    <div class="selected-location-pin">
+
+                        <div class="selected-location-dot"></div>
+
+                    </div>
+
+                `,
+
+                iconSize: [
+                    42,
+                    42
+                ],
+
+                iconAnchor: [
+                    21,
+                    42
+                ],
+
+                popupAnchor: [
+                    0,
+                    -40
+                ]
+
+            });
+
+        }
+
+
+        /* =====================================================
+           UPDATE COORDINATES
+        ====================================================== */
+
+        function updateCoordinates(
+            latitude,
+            longitude
+        ) {
+
+            if (latitudeInput) {
+
+                latitudeInput.value =
+                    Number(latitude).toFixed(6);
+
+            }
+
+
+            if (longitudeInput) {
+
+                longitudeInput.value =
+                    Number(longitude).toFixed(6);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           UPDATE LOCATION
+        ====================================================== */
+
+        function updateSelectedLocation(
+            latitude,
+            longitude,
+            locationName
+        ) {
+
+            updateCoordinates(
+                latitude,
+                longitude
+            );
+
+
+            if (
+                locationName
+            ) {
+
+                if (locationInput) {
+
+                    locationInput.value =
+                        locationName;
+
+                }
+
+
+                if (
+                    selectedLocationText
+                ) {
+
+                    selectedLocationText.textContent =
+                        locationName;
+
+                }
+
+            }
+
+            else {
+
+                if (
+                    selectedLocationText
+                ) {
+
+                    selectedLocationText.textContent =
+
+                        Number(latitude).toFixed(6) +
+                        ", " +
+                        Number(longitude).toFixed(6);
+
+                }
+
+            }
+
+        }
+
+
+        /* =====================================================
+           STATUS CLASS
+        ====================================================== */
+
+        function getStatusClass(
+            status
+        ) {
+
+            if (
+                status === "under_review"
+            ) {
+
+                return "nearby-status-orange";
+
+            }
+
+
+            if (
+                status === "in_progress"
+            ) {
+
+                return "nearby-status-blue";
+
+            }
+
+
+            if (
+                status === "resolved"
+            ) {
+
+                return "nearby-status-green";
+
+            }
+
+
+            if (
+                status === "rejected"
+            ) {
+
+                return "nearby-status-gray";
+
+            }
+
+
+            return "nearby-status-red";
+
+        }
+
+
+        /* =====================================================
+           STATUS ICON
+        ====================================================== */
+
+        function getStatusIcon(
+            status
+        ) {
+
+            if (
+                status === "under_review"
+            ) {
+
+                return "bi-search";
+
+            }
+
+
+            if (
+                status === "in_progress"
+            ) {
+
+                return "bi-arrow-repeat";
+
+            }
+
+
+            if (
+                status === "resolved"
+            ) {
+
+                return "bi-check-circle-fill";
+
+            }
+
+
+            if (
+                status === "rejected"
+            ) {
+
+                return "bi-x-circle-fill";
+
+            }
+
+
+            return "bi-exclamation-circle-fill";
+
+        }
+
+
+        /* =====================================================
+           NEARBY ISSUE ICON
+        ====================================================== */
+
+        function createNearbyIssueIcon(
+            status
+        ) {
+
+            let markerClass =
+                "issue-marker-red";
+
+
+            let iconClass =
+                "bi-exclamation-lg";
+
+
+            if (
+                status === "under_review"
+            ) {
+
+                markerClass =
+                    "issue-marker-orange";
+
+                iconClass =
+                    "bi-search";
+
+            }
+
+
+            else if (
+                status === "in_progress"
+            ) {
+
+                markerClass =
+                    "issue-marker-blue";
+
+                iconClass =
+                    "bi-arrow-repeat";
+
+            }
+
+
+            else if (
+                status === "resolved"
+            ) {
+
+                markerClass =
+                    "issue-marker-green";
+
+                iconClass =
+                    "bi-check-lg";
+
+            }
+
+
+            else if (
+                status === "rejected"
+            ) {
+
+                markerClass =
+                    "issue-marker-gray";
+
+                iconClass =
+                    "bi-x-lg";
+
+            }
+
+
+            return L.divIcon({
+
+                className:
+                    "custom-issue-marker",
+
+                html:
+
+                    '<div class="issue-marker ' +
+                    markerClass +
+                    '">' +
+
+                    '<i class="bi ' +
+                    iconClass +
+                    '"></i>' +
+
+                    '</div>',
+
+                iconSize: [
+                    36,
+                    36
+                ],
+
+                iconAnchor: [
+                    18,
+                    36
+                ],
+
+                popupAnchor: [
+                    0,
+                    -34
+                ]
+
+            });
+
+        }
+
+
+        /* =====================================================
+           ESCAPE HTML
+        ====================================================== */
+
+        function escapeHtml(
+            value
+        ) {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.textContent =
+                value || "";
+
+
+            return div.innerHTML;
+
+        }
+
+
+        /* =====================================================
+           CLEAR NEARBY MARKERS
+        ====================================================== */
+
+        function clearNearbyIssueMarkers() {
+
+            nearbyIssueMarkers.forEach(
+                function (issueMarker) {
+
+                    map.removeLayer(
+                        issueMarker
+                    );
+
+                }
+            );
+
+
+            nearbyIssueMarkers = [];
+
+        }
+
+
+        /* =====================================================
+           CREATE NEARBY POPUP
+        ====================================================== */
+
+        function createNearbyIssuePopup(
+            issue
+        ) {
+
+            const title =
+                escapeHtml(
+                    issue.title ||
+                    janmitraI18n.civicIssue
+                );
+
+
+            const location =
+                escapeHtml(
+                    issue.location ||
+                    janmitraI18n.bengaluru
+                );
+
+
+            const status =
+                escapeHtml(
+                    issue.status_name ||
+                    issue.status ||
+                    janmitraI18n.reported
+                );
+
+
+            const distance =
+                Number(
+                    issue.distance_meters ||
+                    0
+                );
+
+
+            const upvotes =
+                Number(
+                    issue.upvotes ||
+                    0
+                );
+
+
+            const category =
+                escapeHtml(
+                    issue.category_name ||
+                    issue.category ||
+                    janmitraI18n.other
+                );
+
+
+            const canUpvote =
+                issue.can_upvote !== false;
+
+
+            const hasUpvoted =
+                issue.has_upvoted === true;
+
+
+            const supportButton =
+                canUpvote
+
+                ?
+
+                `
+
+                    <button
+                        type="button"
+                        class="issue-popup-support ${
+                            hasUpvoted
+                            ? "supported"
+                            : ""
+                        }"
+                        data-issue-id="${issue.id}"
+                    >
+
+                        <i class="bi ${
+                            hasUpvoted
+                            ? "bi-hand-thumbs-up-fill"
+                            : "bi-hand-thumbs-up"
+                        }"></i>
+
+                        <span>
+
+                            ${
+                                hasUpvoted
+                                ? janmitraI18n.supported
+                                : janmitraI18n.supportIssue
+                            }
+
+                        </span>
+
+                    </button>
+
+                `
+
+                :
+
+                `
+
+                    <span class="issue-popup-own">
+
+                        <i class="bi bi-person-check-fill"></i>
+
+                        ${janmitraI18n.yourIssue}
+
+                    </span>
+
+                `;
+
+
+            return `
+
+                <div class="issue-popup">
+
+                    <div
+                        class="issue-popup-status"
+                    >
+
+                        <span class="issue-popup-dot"></span>
+
+                        <span>
+                            ${status}
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+
+                        ${title}
+
+                    </h3>
+
+
+                    <div class="issue-popup-info">
+
+                        <i class="bi bi-grid"></i>
+
+                        <span>
+                            ${category}
+                        </span>
+
+                    </div>
+
+
+                    <div class="issue-popup-info">
+
+                        <i class="bi bi-geo-alt-fill"></i>
+
+                        <span>
+                            ${location}
+                        </span>
+
+                    </div>
+
+
+                    <div class="issue-popup-info">
+
+                        <i class="bi bi-signpost-2-fill"></i>
+
+                        <span>
+
+                            ${distance} ${janmitraI18n.metersAway}
+
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="issue-popup-info popup-upvote-count"
+                        data-issue-id="${issue.id}"
+                    >
+
+                        <i class="bi bi-hand-thumbs-up-fill"></i>
+
+                        <span>
+
+                            ${upvotes}
+
+                            ${upvotes === 1 ? janmitraI18n.supporterSingular : janmitraI18n.supporterPlural}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="issue-popup-actions">
+
+                        <a
+                            href="/issues/${issue.id}/"
+                            class="issue-popup-button"
+                        >
+
+                            <span>
+                                ${janmitraI18n.viewIssue}
+                            </span>
+
+                            <i class="bi bi-arrow-right"></i>
+
+                        </a>
+
+
+                        ${supportButton}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =====================================================
+           DISPLAY NEARBY MARKERS
+        ====================================================== */
+
+        function displayNearbyIssueMarkers(
+            issues
+        ) {
+
+            clearNearbyIssueMarkers();
+
+
+            issues.forEach(
+                function (issue) {
+
+                    const latitude =
+                        parseFloat(
+                            issue.latitude
+                        );
+
+
+                    const longitude =
+                        parseFloat(
+                            issue.longitude
+                        );
+
+
+                    if (
+                        Number.isNaN(latitude) ||
+                        Number.isNaN(longitude)
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const issueMarker =
+                        L.marker(
+                            [
+                                latitude,
+                                longitude
+                            ],
+                            {
+                                icon:
+                                    createNearbyIssueIcon(
+                                        issue.status
+                                    )
+                            }
+                        ).addTo(map);
+
+
+                    issueMarker.issueData =
+                        issue;
+
+
+                    issueMarker.bindPopup(
+
+                        createNearbyIssuePopup(
+                            issue
+                        ),
+
+                        {
+                            maxWidth: 350,
+
+                            minWidth: 280,
+
+                            closeButton: true
+
+                        }
+
+                    );
+
+
+                    nearbyIssueMarkers.push(
+                        issueMarker
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           UPDATE NEARBY CARD
+        ====================================================== */
+
+        function updateNearbyCard(
+            issueId,
+            upvotes,
+            hasUpvoted
+        ) {
+
+            if (
+                !nearbyContainer
+            ) {
+
+                return;
+
+            }
+
+
+            const card =
+                nearbyContainer.querySelector(
+                    `.nearby-issue-item[data-issue-id="${issueId}"]`
+                );
+
+
+            if (
+                !card
+            ) {
+
+                return;
+
+            }
+
+
+            const countElement =
+                card.querySelector(
+                    ".nearby-upvote-count"
+                );
+
+
+            if (
+                countElement
+            ) {
+
+                countElement.innerHTML = `
+
+                    <i class="bi bi-hand-thumbs-up-fill"></i>
+
+                    ${upvotes}
+
+                `;
+
+            }
+
+
+            const button =
+                card.querySelector(
+                    ".nearby-support-button"
+                );
+
+
+            if (
+                !button
+            ) {
+
+                return;
+
+            }
+
+
+            button.dataset.upvoted =
+                hasUpvoted;
+
+
+            if (
+                hasUpvoted
+            ) {
+
+                button.classList.add(
+                    "supported"
+                );
+
+
+                button.innerHTML = `
+
+                    <i class="bi bi-hand-thumbs-up-fill"></i>
+
+                    <span>
+                        ${janmitraI18n.supported}
+                    </span>
+
+                `;
+
+            }
+
+            else {
+
+                button.classList.remove(
+                    "supported"
+                );
+
+
+                button.innerHTML = `
+
+                    <i class="bi bi-hand-thumbs-up"></i>
+
+                    <span>
+                        ${janmitraI18n.supportIssue}
+                    </span>
+
+                `;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           SUPPORT ISSUE
+        ====================================================== */
+
+        async function supportIssue(
+            issueId,
+            button
+        ) {
+
+            if (
+                !button
+            ) {
+
+                return;
+
+            }
+
+
+            const originalHTML =
+                button.innerHTML;
+
+
+            button.disabled =
+                true;
+
+
+            button.classList.add(
+                "supporting"
+            );
+
+
+            button.innerHTML = `
+
+                <span
+                    class="spinner-border spinner-border-sm"
+                    aria-hidden="true"
+                ></span>
+
+                <span>
+                    Updating...
+                </span>
+
+            `;
+
+
+            try {
+
+                const response =
+                    await fetch(
+
+                        `/issues/${issueId}/upvote/`,
+
+                        {
+
+                            method:
+                                "POST",
+
+                            headers: {
+
+                                "X-CSRFToken":
+                                    csrfToken,
+
+                                "X-Requested-With":
+                                    "XMLHttpRequest",
+
+                                "Content-Type":
+                                    "application/x-www-form-urlencoded"
+
+                            },
+
+                            body:
+                                ""
+
+                        }
+
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.success
+                ) {
+
+                    throw new Error(
+
+                        data.error ||
+                        janmitraI18n.unableUpdateSupport
+
+                    );
+
+                }
+
+
+                button.dataset.upvoted =
+                    data.has_upvoted;
+
+
+                button.classList.remove(
+                    "supporting"
+                );
+
+
+                if (
+                    data.has_upvoted
+                ) {
+
+                    button.classList.add(
+                        "supported"
+                    );
+
+
+                    button.innerHTML = `
+
+                        <i class="bi bi-hand-thumbs-up-fill"></i>
+
+                        <span>
+                            ${janmitraI18n.supported}
+                        </span>
+
+                    `;
+
+                }
+
+                else {
+
+                    button.classList.remove(
+                        "supported"
+                    );
+
+
+                    button.innerHTML = `
+
+                        <i class="bi bi-hand-thumbs-up"></i>
+
+                        <span>
+                            ${janmitraI18n.supportIssue}
+                        </span>
+
+                    `;
+
+                }
+
+
+                const countElement =
+                    document.querySelector(
+
+                        `.popup-upvote-count[data-issue-id="${issueId}"]`
+
+                    );
+
+
+                if (
+                    countElement
+                ) {
+
+                    countElement.innerHTML = `
+
+                        <i class="bi bi-hand-thumbs-up-fill"></i>
+
+                        <span>
+
+                            ${data.upvotes}
+
+                            ${data.upvotes === 1 ? janmitraI18n.supporterSingular : janmitraI18n.supporterPlural}
+
+                        </span>
+
+                    `;
+
+                }
+
+
+                nearbyIssueMarkers.forEach(
+                    function (issueMarker) {
+
+                        if (
+
+                            issueMarker.issueData &&
+
+                            issueMarker.issueData.id ==
+                            issueId
+
+                        ) {
+
+                            issueMarker.issueData.upvotes =
+                                data.upvotes;
+
+
+                            issueMarker.issueData.has_upvoted =
+                                data.has_upvoted;
+
+                        }
+
+                    }
+                );
+
+
+                updateNearbyCard(
+
+                    issueId,
+
+                    data.upvotes,
+
+                    data.has_upvoted
+
+                );
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "JanMitra: Support error:",
+                    error
+                );
+
+
+                button.innerHTML =
+                    originalHTML;
+
+
+                alert(
+                    error.message ||
+                    janmitraI18n.unableSupportIssue
+                );
+
+            }
+
+
+            finally {
+
+                button.disabled =
+                    false;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           POPUP SUPPORT BUTTON
+        ====================================================== */
+
+        map.on(
+            "popupopen",
+            function (event) {
+
+                const popupElement =
+                    event.popup.getElement();
+
+
+                if (
+                    !popupElement
+                ) {
+
+                    return;
+
+                }
+
+
+                const supportButton =
+                    popupElement.querySelector(
+                        ".issue-popup-support"
+                    );
+
+
+                if (
+                    !supportButton
+                ) {
+
+                    return;
+
+                }
+
+
+                supportButton.addEventListener(
+                    "click",
+                    function () {
+
+                        supportIssue(
+
+                            this.dataset.issueId,
+
+                            this
+
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           RENDER NEARBY ISSUES
+        ====================================================== */
+
+        function renderNearbyIssues(
+            issues
+        ) {
+
+            let html = `
+
+                <div class="nearby-header">
+
+                    <div class="nearby-header-icon">
+
+                        <i class="bi bi-exclamation-circle-fill"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+
+                            ${issues.length}
+
+                            existing issue${
+                                issues.length > 1
+                                ? "s"
+                                : ""
+                            }
+
+                            ${janmitraI18n.nearby}
+
+                        </strong>
+
+
+                        <span>
+
+                            ${janmitraI18n.checkReports}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="nearby-issue-list">
+
+            `;
+
+
+            issues.forEach(
+                function (issue) {
+
+                    const statusClass =
+                        getStatusClass(
+                            issue.status
+                        );
+
+
+                    const statusIcon =
+                        getStatusIcon(
+                            issue.status
+                        );
+
+
+                    const canUpvote =
+                        issue.can_upvote !== false;
+
+
+                    const hasUpvoted =
+                        issue.has_upvoted === true;
+
+
+                    const supportButton =
+                        canUpvote
+
+                        ?
+
+                        `
+
+                            <button
+                                type="button"
+                                class="nearby-support-button ${
+                                    hasUpvoted
+                                    ? "supported"
+                                    : ""
+                                }"
+                                data-issue-id="${issue.id}"
+                                data-upvoted="${hasUpvoted}"
+                            >
+
+                                <i class="bi ${
+                                    hasUpvoted
+                                    ? "bi-hand-thumbs-up-fill"
+                                    : "bi-hand-thumbs-up"
+                                }"></i>
+
+                                <span>
+
+                                    ${
+                                        hasUpvoted
+                                        ? janmitraI18n.supported
+                                        : janmitraI18n.supportIssue
+                                    }
+
+                                </span>
+
+                            </button>
+
+                        `
+
+                        :
+
+                        `
+
+                            <span class="nearby-own-issue">
+
+                                <i class="bi bi-person-check-fill"></i>
+
+                                ${janmitraI18n.yourIssue}
+
+                            </span>
+
+                        `;
+
+
+                    html += `
+
+                        <div
+                            class="nearby-issue-item"
+                            data-issue-id="${issue.id}"
+                        >
+
+                            <div class="nearby-issue-main">
+
+                                <div
+                                    class="nearby-issue-icon ${statusClass}"
+                                >
+
+                                    <i class="bi ${statusIcon}"></i>
+
+                                </div>
+
+
+                                <div class="nearby-issue-content">
+
+                                    <h4>
+
+                                        ${escapeHtml(
+                                            issue.title
+                                        )}
+
+                                    </h4>
+
+
+                                    <div class="nearby-issue-location">
+
+                                        <i class="bi bi-geo-alt-fill"></i>
+
+                                        <span>
+
+                                            ${escapeHtml(
+                                                issue.location ||
+                                                janmitraI18n.bengaluru
+                                            )}
+
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="nearby-issue-meta">
+
+                                        <span
+                                            class="${statusClass}"
+                                        >
+
+                                            ${escapeHtml(
+                                                issue.status_name ||
+                                                issue.status
+                                            )}
+
+                                        </span>
+
+
+                                        <span>
+
+                                            <i class="bi bi-signpost-2"></i>
+
+                                            ${issue.distance_meters} ${janmitraI18n.metersAway}
+
+                                        </span>
+
+
+                                        <span
+                                            class="nearby-upvote-count"
+                                        >
+
+                                            <i class="bi bi-hand-thumbs-up-fill"></i>
+
+                                            ${issue.upvotes}
+
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="nearby-issue-actions">
+
+                                <a
+                                    href="/issues/${issue.id}/"
+                                    class="nearby-view-button"
+                                >
+
+                                    ${janmitraI18n.viewIssue}
+
+                                    <i class="bi bi-arrow-up-right"></i>
+
+                                </a>
+
+
+                                ${supportButton}
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            );
+
+
+            html += `
+
+                </div>
+
+
+                <div class="nearby-footer">
+
+                    <i class="bi bi-info-circle-fill"></i>
+
+
+                    <span>
+
+                        ${janmitraI18n.sameProblem}
+
+                    </span>
+
+                </div>
+
+            `;
+
+
+            nearbyContainer.innerHTML =
+                html;
+
+
+            /* =================================================
+               ATTACH SUPPORT BUTTONS
+            ================================================== */
+
+            nearbyContainer
+                .querySelectorAll(
+                    ".nearby-support-button"
+                )
+                .forEach(
+                    function (button) {
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+                                supportIssue(
+
+                                    this.dataset.issueId,
+
+                                    this
+
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+        }
+
+
+        /* =====================================================
+           CHECK NEARBY ISSUES
+        ====================================================== */
+
+        async function checkNearbyIssues(
+            latitude,
+            longitude
+        ) {
+
+            if (
+                !nearbyContainer
+            ) {
+
+                return;
+
+            }
+
+
+            clearNearbyIssueMarkers();
+
+
+            nearbyContainer.classList.remove(
+                "d-none"
+            );
+
+
+            nearbyContainer.innerHTML = `
+
+                <div class="nearby-loading">
+
+                    <div class="spinner-border spinner-border-sm"></div>
+
+                    <span>
+
+                        Checking for nearby reported issues...
+
+                    </span>
+
+                </div>
+
+            `;
+
+
+            try {
+
+                const response =
+                    await fetch(
+
+                        "{% url 'issues:nearby_issues' %}" +
+
+                        "?latitude=" +
+
+                        encodeURIComponent(
+                            latitude
+                        ) +
+
+                        "&longitude=" +
+
+                        encodeURIComponent(
+                            longitude
+                        ) +
+
+                        "&radius=500"
+
+                    );
+
+
+                if (
+                    !response.ok
+                ) {
+
+                    throw new Error(
+                        "Nearby issue request failed"
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                const count =
+                    data.issues
+                    ? data.issues.length
+                    : 0;
+
+
+                if (
+                    nearbyIssuesFound
+                ) {
+
+                    nearbyIssuesFound.value =
+                        count;
+
+                }
+
+
+                if (
+                    duplicateWarning
+                ) {
+
+                    if (
+                        count > 0
+                    ) {
+
+                        duplicateWarning.classList.remove(
+                            "d-none"
+                        );
+
+                    }
+
+                    else {
+
+                        duplicateWarning.classList.add(
+                            "d-none"
+                        );
+
+                    }
+
+                }
+
+
+                if (
+
+                    !data.success ||
+
+                    !data.issues ||
+
+                    data.issues.length === 0
+
+                ) {
+
+                    clearNearbyIssueMarkers();
+
+
+                    nearbyContainer.innerHTML = `
+
+                        <div class="nearby-empty">
+
+                            <div class="nearby-empty-icon">
+
+                                <i class="bi bi-check-lg"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+
+                                    ${janmitraI18n.noExistingNearby}
+
+                                </strong>
+
+
+                                <span>
+
+                                    ${janmitraI18n.continueReport}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+
+                    return;
+
+                }
+
+
+                displayNearbyIssueMarkers(
+                    data.issues
+                );
+
+
+                renderNearbyIssues(
+                    data.issues
+                );
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "JanMitra: Nearby issue check failed:",
+                    error
+                );
+
+
+                clearNearbyIssueMarkers();
+
+
+                if (
+                    duplicateWarning
+                ) {
+
+                    duplicateWarning.classList.add(
+                        "d-none"
+                    );
+
+                }
+
+
+                nearbyContainer.innerHTML = `
+
+                    <div class="nearby-error">
+
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+
+
+                        <div>
+
+                            <strong>
+
+                                ${janmitraI18n.unableNearby}
+
+                            </strong>
+
+
+                            <span>
+
+                                ${janmitraI18n.stillContinue}
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           PLACE SELECTED MARKER
+        ====================================================== */
+
+        function placeMarker(
+            latitude,
+            longitude
+        ) {
+
+            if (
+                !isBengaluru(
+                    latitude,
+                    longitude
+                )
+            ) {
+
+                alert(
+                    janmitraI18n.selectWithinBengaluru
+                );
+
+
+                return false;
+
+            }
+
+
+            const position = [
+                latitude,
+                longitude
+            ];
+
+
+            if (
+                marker
+            ) {
+
+                marker.setLatLng(
+                    position
+                );
+
+            }
+
+            else {
+
+                marker =
+                    L.marker(
+
+                        position,
+
+                        {
+
+                            draggable:
+                                true,
+
+                            icon:
+                                createSelectedLocationIcon(),
+
+                            zIndexOffset:
+                                1000
+
+                        }
+
+                    ).addTo(map);
+
+
+                marker.bindPopup(
+                    `
+
+                        <div class="selected-location-popup">
+
+                            <div class="selected-location-popup-status">
+
+                                <i class="bi bi-person-fill"></i>
+
+                                ${janmitraI18n.selectedLocation}
+
+                            </div>
+
+
+                            <strong>
+
+                                ${janmitraI18n.issueLocation}
+
+                            </strong>
+
+
+                            <span>
+
+                                ${janmitraI18n.nearbyWithin500}
+                                will appear automatically.
+
+                            </span>
+
+                        </div>
+
+                    `
+                );
+
+
+                marker.on(
+                    "dragend",
+                    async function () {
+
+                        const position =
+                            marker.getLatLng();
+
+
+                        await reverseGeocode(
+
+                            position.lat,
+
+                            position.lng
+
+                        );
+
+                    }
+                );
+
+            }
+
+
+            updateCoordinates(
+                latitude,
+                longitude
+            );
+
+
+            map.setView(
+                position,
+                16,
+                {
+                    animate: true
+                }
+            );
+
+
+            return true;
+
+        }
+
+
+        /* =====================================================
+           REVERSE GEOCODING
+        ====================================================== */
+
+        async function reverseGeocode(
+            latitude,
+            longitude
+        ) {
+
+            if (
+                !isBengaluru(
+                    latitude,
+                    longitude
+                )
+            ) {
+
+                alert(
+                    janmitraI18n.keepWithinBengaluru
+                );
+
+
+                return;
+
+            }
+
+
+            placeMarker(
+                latitude,
+                longitude
+            );
+
+
+            if (
+                selectedLocationText
+            ) {
+
+                selectedLocationText.textContent =
+                    janmitraI18n.gettingLocationName;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+
+                        "https://nominatim.openstreetmap.org/reverse" +
+
+                        "?format=json" +
+
+                        "&lat=" +
+                        latitude +
+
+                        "&lon=" +
+                        longitude +
+
+                        "&zoom=18" +
+
+                        "&addressdetails=1"
+
+                    );
+
+
+                if (
+                    !response.ok
+                ) {
+
+                    throw new Error(
+                        "Reverse geocoding failed"
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                updateSelectedLocation(
+
+                    latitude,
+
+                    longitude,
+
+                    data.display_name ||
+                    null
+
+                );
+
+
+                await checkNearbyIssues(
+
+                    latitude,
+
+                    longitude
+
+                );
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Reverse geocoding error:",
+                    error
+                );
+
+
+                updateSelectedLocation(
+
+                    latitude,
+
+                    longitude,
+
+                    null
+
+                );
+
+
+                await checkNearbyIssues(
+
+                    latitude,
+
+                    longitude
+
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MAP CLICK
+        ====================================================== */
+
+        map.on(
+            "click",
+            function (event) {
+
+                reverseGeocode(
+
+                    event.latlng.lat,
+
+                    event.latlng.lng
+
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           SEARCH LOCATION
+        ====================================================== */
+
+        async function searchLocation() {
+
+            const query =
+                searchInput.value.trim();
+
+
+            if (
+                !query
+            ) {
+
+                return;
+
+            }
+
+
+            searchButton.disabled =
+                true;
+
+
+            searchButton.innerHTML =
+                `<i class="bi bi-hourglass-split"></i> ${janmitraI18n.searching}`;
+
+
+            searchResults.innerHTML =
+                "";
+
+
+            try {
+
+                const response =
+                    await fetch(
+
+                        "https://nominatim.openstreetmap.org/search" +
+
+                        "?format=json" +
+
+                        "&q=" +
+
+                        encodeURIComponent(
+
+                            query +
+                            ", Bengaluru, Karnataka, India"
+
+                        ) +
+
+                        "&limit=5" +
+
+                        "&countrycodes=in" +
+
+                        "&addressdetails=1"
+
+                    );
+
+
+                if (
+                    !response.ok
+                ) {
+
+                    throw new Error(
+                        "Location search failed"
+                    );
+
+                }
+
+
+                const results =
+                    await response.json();
+
+
+                const bengaluruResults =
+                    results.filter(
+                        function (result) {
+
+                            return isBengaluru(
+
+                                parseFloat(
+                                    result.lat
+                                ),
+
+                                parseFloat(
+                                    result.lon
+                                )
+
+                            );
+
+                        }
+                    );
+
+
+                if (
+                    bengaluruResults.length === 0
+                ) {
+
+                    searchResults.innerHTML = `
+
+                        <div class="no-search-result">
+
+                            <i class="bi bi-geo-alt"></i>
+
+                            ${janmitraI18n.noMatchingLocation}
+
+                        </div>
+
+                    `;
+
+
+                    return;
+
+                }
+
+
+                bengaluruResults.forEach(
+                    function (result) {
+
+                        const latitude =
+                            parseFloat(
+                                result.lat
+                            );
+
+
+                        const longitude =
+                            parseFloat(
+                                result.lon
+                            );
+
+
+                        const resultItem =
+                            document.createElement(
+                                "button"
+                            );
+
+
+                        resultItem.type =
+                            "button";
+
+
+                        resultItem.className =
+                            "search-result-item";
+
+
+                        resultItem.innerHTML = `
+
+                            <i class="bi bi-geo-alt-fill"></i>
+
+                            <span>
+
+                                ${escapeHtml(
+                                    result.display_name
+                                )}
+
+                            </span>
+
+                        `;
+
+
+                        resultItem.addEventListener(
+                            "click",
+                            async function () {
+
+                                placeMarker(
+
+                                    latitude,
+
+                                    longitude
+
+                                );
+
+
+                                updateSelectedLocation(
+
+                                    latitude,
+
+                                    longitude,
+
+                                    result.display_name
+
+                                );
+
+
+                                searchInput.value =
+                                    result.display_name;
+
+
+                                searchResults.innerHTML =
+                                    "";
+
+
+                                await checkNearbyIssues(
+
+                                    latitude,
+
+                                    longitude
+
+                                );
+
+                            }
+                        );
+
+
+                        searchResults.appendChild(
+                            resultItem
+                        );
+
+                    }
+                );
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Location search error:",
+                    error
+                );
+
+
+                searchResults.innerHTML = `
+
+                    <div class="no-search-result">
+
+                        <i class="bi bi-exclamation-triangle"></i>
+
+                        ${janmitraI18n.unableSearchLocation}
+
+                    </div>
+
+                `;
+
+            }
+
+
+            finally {
+
+                searchButton.disabled =
+                    false;
+
+
+                searchButton.innerHTML =
+                    `<i class="bi bi-search"></i> {% translate 'Search' %}`;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           SEARCH EVENTS
+        ====================================================== */
+
+        if (
+            searchButton
+        ) {
+
+            searchButton.addEventListener(
+                "click",
+                searchLocation
+            );
+
+        }
+
+
+        if (
+            searchInput
+        ) {
+
+            searchInput.addEventListener(
+                "keydown",
+                function (event) {
+
+                    if (
+                        event.key === "Enter"
+                    ) {
+
+                        event.preventDefault();
+
+                        searchLocation();
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           ASSISTANT LOCATION BRIDGE
+        ====================================================== */
+
+        window.janmitraAssistantLocation =
+            async function (
+                locationText
+            ) {
+
+                if (
+
+                    !locationText ||
+
+                    !locationText.trim()
+
+                ) {
+
+                    return {
+
+                        success:
+                            false,
+
+                        error:
+                            janmitraI18n.enterLocation
+
+                    };
+
+                }
+
+
+                try {
+
+                    console.log(
+
+                        "JanMitra Assistant: Searching location:",
+
+                        locationText
+
+                    );
+
+
+                    const response =
+                        await fetch(
+
+                            "https://nominatim.openstreetmap.org/search" +
+
+                            "?format=json" +
+
+                            "&q=" +
+
+                            encodeURIComponent(
+
+                                locationText +
+
+                                ", Bengaluru, Karnataka, India"
+
+                            ) +
+
+                            "&limit=5" +
+
+                            "&countrycodes=in" +
+
+                            "&addressdetails=1"
+
+                        );
+
+
+                    if (
+                        !response.ok
+                    ) {
+
+                        throw new Error(
+                            "Location search failed."
+                        );
+
+                    }
+
+
+                    const results =
+                        await response.json();
+
+
+                    const bengaluruResults =
+                        results.filter(
+                            function (result) {
+
+                                return isBengaluru(
+
+                                    parseFloat(
+                                        result.lat
+                                    ),
+
+                                    parseFloat(
+                                        result.lon
+                                    )
+
+                                );
+
+                            }
+                        );
+
+
+                    if (
+                        bengaluruResults.length === 0
+                    ) {
+
+                        return {
+
+                            success:
+                                false,
+
+                            error:
+                                janmitraI18n.locationNotFoundBengaluru
+
+                        };
+
+                    }
+
+
+                    const result =
+                        bengaluruResults[0];
+
+
+                    const latitude =
+                        parseFloat(
+                            result.lat
+                        );
+
+
+                    const longitude =
+                        parseFloat(
+                            result.lon
+                        );
+
+
+                    const markerPlaced =
+                        placeMarker(
+
+                            latitude,
+
+                            longitude
+
+                        );
+
+
+                    if (
+                        !markerPlaced
+                    ) {
+
+                        return {
+
+                            success:
+                                false,
+
+                            error:
+                                janmitraI18n.outsideBengaluru
+
+                        };
+
+                    }
+
+
+                    updateSelectedLocation(
+
+                        latitude,
+
+                        longitude,
+
+                        result.display_name
+
+                    );
+
+
+                    if (
+                        searchInput
+                    ) {
+
+                        searchInput.value =
+                            result.display_name;
+
+                    }
+
+
+                    if (
+                        searchResults
+                    ) {
+
+                        searchResults.innerHTML =
+                            "";
+
+                    }
+
+
+                    await checkNearbyIssues(
+
+                        latitude,
+
+                        longitude
+
+                    );
+
+
+                    console.log(
+
+                        "JanMitra Assistant: Location selected:",
+
+                        result.display_name
+
+                    );
+
+
+                    return {
+
+                        success:
+                            true,
+
+                        location:
+                            result.display_name,
+
+                        latitude:
+                            latitude,
+
+                        longitude:
+                            longitude
+
+                    };
+
+                }
+
+
+                catch (error) {
+
+                    console.error(
+
+                        "JanMitra Assistant location error:",
+
+                        error
+
+                    );
+
+
+                    return {
+
+                        success:
+                            false,
+
+                        error:
+                            janmitraI18n.unableFindLocation
+
+                    };
+
+                }
+
+            };
+
+
+        console.log(
+
+            "JanMitra: Assistant location bridge ready"
+
+        );
+
+
+        /* =====================================================
+           MAP SIZE
+        ====================================================== */
+
+        setTimeout(
+            function () {
+
+                map.invalidateSize();
+
+            },
+            300
+        );
+
+
+        window.addEventListener(
+            "resize",
+            function () {
+
+                map.invalidateSize();
+
+            }
+        );
+
+
+        console.log(
+
+            "JanMitra: Bengaluru report map initialized successfully"
+
+        );
+
+    }
+
+);
+
+</script>
+
+
+<!-- =============================================================
+     JANMITRA ASSISTANT CONTROLLER
+============================================================= -->
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        console.log(
+            "JanMitra: Intelligent Assistant loaded"
+        );
+
+
+        /* =====================================================
+           ASSISTANT ELEMENTS
+        ====================================================== */
+
+        const assistantModal =
+            document.getElementById(
+                "assistant-modal"
+            );
+
+
+        const openAssistantButton =
+            document.getElementById(
+                "open-assistant"
+            );
+
+
+        const closeAssistantButton =
+            document.getElementById(
+                "close-assistant"
+            );
+
+
+        const assistantBackdrop =
+            document.getElementById(
+                "assistant-backdrop"
+            );
+
+
+        const assistantQuestion =
+            document.getElementById(
+                "assistant-question"
+            );
+
+
+        const assistantHelpText =
+            document.getElementById(
+                "assistant-help-text"
+            );
+
+
+        const assistantAnswer =
+            document.getElementById(
+                "assistant-answer"
+            );
+
+
+        const assistantNext =
+            document.getElementById(
+                "assistant-next"
+            );
+
+
+        const assistantBack =
+            document.getElementById(
+                "assistant-back"
+            );
+
+
+        const assistantProgressFill =
+            document.getElementById(
+                "assistant-progress-fill"
+            );
+
+
+        const assistantProgressText =
+            document.getElementById(
+                "assistant-progress-text"
+            );
+
+
+        const assistantVoice =
+            document.getElementById(
+                "assistant-voice"
+            );
+
+
+        const assistantAnswerArea =
+            document.getElementById(
+                "assistant-answer-area"
+            );
+
+
+        const assistantInputHint =
+            document.querySelector(
+                ".assistant-input-hint"
+            );
+
+
+        /* =====================================================
+           REPORT FORM ELEMENTS
+        ====================================================== */
+
+        const titleInput =
+            document.getElementById(
+                "id_title"
+            );
+
+
+        const descriptionInput =
+            document.getElementById(
+                "id_description"
+            );
+
+
+        const categoryInput =
+            document.getElementById(
+                "id_category"
+            );
+
+
+        const locationInput =
+            document.getElementById(
+                "id_location"
+            );
+
+
+        const latitudeInput =
+            document.getElementById(
+                "id_latitude"
+            );
+
+
+        const longitudeInput =
+            document.getElementById(
+                "id_longitude"
+            );
+
+
+        /* =====================================================
+           LANGUAGE
+        ====================================================== */
+
+        const language =
+            "{{ CURRENT_LANGUAGE }}";
+
+
+        /* =====================================================
+           ASSISTANT STATE
+        ====================================================== */
+
+        let currentStep = 1;
+
+
+        const totalSteps = 5;
+
+
+        let assistantData = {
+
+            problem: "",
+
+            category: "",
+
+            categoryConfidence: 0,
+
+            categoryReason: "",
+
+            location: "",
+
+            latitude: null,
+
+            longitude: null,
+
+            description: "",
+
+            title: ""
+
+        };
+
+
+        /* =====================================================
+           TRANSLATIONS
+        ====================================================== */
+
+        const translations = {
+
+            en: {
+
+                steps: [
+
+                    "What problem are you facing?",
+
+                    "What type of civic issue is this?",
+
+                    "Where is the issue located?",
+
+                    "Can you describe the problem in more detail?",
+
+                    "Your report is ready"
+
+                ],
+
+                help: [
+
+                    "Tell me about the problem in your own words.",
+
+                    "I've suggested a category based on what you described. You can change it if needed.",
+
+                    "Enter the location where the issue is happening.",
+
+                    "Add any useful details that can help the authorities understand the problem.",
+
+                    "Review the information below. JanMitra will fill your report form."
+
+                ],
+
+                placeholders: [
+
+                    "For example: There is a large pothole near my street...",
+
+                    "Choose a category...",
+
+                    "For example: Near Indiranagar Metro Station...",
+
+                    "For example: The pothole is very deep and becomes difficult to see when it rains...",
+
+                    ""
+
+                ],
+
+                voice:
+                    "Voice",
+
+                continue:
+                    "Continue",
+
+                back:
+                    "Back",
+
+                finish:
+                    "Fill My Report",
+
+                findingLocation:
+                    "Finding location...",
+
+                voiceUnavailable:
+                    "Voice input is not supported by this browser.",
+
+                voiceListening:
+                    "Listening... speak now.",
+
+                voiceReady:
+                    "You can type or use your voice.",
+
+                voicePermission:
+                    "Microphone permission was denied. Please allow microphone access and try again.",
+
+                voiceError:
+                    "We could not understand the voice input. Please try again.",
+
+                locationNotFound:
+                    "We could not find this location in Bengaluru.",
+
+                suggested:
+                    "Suggested category",
+
+                confidence:
+                    "Based on your description",
+
+                categories: {
+
+                    road:
+                        "Road & Potholes",
+
+                    streetlight:
+                        "Street Lights",
+
+                    garbage:
+                        "Garbage & Sanitation",
+
+                    water:
+                        "Water Supply",
+
+                    drainage:
+                        "Drainage",
+
+                    electricity:
+                        "Electricity",
+
+                    traffic:
+                        "Traffic",
+
+                    other:
+                        "Other"
+
+                },
+
+                reasons: {
+
+                    road:
+                        "Your description mentions a road, pothole, crack, or damaged street.",
+
+                    streetlight:
+                        "Your description mentions a street light, lamp, or lighting problem.",
+
+                    garbage:
+                        "Your description mentions garbage, waste, litter, or sanitation.",
+
+                    water:
+                        "Your description mentions water supply, leakage, or shortage.",
+
+                    drainage:
+                        "Your description mentions drainage, sewage, flooding, or blocked drains.",
+
+                    electricity:
+                        "Your description mentions electricity, power, wires, or a transformer.",
+
+                    traffic:
+                        "Your description mentions traffic, signals, congestion, or road safety.",
+
+                    other:
+                        "The issue does not clearly match one of the available categories."
+
+                }
+
+            },
+
+
+            kn: {
+
+                steps: [
+
+                    "ನೀವು ಯಾವ ಸಮಸ್ಯೆಯನ್ನು ಎದುರಿಸುತ್ತಿದ್ದೀರಿ?",
+
+                    "ಇದು ಯಾವ ರೀತಿಯ ನಾಗರಿಕ ಸಮಸ್ಯೆ?",
+
+                    "ಸಮಸ್ಯೆ ಎಲ್ಲಿದೆ?",
+
+                    "ಸಮಸ್ಯೆಯ ಬಗ್ಗೆ ಇನ್ನಷ್ಟು ವಿವರಿಸಬಹುದೇ?",
+
+                    "ನಿಮ್ಮ ವರದಿ ಸಿದ್ಧವಾಗಿದೆ"
+
+                ],
+
+                help: [
+
+                    "ಸಮಸ್ಯೆಯನ್ನು ನಿಮ್ಮದೇ ಮಾತುಗಳಲ್ಲಿ ತಿಳಿಸಿ.",
+
+                    "ನೀವು ವಿವರಿಸಿದ ಸಮಸ್ಯೆಯ ಆಧಾರದ ಮೇಲೆ ನಾನು ಒಂದು ವರ್ಗವನ್ನು ಸೂಚಿಸಿದ್ದೇನೆ. ಅಗತ್ಯವಿದ್ದರೆ ಬದಲಾಯಿಸಬಹುದು.",
+
+                    "ಸಮಸ್ಯೆ ಇರುವ ಸ್ಥಳವನ್ನು ನಮೂದಿಸಿ.",
+
+                    "ಅಧಿಕಾರಿಗಳಿಗೆ ಸಮಸ್ಯೆಯನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಸಹಾಯ ಮಾಡುವ ವಿವರಗಳನ್ನು ನೀಡಿ.",
+
+                    "ಮಾಹಿತಿಯನ್ನು ಪರಿಶೀಲಿಸಿ. JanMitra ನಿಮ್ಮ ವರದಿ ಫಾರ್ಮ್ ಅನ್ನು ತುಂಬುತ್ತದೆ."
+
+                ],
+
+                placeholders: [
+
+                    "ಉದಾಹರಣೆ: ನಮ್ಮ ರಸ್ತೆಯ ಬಳಿ ದೊಡ್ಡ ಗುಂಡಿ ಇದೆ...",
+
+                    "ವರ್ಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ...",
+
+                    "ಉದಾಹರಣೆ: ಇಂದಿರಾನಗರ ಮೆಟ್ರೋ ನಿಲ್ದಾಣದ ಬಳಿ...",
+
+                    "ಉದಾಹರಣೆ: ಗುಂಡಿ ತುಂಬಾ ಆಳವಾಗಿದೆ ಮತ್ತು ಮಳೆಯಾದಾಗ ಕಾಣುವುದಿಲ್ಲ...",
+
+                    ""
+
+                ],
+
+                voice:
+                    "ಧ್ವನಿ",
+
+                continue:
+                    "ಮುಂದುವರಿಸಿ",
+
+                back:
+                    "ಹಿಂದೆ",
+
+                finish:
+                    "ನನ್ನ ವರದಿಯನ್ನು ತುಂಬಿ",
+
+                findingLocation:
+                    "ಸ್ಥಳವನ್ನು ಹುಡುಕಲಾಗುತ್ತಿದೆ...",
+
+                voiceUnavailable:
+                    "ಈ ಬ್ರೌಸರ್ ಧ್ವನಿ ಇನ್‌ಪುಟ್ ಅನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ.",
+
+                voiceListening:
+                    "ಕೇಳಲಾಗುತ್ತಿದೆ... ಈಗ ಮಾತನಾಡಿ.",
+
+                voiceReady:
+                    "ನೀವು ಟೈಪ್ ಮಾಡಬಹುದು ಅಥವಾ ಧ್ವನಿ ಬಳಸಬಹುದು.",
+
+                voicePermission:
+                    "ಮೈಕ್ರೊಫೋನ್ ಅನುಮತಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ಮೈಕ್ರೊಫೋನ್ ಪ್ರವೇಶವನ್ನು ಅನುಮತಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+
+                voiceError:
+                    "ಧ್ವನಿ ಇನ್‌ಪುಟ್ ಅನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+
+                locationNotFound:
+                    "ಈ ಸ್ಥಳವನ್ನು ಬೆಂಗಳೂರಿನಲ್ಲಿ ಕಂಡುಹಿಡಿಯಲಾಗಲಿಲ್ಲ.",
+
+                suggested:
+                    "ಸೂಚಿಸಲಾದ ವರ್ಗ",
+
+                confidence:
+                    "ನಿಮ್ಮ ವಿವರಣೆಯ ಆಧಾರದ ಮೇಲೆ",
+
+                categories: {
+
+                    road:
+                        "ರಸ್ತೆ ಮತ್ತು ಗುಂಡಿಗಳು",
+
+                    streetlight:
+                        "ಬೀದಿ ದೀಪಗಳು",
+
+                    garbage:
+                        "ಕಸ ಮತ್ತು ಸ್ವಚ್ಛತೆ",
+
+                    water:
+                        "ನೀರಿನ ಸರಬರಾಜು",
+
+                    drainage:
+                        "ಚರಂಡಿ",
+
+                    electricity:
+                        "ವಿದ್ಯುತ್",
+
+                    traffic:
+                        "ಸಂಚಾರ",
+
+                    other:
+                        "ಇತರೆ"
+
+                },
+
+                reasons: {
+
+                    road:
+                        "ನಿಮ್ಮ ವಿವರಣೆಯಲ್ಲಿ ರಸ್ತೆ, ಗುಂಡಿ ಅಥವಾ ಹಾನಿಗೊಳಗಾದ ರಸ್ತೆಯ ಬಗ್ಗೆ ಉಲ್ಲೇಖವಿದೆ.",
+
+                    streetlight:
+                        "ನಿಮ್ಮ ವಿವರಣೆಯಲ್ಲಿ ಬೀದಿ ದೀಪ ಅಥವಾ ಬೆಳಕಿನ ಸಮಸ್ಯೆಯ ಬಗ್ಗೆ ಉಲ್ಲೇಖವಿದೆ.",
+
+                    garbage:
+                        "ನಿಮ್ಮ ವಿವರಣೆಯಲ್ಲಿ ಕಸ, ತ್ಯಾಜ್ಯ ಅಥವಾ ಸ್ವಚ್ಛತೆಯ ಸಮಸ್ಯೆಯ ಬಗ್ಗೆ ಉಲ್ಲೇಖವಿದೆ.",
+
+                    water:
+                        "ನಿಮ್ಮ ವಿವರಣೆಯಲ್ಲಿ ನೀರಿನ ಸರಬರಾಜು, ಸೋರಿಕೆ ಅಥವಾ ನೀರಿನ ಕೊರತೆಯ ಬಗ್ಗೆ ಉಲ್ಲೇಖವಿದೆ.",
+
+                    drainage:
+                        "ನಿಮ್ಮ ವಿವರಣೆಯಲ್ಲಿ ಚರಂಡಿ, ಒಳಚರಂಡಿ ಅಥವಾ ನೀರು ನಿಲ್ಲುವ ಸಮಸ್ಯೆಯ ಬಗ್ಗೆ ಉಲ್ಲೇಖವಿದೆ.",
+
+                    electricity:
+                        "ನಿಮ್ಮ ವಿವರಣೆಯಲ್ಲಿ ವಿದ್ಯುತ್, ತಂತಿ ಅಥವಾ ಟ್ರಾನ್ಸ್‌ಫಾರ್ಮರ್ ಸಮಸ್ಯೆಯ ಬಗ್ಗೆ ಉಲ್ಲೇಖವಿದೆ.",
+
+                    traffic:
+                        "ನಿಮ್ಮ ವಿವರಣೆಯಲ್ಲಿ ಸಂಚಾರ, ಸಿಗ್ನಲ್ ಅಥವಾ ರಸ್ತೆ ಸುರಕ್ಷತೆಯ ಬಗ್ಗೆ ಉಲ್ಲೇಖವಿದೆ.",
+
+                    other:
+                        "ಸಮಸ್ಯೆಯು ಲಭ್ಯವಿರುವ ಯಾವುದೇ ವರ್ಗಕ್ಕೆ ಸ್ಪಷ್ಟವಾಗಿ ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ."
+
+                }
+
+            },
+
+
+            hi: {
+
+                steps: [
+
+                    "आपको किस समस्या का सामना करना पड़ रहा है?",
+
+                    "यह किस प्रकार की नागरिक समस्या है?",
+
+                    "समस्या कहाँ स्थित है?",
+
+                    "क्या आप समस्या के बारे में कुछ और बता सकते हैं?",
+
+                    "आपकी रिपोर्ट तैयार है"
+
+                ],
+
+                help: [
+
+                    "समस्या को अपने शब्दों में बताएं।",
+
+                    "आपके विवरण के आधार पर मैंने एक श्रेणी सुझाई है। जरूरत होने पर आप इसे बदल सकते हैं।",
+
+                    "जहाँ समस्या हो रही है उस स्थान को दर्ज करें।",
+
+                    "ऐसी जानकारी दें जिससे अधिकारियों को समस्या समझने में मदद मिले।",
+
+                    "जानकारी की समीक्षा करें। JanMitra आपका रिपोर्ट फॉर्म भर देगा।"
+
+                ],
+
+                placeholders: [
+
+                    "उदाहरण: हमारी सड़क के पास एक बड़ा गड्ढा है...",
+
+                    "श्रेणी चुनें...",
+
+                    "उदाहरण: इंदिरानगर मेट्रो स्टेशन के पास...",
+
+                    "उदाहरण: गड्ढा बहुत गहरा है और बारिश में दिखाई नहीं देता...",
+
+                    ""
+
+                ],
+
+                voice:
+                    "आवाज़",
+
+                continue:
+                    "जारी रखें",
+
+                back:
+                    "वापस",
+
+                finish:
+                    "मेरी रिपोर्ट भरें",
+
+                findingLocation:
+                    "स्थान खोजा जा रहा है...",
+
+                voiceUnavailable:
+                    "यह ब्राउज़र वॉइस इनपुट का समर्थन नहीं करता है।",
+
+                voiceListening:
+                    "सुना जा रहा है... अब बोलें।",
+
+                voiceReady:
+                    "आप टाइप कर सकते हैं या अपनी आवाज़ का उपयोग कर सकते हैं।",
+
+                voicePermission:
+                    "माइक्रोफ़ोन की अनुमति नहीं दी गई। माइक्रोफ़ोन एक्सेस की अनुमति दें और फिर प्रयास करें।",
+
+                voiceError:
+                    "वॉइस इनपुट समझ नहीं आया। कृपया फिर से प्रयास करें।",
+
+                locationNotFound:
+                    "यह स्थान हमें बेंगलुरु में नहीं मिला।",
+
+                suggested:
+                    "सुझाई गई श्रेणी",
+
+                confidence:
+                    "आपके विवरण के आधार पर",
+
+                categories: {
+
+                    road:
+                        "सड़क और गड्ढे",
+
+                    streetlight:
+                        "स्ट्रीट लाइट",
+
+                    garbage:
+                        "कचरा और स्वच्छता",
+
+                    water:
+                        "जल आपूर्ति",
+
+                    drainage:
+                        "जल निकासी",
+
+                    electricity:
+                        "बिजली",
+
+                    traffic:
+                        "यातायात",
+
+                    other:
+                        "अन्य"
+
+                },
+
+                reasons: {
+
+                    road:
+                        "आपके विवरण में सड़क, गड्ढे या खराब सड़क का उल्लेख है।",
+
+                    streetlight:
+                        "आपके विवरण में स्ट्रीट लाइट या प्रकाश की समस्या का उल्लेख है।",
+
+                    garbage:
+                        "आपके विवरण में कचरा, अपशिष्ट या स्वच्छता की समस्या का उल्लेख है।",
+
+                    water:
+                        "आपके विवरण में पानी की आपूर्ति, रिसाव या पानी की कमी का उल्लेख है।",
+
+                    drainage:
+                        "आपके विवरण में नाली, सीवेज या जलभराव की समस्या का उल्लेख है।",
+
+                    electricity:
+                        "आपके विवरण में बिजली, तार या ट्रांसफॉर्मर की समस्या का उल्लेख है।",
+
+                    traffic:
+                        "आपके विवरण में यातायात, सिग्नल या सड़क सुरक्षा की समस्या का उल्लेख है।",
+
+                    other:
+                        "समस्या उपलब्ध श्रेणियों में से किसी एक से स्पष्ट रूप से मेल नहीं खाती।"
+
+                }
+
+            }
+
+        };
+
+
+        const text =
+            translations[
+                language
+            ];
+
+
+        /* =====================================================
+           CATEGORY KEYWORDS
+
+           Lightweight local intelligence.
+        ====================================================== */
+
+        const categoryKeywords = {
+
+            road: [
+
+                "pothole",
+                "potholes",
+                "road",
+                "roads",
+                "street",
+                "crack",
+                "cracks",
+                "broken road",
+                "damaged road",
+                "road damage",
+                "footpath",
+                "sidewalk",
+                "pavement",
+                "ಗೊ೦ಡಿ",
+                "ಗುಂಡಿ",
+                "ರಸ್ತೆ",
+                "सड़क",
+                "गड्ढा"
+
+            ],
+
+
+            streetlight: [
+
+                "street light",
+                "streetlight",
+                "street lamp",
+                "lamp post",
+                "lamp",
+                "light not working",
+                "lights not working",
+                "dark street",
+                "no light",
+                "ಬೀದಿ ದೀಪ",
+                "ದೀಪ",
+                "स्ट्रीट लाइट",
+                "लाइट खराब",
+                "बत्ती"
+
+            ],
+
+
+            garbage: [
+
+                "garbage",
+                "trash",
+                "waste",
+                "litter",
+                "dump",
+                "dumping",
+                "dirty",
+                "sanitation",
+                "rubbish",
+                "कचरा",
+                "कूड़ा",
+                "कूडे",
+                "ಕಸ",
+                "ತ್ಯಾಜ್ಯ"
+
+            ],
+
+
+            water: [
+
+                "water",
+                "water supply",
+                "water shortage",
+                "no water",
+                "water leakage",
+                "water leak",
+                "leakage",
+                "pipe leak",
+                "pipeline",
+                "tap",
+                "ನೀರು",
+                "ನೀರಿನ",
+                "ನೀರಿನ ಸರಬರಾಜು",
+                "पानी",
+                "पानी की समस्या",
+                "पानी की सप्लाई",
+                "रिसाव"
+
+            ],
+
+
+            drainage: [
+
+                "drain",
+                "drainage",
+                "blocked drain",
+                "drain blocked",
+                "sewage",
+                "sewer",
+                "flooding",
+                "waterlogging",
+                "water logged",
+                "stagnant water",
+                "overflow",
+                "ಚರಂಡಿ",
+                "ಒಳಚರಂಡಿ",
+                "ನೀರು ನಿಲ್ಲುತ್ತದೆ",
+                "नाली",
+                "सीवेज",
+                "जलभराव",
+                "पानी जमा"
+
+            ],
+
+
+            electricity: [
+
+                "electricity",
+                "power",
+                "power cut",
+                "power outage",
+                "electric pole",
+                "electric wire",
+                "electrical",
+                "transformer",
+                "current",
+                "shock",
+                "ವಿದ್ಯುತ್",
+                "ವಿದ್ಯುತ್ ಕಂಬ",
+                "ತಂತಿ",
+                "बिजली",
+                "बिजली कट",
+                "बिजली का तार",
+                "ट्रांसफॉर्मर"
+
+            ],
+
+
+            traffic: [
+
+                "traffic",
+                "traffic jam",
+                "congestion",
+                "signal",
+                "traffic signal",
+                "red light",
+                "intersection",
+                "accident",
+                "unsafe crossing",
+                "parking",
+                "illegal parking",
+                "ಸಂಚಾರ",
+                "ಸಿಗ್ನಲ್",
+                "ಟ್ರಾಫಿಕ್",
+                "यातायात",
+                "ट्रैफिक",
+                "सिग्नल",
+                "जाम",
+                "पार्किंग"
+
+            ]
+
+        };
+
+
+        /* =====================================================
+           ESCAPE HTML
+        ====================================================== */
+
+        function escapeHtml(
+            value
+        ) {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.textContent =
+                value || "";
+
+
+            return div.innerHTML;
+
+        }
+
+
+        /* =====================================================
+           NORMALIZE TEXT
+        ====================================================== */
+
+        function normalizeText(
+            value
+        ) {
+
+            return (
+                value || ""
+            )
+            .toLowerCase()
+            .replace(
+                /[.,!?;:()[\]{}]/g,
+                " "
+            )
+            .replace(
+                /\s+/g,
+                " "
+            )
+            .trim();
+
+        }
+
+
+        /* =====================================================
+           DETECT CATEGORY
+        ====================================================== */
+
+        function detectCategory(
+            description
+        ) {
+
+            const normalized =
+                normalizeText(
+                    description
+                );
+
+
+            const scores = {
+
+                road: 0,
+
+                streetlight: 0,
+
+                garbage: 0,
+
+                water: 0,
+
+                drainage: 0,
+
+                electricity: 0,
+
+                traffic: 0
+
+            };
+
+
+            Object.keys(
+                categoryKeywords
+            ).forEach(
+                function (category) {
+
+                    categoryKeywords[
+                        category
+                    ].forEach(
+                        function (keyword) {
+
+                            const normalizedKeyword =
+                                normalizeText(
+                                    keyword
+                                );
+
+
+                            if (
+                                normalized.includes(
+                                    normalizedKeyword
+                                )
+                            ) {
+
+                                /*
+                                 * Longer phrases get
+                                 * slightly more weight.
+                                 */
+
+                                scores[
+                                    category
+                                ] +=
+
+                                    normalizedKeyword
+                                    .split(" ")
+                                    .length;
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+
+            let bestCategory =
+                "other";
+
+
+            let bestScore =
+                0;
+
+
+            Object.keys(
+                scores
+            ).forEach(
+                function (category) {
+
+                    if (
+                        scores[category] >
+                        bestScore
+                    ) {
+
+                        bestScore =
+                            scores[category];
+
+
+                        bestCategory =
+                            category;
+
+                    }
+
+                }
+            );
+
+
+            /*
+             * Confidence is intentionally
+             * simple at this stage.
+             */
+
+            let confidence =
+                0;
+
+
+            if (
+                bestScore >= 4
+            ) {
+
+                confidence =
+                    90;
+
+            }
+
+            else if (
+                bestScore === 3
+            ) {
+
+                confidence =
+                    80;
+
+            }
+
+            else if (
+                bestScore === 2
+            ) {
+
+                confidence =
+                    70;
+
+            }
+
+            else if (
+                bestScore === 1
+            ) {
+
+                confidence =
+                    60;
+
+            }
+
+
+            if (
+                bestCategory === "other"
+            ) {
+
+                confidence =
+                    30;
+
+            }
+
+
+            return {
+
+                category:
+                    bestCategory,
+
+                confidence:
+                    confidence,
+
+                reason:
+                    text.reasons[
+                        bestCategory
+                    ]
+
+            };
+
+        }
+
+
+        /* =====================================================
+           GENERATE ISSUE TITLE
+        ====================================================== */
+
+        function generateIssueTitle(
+            problem
+        ) {
+
+            const normalized =
+                normalizeText(
+                    problem
+                );
+
+
+            /*
+             * Specific civic titles.
+             */
+
+            if (
+                normalized.includes(
+                    "pothole"
+                ) ||
+                normalized.includes(
+                    "ಗೊ೦ಡಿ"
+                ) ||
+                normalized.includes(
+                    "ಗುಂಡಿ"
+                ) ||
+                normalized.includes(
+                    "गड्ढा"
+                )
+            ) {
+
+                return language === "hi"
+
+                    ?
+
+                    "बड़ी सड़क की गड्ढे की समस्या"
+
+                    :
+
+                    language === "kn"
+
+                    ?
+
+                    "ರಸ್ತೆಯ ದೊಡ್ಡ ಗುಂಡಿ ಸಮಸ್ಯೆ"
+
+                    :
+
+                    "Large pothole on road";
+
+            }
+
+
+            if (
+                normalized.includes(
+                    "street light"
+                ) ||
+                normalized.includes(
+                    "streetlight"
+                ) ||
+                normalized.includes(
+                    "ಬೀದಿ ದೀಪ"
+                ) ||
+                normalized.includes(
+                    "स्ट्रीट लाइट"
+                )
+            ) {
+
+                return language === "hi"
+
+                    ?
+
+                    "खराब स्ट्रीट लाइट"
+
+                    :
+
+                    language === "kn"
+
+                    ?
+
+                    "ಬೀದಿ ದೀಪದ ಸಮಸ್ಯೆ"
+
+                    :
+
+                    "Street light not working";
+
+            }
+
+
+            if (
+                normalized.includes(
+                    "garbage"
+                ) ||
+                normalized.includes(
+                    "trash"
+                ) ||
+                normalized.includes(
+                    "ಕಸ"
+                ) ||
+                normalized.includes(
+                    "ಕೂಡ"
+                ) ||
+                normalized.includes(
+                    "कचरा"
+                )
+            ) {
+
+                return language === "hi"
+
+                    ?
+
+                    "कचरा जमा होने की समस्या"
+
+                    :
+
+                    language === "kn"
+
+                    ?
+
+                    "ಕಸ ಸಂಗ್ರಹವಾಗಿರುವ ಸಮಸ್ಯೆ"
+
+                    :
+
+                    "Garbage accumulation problem";
+
+            }
+
+
+            if (
+                normalized.includes(
+                    "water"
+                ) ||
+                normalized.includes(
+                    "ನೀರು"
+                ) ||
+                normalized.includes(
+                    "पानी"
+                )
+            ) {
+
+                return language === "hi"
+
+                    ?
+
+                    "जल आपूर्ति की समस्या"
+
+                    :
+
+                    language === "kn"
+
+                    ?
+
+                    "ನೀರಿನ ಸರಬರಾಜಿನ ಸಮಸ್ಯೆ"
+
+                    :
+
+                    "Water supply problem";
+
+            }
+
+
+            if (
+                normalized.includes(
+                    "drain"
+                ) ||
+                normalized.includes(
+                    "drainage"
+                ) ||
+                normalized.includes(
+                    "ಚರಂಡಿ"
+                ) ||
+                normalized.includes(
+                    "नाली"
+                )
+            ) {
+
+                return language === "hi"
+
+                    ?
+
+                    "जल निकासी की समस्या"
+
+                    :
+
+                    language === "kn"
+
+                    ?
+
+                    "ಚರಂಡಿ ಸಮಸ್ಯೆ"
+
+                    :
+
+                    "Drainage problem";
+
+            }
+
+
+            if (
+                normalized.includes(
+                    "electricity"
+                ) ||
+                normalized.includes(
+                    "power"
+                ) ||
+                normalized.includes(
+                    "ವಿದ್ಯುತ್"
+                ) ||
+                normalized.includes(
+                    "बिजली"
+                )
+            ) {
+
+                return language === "hi"
+
+                    ?
+
+                    "बिजली की समस्या"
+
+                    :
+
+                    language === "kn"
+
+                    ?
+
+                    "ವಿದ್ಯುತ್ ಸಮಸ್ಯೆ"
+
+                    :
+
+                    "Electricity problem";
+
+            }
+
+
+            if (
+                normalized.includes(
+                    "traffic"
+                ) ||
+                normalized.includes(
+                    "ಸಂಚಾರ"
+                ) ||
+                normalized.includes(
+                    "ಟ್ರಾಫಿಕ್"
+                ) ||
+                normalized.includes(
+                    "यातायात"
+                ) ||
+                normalized.includes(
+                    "ट्रैफिक"
+                )
+            ) {
+
+                return language === "hi"
+
+                    ?
+
+                    "यातायात की समस्या"
+
+                    :
+
+                    language === "kn"
+
+                    ?
+
+                    "ಸಂಚಾರ ಸಮಸ್ಯೆ"
+
+                    :
+
+                    "Traffic problem";
+
+            }
+
+
+            /*
+             * Generic fallback.
+             */
+
+            const words =
+                problem
+                .trim()
+                .split(/\s+/);
+
+
+            if (
+                words.length <= 8
+            ) {
+
+                return problem;
+
+            }
+
+
+            return (
+
+                words
+                .slice(
+                    0,
+                    8
+                )
+                .join(" ") +
+                "..."
+
+            );
+
+        }
+
+
+        /* =====================================================
+           RESET
+        ====================================================== */
+
+        function resetAssistant() {
+
+            currentStep =
+                1;
+
+
+            assistantData = {
+
+                problem:
+                    "",
+
+                category:
+                    "",
+
+                categoryConfidence:
+                    0,
+
+                categoryReason:
+                    "",
+
+                location:
+                    "",
+
+                latitude:
+                    null,
+
+                longitude:
+                    null,
+
+                description:
+                    "",
+
+                title:
+                    ""
+
+            };
+
+
+            if (
+                assistantAnswer
+            ) {
+
+                assistantAnswer.value =
+                    "";
+
+            }
+
+
+            removeCategorySelector();
+
+            removeCategorySuggestion();
+
+            removeReview();
+
+        }
+
+
+        /* =====================================================
+           OPEN
+        ====================================================== */
+
+        function openAssistant() {
+
+            resetAssistant();
+
+
+            assistantModal.classList.add(
+                "active"
+            );
+
+
+            assistantModal.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+
+            document.body.style.overflow =
+                "hidden";
+
+
+            renderStep();
+
+
+            setTimeout(
+                function () {
+
+                    assistantAnswer.focus();
+
+                },
+                200
+            );
+
+        }
+
+
+        /* =====================================================
+           CLOSE
+        ====================================================== */
+
+        function closeAssistant() {
+
+            assistantModal.classList.remove(
+                "active"
+            );
+
+
+            assistantModal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+
+            document.body.style.overflow =
+                "";
+
+        }
+
+
+        /* =====================================================
+           PROGRESS
+        ====================================================== */
+
+        function updateProgress() {
+
+            const percentage =
+                (
+                    currentStep /
+                    totalSteps
+                ) *
+                100;
+
+
+            assistantProgressFill.style.width =
+                percentage + "%";
+
+
+            assistantProgressText.textContent =
+
+                "Step " +
+
+                currentStep +
+
+                " of " +
+
+                totalSteps;
+
+        }
+
+
+        /* =====================================================
+           CATEGORY SELECTOR
+        ====================================================== */
+
+        function createCategorySelector() {
+
+            removeCategorySelector();
+
+
+            const select =
+                document.createElement(
+                    "select"
+                );
+
+
+            select.id =
+                "assistant-category";
+
+
+            select.className =
+                "assistant-answer-input";
+
+
+            select.innerHTML = `
+
+                <option value="">
+
+                    ${text.placeholders[1]}
+
+                </option>
+
+
+                <option value="road">
+
+                    ${text.categories.road}
+
+                </option>
+
+
+                <option value="streetlight">
+
+                    ${text.categories.streetlight}
+
+                </option>
+
+
+                <option value="garbage">
+
+                    ${text.categories.garbage}
+
+                </option>
+
+
+                <option value="water">
+
+                    ${text.categories.water}
+
+                </option>
+
+
+                <option value="drainage">
+
+                    ${text.categories.drainage}
+
+                </option>
+
+
+                <option value="electricity">
+
+                    ${text.categories.electricity}
+
+                </option>
+
+
+                <option value="traffic">
+
+                    ${text.categories.traffic}
+
+                </option>
+
+
+                <option value="other">
+
+                    ${text.categories.other}
+
+                </option>
+
+            `;
+
+
+            if (
+                assistantData.category
+            ) {
+
+                select.value =
+                    assistantData.category;
+
+            }
+
+
+            assistantAnswer.style.display =
+                "none";
+
+
+            assistantVoice.style.display =
+                "none";
+
+
+            assistantAnswerArea.insertBefore(
+
+                select,
+
+                assistantAnswerArea.firstChild
+
+            );
+
+        }
+
+
+        /* =====================================================
+           REMOVE CATEGORY SELECTOR
+        ====================================================== */
+
+        function removeCategorySelector() {
+
+            const existing =
+                document.getElementById(
+                    "assistant-category"
+                );
+
+
+            if (
+                existing
+            ) {
+
+                existing.remove();
+
+            }
+
+
+            if (
+                assistantAnswer
+            ) {
+
+                assistantAnswer.style.display =
+                    "block";
+
+            }
+
+
+            if (
+                assistantVoice
+            ) {
+
+                assistantVoice.style.display =
+                    "flex";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CATEGORY SUGGESTION UI
+        ====================================================== */
+
+        function showCategorySuggestion() {
+
+            removeCategorySuggestion();
+
+
+            const suggestion =
+                document.createElement(
+                    "div"
+                );
+
+
+            suggestion.id =
+                "assistant-category-suggestion";
+
+
+            suggestion.className =
+                "assistant-category-suggestion";
+
+
+            const categoryName =
+                text.categories[
+                    assistantData.category
+                ];
+
+
+            suggestion.innerHTML = `
+
+                <div class="assistant-suggestion-icon">
+
+                    <i class="bi bi-stars"></i>
+
+                </div>
+
+
+                <div class="assistant-suggestion-content">
+
+                    <span>
+
+                        ${text.suggested}
+
+                    </span>
+
+
+                    <strong>
+
+                        ${escapeHtml(
+                            categoryName
+                        )}
+
+                    </strong>
+
+
+                    <small>
+
+                        ${escapeHtml(
+                            assistantData.categoryReason
+                        )}
+
+                    </small>
+
+                </div>
+
+
+                <div class="assistant-confidence">
+
+                    ${assistantData.categoryConfidence}%
+
+                </div>
+
+            `;
+
+
+            assistantAnswerArea.parentNode.insertBefore(
+
+                suggestion,
+
+                assistantAnswerArea
+
+            );
+
+        }
+
+
+        /* =====================================================
+           REMOVE CATEGORY SUGGESTION
+        ====================================================== */
+
+        function removeCategorySuggestion() {
+
+            const suggestion =
+                document.getElementById(
+                    "assistant-category-suggestion"
+                );
+
+
+            if (
+                suggestion
+            ) {
+
+                suggestion.remove();
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CREATE REVIEW
+        ====================================================== */
+
+        function createReview() {
+
+            removeReview();
+
+
+            const review =
+                document.createElement(
+                    "div"
+                );
+
+
+            review.id =
+                "assistant-review";
+
+
+            review.className =
+                "assistant-review";
+
+
+            const categoryName =
+                text.categories[
+                    assistantData.category
+                ] ||
+                assistantData.category;
+
+
+            review.innerHTML = `
+
+                <div class="assistant-review-item">
+
+                    <span>
+
+                        <i class="bi bi-pencil"></i>
+
+                        ${janmitraI18n.titleLabel}
+
+                    </span>
+
+
+                    <strong>
+
+                        ${escapeHtml(
+                            assistantData.title
+                        )}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="assistant-review-item">
+
+                    <span>
+
+                        <i class="bi bi-grid"></i>
+
+                        ${janmitraI18n.categoryLabel}
+
+                    </span>
+
+
+                    <strong>
+
+                        ${escapeHtml(
+                            categoryName
+                        )}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="assistant-review-item">
+
+                    <span>
+
+                        <i class="bi bi-geo-alt"></i>
+
+                        ${janmitraI18n.locationLabel}
+
+                    </span>
+
+
+                    <strong>
+
+                        ${escapeHtml(
+                            assistantData.location
+                        )}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="assistant-review-item">
+
+                    <span>
+
+                        <i class="bi bi-file-text"></i>
+
+                        ${janmitraI18n.descriptionLabel}
+
+                    </span>
+
+
+                    <strong>
+
+                        ${escapeHtml(
+                            assistantData.description
+                        )}
+
+                    </strong>
+
+                </div>
+
+            `;
+
+
+            assistantAnswerArea.parentNode.insertBefore(
+
+                review,
+
+                assistantAnswerArea
+
+            );
+
+        }
+
+
+        /* =====================================================
+           REMOVE REVIEW
+        ====================================================== */
+
+        function removeReview() {
+
+            const review =
+                document.getElementById(
+                    "assistant-review"
+                );
+
+
+            if (
+                review
+            ) {
+
+                review.remove();
+
+            }
+
+        }
+
+
+        /* =====================================================
+           RENDER STEP
+        ====================================================== */
+
+        function renderStep() {
+
+            updateProgress();
+
+
+            removeReview();
+
+
+            removeCategorySuggestion();
+
+
+            if (
+                currentStep <= 4
+            ) {
+
+                assistantQuestion.textContent =
+
+                    text.steps[
+                        currentStep - 1
+                    ];
+
+
+                assistantHelpText.textContent =
+
+                    text.help[
+                        currentStep - 1
+                    ];
+
+
+                assistantAnswer.placeholder =
+
+                    text.placeholders[
+                        currentStep - 1
+                    ];
+
+
+                assistantAnswer.style.display =
+                    "block";
+
+
+                assistantVoice.style.display =
+                    "flex";
+
+
+                assistantNext.innerHTML = `
+
+                    ${text.continue}
+
+                    <i class="bi bi-arrow-right"></i>
+
+                `;
+
+            }
+
+
+            if (
+                currentStep === 2
+            ) {
+
+                createCategorySelector();
+
+
+                showCategorySuggestion();
+
+            }
+
+            else {
+
+                removeCategorySelector();
+
+            }
+
+
+            if (
+                currentStep === 5
+            ) {
+
+                assistantQuestion.textContent =
+
+                    text.steps[4];
+
+
+                assistantHelpText.textContent =
+
+                    janmitraI18n.reviewBeforeReport;
+
+
+                assistantAnswer.style.display =
+                    "none";
+
+
+                assistantVoice.style.display =
+                    "none";
+
+
+                createReview();
+
+
+                assistantNext.innerHTML = `
+
+                    ${text.finish}
+
+                    <i class="bi bi-check-lg"></i>
+
+                `;
+
+            }
+
+
+            assistantBack.disabled =
+                currentStep === 1;
+
+        }
+
+
+        /* =====================================================
+           GEMINI - ANALYZE CIVIC ISSUE
+        ====================================================== */
+
+        async function analyzeIssueWithGemini(problem) {
+
+            console.log(
+                "JanMitra Assistant: Sending problem to Gemini..."
+            );
+
+            const csrfToken =
+                document.querySelector(
+                    "[name=csrfmiddlewaretoken]"
+                )?.value;
+
+            if (!csrfToken) {
+
+                console.error(
+                    "JanMitra Assistant: CSRF token not found."
+                );
+
+                return {
+                    success: false,
+                    error: janmitraI18n.securityToken
+                };
+            }
+
+            try {
+
+                const response =
+                    await fetch(
+                        "{% url 'issues:gemini_analyze_issue' %}",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "X-CSRFToken": csrfToken
+                            },
+                            body: JSON.stringify({
+                                problem: problem
+                            })
+                        }
+                    );
+
+                const data =
+                    await response.json();
+
+                if (!response.ok) {
+
+                    console.error(
+                        "Gemini request failed:",
+                        data
+                    );
+
+                    return {
+                        success: false,
+                        error:
+                            data.error ||
+                            janmitraI18n.geminiFailed
+                    };
+                }
+
+                if (!data.success) {
+
+                    return {
+                        success: false,
+                        error:
+                            data.error ||
+                            janmitraI18n.geminiFailed
+                    };
+                }
+
+                console.log(
+                    "JanMitra Assistant: Gemini response:",
+                    data.result
+                );
+
+                return {
+                    success: true,
+                    result: data.result
+                };
+
+            }
+            catch (error) {
+
+                console.error(
+                    "JanMitra Assistant: Gemini error:",
+                    error
+                );
+
+                return {
+                    success: false,
+                    error: janmitraI18n.geminiConnect
+                };
+            }
+        }
+
+
+        /* =====================================================
+           LOCAL ISSUE ANALYSIS FALLBACK
+        ====================================================== */
+
+        function useLocalIssueAnalysis() {
+
+            console.log(
+                "JanMitra Assistant: Running local analysis..."
+            );
+
+            const detected =
+                detectCategory(
+                    assistantData.problem
+                );
+
+            assistantData.category =
+                detected.category;
+
+            assistantData.categoryConfidence =
+                detected.confidence;
+
+            assistantData.categoryReason =
+                detected.reason;
+
+            assistantData.title =
+                generateIssueTitle(
+                    assistantData.problem
+                );
+
+            console.log(
+                "JanMitra Assistant: Local analysis:",
+                {
+                    category:
+                        assistantData.category,
+                    confidence:
+                        assistantData.categoryConfidence,
+                    title:
+                        assistantData.title
+                }
+            );
+        }
+
+
+        /* =====================================================
+           SAVE CURRENT ANSWER
+        ====================================================== */
+
+        async function saveCurrentAnswer() {
+
+            /* =================================================
+               STEP 1 — PROBLEM
+            ================================================= */
+
+            if (
+                currentStep === 1
+            ) {
+
+                assistantData.problem =
+                    assistantAnswer.value.trim();
+
+
+                if (
+                    assistantData.problem.length < 5
+                ) {
+
+                    assistantAnswer.focus();
+
+                    return false;
+
+                }
+
+
+                /*
+                 * Ask Gemini to analyze the issue.
+                 * If Gemini is unavailable or returns an
+                 * invalid response, use the existing local
+                 * intelligence as a fallback.
+                 */
+
+                assistantNext.disabled = true;
+                assistantBack.disabled = true;
+
+                assistantNext.innerHTML = `
+                    <span
+                        class="spinner-border spinner-border-sm"
+                    ></span>
+                    ${janmitraI18n.analyzing}
+                `;
+
+                const geminiResult =
+                    await analyzeIssueWithGemini(
+                        assistantData.problem
+                    );
+
+                if (
+                    geminiResult.success
+                ) {
+
+                    const result =
+                        geminiResult.result;
+
+                    console.log(
+                        "JanMitra Assistant: Raw Gemini analysis:",
+                        result
+                    );
+
+                    const categoryMatch =
+                        result.match(
+                            /CATEGORY:\s*([a-zA-Z_]+)/i
+                        );
+
+                    const titleMatch =
+                        result.match(
+                            /TITLE:\s*(.+)/i
+                        );
+
+                    const reasonMatch =
+                        result.match(
+                            /REASON:\s*(.+)/i
+                        );
+
+                    const validCategories = [
+                        "road",
+                        "streetlight",
+                        "garbage",
+                        "water",
+                        "drainage",
+                        "electricity",
+                        "traffic",
+                        "other"
+                    ];
+
+                    const category =
+                        categoryMatch
+                            ? categoryMatch[1]
+                                .trim()
+                                .toLowerCase()
+                            : "";
+
+                    if (
+                        validCategories.includes(
+                            category
+                        )
+                    ) {
+
+                        assistantData.category =
+                            category;
+
+                        assistantData.categoryConfidence =
+                            95;
+
+                        assistantData.categoryReason =
+                            reasonMatch
+                                ? reasonMatch[1].trim()
+                                : janmitraI18n.geminiIdentified;
+
+                        assistantData.title =
+                            titleMatch
+                                ? titleMatch[1].trim()
+                                : generateIssueTitle(
+                                    assistantData.problem
+                                );
+
+                        console.log(
+                            "JanMitra Assistant: Gemini analysis accepted:",
+                            {
+                                category:
+                                    assistantData.category,
+                                title:
+                                    assistantData.title,
+                                reason:
+                                    assistantData.categoryReason
+                            }
+                        );
+
+                    }
+                    else {
+
+                        console.warn(
+                            "Gemini returned an invalid category."
+                        );
+
+                        useLocalIssueAnalysis();
+                    }
+
+                }
+                else {
+
+                    console.warn(
+                        "Gemini unavailable. Using local analysis."
+                    );
+
+                    useLocalIssueAnalysis();
+                }
+
+                assistantNext.disabled = false;
+                assistantBack.disabled =
+                    currentStep === 1;
+
+                assistantNext.innerHTML = `
+                    ${text.continue}
+                    <i class="bi bi-arrow-right"></i>
+                `;
+
+            }
+
+
+            /* =================================================
+               STEP 2 — CATEGORY
+            ================================================= */
+
+            if (
+                currentStep === 2
+            ) {
+
+                const categorySelect =
+                    document.getElementById(
+                        "assistant-category"
+                    );
+
+
+                if (
+                    !categorySelect ||
+                    !categorySelect.value
+                ) {
+
+                    if (
+                        categorySelect
+                    ) {
+
+                        categorySelect.focus();
+
+                    }
+
+                    return false;
+
+                }
+
+
+                /*
+                 * Citizen can override
+                 * Assistant suggestion.
+                 */
+
+                assistantData.category =
+                    categorySelect.value;
+
+            }
+
+
+            /* =================================================
+               STEP 3 — LOCATION
+            ================================================= */
+
+            if (
+                currentStep === 3
+            ) {
+
+                assistantData.location =
+                    assistantAnswer.value.trim();
+
+
+                if (
+                    assistantData.location.length < 3
+                ) {
+
+                    assistantAnswer.focus();
+
+                    return false;
+
+                }
+
+            }
+
+
+            /* =================================================
+               STEP 4 — DETAILS
+            ================================================= */
+
+            if (
+                currentStep === 4
+            ) {
+
+                assistantData.description =
+                    assistantAnswer.value.trim();
+
+
+                if (
+                    assistantData.description.length < 15
+                ) {
+
+                    assistantAnswer.focus();
+
+                    return false;
+
+                }
+
+            }
+
+
+            return true;
+
+        }
+
+
+        /* =====================================================
+           PROCESS LOCATION
+        ====================================================== */
+
+        async function processAssistantLocation() {
+
+            const location =
+                assistantData.location.trim();
+
+
+            if (
+                !location
+            ) {
+
+                return false;
+
+            }
+
+
+            if (
+                typeof window.janmitraAssistantLocation !==
+                "function"
+            ) {
+
+                alert(
+                    janmitraI18n.mapNotReady
+                );
+
+
+                return false;
+
+            }
+
+
+            assistantNext.disabled =
+                true;
+
+
+            assistantBack.disabled =
+                true;
+
+
+            assistantNext.innerHTML = `
+
+                <span
+                    class="spinner-border spinner-border-sm"
+                ></span>
+
+                ${text.findingLocation}
+
+            `;
+
+
+            try {
+
+                const result =
+                    await window.janmitraAssistantLocation(
+
+                        location
+
+                    );
+
+
+                if (
+                    !result ||
+                    !result.success
+                ) {
+
+                    alert(
+
+                        result?.error ||
+                        text.locationNotFound
+
+                    );
+
+
+                    return false;
+
+                }
+
+
+                assistantData.location =
+                    result.location;
+
+
+                assistantData.latitude =
+                    result.latitude;
+
+
+                assistantData.longitude =
+                    result.longitude;
+
+
+                return true;
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+
+                    "JanMitra Assistant location error:",
+
+                    error
+
+                );
+
+
+                alert(
+                    text.locationNotFound
+                );
+
+
+                return false;
+
+            }
+
+
+            finally {
+
+                assistantNext.disabled =
+                    false;
+
+
+                assistantBack.disabled =
+                    currentStep === 1;
+
+
+                assistantNext.innerHTML = `
+
+                    ${text.continue}
+
+                    <i class="bi bi-arrow-right"></i>
+
+                `;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           FILL REPORT FORM
+        ====================================================== */
+
+        function fillReportForm() {
+
+            /*
+             * Preserve the Gemini-generated title.
+             * Use the local title generator only as a fallback.
+             */
+
+            if (!assistantData.title) {
+
+                assistantData.title =
+                    generateIssueTitle(
+                        assistantData.problem
+                    );
+
+            }
+
+
+            if (
+                titleInput
+            ) {
+
+                titleInput.value =
+                    assistantData.title;
+
+            }
+
+
+            if (
+                descriptionInput
+            ) {
+
+                descriptionInput.value =
+                    assistantData.description;
+
+            }
+
+
+            if (
+                categoryInput
+            ) {
+
+                categoryInput.value =
+                    assistantData.category;
+
+
+                categoryInput.dispatchEvent(
+                    new Event(
+                        "change",
+                        {
+                            bubbles:
+                                true
+                        }
+                    )
+                );
+
+            }
+
+
+            if (
+                locationInput
+            ) {
+
+                locationInput.value =
+                    assistantData.location;
+
+            }
+
+
+            if (
+                latitudeInput
+            ) {
+
+                latitudeInput.value =
+                    Number(
+                        assistantData.latitude
+                    ).toFixed(6);
+
+            }
+
+
+            if (
+                longitudeInput
+            ) {
+
+                longitudeInput.value =
+                    Number(
+                        assistantData.longitude
+                    ).toFixed(6);
+
+            }
+
+
+            closeAssistant();
+
+
+            /*
+             * Bring user back to
+             * the report form.
+             */
+
+            setTimeout(
+                function () {
+
+                    if (
+                        titleInput
+                    ) {
+
+                        titleInput.scrollIntoView({
+
+                            behavior:
+                                "smooth",
+
+                            block:
+                                "center"
+
+                        });
+
+                    }
+
+                },
+                250
+            );
+
+
+            console.log(
+
+                "JanMitra: Intelligent report generated:",
+
+                assistantData
+
+            );
+
+        }
+
+
+        /* =====================================================
+           NEXT BUTTON
+        ====================================================== */
+
+        assistantNext.addEventListener(
+
+            "click",
+
+            async function () {
+
+                if (
+                    currentStep < 5
+                ) {
+
+                    const valid =
+                        await saveCurrentAnswer();
+
+
+                    if (
+                        !valid
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    /*
+                     * Location step.
+                     */
+
+                    if (
+                        currentStep === 3
+                    ) {
+
+                        const locationFound =
+                            await processAssistantLocation();
+
+
+                        if (
+                            !locationFound
+                        ) {
+
+                            return;
+
+                        }
+
+                    }
+
+
+                    currentStep++;
+
+
+                    assistantAnswer.value =
+                        "";
+
+
+                    renderStep();
+
+
+                    /*
+                     * Focus text fields.
+                     */
+
+                    if (
+
+                        currentStep !== 2 &&
+
+                        currentStep !== 5
+
+                    ) {
+
+                        setTimeout(
+                            function () {
+
+                                assistantAnswer.focus();
+
+                            },
+                            100
+                        );
+
+                    }
+
+
+                    return;
+
+                }
+
+
+                /*
+                 * Step 5.
+                 */
+
+                fillReportForm();
+
+            }
+
+        );
+
+
+        /* =====================================================
+           BACK BUTTON
+        ====================================================== */
+
+        assistantBack.addEventListener(
+
+            "click",
+
+            function () {
+
+                if (
+                    currentStep <= 1
+                ) {
+
+                    return;
+
+                }
+
+
+                currentStep--;
+
+
+                if (
+                    currentStep === 1
+                ) {
+
+                    assistantAnswer.value =
+                        assistantData.problem;
+
+                }
+
+
+                if (
+                    currentStep === 3
+                ) {
+
+                    assistantAnswer.value =
+                        assistantData.location;
+
+                }
+
+
+                if (
+                    currentStep === 4
+                ) {
+
+                    assistantAnswer.value =
+                        assistantData.description;
+
+                }
+
+
+                renderStep();
+
+            }
+
+        );
+
+
+        /* =====================================================
+           OPEN
+        ====================================================== */
+
+        openAssistantButton.addEventListener(
+
+            "click",
+
+            function (event) {
+
+                event.preventDefault();
+
+                openAssistant();
+
+            }
+
+        );
+
+
+        /* =====================================================
+           CLOSE
+        ====================================================== */
+
+        closeAssistantButton.addEventListener(
+
+            "click",
+
+            function () {
+
+                closeAssistant();
+
+            }
+
+        );
+
+
+        /* =====================================================
+           BACKDROP
+        ====================================================== */
+
+        assistantBackdrop.addEventListener(
+
+            "click",
+
+            function () {
+
+                closeAssistant();
+
+            }
+
+        );
+
+
+        /* =====================================================
+           ESCAPE
+        ====================================================== */
+
+        document.addEventListener(
+
+            "keydown",
+
+            function (event) {
+
+                if (
+
+                    event.key === "Escape" &&
+
+                    assistantModal.classList.contains(
+                        "active"
+                    )
+
+                ) {
+
+                    closeAssistant();
+
+                }
+
+            }
+
+        );
+
+
+        /* =====================================================
+           VOICE INPUT
+        ====================================================== */
+
+        let activeRecognition =
+            null;
+
+
+        let isListening =
+            false;
+
+
+        function getSpeechLanguage() {
+
+            if (language === "kn") {
+
+                return "kn-IN";
+
+            }
+
+
+            if (language === "hi") {
+
+                return "hi-IN";
+
+            }
+
+
+            return "en-IN";
+
+        }
+
+
+        function setVoiceButtonState(
+            listening
+        ) {
+
+            if (!assistantVoice) {
+
+                return;
+
+            }
+
+
+            if (listening) {
+
+                assistantVoice.classList.add(
+                    "listening"
+                );
+
+                assistantVoice.disabled =
+                    false;
+
+                assistantVoice.innerHTML = `
+
+                    <i class="bi bi-mic-fill"></i>
+
+                    <span>
+
+                        ${text.voiceListening}
+
+                    </span>
+
+                `;
+
+                
+                if (assistantInputHint) {
+
+                    assistantInputHint.textContent =
+                        text.voiceListening;
+
+                }
+
+                return;
+
+            }
+
+
+            assistantVoice.classList.remove(
+                "listening"
+            );
+
+            assistantVoice.disabled =
+                false;
+
+            assistantVoice.innerHTML = `
+
+                <i class="bi bi-mic-fill"></i>
+
+                <span>
+
+                    ${text.voice}
+
+                </span>
+
+            `;
+
+
+            if (assistantInputHint) {
+
+                assistantInputHint.textContent =
+                    text.voiceReady;
+
+            }
+
+        }
+
+
+        assistantVoice.addEventListener(
+
+            "click",
+
+            function () {
+
+                const SpeechRecognition =
+
+                    window.SpeechRecognition ||
+
+                    window.webkitSpeechRecognition;
+
+
+                if (!SpeechRecognition) {
+
+                    alert(
+                        text.voiceUnavailable
+                    );
+
+                    return;
+
+                }
+
+
+                if (isListening) {
+
+                    if (activeRecognition) {
+
+                        activeRecognition.stop();
+
+                    }
+
+                    return;
+
+                }
+
+
+                const recognition =
+                    new SpeechRecognition();
+
+
+                activeRecognition =
+                    recognition;
+
+
+                recognition.lang =
+                    getSpeechLanguage();
+
+
+                recognition.continuous =
+                    false;
+
+
+                recognition.interimResults =
+                    true;
+
+
+                recognition.maxAlternatives =
+                    1;
+
+
+                let finalTranscript =
+                    "";
+
+
+                isListening =
+                    true;
+
+                setVoiceButtonState(
+                    true
+                );
+
+
+                recognition.onstart =
+                    function () {
+
+                        console.log(
+                            "JanMitra: Voice recognition started in",
+                            recognition.lang
+                        );
+
+                    };
+
+
+                recognition.onresult =
+                    function (event) {
+
+                        let interimTranscript =
+                            "";
+
+
+                        for (
+                            let i = event.resultIndex;
+                            i < event.results.length;
+                            i++
+                        ) {
+
+                            const transcript =
+                                event.results[i][0]
+                                    .transcript;
+
+
+                            if (
+                                event.results[i].isFinal
+                            ) {
+
+                                finalTranscript +=
+                                    transcript + " ";
+
+                            }
+
+                            else {
+
+                                interimTranscript +=
+                                    transcript;
+
+                            }
+
+                        }
+
+
+                        const cleanFinal =
+                            finalTranscript.trim();
+
+
+                        const preview =
+                            (
+                                cleanFinal +
+                                (
+                                    interimTranscript
+                                        ? " " + interimTranscript
+                                        : ""
+                                )
+                            ).trim();
+
+
+                        if (preview) {
+
+                            assistantAnswer.value =
+                                preview;
+
+                            assistantAnswer.dispatchEvent(
+                                new Event(
+                                    "input",
+                                    {
+                                        bubbles: true
+                                    }
+                                )
+                            );
+
+                        }
+
+                    };
+
+
+                recognition.onerror =
+                    function (event) {
+
+                        console.error(
+                            "JanMitra: Voice error:",
+                            event.error
+                        );
+
+
+                        if (
+                            event.error ===
+                            "not-allowed" ||
+                            event.error ===
+                            "service-not-allowed"
+                        ) {
+
+                            alert(
+                                text.voicePermission
+                            );
+
+                        }
+
+                        else if (
+                            event.error !==
+                            "aborted"
+                        ) {
+
+                            alert(
+                                text.voiceError
+                            );
+
+                        }
+
+                    };
+
+
+                recognition.onend =
+                    function () {
+
+                        isListening =
+                            false;
+
+                        activeRecognition =
+                            null;
+
+                        setVoiceButtonState(
+                            false
+                        );
+
+
+                        console.log(
+                            "JanMitra: Voice recognition ended"
+                        );
+
+                    };
+
+
+                try {
+
+                    recognition.start();
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "JanMitra: Voice start error:",
+                        error
+                    );
+
+                    isListening =
+                        false;
+
+                    activeRecognition =
+                        null;
+
+                    setVoiceButtonState(
+                        false
+                    );
+
+                }
+
+            }
+
+        );
+
+
+        /* =====================================================
+           INITIALIZE
+        ====================================================== */
+
+        renderStep();
+
+
+        console.log(
+            "JanMitra: Intelligent Assistant ready"
+        );
+
+    }
+
+);
+
+</script>
+
+
+
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    console.log("JanMitra: Evidence controller loaded");
+
+
+    /* =====================================================
+       ELEMENTS
+    ====================================================== */
+
+    const fileInput =
+        document.getElementById("evidence-file-input");
+
+    const takePhotoButton =
+        document.getElementById("take-photo-button");
+
+    const choosePhotoButton =
+        document.getElementById("choose-photo-button");
+
+    const evidenceActions =
+        document.getElementById("evidence-actions");
+
+    const evidencePreview =
+        document.getElementById("evidence-preview");
+
+    const previewImage =
+        document.getElementById("evidence-preview-image");
+
+    const fileName =
+        document.getElementById("evidence-file-name");
+
+    const fileSize =
+        document.getElementById("evidence-file-size");
+
+    const removeButton =
+        document.getElementById("remove-evidence-button");
+
+
+    /* =====================================================
+       CHECK ELEMENTS
+    ====================================================== */
+
+    if (!fileInput) {
+
+        console.error(
+            "JanMitra: #evidence-file-input not found."
+        );
+
+        return;
+
+    }
+
+
+    if (!takePhotoButton || !choosePhotoButton) {
+
+        console.error(
+            "JanMitra: Evidence buttons not found."
+        );
+
+        return;
+
+    }
+
+
+    console.log(
+        "JanMitra: Evidence input found:",
+        fileInput
+    );
+
+
+    /* =====================================================
+       TAKE PHOTO
+    ====================================================== */
+
+    takePhotoButton.addEventListener(
+        "click",
+        function () {
+
+            console.log(
+                "JanMitra: Take Photo clicked"
+            );
+
+
+            /*
+             * Ask supported mobile browsers to use
+             * the rear/environment camera.
+             */
+
+            fileInput.setAttribute(
+                "capture",
+                "environment"
+            );
+
+
+            /*
+             * Clear previous selection so the
+             * camera/file picker can open again.
+             */
+
+            fileInput.value = "";
+
+
+            fileInput.click();
+
+        }
+    );
+
+
+    /* =====================================================
+       CHOOSE PHOTO
+    ====================================================== */
+
+    choosePhotoButton.addEventListener(
+        "click",
+        function () {
+
+            console.log(
+                "JanMitra: Choose Photo clicked"
+            );
+
+
+            /*
+             * Removing capture tells the browser
+             * to use the normal file/gallery picker.
+             */
+
+            fileInput.removeAttribute(
+                "capture"
+            );
+
+
+            fileInput.value = "";
+
+
+            fileInput.click();
+
+        }
+    );
+
+
+    /* =====================================================
+       FILE SELECTED
+    ====================================================== */
+
+    fileInput.addEventListener(
+        "change",
+        function () {
+
+            console.log(
+                "JanMitra: File selection changed"
+            );
+
+
+            const file =
+                this.files &&
+                this.files[0];
+
+
+            if (!file) {
+
+                console.log(
+                    "JanMitra: No file selected"
+                );
+
+                return;
+
+            }
+
+
+            console.log(
+                "JanMitra: Selected file:",
+                file.name,
+                file.type,
+                file.size
+            );
+
+
+            /* =================================================
+               IMAGE VALIDATION
+            ================================================== */
+
+            if (
+                !file.type.startsWith("image/")
+            ) {
+
+                alert(
+                    janmitraI18n.validImage
+                );
+
+
+                clearEvidence();
+
+
+                return;
+
+            }
+
+
+            /* =================================================
+               SIZE WARNING
+            ================================================== */
+
+            const maxSize =
+                5 * 1024 * 1024;
+
+
+            if (
+                file.size > maxSize
+            ) {
+
+                const proceed =
+                    confirm(
+                        janmitraI18n.largeImage
+                    );
+
+
+                if (!proceed) {
+
+                    clearEvidence();
+
+
+                    return;
+
+                }
+
+            }
+
+
+            /* =================================================
+               CREATE PREVIEW
+            ================================================== */
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function (event) {
+
+                    previewImage.src =
+                        event.target.result;
+
+
+                    evidencePreview.hidden =
+                        false;
+
+
+                    evidenceActions.style.display =
+                        "none";
+
+
+                    fileName.textContent =
+                        file.name;
+
+
+                    fileSize.textContent =
+                        formatFileSize(
+                            file.size
+                        );
+
+
+                    console.log(
+                        "JanMitra: Image preview created"
+                    );
+
+                };
+
+
+            reader.onerror =
+                function () {
+
+                    console.error(
+                        "JanMitra: Unable to read image."
+                    );
+
+                    alert(
+                        janmitraI18n.unablePreview
+                    );
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       REMOVE PHOTO
+    ====================================================== */
+
+    removeButton.addEventListener(
+        "click",
+        function () {
+
+            console.log(
+                "JanMitra: Removing selected photo"
+            );
+
+
+            clearEvidence();
+
+        }
+    );
+
+
+    /* =====================================================
+       CLEAR EVIDENCE
+    ====================================================== */
+
+    function clearEvidence() {
+
+        fileInput.value =
+            "";
+
+
+        fileInput.removeAttribute(
+            "capture"
+        );
+
+
+        previewImage.src =
+            "";
+
+
+        evidencePreview.hidden =
+            true;
+
+
+        evidenceActions.style.display =
+            "";
+
+
+        fileName.textContent =
+            janmitraI18n.photoSelected;
+
+
+        fileSize.textContent =
+            janmitraI18n.readyUpload;
+
+    }
+
+
+    /* =====================================================
+       FILE SIZE
+    ====================================================== */
+
+    function formatFileSize(
+        bytes
+    ) {
+
+        if (
+            bytes < 1024
+        ) {
+
+            return (
+                bytes +
+                " B"
+            );
+
+        }
+
+
+        if (
+            bytes < 1024 * 1024
+        ) {
+
+            return (
+                bytes / 1024
+            ).toFixed(1) +
+            " KB";
+
+        }
+
+
+        return (
+
+            bytes /
+            (1024 * 1024)
+
+        ).toFixed(1) +
+        " MB";
+
+    }
+
+
+    console.log(
+        "JanMitra: Evidence controller ready"
+    );
+
+});
+
+</script>
+
+
+
+{% endblock %}

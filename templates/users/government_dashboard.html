@@ -1,0 +1,339 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% translate "Government Portal" %} | JanMitra
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <div class="dashboard-container">
+
+        <!-- =========================================
+             GOVERNMENT DASHBOARD HEADING
+        ========================================== -->
+
+        <div class="dashboard-heading">
+
+            <div class="gov-badge">
+
+                <i class="bi bi-shield-check"></i>
+
+                {% translate "GOVERNMENT PORTAL" %}
+
+            </div>
+
+
+            <h1>
+
+                {% translate "Hello," %}
+
+                <span>
+                    {{ request.user.first_name }}
+                </span>.
+
+            </h1>
+
+
+            <p>
+                {% translate "Manage and resolve citizen issues." %}
+            </p>
+
+        </div>
+
+
+
+        <!-- =========================================
+             GOVERNMENT STATISTICS
+        ========================================== -->
+
+        <div class="dashboard-grid">
+
+
+            <!-- =====================================
+                 REPORTED ISSUES
+            ====================================== -->
+
+            <a
+                href="{% url 'issues:government_issue_list' %}?status=reported"
+                class="dashboard-card dashboard-card-link"
+                aria-label="{% translate 'View reported issues' %}"
+            >
+
+                <div class="dashboard-card-icon">
+
+                    <i class="bi bi-inbox-fill"></i>
+
+                </div>
+
+
+                <small>
+                    {% translate "Incoming" %}
+                </small>
+
+
+                <h3>
+                    {% translate "Reported Issues" %}
+                </h3>
+
+
+                <p>
+
+                    <strong>
+                        {{ reported_issues }}
+                    </strong>
+
+                    {% translate "issues waiting for review." %}
+
+                </p>
+
+
+                <i class="bi bi-arrow-up-right card-arrow"></i>
+
+            </a>
+
+
+
+            <!-- =====================================
+                 PENDING ISSUES
+            ====================================== -->
+
+            <a
+                href="{% url 'issues:government_issue_list' %}?status=pending"
+                class="dashboard-card dashboard-card-link"
+                aria-label="{% translate 'View pending issues' %}"
+            >
+
+                <div class="dashboard-card-icon">
+
+                    <i class="bi bi-hourglass-split"></i>
+
+                </div>
+
+
+                <small>
+                    {% translate "Action" %}
+                </small>
+
+
+                <h3>
+                    {% translate "Pending" %}
+                </h3>
+
+
+                <p>
+
+                    <strong>
+                        {{ pending_issues }}
+                    </strong>
+
+                    {% translate "issues requiring action." %}
+
+                </p>
+
+
+                <i class="bi bi-arrow-up-right card-arrow"></i>
+
+            </a>
+
+
+
+            <!-- =====================================
+                 RESOLVED ISSUES
+            ====================================== -->
+
+            <a
+                href="{% url 'issues:government_issue_list' %}?status=resolved"
+                class="dashboard-card dashboard-card-link"
+                aria-label="{% translate 'View resolved issues' %}"
+            >
+
+                <div class="dashboard-card-icon">
+
+                    <i class="bi bi-check2-circle"></i>
+
+                </div>
+
+
+                <small>
+                    {% translate "Completed" %}
+                </small>
+
+
+                <h3>
+                    {% translate "Resolved" %}
+                </h3>
+
+
+                <p>
+
+                    <strong>
+                        {{ resolved_issues }}
+                    </strong>
+
+                    {% translate "issues successfully resolved." %}
+
+                </p>
+
+
+                <i class="bi bi-arrow-up-right card-arrow"></i>
+
+            </a>
+
+
+
+            <!-- =====================================
+                 ANALYTICS
+            ====================================== -->
+
+            <a
+                href="{% url 'users:government_analytics' %}"
+                class="dashboard-card dashboard-card-link"
+                aria-label="{% translate 'View analytics' %}"
+            >
+
+                <div class="dashboard-card-icon">
+
+                    <i class="bi bi-bar-chart-fill"></i>
+
+                </div>
+
+
+                <small>
+                    {% translate "Overview" %}
+                </small>
+
+
+                <h3>
+                    {% translate "Analytics" %}
+                </h3>
+
+
+                <p>
+
+                    <strong>
+                        {{ total_issues }}
+                    </strong>
+
+                    {% translate "total issues reported." %}
+
+                </p>
+
+
+                <i class="bi bi-arrow-up-right card-arrow"></i>
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- =========================================
+             GOVERNMENT RESPONSE WORKFLOW
+        ========================================== -->
+
+        <div class="government-management-panel">
+
+
+            <!-- PANEL ICON -->
+
+            <div class="management-icon">
+
+                <i class="bi bi-shield-check"></i>
+
+            </div>
+
+
+
+            <!-- PANEL CONTENT -->
+
+            <div class="management-content">
+
+                <h3>
+                    {% translate "Government Response Workflow" %}
+                </h3>
+
+
+                <p>
+                    {% translate "Review citizen submissions, verify evidence, update issue status, and upload resolution proof before completing an issue." %}
+                </p>
+
+
+                <!-- =================================
+                     WORKFLOW STEPS
+                ================================== -->
+
+                <div class="government-workflow">
+
+
+                    <!-- REPORTED -->
+
+                    <span>
+
+                        <i class="bi bi-inbox"></i>
+
+                        {% translate "Reported" %}
+
+                    </span>
+
+
+                    <i class="bi bi-arrow-right"></i>
+
+
+
+                    <!-- UNDER REVIEW -->
+
+                    <span>
+
+                        <i class="bi bi-search"></i>
+
+                        {% translate "Under Review" %}
+
+                    </span>
+
+
+                    <i class="bi bi-arrow-right"></i>
+
+
+
+                    <!-- IN PROGRESS -->
+
+                    <span>
+
+                        <i class="bi bi-hourglass-split"></i>
+
+                        {% translate "In Progress" %}
+
+                    </span>
+
+
+                    <i class="bi bi-arrow-right"></i>
+
+
+
+                    <!-- RESOLVED -->
+
+                    <span>
+
+                        <i class="bi bi-check-circle"></i>
+
+                        {% translate "Resolved" %}
+
+                    </span>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

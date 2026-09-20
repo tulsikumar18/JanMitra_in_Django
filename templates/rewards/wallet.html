@@ -1,0 +1,339 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% translate "My Rewards" %} | JanMitra
+{% endblock %}
+
+{% block content %}
+
+<div class="rewards-page">
+
+    <div class="rewards-container">
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <div class="rewards-heading">
+
+            <div class="rewards-icon">
+                <i class="bi bi-wallet2"></i>
+            </div>
+
+            <h1>
+                {% translate "My Rewards" %}
+            </h1>
+
+            <p>
+                {% translate "Your contribution to a better Bengaluru is rewarded." %}
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             WALLET SUMMARY
+        ================================================== -->
+
+        <div class="rewards-grid">
+
+            <!-- Current Balance -->
+
+            <div class="reward-card balance-card">
+
+                <div class="reward-card-icon">
+                    <i class="bi bi-coin"></i>
+                </div>
+
+                <span class="reward-label">
+                    {% translate "Current Balance" %}
+                </span>
+
+                <h2>
+                    {{ wallet.balance }}
+                </h2>
+
+                <p>
+                    {% translate "coins available" %}
+                </p>
+
+            </div>
+
+
+            <!-- Total Earned -->
+
+            <div class="reward-card">
+
+                <div class="reward-card-icon">
+                    <i class="bi bi-graph-up-arrow"></i>
+                </div>
+
+                <span class="reward-label">
+                    {% translate "Total Earned" %}
+                </span>
+
+                <h2>
+                    {{ wallet.total_earned }}
+                </h2>
+
+                <p>
+                    {% translate "coins earned through civic contributions" %}
+                </p>
+
+            </div>
+
+
+            <!-- Total Redeemed -->
+
+            <div class="reward-card">
+
+                <div class="reward-card-icon">
+                    <i class="bi bi-cash-stack"></i>
+                </div>
+
+                <span class="reward-label">
+                    {% translate "Total Redeemed" %}
+                </span>
+
+                <h2>
+                    {{ wallet.total_redeemed }}
+                </h2>
+
+                <p>
+                    {% translate "coins converted into rewards" %}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             COIN VALUE
+        ================================================== -->
+
+        <div class="coin-value-card">
+
+            <div class="coin-value-icon">
+                <i class="bi bi-currency-rupee"></i>
+            </div>
+
+            <div>
+
+                <span>
+                    {% translate "JanMitra Coin Value" %}
+                </span>
+
+                <strong>
+                    100 {% translate "coins" %} = ₹10
+                </strong>
+
+                <p>
+                    {% translate "Earn 50 coins when a civic issue you reported is successfully resolved." %}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             TRANSACTION HISTORY
+        ================================================== -->
+
+        <div class="transactions-card">
+
+            <div class="transactions-header">
+
+                <div class="transactions-title">
+
+                    <div class="transactions-title-icon">
+                        <i class="bi bi-clock-history"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            {% translate "Transaction History" %}
+                        </h2>
+
+                        <p>
+                            {% translate "Track every coin earned through your civic participation." %}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            {% if transactions %}
+
+                <div class="table-responsive">
+
+                    <table class="rewards-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    {% translate "Type" %}
+                                </th>
+
+                                <th>
+                                    {% translate "Coins" %}
+                                </th>
+
+                                <th>
+                                    {% translate "Description" %}
+                                </th>
+
+                                <th>
+                                    {% translate "Issue" %}
+                                </th>
+
+                                <th>
+                                    {% translate "Date" %}
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            {% for transaction in transactions %}
+
+                                <tr>
+
+                                    <td>
+
+                                        {% if transaction.transaction_type == "earned" %}
+
+                                            <span class="reward-badge earned">
+
+                                                <i class="bi bi-plus-circle"></i>
+
+                                                {% translate "Earned" %}
+
+                                            </span>
+
+                                        {% else %}
+
+                                            <span class="reward-badge redeemed">
+
+                                                <i class="bi bi-dash-circle"></i>
+
+                                                {% translate "Redeemed" %}
+
+                                            </span>
+
+                                        {% endif %}
+
+                                    </td>
+
+
+                                    <td>
+
+                                        {% if transaction.transaction_type == "earned" %}
+
+                                            <strong class="coins-earned">
+                                                +{{ transaction.coins }}
+                                            </strong>
+
+                                        {% else %}
+
+                                            <strong class="coins-redeemed">
+                                                -{{ transaction.coins }}
+                                            </strong>
+
+                                        {% endif %}
+
+                                    </td>
+
+
+                                    <td>
+                                        {{ transaction.description }}
+                                    </td>
+
+
+                                    <td>
+
+                                        {% if transaction.issue %}
+
+                                            <a
+                                                href="{% url 'issues:issue_detail' transaction.issue.id %}"
+                                                class="issue-link"
+                                                aria-label="{% blocktranslate with id=transaction.issue.id %}View issue #{{ id }}{% endblocktranslate %}"
+                                            >
+                                                #{{ transaction.issue.id }}
+                                            </a>
+
+                                        {% else %}
+
+                                            <span class="empty-value">
+                                                —
+                                            </span>
+
+                                        {% endif %}
+
+                                    </td>
+
+
+                                    <td>
+                                        {{ transaction.created_at|date:"d M Y, h:i A" }}
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            {% else %}
+
+                <div class="empty-transactions">
+
+                    <div class="empty-icon">
+                        <i class="bi bi-coin"></i>
+                    </div>
+
+                    <h3>
+                        {% translate "No rewards yet" %}
+                    </h3>
+
+                    <p>
+                        {% translate "Report genuine civic issues, help your community, and earn JanMitra coins when your issue gets resolved." %}
+                    </p>
+
+                    <a
+                        href="{% url 'issues:report_issue' %}"
+                        class="rewards-action-btn"
+                    >
+
+                        <i class="bi bi-plus-circle"></i>
+
+                        {% translate "Report a Civic Issue" %}
+
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

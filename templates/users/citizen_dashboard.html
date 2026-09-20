@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+    {% translate "Dashboard" %} | JanMitra
+{% endblock %}
+
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <div class="dashboard-container">
+
+
+        <!-- =====================================================
+             DASHBOARD HEADING
+        ====================================================== -->
+
+        <div class="dashboard-heading">
+
+            <div class="eyebrow">
+                {% translate "CITIZEN PORTAL" %}
+            </div>
+
+
+            <h1>
+                {% translate "Hello," %}
+
+                <span>
+                    {{ request.user.first_name }}
+                </span>
+            </h1>
+
+
+            <p>
+                {% translate "What would you like to do today?" %}
+            </p>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             DASHBOARD CARDS
+        ====================================================== -->
+
+        <div class="dashboard-grid">
+
+
+            <!-- =================================================
+                 REPORT ISSUE
+            ================================================== -->
+
+            <a
+                href="{% url 'issues:report_issue' %}"
+                class="dashboard-card"
+            >
+
+                <div class="dashboard-card-icon">
+                    <i class="bi bi-megaphone-fill"></i>
+                </div>
+
+
+                <small>
+                    {% translate "Contribute" %}
+                </small>
+
+
+                <h3>
+                    {% translate "Report Issue" %}
+                </h3>
+
+
+                <p>
+                    {% translate "Tell us about a problem in your community." %}
+                </p>
+
+
+                <i class="bi bi-arrow-up-right card-arrow"></i>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 MY ISSUES
+            ================================================== -->
+
+            <a
+                href="{% url 'issues:my_issues' %}"
+                class="dashboard-card"
+            >
+
+                <div class="dashboard-card-icon">
+                    <i class="bi bi-activity"></i>
+                </div>
+
+
+                <small>
+                    {% translate "Track" %}
+                </small>
+
+
+                <h3>
+                    {% translate "My Issues" %}
+                </h3>
+
+
+                <p>
+                    {% translate "See the progress of your reports." %}
+                </p>
+
+
+                <i class="bi bi-arrow-up-right card-arrow"></i>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 ISSUE MAP
+            ================================================== -->
+
+            <a
+                href="{% url 'issues:issue_map' %}"
+                class="dashboard-card"
+            >
+
+                <div class="dashboard-card-icon">
+                    <i class="bi bi-map-fill"></i>
+                </div>
+
+
+                <small>
+                    {% translate "Explore" %}
+                </small>
+
+
+                <h3>
+                    {% translate "Issue Map" %}
+                </h3>
+
+
+                <p>
+                    {% translate "Explore civic issues reported around the community." %}
+                </p>
+
+
+                <i class="bi bi-arrow-up-right card-arrow"></i>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 PROFILE
+            ================================================== -->
+
+            <a
+                href="{% url 'users:profile' %}"
+                class="dashboard-card"
+            >
+
+                <div class="dashboard-card-icon">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+
+
+                <small>
+                    {% translate "Account" %}
+                </small>
+
+
+                <h3>
+                    {% translate "My Profile" %}
+                </h3>
+
+
+                <p>
+                    {% translate "Manage your personal information." %}
+                </p>
+
+
+                <i class="bi bi-arrow-up-right card-arrow"></i>
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

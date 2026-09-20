@@ -1,0 +1,932 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+>
+
+{% endblock %}
+
+
+{% block title %}
+    {{ issue.title }} | JanMitra
+{% endblock %}
+
+
+{% block content %}
+
+<section class="issue-detail-page">
+
+    <div class="issue-detail-container">
+
+
+        <!-- =========================================
+             BACK
+        ========================================== -->
+
+        <a
+            href="{% url 'issues:issue_map' %}"
+            class="back-link"
+        >
+
+            <i class="bi bi-arrow-left"></i>
+
+            {% translate "Back to Issue Map" %}
+
+        </a>
+
+
+        <div class="issue-detail-card">
+
+
+            <!-- =========================================
+                 HEADER
+            ========================================== -->
+
+            <div class="issue-detail-header">
+
+                <div>
+
+                    <div class="eyebrow">
+
+                        <i class="bi bi-megaphone-fill"></i>
+
+                        {% translate "CIVIC ISSUE" %}
+
+                    </div>
+
+
+                    <h1>
+                        {{ issue.title }}
+                    </h1>
+
+
+                    <div class="issue-detail-location">
+
+                        <i class="bi bi-geo-alt-fill"></i>
+
+                        {{ issue.location }}
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="issue-status status-{{ issue.status }}"
+                >
+
+                    {{ issue.get_status_display }}
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 CITIZEN INFORMATION
+            ========================================== -->
+
+            <div class="issue-reporter-card">
+
+                <div class="reporter-icon">
+
+                    <i class="bi bi-person-fill"></i>
+
+                </div>
+
+
+                <div class="reporter-content">
+
+                    <span class="reporter-label">
+                        {% translate "Reported By" %}
+                    </span>
+
+
+                    <strong>
+
+                        {{ issue.citizen.get_full_name }}
+
+                    </strong>
+
+
+                    <div class="reporter-contact">
+
+                        <span>
+
+                            <i class="bi bi-envelope-fill"></i>
+
+                            {{ issue.citizen.email }}
+
+                        </span>
+
+
+                        {% if issue.citizen.phone_number %}
+
+                        <span>
+
+                            <i class="bi bi-telephone-fill"></i>
+
+                            {{ issue.citizen.phone_number }}
+
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 CITIZEN EVIDENCE
+            ========================================== -->
+
+            {% if issue.image %}
+
+            <div class="issue-detail-image">
+
+                <img
+                    src="{{ issue.image.url }}"
+                    alt="{{ issue.title }}"
+                >
+
+
+                <div class="evidence-badge">
+
+                    <i class="bi bi-camera-fill"></i>
+
+                    {% translate "Citizen Evidence" %}
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+
+
+            <!-- =========================================
+                 MAIN CONTENT
+            ========================================== -->
+
+            <div class="issue-detail-content">
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="detail-section">
+
+                    <div class="detail-section-heading">
+
+                        <i class="bi bi-file-text-fill"></i>
+
+                        <h3>
+                            {% translate "Description" %}
+                        </h3>
+
+                    </div>
+
+
+                    <p>
+                        {{ issue.description }}
+                    </p>
+
+                </div>
+
+
+
+                <!-- ISSUE INFORMATION -->
+
+                <div class="detail-info-grid">
+
+
+                    <div class="detail-info-item">
+
+                        <span class="detail-label">
+
+                            <i class="bi bi-grid-fill"></i>
+
+                            {% translate "Category" %}
+
+                        </span>
+
+
+                        <strong>
+                            {{ issue.get_category_display }}
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="detail-info-item">
+
+                        <span class="detail-label">
+
+                            <i class="bi bi-calendar3"></i>
+
+                            {% translate "Reported On" %}
+
+                        </span>
+
+
+                        <strong>
+                            {{ issue.created_at|date:"d M Y, h:i A" }}
+                        </strong>
+
+                    </div>
+
+
+
+                    {% if issue.latitude and issue.longitude %}
+
+                    <div class="detail-info-item">
+
+                        <span class="detail-label">
+
+                            <i class="bi bi-compass-fill"></i>
+
+                            {% translate "Latitude" %}
+
+                        </span>
+
+
+                        <strong>
+                            {{ issue.latitude }}
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="detail-info-item">
+
+                        <span class="detail-label">
+
+                            <i class="bi bi-compass-fill"></i>
+
+                            {% translate "Longitude" %}
+
+                        </span>
+
+
+                        <strong>
+                            {{ issue.longitude }}
+                        </strong>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <!-- =====================================
+                     COMMUNITY SUPPORT
+                ====================================== -->
+
+                <div class="issue-upvote-section">
+
+
+                    <div class="upvote-information">
+
+
+                        <div class="upvote-icon">
+
+                            <i class="bi bi-people-fill"></i>
+
+                        </div>
+
+
+                        <div class="upvote-text">
+
+                            <span class="upvote-title">
+
+                                {% translate "Community Support" %}
+
+                            </span>
+
+
+                            <div class="upvote-count-row">
+
+                                <strong>
+                                    {{ issue.upvoted_by.count }}
+                                </strong>
+
+                                    <span>
+                                        {% blocktranslate count count=issue.upvoted_by.count %}
+                                            citizen supporting
+                                        {% plural %}
+                                            citizens supporting
+                                        {% endblocktranslate %}
+                                    </span>
+
+                            </div>
+
+
+                            <small>
+
+                                <i class="bi bi-info-circle me-1"></i>
+
+                                {% translate "Support this report instead of creating a duplicate." %}
+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <form
+                        method="POST"
+                        action="{% url 'issues:toggle_upvote' issue.id %}"
+                        class="upvote-form"
+                    >
+
+                        {% csrf_token %}
+
+
+                        {% if issue.citizen == request.user %}
+
+                        <button
+                            type="button"
+                            class="upvote-button upvote-disabled"
+                            disabled
+                            aria-label="{% translate 'Your Issue' %}"
+                            title="{% translate 'Your Issue' %}"
+                        >
+
+                            <i class="bi bi-person-check-fill"></i>
+
+                            <span>
+                                {% translate "Your Issue" %}
+                            </span>
+
+                        </button>
+
+
+                        {% elif request.user in issue.upvoted_by.all %}
+
+                        <button
+                            type="submit"
+                            class="upvote-button upvoted"
+                            aria-label="{% translate 'Supported' %}"
+                            title="{% translate 'Supported' %}"
+                        >
+
+                            <i class="bi bi-hand-thumbs-up-fill"></i>
+
+                            <span>
+                                {% translate "Supported" %}
+                            </span>
+
+                        </button>
+
+
+                        {% else %}
+
+                        <button
+                            type="submit"
+                            class="upvote-button"
+                            aria-label="{% translate 'Support Issue' %}"
+                            title="{% translate 'Support Issue' %}"
+                        >
+
+                            <i class="bi bi-hand-thumbs-up"></i>
+
+                            <span>
+                                {% translate "Support Issue" %}
+                            </span>
+
+                        </button>
+
+                        {% endif %}
+
+                    </form>
+
+                </div>
+
+
+
+                <!-- =====================================================
+                     ISSUE STATUS TIMELINE
+                ====================================================== -->
+
+                <div class="citizen-status-timeline-section">
+
+                    <div class="detail-section-heading">
+
+                        <i class="bi bi-activity"></i>
+
+                        <div>
+
+                            <h3>
+                                {% translate "Issue Progress" %}
+                            </h3>
+
+                            <p class="proof-citizen-subtitle">
+                                {% translate "Track the progress of your civic issue." %}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="status-timeline">
+
+
+                        <!-- INITIAL REPORT -->
+
+                        <div class="timeline-item active">
+
+                            <div class="timeline-marker">
+
+                                <i class="bi bi-megaphone-fill"></i>
+
+                            </div>
+
+
+                            <div class="timeline-content">
+
+                                <div class="timeline-header">
+
+                                    <strong>
+                                        {% translate "Issue Reported" %}
+                                    </strong>
+
+                                    <span>
+                                        {{ issue.created_at|date:"d M Y, h:i A" }}
+                                    </span>
+
+                                </div>
+
+
+                                <p>
+                                    {% translate "Your civic issue was successfully reported." %}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        {% for history in status_history %}
+
+                        <div class="timeline-item active">
+
+                            <div class="timeline-marker">
+
+                                {% if history.new_status == "under_review" %}
+
+                                    <i class="bi bi-search"></i>
+
+                                {% elif history.new_status == "in_progress" %}
+
+                                    <i class="bi bi-arrow-repeat"></i>
+
+                                {% elif history.new_status == "resolved" %}
+
+                                    <i class="bi bi-check-circle-fill"></i>
+
+                                {% elif history.new_status == "rejected" %}
+
+                                    <i class="bi bi-x-circle-fill"></i>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="timeline-content">
+
+                                <div class="timeline-header">
+
+                                    <strong>
+                                        {{ history.get_new_status_display }}
+                                    </strong>
+
+                                    <span>
+                                        {{ history.created_at|date:"d M Y, h:i A" }}
+                                    </span>
+
+                                </div>
+
+
+                                {% if history.note %}
+
+                                <p>
+                                    {{ history.note }}
+                                </p>
+
+                                {% endif %}
+
+
+                                {% if history.changed_by %}
+
+                                <div class="timeline-actor">
+
+                                    <i class="bi bi-person-check-fill"></i>
+
+                                    <span>
+
+                                        {% translate "Updated by" %}
+
+                                        {{ history.changed_by.get_full_name }}
+
+                                    </span>
+
+                                </div>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =====================================
+                     GOVERNMENT RESOLUTION EVIDENCE
+                ====================================== -->
+
+                {% if proof_images %}
+
+                <div class="government-proof-citizen-section">
+
+
+                    <div class="detail-section-heading">
+
+                        <i class="bi bi-shield-check"></i>
+
+
+                        <div>
+
+                            <h3>
+                                {% translate "Government Resolution Evidence" %}
+                            </h3>
+
+
+                            <p class="proof-citizen-subtitle">
+
+                                {% translate "Photos uploaded by government officials showing investigation, progress or resolution." %}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="citizen-proof-grid">
+
+
+                        {% for proof in proof_images %}
+
+                        <a
+                            href="{{ proof.image.url }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="citizen-proof-card"
+                        >
+
+
+                            <img
+                                src="{{ proof.image.url }}"
+                                alt="{% blocktranslate with title=issue.title %}Government proof for {{ title }}{% endblocktranslate %}"
+                            >
+
+
+                            <div class="citizen-proof-overlay">
+
+                                <i class="bi bi-arrows-fullscreen"></i>
+
+                                {% translate "View Evidence" %}
+
+                            </div>
+
+
+                            <div class="citizen-proof-meta">
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                                {% translate "Government Evidence" %}
+
+                            </div>
+
+                        </a>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+
+                <!-- =====================================
+                     LOCATION
+                ====================================== -->
+
+                {% if issue.latitude and issue.longitude %}
+
+                <div class="detail-map-section">
+
+
+                    <div class="detail-section-heading">
+
+                        <i class="bi bi-map-fill"></i>
+
+
+                        <div>
+
+                            <h3>
+                                {% translate "Issue Location" %}
+                            </h3>
+
+
+                            <p class="map-subtitle">
+
+                                {% translate "Use the map to view the reported location." %}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div
+                        id="issue-detail-map"
+                        class="issue-detail-map"
+                    >
+                    </div>
+
+
+
+                    <div class="location-action-buttons">
+
+
+                        <button
+                            type="button"
+                            class="location-action secondary"
+                            onclick="copyIssueCoordinates()"
+                            aria-label="{% translate 'Copy Coordinates' %}"
+                            title="{% translate 'Copy Coordinates' %}"
+                        >
+
+                            <i class="bi bi-copy"></i>
+
+                            {% translate "Copy Coordinates" %}
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="location-action primary"
+                            onclick="navigateToIssue()"
+                            aria-label="{% translate 'Navigate to Location' %}"
+                            title="{% translate 'Navigate to Location' %}"
+                        >
+
+                            <i class="bi bi-sign-turn-right-fill"></i>
+
+                            {% translate "Navigate to Location" %}
+
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+                {% endif %}
+
+
+            </div>
+
+
+
+            <!-- =========================================
+                 FOOTER
+            ========================================== -->
+
+            <div class="issue-detail-footer">
+
+
+                <a
+                    href="{% url 'issues:issue_map' %}"
+                    class="hero-secondary"
+                >
+
+                    <i class="bi bi-map"></i>
+
+                    {% translate "View Issue Map" %}
+
+                </a>
+
+
+                <a
+                    href="{% url 'issues:my_issues' %}"
+                    class="hero-primary"
+                >
+
+                    <i class="bi bi-list-check"></i>
+
+                    {% translate "My Issues" %}
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     LEAFLET
+========================================= -->
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+{% if issue.latitude and issue.longitude %}
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const latitude = {{ issue.latitude }};
+        const longitude = {{ issue.longitude }};
+
+
+        const map = L.map(
+            "issue-detail-map"
+        ).setView(
+            [latitude, longitude],
+            16
+        );
+
+
+        L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {
+                maxZoom: 19,
+
+                attribution:
+                    "&copy; OpenStreetMap contributors"
+            }
+        ).addTo(map);
+
+
+
+        const marker = L.marker(
+            [latitude, longitude]
+        ).addTo(map);
+
+
+
+        marker.bindPopup(
+
+            "<strong>"
+            + "{{ issue.title|escapejs }}"
+            + "</strong><br>"
+            + "{{ issue.location|escapejs }}"
+
+        ).openPopup();
+
+
+
+        setTimeout(
+            function () {
+
+                map.invalidateSize();
+
+            },
+            300
+        );
+
+    }
+);
+
+
+
+/* =========================================
+   TRANSLATION STRINGS
+========================================= */
+
+const issueDetailI18n = {
+
+    coordinatesCopied:
+        "{% translate 'Coordinates copied:' %}",
+
+    unableToCopyCoordinates:
+        "{% translate 'Unable to copy coordinates.' %}"
+
+};
+
+
+
+/* =========================================
+   COPY COORDINATES
+========================================= */
+
+function copyIssueCoordinates() {
+
+    const latitude = {{ issue.latitude }};
+    const longitude = {{ issue.longitude }};
+
+
+    const coordinates =
+        latitude + ", " + longitude;
+
+
+    navigator.clipboard.writeText(
+        coordinates
+    ).then(
+        function () {
+
+            alert(
+                issueDetailI18n.coordinatesCopied
+                + " "
+                + coordinates
+            );
+
+        }
+    ).catch(
+        function () {
+
+            alert(
+                issueDetailI18n.unableToCopyCoordinates
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================
+   NAVIGATE TO LOCATION
+========================================= */
+
+function navigateToIssue() {
+
+    const latitude = {{ issue.latitude }};
+    const longitude = {{ issue.longitude }};
+
+
+    const mapsUrl =
+        "https://www.google.com/maps/dir/"
+        + "?api=1"
+        + "&destination="
+        + latitude
+        + ","
+        + longitude
+        + "&travelmode=driving"
+        + "&dir_action=navigate";
+
+
+    window.open(
+        mapsUrl,
+        "_blank"
+    );
+
+}
+
+</script>
+
+{% endif %}
+
+
+{% endblock %}

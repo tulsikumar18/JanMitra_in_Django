@@ -1,0 +1,1215 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="referrer" content="origin">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="JanMitra - Your voice, your community, your impact."
+    >
+
+    <title>
+        {% block title %}JanMitra{% endblock %}
+    </title>
+
+
+    <!-- =====================================================
+         GOOGLE FONT
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         BOOTSTRAP
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous"
+    >
+
+
+    <!-- =====================================================
+         BOOTSTRAP ICONS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
+    <!-- =====================================================
+         THREE.JS
+    ====================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"
+    ></script>
+
+
+    <!-- =====================================================
+         JANMITRA CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+    {% block extra_css %}{% endblock %}
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         BACKGROUND
+    ====================================================== -->
+
+    <div id="network-background"></div>
+
+    <div class="background-overlay"></div>
+
+    <div class="background-glow"></div>
+
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <nav class="jan-navbar">
+
+        <div class="nav-container">
+
+
+            <!-- =================================================
+                 LOGO = HOME
+            ================================================== -->
+
+            <a
+                href="{% url 'home' %}"
+                class="jan-logo"
+            >
+
+                <span class="logo-mark">
+
+                    <i class="bi bi-diagram-3-fill"></i>
+
+                </span>
+
+
+                <span class="logo-text">
+
+                    {% if LANGUAGE_CODE == "kn" %}
+
+                        ಜನಮಿತ್ರ
+
+                    {% elif LANGUAGE_CODE == "hi" %}
+
+                        जनमित्र
+
+                    {% else %}
+
+                        Jan<span>Mitra</span>
+
+                    {% endif %}
+
+                </span>
+
+            </a>
+
+
+            <!-- =================================================
+                 MOBILE MENU
+            ================================================== -->
+
+            <button
+                type="button"
+                class="mobile-menu-toggle"
+                id="mobile-menu-toggle"
+                aria-label="{% translate 'Open navigation menu' %}"
+                aria-expanded="false"
+                aria-controls="mobile-navigation"
+            >
+
+                <i class="bi bi-list"></i>
+
+            </button>
+
+
+            <!-- =================================================
+                 DESKTOP NAVIGATION
+            ================================================== -->
+
+            <div
+                class="nav-links {% if request.user.is_authenticated %}nav-authenticated{% else %}nav-guest{% endif %}"
+                id="desktop-navigation"
+            >
+
+                {% if request.user.is_authenticated %}
+
+
+                    <!-- =================================================
+                         MAIN NAVIGATION
+                    ================================================== -->
+
+                    {% if request.user.is_citizen %}
+
+
+                        <!-- =================================================
+                             CITIZEN USER
+                        ================================================== -->
+
+
+                        <!-- DASHBOARD -->
+
+                        <a
+                            href="{% url 'users:dashboard' %}"
+                            class="nav-link-custom"
+                        >
+
+                            <i class="bi bi-grid-1x2 me-1"></i>
+
+                            {% translate "Dashboard" %}
+
+                        </a>
+
+
+                        <!-- REPORT ISSUE -->
+
+                        <a
+                            href="{% url 'issues:report_issue' %}"
+                            class="nav-link-custom"
+                        >
+
+                            <i class="bi bi-megaphone me-1"></i>
+
+                            {% translate "Report Issue" %}
+
+                        </a>
+
+
+                        <!-- MY ISSUES -->
+
+                        <a
+                            href="{% url 'issues:my_issues' %}"
+                            class="nav-link-custom"
+                        >
+
+                            <i class="bi bi-list-check me-1"></i>
+
+                            {% translate "My Issues" %}
+
+                        </a>
+
+
+                        <!-- ISSUE MAP -->
+
+                        <a
+                            href="{% url 'issues:issue_map' %}"
+                            class="nav-link-custom"
+                        >
+
+                            <i class="bi bi-map me-1"></i>
+
+                            {% translate "Issue Map" %}
+
+                        </a>
+
+
+                    {% else %}
+
+
+                        <!-- =================================================
+                             GOVERNMENT USER
+                        ================================================== -->
+
+
+                        <!-- DASHBOARD -->
+
+                        <a
+                            href="{% url 'users:dashboard' %}"
+                            class="nav-link-custom"
+                        >
+
+                            <i class="bi bi-grid-1x2 me-1"></i>
+
+                            {% translate "Dashboard" %}
+
+                        </a>
+
+
+                        <!-- MANAGE ISSUES -->
+
+                        <a
+                            href="{% url 'issues:government_issue_list' %}"
+                            class="nav-link-custom"
+                        >
+
+                            <i class="bi bi-clipboard-data me-1"></i>
+
+                            {% translate "Manage Issues" %}
+
+                        </a>
+
+
+                    {% endif %}
+
+
+                    <!-- =================================================
+                         LANGUAGE SELECTOR
+                    ================================================== -->
+
+                    <div class="language-selector">
+
+                        <form
+                            method="post"
+                            action="{% url 'set_language' %}"
+                            class="language-form"
+                        >
+
+                            {% csrf_token %}
+
+
+                            <input
+                                type="hidden"
+                                name="next"
+                                value="{{ request.get_full_path }}"
+                            >
+
+
+                            <div class="language-control">
+
+                                <i class="bi bi-translate"></i>
+
+
+                                <select
+                                    name="language"
+                                    class="language-select"
+                                    onchange="this.form.submit()"
+                                    aria-label="{% translate 'Select language' %}"
+                                >
+
+                                    {% for lang in LANGUAGES %}
+
+                                        <option
+                                            value="{{ lang.0 }}"
+                                            {% if LANGUAGE_CODE == lang.0 %}
+                                                selected
+                                            {% endif %}
+                                        >
+
+                                            {{ lang.1 }}
+
+                                        </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+
+                                <i class="bi bi-chevron-down language-chevron"></i>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         REWARDS WALLET
+                         CITIZEN ONLY
+                         
+                         IMPORTANT:
+                         This is intentionally AFTER
+                         the language selector.
+                    ================================================== -->
+
+                    {% if request.user.is_citizen %}
+
+                        <a
+                            href="{% url 'rewards:wallet' %}"
+                            class="rewards-wallet-nav"
+                            title="{% translate 'My Rewards' %}"
+                            aria-label="{% translate 'My Rewards' %}"
+                        >
+
+                            <span class="wallet-icon-wrapper">
+
+                                <i class="bi bi-wallet2"></i>
+
+                                <span class="wallet-coin-badge">
+
+                                    <i class="bi bi-coin"></i>
+
+                                    {{ user.coin_wallet.balance|default:"0" }}
+
+                                </span>
+
+                            </span>
+
+                        </a>
+
+                    {% endif %}
+
+
+                    <!-- =================================================
+                        NOTIFICATIONS
+                        CITIZEN ONLY
+                    ================================================== -->
+
+                    {% if request.user.is_citizen %}
+
+                        <a
+                            href="{% url 'notifications:list' %}"
+                            class="notifications-nav"
+                            title="{% translate 'Notifications' %}"
+                            aria-label="{% translate 'Notifications' %}"
+                        >
+
+                            <span class="notification-icon-wrapper">
+
+                                <i class="bi bi-bell"></i>
+
+                                {% if notification_unread_count > 0 %}
+
+                                    <span class="notification-count-badge">
+                                        {{ notification_unread_count }}
+                                    </span>
+
+                                {% endif %}
+
+                            </span>
+
+                        </a>
+                            
+                    {% endif %}
+
+
+
+
+
+                    <!-- =================================================
+                         LOGOUT
+                    ================================================== -->
+
+                    <a
+                        href="{% url 'users:logout' %}"
+                        class="nav-button"
+                    >
+
+                        <i class="bi bi-box-arrow-right"></i>
+
+                        {% translate "Logout" %}
+
+                    </a>
+
+
+                {% else %}
+
+
+                    <!-- =================================================
+                         GUEST LANGUAGE SELECTOR
+                    ================================================== -->
+
+                    <div class="language-selector">
+
+                        <form
+                            action="{% url 'set_language' %}"
+                            method="post"
+                            class="language-form"
+                        >
+
+                            {% csrf_token %}
+
+
+                            <input
+                                type="hidden"
+                                name="next"
+                                value="{{ request.get_full_path }}"
+                            >
+
+
+                            <div class="language-control">
+
+                                <i class="bi bi-translate"></i>
+
+
+                                <select
+                                    name="language"
+                                    class="language-select"
+                                    onchange="this.form.submit()"
+                                    aria-label="{% translate 'Select language' %}"
+                                >
+
+                                    <option
+                                        value="en"
+                                        {% if LANGUAGE_CODE == "en" %}
+                                            selected
+                                        {% endif %}
+                                    >
+
+                                        English
+
+                                    </option>
+
+
+                                    <option
+                                        value="kn"
+                                        {% if LANGUAGE_CODE == "kn" %}
+                                            selected
+                                        {% endif %}
+                                    >
+
+                                        ಕನ್ನಡ
+
+                                    </option>
+
+
+                                    <option
+                                        value="hi"
+                                        {% if LANGUAGE_CODE == "hi" %}
+                                            selected
+                                        {% endif %}
+                                    >
+
+                                        हिन्दी
+
+                                    </option>
+
+                                </select>
+
+
+                                <i class="bi bi-chevron-down language-chevron"></i>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         LOGIN
+                    ================================================== -->
+
+                    <a
+                        href="{% url 'users:login' %}"
+                        class="nav-link-custom"
+                    >
+
+                        {% translate "Login" %}
+
+                    </a>
+
+
+                    <!-- =================================================
+                         REGISTER
+                    ================================================== -->
+
+                    <a
+                        href="{% url 'users:register' %}"
+                        class="nav-button"
+                    >
+
+                        <i class="bi bi-arrow-right"></i>
+
+                        {% translate "Get Started" %}
+
+                    </a>
+
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- =====================================================
+                 MOBILE NAVIGATION
+            ====================================================== -->
+
+            <div
+                class="mobile-navigation"
+                id="mobile-navigation"
+            >
+
+                {% if request.user.is_authenticated %}
+
+
+                    {% if request.user.is_citizen %}
+
+
+                        <!-- =================================================
+                             CITIZEN MOBILE NAVIGATION
+                        ================================================== -->
+
+
+                        <!-- DASHBOARD -->
+
+                        <a
+                            href="{% url 'users:dashboard' %}"
+                            class="mobile-nav-link"
+                        >
+
+                            <i class="bi bi-grid-1x2"></i>
+
+                            <span>
+                                {% translate "Dashboard" %}
+                            </span>
+
+                        </a>
+
+
+                        <!-- REPORT ISSUE -->
+
+                        <a
+                            href="{% url 'issues:report_issue' %}"
+                            class="mobile-nav-link"
+                        >
+
+                            <i class="bi bi-megaphone"></i>
+
+                            <span>
+                                {% translate "Report Issue" %}
+                            </span>
+
+                        </a>
+
+
+                        <!-- MY ISSUES -->
+
+                        <a
+                            href="{% url 'issues:my_issues' %}"
+                            class="mobile-nav-link"
+                        >
+
+                            <i class="bi bi-list-check"></i>
+
+                            <span>
+                                {% translate "My Issues" %}
+                            </span>
+
+                        </a>
+
+
+                        <!-- ISSUE MAP -->
+
+                        <a
+                            href="{% url 'issues:issue_map' %}"
+                            class="mobile-nav-link"
+                        >
+
+                            <i class="bi bi-map"></i>
+
+                            <span>
+                                {% translate "Issue Map" %}
+                            </span>
+
+                        </a>
+
+
+                        <!-- =================================================
+                             MY REWARDS
+                             MOBILE
+                        ================================================== -->
+
+                        <a
+                            href="{% url 'rewards:wallet' %}"
+                            class="mobile-nav-link"
+                        >
+
+                            <i class="bi bi-wallet2"></i>
+
+                            <span>
+                                {% translate "My Rewards" %}
+                            </span>
+
+                            <span class="mobile-reward-balance">
+
+                                <i class="bi bi-coin"></i>
+
+                                {{ user.coin_wallet.balance|default:"0" }}
+
+                            </span>
+
+                        </a>
+
+
+
+                        <!-- =================================================
+                            NOTIFICATIONS
+                            MOBILE
+                        ================================================== -->
+
+                        <a
+                            href="{% url 'notifications:list' %}"
+                            class="mobile-nav-link mobile-notification-link"
+                        >
+
+                            <i class="bi bi-bell"></i>
+
+                            <span>
+                                {% translate "Notifications" %}
+                            </span>
+
+                            {% if notification_unread_count > 0 %}
+
+                                <span class="mobile-notification-balance">
+                                    {{ notification_unread_count }}
+                                </span>
+
+                            {% endif %}
+
+                        </a>
+
+
+                    {% else %}
+
+
+                        <!-- =================================================
+                             GOVERNMENT MOBILE NAVIGATION
+                        ================================================== -->
+
+
+                        <!-- GOVERNMENT DASHBOARD -->
+
+                        <a
+                            href="{% url 'users:dashboard' %}"
+                            class="mobile-nav-link"
+                        >
+
+                            <i class="bi bi-grid-1x2"></i>
+
+                            <span>
+                                {% translate "Dashboard" %}
+                            </span>
+
+                        </a>
+
+
+                        <!-- GOVERNMENT ISSUE MANAGEMENT -->
+
+                        <a
+                            href="{% url 'issues:government_issue_list' %}"
+                            class="mobile-nav-link"
+                        >
+
+                            <i class="bi bi-clipboard-data"></i>
+
+                            <span>
+                                {% translate "Manage Issues" %}
+                            </span>
+
+                        </a>
+
+
+                    {% endif %}
+
+
+                    <!-- =================================================
+                         MOBILE PROFILE
+                    ================================================== -->
+
+                    <a
+                        href="{% url 'users:profile' %}"
+                        class="mobile-nav-link"
+                    >
+
+                        <i class="bi bi-person-circle"></i>
+
+                        <span>
+                            {% translate "My Profile" %}
+                        </span>
+
+                    </a>
+
+
+                    <!-- =================================================
+                         MOBILE LANGUAGE
+                    ================================================== -->
+
+                    <div class="mobile-language-wrapper">
+
+                        <div class="mobile-language-label">
+
+                            <i class="bi bi-translate"></i>
+
+                            <span>
+                                {% translate "Language" %}
+                            </span>
+
+                        </div>
+
+
+                        <form
+                            method="post"
+                            action="{% url 'set_language' %}"
+                            class="mobile-language-form"
+                        >
+
+                            {% csrf_token %}
+
+
+                            <input
+                                type="hidden"
+                                name="next"
+                                value="{{ request.get_full_path }}"
+                            >
+
+
+                            <select
+                                name="language"
+                                class="mobile-language-select"
+                                onchange="this.form.submit()"
+                                aria-label="{% translate 'Select language' %}"
+                            >
+
+                                {% for lang in LANGUAGES %}
+
+                                    <option
+                                        value="{{ lang.0 }}"
+                                        {% if LANGUAGE_CODE == lang.0 %}
+                                            selected
+                                        {% endif %}
+                                    >
+
+                                        {{ lang.1 }}
+
+                                    </option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </form>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         MOBILE LOGOUT
+                    ================================================== -->
+
+                    <a
+                        href="{% url 'users:logout' %}"
+                        class="mobile-nav-logout"
+                    >
+
+                        <i class="bi bi-box-arrow-right"></i>
+
+                        <span>
+                            {% translate "Logout" %}
+                        </span>
+
+                    </a>
+
+
+                {% else %}
+
+
+                    <!-- =================================================
+                         GUEST MOBILE LANGUAGE
+                    ================================================== -->
+
+                    <div class="mobile-language-wrapper">
+
+                        <div class="mobile-language-label">
+
+                            <i class="bi bi-translate"></i>
+
+                            <span>
+                                {% translate "Language" %}
+                            </span>
+
+                        </div>
+
+
+                        <form
+                            action="{% url 'set_language' %}"
+                            method="post"
+                            class="mobile-language-form"
+                        >
+
+                            {% csrf_token %}
+
+
+                            <input
+                                type="hidden"
+                                name="next"
+                                value="{{ request.get_full_path }}"
+                            >
+
+
+                            <select
+                                name="language"
+                                class="mobile-language-select"
+                                onchange="this.form.submit()"
+                            >
+
+                                <option
+                                    value="en"
+                                    {% if LANGUAGE_CODE == "en" %}
+                                        selected
+                                    {% endif %}
+                                >
+
+                                    English
+
+                                </option>
+
+
+                                <option
+                                    value="kn"
+                                    {% if LANGUAGE_CODE == "kn" %}
+                                        selected
+                                    {% endif %}
+                                >
+
+                                    ಕನ್ನಡ
+
+                                </option>
+
+
+                                <option
+                                    value="hi"
+                                    {% if LANGUAGE_CODE == "hi" %}
+                                        selected
+                                    {% endif %}
+                                >
+
+                                    हिन्दी
+
+                                </option>
+
+                            </select>
+
+                        </form>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         MOBILE LOGIN
+                    ================================================== -->
+
+                    <a
+                        href="{% url 'users:login' %}"
+                        class="mobile-nav-link"
+                    >
+
+                        <i class="bi bi-box-arrow-in-right"></i>
+
+                        <span>
+                            {% translate "Login" %}
+                        </span>
+
+                    </a>
+
+
+                    <!-- =================================================
+                         MOBILE REGISTER
+                    ================================================== -->
+
+                    <a
+                        href="{% url 'users:register' %}"
+                        class="mobile-nav-register"
+                    >
+
+                        <i class="bi bi-arrow-right"></i>
+
+                        <span>
+                            {% translate "Get Started" %}
+                        </span>
+
+                    </a>
+
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         DJANGO MESSAGES
+    ====================================================== -->
+
+    {% if messages %}
+
+        <div class="message-wrapper">
+
+            {% for message in messages %}
+
+                <div class="glass-message">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    <span>
+                        {{ message }}
+                    </span>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- =====================================================
+         PAGE CONTENT
+    ====================================================== -->
+
+    <main class="page-content">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+
+    <!-- =====================================================
+         BOOTSTRAP JS
+    ====================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+
+    <!-- =====================================================
+         JANMITRA JAVASCRIPT
+    ====================================================== -->
+
+    <script
+        src="{% static 'js/network.js' %}"
+    ></script>
+
+
+    <script
+        src="{% static 'js/main.js' %}"
+    ></script>
+
+
+    <!-- =====================================================
+         MOBILE NAVIGATION JS
+    ====================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const menuButton =
+                    document.getElementById(
+                        "mobile-menu-toggle"
+                    );
+
+
+                const mobileNavigation =
+                    document.getElementById(
+                        "mobile-navigation"
+                    );
+
+
+                if (
+                    !menuButton ||
+                    !mobileNavigation
+                ) {
+
+                    return;
+
+                }
+
+
+                /* =================================================
+                   OPEN / CLOSE MOBILE MENU
+                ================================================== */
+
+                menuButton.addEventListener(
+                    "click",
+                    function () {
+
+                        const isOpen =
+                            mobileNavigation.classList.toggle(
+                                "mobile-navigation-open"
+                            );
+
+
+                        menuButton.setAttribute(
+                            "aria-expanded",
+                            isOpen
+                                ? "true"
+                                : "false"
+                        );
+
+
+                        const icon =
+                            menuButton.querySelector(
+                                "i"
+                            );
+
+
+                        if (icon) {
+
+                            icon.className =
+                                isOpen
+                                    ? "bi bi-x-lg"
+                                    : "bi bi-list";
+
+                        }
+
+                    }
+                );
+
+
+                /* =================================================
+                   CLOSE MENU AFTER LINK CLICK
+                ================================================== */
+
+                const mobileLinks =
+                    mobileNavigation.querySelectorAll(
+                        "a"
+                    );
+
+
+                mobileLinks.forEach(
+                    function (link) {
+
+                        link.addEventListener(
+                            "click",
+                            function () {
+
+                                mobileNavigation.classList.remove(
+                                    "mobile-navigation-open"
+                                );
+
+
+                                menuButton.setAttribute(
+                                    "aria-expanded",
+                                    "false"
+                                );
+
+
+                                const icon =
+                                    menuButton.querySelector(
+                                        "i"
+                                    );
+
+
+                                if (icon) {
+
+                                    icon.className =
+                                        "bi bi-list";
+
+                                }
+
+                            }
+                        );
+
+                    }
+                );
+
+
+                /* =================================================
+                   CLOSE MENU WHEN CLICKING OUTSIDE
+                ================================================== */
+
+                document.addEventListener(
+                    "click",
+                    function (event) {
+
+                        if (
+                            !mobileNavigation.contains(
+                                event.target
+                            ) &&
+                            !menuButton.contains(
+                                event.target
+                            )
+                        ) {
+
+                            mobileNavigation.classList.remove(
+                                "mobile-navigation-open"
+                            );
+
+
+                            menuButton.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+
+                            const icon =
+                                menuButton.querySelector(
+                                    "i"
+                                );
+
+
+                            if (icon) {
+
+                                icon.className =
+                                    "bi bi-list";
+
+                            }
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
+
+
+    <!-- =====================================================
+         PAGE-SPECIFIC JAVASCRIPT
+    ====================================================== -->
+
+    {% block extra_js %}{% endblock %}
+
+
+</body>
+
+</html>

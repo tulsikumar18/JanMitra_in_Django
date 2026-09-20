@@ -1,0 +1,961 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+    Government Analytics | JanMitra
+{% endblock %}
+
+
+{% block content %}
+
+<section class="government-analytics-page">
+
+    <div class="government-analytics-container">
+
+
+        <!-- ==================================================
+             HEADER
+        =================================================== -->
+
+        <div class="analytics-header">
+
+            <div>
+
+                <div class="analytics-eyebrow">
+
+                    <i class="bi bi-bar-chart-line-fill"></i>
+
+                    {% translate "GOVERNMENT ANALYTICS" %}
+
+                </div>
+
+
+                <h1>
+                    {% translate "Civic Issue Intelligence" %}
+                </h1>
+
+
+                <p>
+                    {% translate "Monitor issue trends, categories, workload and resolution performance." %}
+                </p>
+
+            </div>
+
+
+            <div class="analytics-header-actions">
+
+                <a
+                    href="{% url 'users:dashboard' %}"
+                    class="analytics-secondary-button"
+                >
+
+                    <i class="bi bi-speedometer2"></i>
+
+                    {% translate "Dashboard" %}
+
+                </a>
+
+
+                <a
+                    href="{% url 'issues:government_issue_list' %}"
+                    class="analytics-primary-button"
+                >
+
+                    <i class="bi bi-list-check"></i>
+
+                    {% translate "Manage Issues" %}
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             KPI CARDS
+        =================================================== -->
+
+        <div class="analytics-kpi-grid">
+
+
+            <!-- TOTAL -->
+
+            <div class="analytics-kpi-card">
+
+                <div class="analytics-kpi-icon blue">
+
+                    <i class="bi bi-clipboard-data-fill"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        {% translate "Total Issues" %}
+                    </span>
+
+                    <strong>
+                        {{ total_issues }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- REPORTED -->
+
+            <div class="analytics-kpi-card">
+
+                <div class="analytics-kpi-icon red">
+
+                    <i class="bi bi-megaphone-fill"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        {% translate "Reported" %}
+                    </span>
+
+                    <strong>
+                        {{ reported_issues }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PENDING -->
+
+            <div class="analytics-kpi-card">
+
+                <div class="analytics-kpi-icon orange">
+
+                    <i class="bi bi-hourglass-split"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        {% translate "Pending" %}
+                    </span>
+
+                    <strong>
+                        {{ pending_issues }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- IN PROGRESS -->
+
+            <div class="analytics-kpi-card">
+
+                <div class="analytics-kpi-icon cyan">
+
+                    <i class="bi bi-arrow-repeat"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        {% translate "In Progress" %}
+                    </span>
+
+                    <strong>
+                        {{ in_progress_issues }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RESOLVED -->
+
+            <div class="analytics-kpi-card">
+
+                <div class="analytics-kpi-icon green">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        {% translate "Resolved" %}
+                    </span>
+
+                    <strong>
+                        {{ resolved_issues }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- REJECTED -->
+
+            <div class="analytics-kpi-card">
+
+                <div class="analytics-kpi-icon gray">
+
+                    <i class="bi bi-x-circle-fill"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        {% translate "Rejected" %}
+                    </span>
+
+                    <strong>
+                        {{ rejected_issues }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             CHART ROW
+        =================================================== -->
+
+        <div class="analytics-chart-grid">
+
+
+            <!-- STATUS -->
+
+            <div class="analytics-panel">
+
+                <div class="analytics-panel-heading">
+
+                    <div>
+
+                        <h2>
+                            {% translate "Issue Status Distribution" %}
+                        </h2>
+
+                        <p>
+                            {% translate "Current state of all civic issues." %}
+                        </p>
+
+                    </div>
+
+                    <i class="bi bi-pie-chart-fill"></i>
+
+                </div>
+
+
+                <div class="analytics-chart-wrapper doughnut-wrapper">
+
+                    <canvas id="statusChart"></canvas>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CATEGORY -->
+
+            <div class="analytics-panel">
+
+                <div class="analytics-panel-heading">
+
+                    <div>
+
+                        <h2>
+                            {% translate "Issues by Category" %}
+                        </h2>
+
+                        <p>
+                            {% translate "Identify the most common civic problems." %}
+                        </p>
+
+                    </div>
+
+                    <i class="bi bi-bar-chart-fill"></i>
+
+                </div>
+
+
+                <div class="analytics-chart-wrapper">
+
+                    <canvas id="categoryChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             MONTHLY TREND
+        =================================================== -->
+
+        <div class="analytics-panel analytics-trend-panel">
+
+            <div class="analytics-panel-heading">
+
+                <div>
+
+                    <h2>
+                        {% translate "Monthly Issue Trend" %}
+                    </h2>
+
+                    <p>
+                        {% translate "Number of issues reported over time." %}
+                    </p>
+
+                </div>
+
+                <i class="bi bi-graph-up-arrow"></i>
+
+            </div>
+
+
+            <div class="analytics-chart-wrapper trend-wrapper">
+
+                <canvas id="monthlyChart"></canvas>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             PERFORMANCE + INSIGHTS
+        =================================================== -->
+
+        <div class="analytics-bottom-grid">
+
+
+            <!-- RESOLUTION RATE -->
+
+            <div class="analytics-panel resolution-panel">
+
+                <div class="analytics-panel-heading">
+
+                    <div>
+
+                        <h2>
+                            {% translate "Resolution Performance" %}
+                        </h2>
+
+                        <p>
+                            {% translate "Percentage of all reported issues that have been resolved." %}
+                        </p>
+
+                    </div>
+
+                    <i class="bi bi-speedometer"></i>
+
+                </div>
+
+
+                <div class="resolution-content">
+
+                    <div
+                        class="resolution-circle"
+                        style="--resolution: {{ resolution_rate }}%;"
+                    >
+
+                        <div>
+
+                            <strong>
+                                {{ resolution_rate }}%
+                            </strong>
+
+                            <span>
+                                {% translate "Resolved" %}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="resolution-summary">
+
+                        <div>
+
+                            <span>
+                                {% translate "Total Issues" %}
+                            </span>
+
+                            <strong>
+                                {{ total_issues }}
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                {% translate "Resolved" %}
+                            </span>
+
+                            <strong>
+                                {{ resolved_issues }}
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                {% translate "Pending" %}
+                            </span>
+
+                            <strong>
+                                {{ pending_issues }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- INSIGHTS -->
+
+            <div class="analytics-panel">
+
+                <div class="analytics-panel-heading">
+
+                    <div>
+
+                        <h2>
+                            {% translate "Government Insights" %}
+                        </h2>
+
+                        <p>
+                            {% translate "Quick overview of the current workload." %}
+                        </p>
+
+                    </div>
+
+                    <i class="bi bi-lightbulb-fill"></i>
+
+                </div>
+
+
+                <div class="analytics-insights">
+
+
+                    <div class="analytics-insight-item">
+
+                        <div class="insight-icon">
+
+                            <i class="bi bi-tags-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                {% translate "Most Reported Category" %}
+                            </span>
+
+                            <strong>
+                                {% if most_reported_category %}
+                                    {{ most_reported_category }}
+                                {% else %}
+                                    {% translate "No data yet" %}
+                                {% endif %}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="analytics-insight-item">
+
+                        <div class="insight-icon">
+
+                            <i class="bi bi-hourglass-split"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                {% translate "Current Backlog" %}
+                            </span>
+
+                            <strong>
+                                {{ pending_issues }}
+                                {% translate "issues" %}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="analytics-insight-item">
+
+                        <div class="insight-icon">
+
+                            <i class="bi bi-check2-circle"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                {% translate "Successful Resolutions" %}
+                            </span>
+
+                            <strong>
+                                {{ resolved_issues }}
+                                {% translate "issues" %}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================================
+     CHART.JS
+=========================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =====================================================
+           STATUS DATA
+        ====================================================== */
+
+        const statusLabels = {{ status_labels|safe }};
+
+        const statusCounts = {{ status_counts|safe }};
+
+
+
+        /* =====================================================
+           CATEGORY DATA
+        ====================================================== */
+
+        const categoryLabels = {{ category_labels|safe }};
+
+        const categoryCounts = {{ category_counts|safe }};
+
+
+
+        /* =====================================================
+           MONTHLY DATA
+        ====================================================== */
+
+        const monthlyLabels = {{ monthly_labels|safe }};
+
+        const monthlyCounts = {{ monthly_counts|safe }};
+
+
+
+        /* =====================================================
+           COMMON OPTIONS
+        ====================================================== */
+
+        const commonFont = {
+            family: "Inter, sans-serif"
+        };
+
+
+
+        /* =====================================================
+           STATUS DOUGHNUT
+        ====================================================== */
+
+        const statusCanvas =
+            document.getElementById(
+                "statusChart"
+            );
+
+
+        if (statusCanvas) {
+
+            new Chart(
+                statusCanvas,
+                {
+
+                    type: "doughnut",
+
+                    data: {
+
+                        labels: statusLabels,
+
+                        datasets: [
+
+                            {
+
+                                data: statusCounts,
+
+                                backgroundColor: [
+
+                                    "#ef4444",
+                                    "#f59e0b",
+                                    "#06b6d4",
+                                    "#22c55e",
+                                    "#64748b"
+
+                                ],
+
+                                borderColor: "#071226",
+
+                                borderWidth: 4
+
+                            }
+
+                        ]
+
+                    },
+
+                    options: {
+
+                        responsive: true,
+
+                        maintainAspectRatio: false,
+
+                        cutout: "68%",
+
+                        plugins: {
+
+                            legend: {
+
+                                position: "bottom",
+
+                                labels: {
+
+                                    color: "#cbd5e1",
+
+                                    font: commonFont,
+
+                                    padding: 18
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           CATEGORY BAR
+        ====================================================== */
+
+        const categoryCanvas =
+            document.getElementById(
+                "categoryChart"
+            );
+
+
+        if (categoryCanvas) {
+
+            new Chart(
+                categoryCanvas,
+                {
+
+                    type: "bar",
+
+                    data: {
+
+                        labels: categoryLabels,
+
+                        datasets: [
+
+                            {
+
+                                label: "Issues",
+
+                                data: categoryCounts,
+
+                                backgroundColor:
+                                    "rgba(34, 184, 255, 0.70)",
+
+                                borderColor:
+                                    "#22b8ff",
+
+                                borderWidth: 1,
+
+                                borderRadius: 8
+
+                            }
+
+                        ]
+
+                    },
+
+                    options: {
+
+                        responsive: true,
+
+                        maintainAspectRatio: false,
+
+                        plugins: {
+
+                            legend: {
+
+                                display: false
+
+                            }
+
+                        },
+
+                        scales: {
+
+                            x: {
+
+                                ticks: {
+
+                                    color: "#94a3b8",
+
+                                    font: commonFont
+
+                                },
+
+                                grid: {
+
+                                    display: false
+
+                                }
+
+                            },
+
+                            y: {
+
+                                beginAtZero: true,
+
+                                ticks: {
+
+                                    color: "#94a3b8",
+
+                                    precision: 0,
+
+                                    font: commonFont
+
+                                },
+
+                                grid: {
+
+                                    color:
+                                        "rgba(148, 163, 184, 0.10)"
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           MONTHLY LINE
+        ====================================================== */
+
+        const monthlyCanvas =
+            document.getElementById(
+                "monthlyChart"
+            );
+
+
+        if (monthlyCanvas) {
+
+            new Chart(
+                monthlyCanvas,
+                {
+
+                    type: "line",
+
+                    data: {
+
+                        labels: monthlyLabels,
+
+                        datasets: [
+
+                            {
+
+                                label: "{% translate 'Reported Issues' %}",
+
+                                data: monthlyCounts,
+
+                                borderColor:
+                                    "#22b8ff",
+
+                                backgroundColor:
+                                    "rgba(34, 184, 255, 0.12)",
+
+                                borderWidth: 3,
+
+                                fill: true,
+
+                                tension: 0.35,
+
+                                pointRadius: 5,
+
+                                pointHoverRadius: 7,
+
+                                pointBackgroundColor:
+                                    "#22b8ff",
+
+                                pointBorderColor:
+                                    "#071226",
+
+                                pointBorderWidth: 2
+
+                            }
+
+                        ]
+
+                    },
+
+                    options: {
+
+                        responsive: true,
+
+                        maintainAspectRatio: false,
+
+                        plugins: {
+
+                            legend: {
+
+                                labels: {
+
+                                    color: "#cbd5e1",
+
+                                    font: commonFont
+
+                                }
+
+                            }
+
+                        },
+
+                        scales: {
+
+                            x: {
+
+                                ticks: {
+
+                                    color: "#94a3b8",
+
+                                    font: commonFont
+
+                                },
+
+                                grid: {
+
+                                    display: false
+
+                                }
+
+                            },
+
+                            y: {
+
+                                beginAtZero: true,
+
+                                ticks: {
+
+                                    color: "#94a3b8",
+
+                                    precision: 0,
+
+                                    font: commonFont
+
+                                },
+
+                                grid: {
+
+                                    color:
+                                        "rgba(148, 163, 184, 0.10)"
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+            );
+
+        }
+
+    }
+
+);
+
+</script>
+
+{% endblock %}
