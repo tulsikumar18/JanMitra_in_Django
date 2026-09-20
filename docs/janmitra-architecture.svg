@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+<title id="title">JanMitra system architecture</title>
+<desc id="desc">Animated architecture diagram showing citizens and government users interacting with the Django JanMitra platform, with Gemini AI, maps, PostgreSQL or SQLite, static files, and media storage.</desc>
+<style>
+  .bg{fill:#061126}.card{fill:#0b1830;stroke:#23446f;stroke-width:2}.title{fill:#f7fbff;font:700 22px system-ui}.label{fill:#a9bdd8;font:500 14px system-ui}.small{fill:#dce9f8;font:600 15px system-ui}.line{stroke:#2aa9ff;stroke-width:2;fill:none;stroke-dasharray:8 10;animation:dash 8s linear infinite}.node{fill:#16b9ff;filter:drop-shadow(0 0 8px #16b9ff)}@keyframes dash{to{stroke-dashoffset:-180}}
+</style>
+<rect class="bg" width="1200" height="680" rx="28"/>
+<text x="60" y="58" class="title">JANMITRA • Civic Issue Intelligence Platform</text>
+<text x="60" y="84" class="label">Citizen reporting → AI assistance → government workflow → transparent resolution</text>
+
+<rect class="card" x="55" y="135" width="250" height="160" rx="22"/>
+<text x="80" y="175" class="title">Citizen Portal</text>
+<text x="80" y="205" class="small">Report issues</text>
+<text x="80" y="230" class="small">Track &amp; upvote</text>
+<text x="80" y="255" class="small">Map • Wallet • Notifications</text>
+<text x="80" y="280" class="label">English • Hindi • Kannada • Voice</text>
+
+<rect class="card" x="475" y="115" width="250" height="205" rx="22"/>
+<text x="500" y="155" class="title">Django Application</text>
+<text x="500" y="188" class="small">Users &amp; authentication</text>
+<text x="500" y="214" class="small">Issues &amp; status history</text>
+<text x="500" y="240" class="small">Rewards &amp; notifications</text>
+<text x="500" y="266" class="small">i18n &amp; media handling</text>
+<text x="500" y="292" class="label">Python • Django • Templates • JS</text>
+
+<rect class="card" x="895" y="135" width="250" height="160" rx="22"/>
+<text x="920" y="175" class="title">Government Portal</text>
+<text x="920" y="205" class="small">Review reports</text>
+<text x="920" y="230" class="small">Update status</text>
+<text x="920" y="255" class="small">Analytics &amp; proof</text>
+<text x="920" y="280" class="label">Resolution workflow</text>
+
+<rect class="card" x="55" y="430" width="250" height="145" rx="22"/>
+<text x="80" y="470" class="title">Gemini AI</text>
+<text x="80" y="502" class="small">Issue understanding</text>
+<text x="80" y="528" class="small">Category / title assistance</text>
+<text x="80" y="554" class="label">gemini-2.5-flash</text>
+
+<rect class="card" x="475" y="405" width="250" height="175" rx="22"/>
+<text x="500" y="445" class="title">Data Layer</text>
+<text x="500" y="478" class="small">SQLite • local development</text>
+<text x="500" y="504" class="small">PostgreSQL • production</text>
+<text x="500" y="530" class="small">Django migrations</text>
+<text x="500" y="556" class="label">Environment-driven configuration</text>
+
+<rect class="card" x="895" y="430" width="250" height="145" rx="22"/>
+<text x="920" y="470" class="title">Platform Services</text>
+<text x="920" y="502" class="small">OpenStreetMap / map UI</text>
+<text x="920" y="528" class="small">Voice input • static assets</text>
+<text x="920" y="554" class="label">WhiteNoise • Gunicorn • Render-ready</text>
+
+<path class="line" d="M305 215 C370 215 405 215 475 215"/>
+<path class="line" d="M725 215 C790 215 830 215 895 215"/>
+<path class="line" d="M180 295 C180 355 420 365 500 405"/>
+<path class="line" d="M600 320 C600 350 600 370 600 405"/>
+<path class="line" d="M725 500 C800 500 825 500 895 500"/>
+<path class="line" d="M475 500 C400 500 365 500 305 500"/>
+<circle class="node" cx="390" cy="215" r="5"><animate attributeName="r" values="4;8;4" dur="1.8s" repeatCount="indefinite"/></circle>
+<circle class="node" cx="810" cy="215" r="5"><animate attributeName="r" values="4;8;4" dur="2.1s" repeatCount="indefinite"/></circle>
+<circle class="node" cx="600" cy="360" r="5"><animate attributeName="r" values="4;8;4" dur="1.6s" repeatCount="indefinite"/></circle>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" role="img" aria-labelledby="title desc">
+<title id="title">JanMitra issue lifecycle</title>
+<desc id="desc">Animated flow from reporting a civic issue through AI assistance, government review, work in progress, resolution, notification, and citizen reward.</desc>
+<style>
+.bg{fill:#061126}.box{fill:#0b1830;stroke:#23446f;stroke-width:2}.t{fill:#f7fbff;font:700 16px system-ui}.s{fill:#a9bdd8;font:500 12px system-ui}.a{stroke:#16b9ff;stroke-width:2;stroke-dasharray:7 8;animation:d 7s linear infinite;fill:none}@keyframes d{to{stroke-dashoffset:-120}}
+</style>
+<rect class="bg" width="1200" height="340" rx="28"/>
+<g transform="translate(30,95)">
+<rect class="box" width="145" height="110" rx="18"/><text class="t" x="18" y="36">1 • Report</text><text class="s" x="18" y="62">Text / image /</text><text class="s" x="18" y="82">voice + location</text>
+</g>
+<g transform="translate(215,95)">
+<rect class="box" width="145" height="110" rx="18"/><text class="t" x="18" y="36">2 • AI Assist</text><text class="s" x="18" y="62">Understand &amp;</text><text class="s" x="18" y="82">classify the report</text>
+</g>
+<g transform="translate(400,95)">
+<rect class="box" width="145" height="110" rx="18"/><text class="t" x="18" y="36">3 • Review</text><text class="s" x="18" y="62">Government</text><text class="s" x="18" y="82">triage</text>
+</g>
+<g transform="translate(585,95)">
+<rect class="box" width="145" height="110" rx="18"/><text class="t" x="18" y="36">4 • Progress</text><text class="s" x="18" y="62">Work begins</text><text class="s" x="18" y="82">with updates</text>
+</g>
+<g transform="translate(770,95)">
+<rect class="box" width="145" height="110" rx="18"/><text class="t" x="18" y="36">5 • Resolve</text><text class="s" x="18" y="62">Proof &amp;</text><text class="s" x="18" y="82">resolution</text>
+</g>
+<g transform="translate(955,95)">
+<rect class="box" width="145" height="110" rx="18"/><text class="t" x="18" y="36">6 • Reward</text><text class="s" x="18" y="62">Notify citizen</text><text class="s" x="18" y="82">+ coins</text>
+</g>
+<path class="a" d="M175 150 H215 M360 150 H400 M545 150 H585 M730 150 H770 M915 150 H955"/>
+</svg>
