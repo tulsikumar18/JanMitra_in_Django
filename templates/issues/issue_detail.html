@@ -8,6 +8,128 @@
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
 >
 
+<!-- =====================================================
+     AJAX UPVOTE HANDLER
+====================================================== -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("upvote-form");
+        const button = document.getElementById("upvote-button");
+        const countElement = document.getElementById("upvote-count");
+
+        if (!form || !button || !countElement) {
+            return;
+        }
+
+        form.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            if (button.disabled) {
+                return;
+            }
+
+            const csrfInput = form.querySelector(
+                'input[name="csrfmiddlewaretoken"]'
+            );
+
+            if (!csrfInput) {
+                return;
+            }
+
+            const originalHTML = button.innerHTML;
+            const originalDisabled = button.disabled;
+
+            button.disabled = true;
+
+            button.innerHTML = `
+                <i class="bi bi-hourglass-split"></i>
+                <span>
+                    {% translate "Updating..." %}
+                </span>
+            `;
+
+            try {
+                const response = await fetch(
+                    form.action,
+                    {
+                        method: "POST",
+                        headers: {
+                            "X-CSRFToken": csrfInput.value,
+                            "X-Requested-With": "XMLHttpRequest",
+                            "Accept": "application/json"
+                        },
+                        credentials: "same-origin"
+                    }
+                );
+
+                const data = await response.json();
+
+                if (!response.ok || !data.success) {
+                    throw new Error(
+                        data.error || "Unable to update support."
+                    );
+                }
+
+                countElement.textContent = data.upvotes;
+                countElement.dataset.upvoteCount = data.upvotes;
+
+                if (data.has_upvoted) {
+                    button.classList.add("upvoted");
+                    button.classList.remove("upvote-disabled");
+
+                    button.setAttribute(
+                        "aria-label",
+                        "{% translate 'Supported' %}"
+                    );
+
+                    button.setAttribute(
+                        "title",
+                        "{% translate 'Supported' %}"
+                    );
+
+                    button.innerHTML = `
+                        <i class="bi bi-hand-thumbs-up-fill"></i>
+                        <span>
+                            {% translate "Supported" %}
+                        </span>
+                    `;
+                } else {
+                    button.classList.remove("upvoted");
+                    button.classList.remove("upvote-disabled");
+
+                    button.setAttribute(
+                        "aria-label",
+                        "{% translate 'Support Issue' %}"
+                    );
+
+                    button.setAttribute(
+                        "title",
+                        "{% translate 'Support Issue' %}"
+                    );
+
+                    button.innerHTML = `
+                        <i class="bi bi-hand-thumbs-up"></i>
+                        <span>
+                            {% translate "Support Issue" %}
+                        </span>
+                    `;
+                }
+            } catch (error) {
+                console.error("Upvote error:", error);
+
+                button.innerHTML = originalHTML;
+
+                alert(
+                    error.message || "Unable to update support."
+                );
+            } finally {
+                button.disabled = originalDisabled;
+            }
+        });
+    });
+</script>
+
 {% endblock %}
 
 
@@ -318,7 +440,10 @@
 
                             <div class="upvote-count-row">
 
-                                <strong>
+                                <strong
+                                    id="upvote-count"
+                                    data-upvote-count="{{ issue.upvoted_by.count }}"
+                                >
                                     {{ issue.upvoted_by.count }}
                                 </strong>
 
@@ -351,6 +476,8 @@
                         method="POST"
                         action="{% url 'issues:toggle_upvote' issue.id %}"
                         class="upvote-form"
+                        id="upvote-form"
+                        data-issue-id="{{ issue.id }}"
                     >
 
                         {% csrf_token %}
@@ -380,6 +507,7 @@
                         <button
                             type="submit"
                             class="upvote-button upvoted"
+                             id="upvote-button"
                             aria-label="{% translate 'Supported' %}"
                             title="{% translate 'Supported' %}"
                         >
@@ -398,6 +526,7 @@
                         <button
                             type="submit"
                             class="upvote-button"
+                             id="upvote-button"
                             aria-label="{% translate 'Support Issue' %}"
                             title="{% translate 'Support Issue' %}"
                         >

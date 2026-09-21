@@ -2025,3 +2025,25 @@ msgid_plural "%(num)d minutes"
 msgstr[0] "%(num)d ನಿಮಿಷ"
 msgstr[1] "%(num)d ನಿಮಿಷಗಳು"
 
+
+
+msgid "OR"
+msgstr "ಅથವ"
+
+
+
+# Custom Delete Modal
+msgid "Delete this issue?"
+msgstr "ಈ ಸಮಸ್ಯೆಯನ್ನು ಅಳಿಸಲು ಬಯಸುವಿರಾ?"
+
+msgid "Are you sure you want to permanently delete this issue?"
+msgstr "ಈ ಸಮಸ್ಯೆಯನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿದ್ದೀರಾ?"
+
+msgid "This will also delete its uploaded images and related records."
+msgstr "ಇದರಿಂದ ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾದ ಚಿತ್ರಗಳು ಮತ್ತು ಸಂಬಂಧಿತ ದಾಖಲೆಗಳೂ ಅಳಿಸಲ್ಪಡುತ್ತವೆ."
+
+msgid "Cancel"
+msgstr "ರದ್ದುಮಾಡಿ"
+
+msgid "Delete Issue"
+msgstr "ಸಮಸ್ಯೆಯನ್ನು ಅಳಿಸಿ"

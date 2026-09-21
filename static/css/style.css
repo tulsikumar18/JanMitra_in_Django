@@ -2302,6 +2302,115 @@ button {
     white-space: nowrap;
 }
 
+
+
+/* =========================================================
+   ISSUE DELETE ACTION
+========================================================= */
+
+.issue-delete-form {
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+
+.issue-delete-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    min-height: 38px;
+
+    padding: 9px 14px;
+
+    border: 1px solid rgba(248, 113, 113, 0.32);
+
+    border-radius: 11px;
+
+    color: #fda4af;
+
+    background:
+        rgba(127, 29, 29, 0.16);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+    font-family: inherit;
+
+    font-size: 0.72rem;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.issue-delete-button i {
+    font-size: 0.78rem;
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.issue-delete-button:hover {
+    color: #fecdd3;
+
+    background:
+        rgba(225, 29, 72, 0.16);
+
+    border-color:
+        rgba(251, 113, 133, 0.65);
+
+    box-shadow:
+        0 8px 25px rgba(225, 29, 72, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    transform: translateY(-2px);
+}
+
+
+.issue-delete-button:hover i {
+    transform: scale(1.08);
+}
+
+
+.issue-delete-button:active {
+    transform: translateY(0);
+
+    box-shadow:
+        0 4px 14px rgba(225, 29, 72, 0.12);
+}
+
+
+.issue-delete-button:focus-visible {
+    outline: none;
+
+    border-color: rgba(251, 113, 133, 0.75);
+
+    box-shadow:
+        0 0 0 3px rgba(244, 63, 94, 0.12),
+        0 8px 25px rgba(225, 29, 72, 0.14);
+}
+
 .issue-status {
     display: inline-flex;
     padding: 5px 9px;
@@ -2415,8 +2524,15 @@ button {
     }
 
     .issue-list-meta {
-        width: 100%;
-        justify-content: space-between;
+        display: flex;
+
+        align-items: center;
+
+        justify-content: flex-end;
+
+        gap: 12px;
+
+        flex-shrink: 0;
     }
 
 }
@@ -7930,57 +8046,185 @@ button {
 
 
 
-
-
 /* =========================================================
    DJANGO MESSAGE NOTIFICATION
 ========================================================= */
 
 .message-wrapper {
     position: fixed;
-    top: 95px;
-    right: 28px;
-    z-index: 9999;
-    width: min(420px, calc(100vw - 40px));
+
+    top: 102px;
+    right: 25px;
+
+    z-index: 2000;
+
+    width: min(390px, calc(100% - 30px));
+
     pointer-events: none;
 }
 
+
 .glass-message {
+    position: relative;
+
     display: flex;
+
     align-items: flex-start;
+
     gap: 12px;
-    padding: 16px 18px;
-    margin-bottom: 12px;
 
-    background: rgba(10, 28, 50, 0.92);
-    border: 1px solid rgba(72, 196, 255, 0.28);
-    border-radius: 16px;
+    padding: 14px 16px;
 
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    margin-bottom: 10px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(34, 197, 94, 0.28);
+
+    border-radius: 14px;
+
+    color: #dcfce7;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(6, 78, 59, 0.78),
+            rgba(4, 47, 46, 0.68)
+        );
 
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 
-    color: #f5f7fb;
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.28),
+        0 0 25px rgba(34, 197, 94, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    font-size: 0.78rem;
+
+    line-height: 1.45;
 
     animation:
-        notification-slide-in 0.45s ease forwards;
+        message-in 0.45s ease both;
 }
+
+
+/* TOP ACCENT */
+
+.glass-message::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(74, 222, 128, 0.75),
+            transparent
+        );
+}
+
+
+/* ICON */
 
 .glass-message i {
-    color: #35c5ff;
-    font-size: 20px;
+    flex-shrink: 0;
+
     margin-top: 1px;
+
+    color: #4ade80;
+
+    font-size: 1rem;
+
+    filter:
+        drop-shadow(
+            0 0 7px rgba(74, 222, 128, 0.30)
+        );
 }
 
+
+/* MESSAGE TEXT */
+
 .glass-message span {
-    color: #dce8f5;
-    font-size: 14px;
+    color: #dcfce7;
+
+    font-size: 0.76rem;
+
+    font-weight: 600;
+
     line-height: 1.5;
 }
 
+
+/* HOVER */
+
+.glass-message:hover {
+    border-color:
+        rgba(74, 222, 128, 0.42);
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.32),
+        0 0 30px rgba(34, 197, 94, 0.08);
+}
+
+
+/* =========================================================
+   MESSAGE ANIMATION
+========================================================= */
+
+@keyframes message-in {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(25px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0)
+            scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .message-wrapper {
+
+        top: 82px;
+
+        left: 15px;
+        right: 15px;
+
+        width: auto;
+    }
+
+
+    .glass-message {
+
+        padding: 13px 14px;
+
+        border-radius: 13px;
+    }
+
+}
 
 /* =========================================================
    NOTIFICATION ANIMATION
@@ -10213,6 +10457,143 @@ html[lang="kn"] .dashboard-heading p {
     flex-direction: column;
     gap: 15px;
 }
+
+
+/* =========================================================
+   CAMERA CAPTURE BUTTON
+========================================================= */
+
+.proof-camera-button {
+
+    min-height: 90px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 18px 25px;
+
+    border: 1.5px solid rgba(34, 184, 255, 0.25);
+
+    border-radius: 15px;
+
+    background: rgba(2, 6, 23, 0.32);
+
+    cursor: pointer;
+
+    text-align: center;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+
+}
+
+
+.proof-camera-button:hover {
+
+    border-color: #22b8ff;
+
+    background: rgba(34, 184, 255, 0.07);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 25px rgba(34, 184, 255, 0.08);
+
+}
+
+
+.proof-camera-button:active {
+
+    transform: translateY(0);
+
+}
+
+
+.proof-camera-button i {
+
+    color: #22b8ff;
+
+    font-size: 30px;
+
+}
+
+
+.proof-camera-button strong {
+
+    color: #f8fafc;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+}
+
+
+.proof-camera-button span {
+
+    color: #71829d;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   PROOF UPLOAD DIVIDER
+========================================================= */
+
+.proof-upload-divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 2px 0;
+
+    color: #71829d;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+}
+
+
+.proof-upload-divider::before,
+.proof-upload-divider::after {
+
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: rgba(91, 169, 255, 0.12);
+
+}
+
+
+.proof-upload-divider span {
+
+    padding: 0 4px;
+
+}
+
+
 
 .proof-upload-box {
     min-height: 160px;
@@ -14946,3 +15327,889 @@ html[lang="kn"] .dashboard-heading p {
 
 }
 
+
+
+
+/* =========================================================
+   JANMITRA — COMPACT NEARBY ISSUE POPUP
+   ========================================================= */
+
+.issue-popup {
+    width: 300px !important;
+    min-width: 0 !important;
+    max-width: 300px !important;
+    padding: 6px 4px 3px !important;
+    box-sizing: border-box;
+}
+
+.leaflet-popup-content-wrapper {
+    width: 320px !important;
+    max-width: 320px !important;
+    border-radius: 14px !important;
+}
+
+.leaflet-popup-content {
+    width: 292px !important;
+    max-width: 292px !important;
+    margin: 10px 12px !important;
+}
+
+
+/* Popup title */
+
+.issue-popup h3 {
+    margin: 0 22px 10px 0 !important;
+    font-size: 16px !important;
+    line-height: 1.3 !important;
+}
+
+
+/* Status badge */
+
+.issue-popup-status {
+    padding: 5px 9px !important;
+    margin-bottom: 9px !important;
+    gap: 6px !important;
+    font-size: 12px !important;
+}
+
+
+/* Status dot */
+
+.issue-popup-dot {
+    width: 7px !important;
+    height: 7px !important;
+}
+
+
+/* Information rows */
+
+.issue-popup-info {
+    gap: 7px !important;
+    margin-top: 7px !important;
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+}
+
+.issue-popup-info i {
+    width: 16px !important;
+    font-size: 13px !important;
+}
+
+
+/* Prevent long locations from making popup huge */
+
+.issue-popup-info span {
+    min-width: 0;
+    max-width: 245px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+/* Buttons */
+
+.issue-popup-button,
+.issue-popup-support {
+    padding: 8px 11px !important;
+    margin-top: 9px !important;
+    border-radius: 8px !important;
+    font-size: 12px !important;
+}
+
+
+/* Actions */
+
+.issue-popup-actions {
+    margin-top: 2px;
+}
+
+
+
+
+
+
+/* =========================================================
+   JANMITRA — STATUS MAP MARKERS
+   ========================================================= */
+
+.issue-marker {
+    width: 34px !important;
+    height: 34px !important;
+
+    border: 3px solid #ffffff !important;
+    border-radius: 50% 50% 50% 0 !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.35),
+        0 0 12px rgba(255, 255, 255, 0.12);
+
+    transform: rotate(-45deg);
+}
+
+.issue-marker i {
+    font-size: 14px !important;
+    font-weight: 700;
+
+    transform: rotate(45deg);
+}
+
+
+/* Reported */
+
+.issue-marker-red {
+    background: #ef4444 !important;
+
+    box-shadow:
+        0 5px 15px rgba(239, 68, 68, 0.35);
+}
+
+
+/* Under Review */
+
+.issue-marker-orange {
+    background: #f59e0b !important;
+
+    box-shadow:
+        0 5px 15px rgba(245, 158, 11, 0.35);
+}
+
+
+/* In Progress */
+
+.issue-marker-blue {
+    background: #3b82f6 !important;
+
+    box-shadow:
+        0 5px 15px rgba(59, 130, 246, 0.35);
+}
+
+
+/* Resolved */
+
+.issue-marker-green {
+    background: #22c55e !important;
+
+    box-shadow:
+        0 5px 18px rgba(34, 197, 94, 0.45);
+}
+
+
+/* Rejected */
+
+.issue-marker-gray {
+    background: #64748b !important;
+
+    box-shadow:
+        0 5px 15px rgba(100, 116, 139, 0.35);
+}
+
+
+
+/* ============================================================
+   JANMITRA DELETE CONFIRMATION MODAL
+   Dark Glassmorphism / JanMitra Theme
+============================================================ */
+
+
+/* ------------------------------------------------------------
+   BODY LOCK
+------------------------------------------------------------ */
+
+body.janmitra-modal-open {
+    overflow: hidden;
+}
+
+
+/* ------------------------------------------------------------
+   MODAL WRAPPER
+------------------------------------------------------------ */
+
+.janmitra-delete-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    visibility: hidden;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.28s ease,
+        visibility 0.28s ease;
+}
+
+
+/* ------------------------------------------------------------
+   VISIBLE STATE
+------------------------------------------------------------ */
+
+.janmitra-delete-modal.is-visible {
+
+    visibility: visible;
+
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+
+/* ------------------------------------------------------------
+   BACKDROP
+------------------------------------------------------------ */
+
+.janmitra-delete-backdrop {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(24, 110, 180, 0.12),
+            transparent 38%
+        ),
+        rgba(2, 8, 20, 0.78);
+
+    backdrop-filter: blur(12px);
+
+    -webkit-backdrop-filter: blur(12px);
+}
+
+
+/* ------------------------------------------------------------
+   DIALOG
+------------------------------------------------------------ */
+
+.janmitra-delete-dialog {
+
+    position: relative;
+
+    width: min(500px, 100%);
+
+    padding: 34px;
+
+    overflow: hidden;
+
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20, 34, 58, 0.96),
+            rgba(7, 17, 34, 0.97)
+        );
+
+    border:
+        1px solid rgba(110, 190, 255, 0.18);
+
+    box-shadow:
+        0 35px 90px rgba(0, 0, 0, 0.55),
+        0 0 45px rgba(24, 140, 220, 0.08);
+
+    transform:
+        translateY(24px)
+        scale(0.96);
+
+    transition:
+        transform 0.3s cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
+}
+
+
+/* ------------------------------------------------------------
+   TOP GLOW
+------------------------------------------------------------ */
+
+.janmitra-delete-dialog::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -120px;
+
+    right: -100px;
+
+    width: 260px;
+
+    height: 260px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(31, 151, 255, 0.18),
+            transparent 68%
+        );
+
+    pointer-events: none;
+}
+
+
+/* ------------------------------------------------------------
+   BOTTOM GLOW
+------------------------------------------------------------ */
+
+.janmitra-delete-dialog::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: -150px;
+
+    left: -120px;
+
+    width: 280px;
+
+    height: 280px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 214, 201, 0.09),
+            transparent 68%
+        );
+
+    pointer-events: none;
+}
+
+
+/* ------------------------------------------------------------
+   DIALOG ANIMATION
+------------------------------------------------------------ */
+
+.janmitra-delete-modal.is-visible
+.janmitra-delete-dialog {
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* ------------------------------------------------------------
+   DELETE ICON
+------------------------------------------------------------ */
+
+.janmitra-delete-icon {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 68px;
+
+    height: 68px;
+
+    margin-bottom: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 71, 87, 0.18),
+            rgba(255, 71, 87, 0.07)
+        );
+
+    border:
+        1px solid rgba(255, 90, 105, 0.28);
+
+    color:
+        #ff5969;
+
+    font-size: 27px;
+
+    box-shadow:
+        0 10px 30px rgba(255, 59, 78, 0.08);
+
+}
+
+
+/* ------------------------------------------------------------
+   ICON INNER GLOW
+------------------------------------------------------------ */
+
+.janmitra-delete-icon::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 8px;
+
+    border-radius: 14px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.04);
+
+    pointer-events: none;
+}
+
+
+/* ------------------------------------------------------------
+   CONTENT
+------------------------------------------------------------ */
+
+.janmitra-delete-content {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* ------------------------------------------------------------
+   TITLE
+------------------------------------------------------------ */
+
+.janmitra-delete-content h3 {
+
+    margin: 0 0 10px;
+
+    font-size: 25px;
+
+    line-height: 1.25;
+
+    font-weight: 750;
+
+    letter-spacing: -0.4px;
+
+    color:
+        #f4f8ff;
+}
+
+
+/* ------------------------------------------------------------
+   DESCRIPTION
+------------------------------------------------------------ */
+
+.janmitra-delete-content p {
+
+    margin: 0 0 18px;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    color:
+        rgba(222, 232, 246, 0.68);
+}
+
+
+/* ------------------------------------------------------------
+   WARNING MESSAGE
+------------------------------------------------------------ */
+
+.janmitra-delete-warning {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    padding: 14px 15px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(255, 193, 7, 0.055);
+
+    border:
+        1px solid rgba(255, 193, 7, 0.18);
+
+    color:
+        rgba(255, 211, 100, 0.88);
+
+    font-size: 13px;
+
+    line-height: 1.55;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+
+.janmitra-delete-warning i {
+
+    margin-top: 2px;
+
+    flex-shrink: 0;
+
+    color:
+        #ffc857;
+}
+
+
+/* ------------------------------------------------------------
+   ACTIONS
+------------------------------------------------------------ */
+
+.janmitra-delete-actions {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+
+/* ------------------------------------------------------------
+   COMMON BUTTON
+------------------------------------------------------------ */
+
+.janmitra-delete-cancel,
+.janmitra-delete-confirm {
+
+    min-height: 46px;
+
+    padding: 11px 19px;
+
+    border-radius: 13px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 650;
+
+    cursor: pointer;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+/* ------------------------------------------------------------
+   CANCEL BUTTON
+------------------------------------------------------------ */
+
+.janmitra-delete-cancel {
+
+    border:
+        1px solid rgba(155, 180, 210, 0.20);
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    color:
+        rgba(235, 243, 252, 0.84);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+
+.janmitra-delete-cancel:hover {
+
+    background:
+        rgba(255, 255, 255, 0.085);
+
+    border-color:
+        rgba(130, 190, 235, 0.30);
+
+    color:
+        #ffffff;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+
+.janmitra-delete-cancel:active {
+
+    transform:
+        translateY(0);
+}
+
+
+/* ------------------------------------------------------------
+   DELETE CONFIRM BUTTON
+------------------------------------------------------------ */
+
+.janmitra-delete-confirm {
+
+    border:
+        1px solid rgba(255, 89, 105, 0.72);
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4d60,
+            #e52f45
+        );
+
+    color:
+        #ffffff;
+
+    box-shadow:
+        0 10px 28px rgba(238, 53, 73, 0.22);
+}
+
+
+.janmitra-delete-confirm:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff5d6e,
+            #ed354b
+        );
+
+    border-color:
+        rgba(255, 115, 128, 0.85);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 14px 32px rgba(238, 53, 73, 0.32);
+}
+
+
+.janmitra-delete-confirm:active {
+
+    transform:
+        translateY(0);
+}
+
+
+/* ------------------------------------------------------------
+   DISABLED / DELETING STATE
+------------------------------------------------------------ */
+
+.janmitra-delete-confirm:disabled {
+
+    opacity: 0.72;
+
+    cursor:
+        not-allowed;
+
+    transform:
+        none;
+
+    box-shadow:
+        none;
+}
+
+
+/* ------------------------------------------------------------
+   SPINNER
+------------------------------------------------------------ */
+
+.janmitra-delete-spinner {
+
+    display: inline-block;
+
+    width: 14px;
+
+    height: 14px;
+
+    margin-right: 3px;
+
+    border:
+        2px solid rgba(255, 255, 255, 0.32);
+
+    border-top-color:
+        #ffffff;
+
+    border-radius: 50%;
+
+    vertical-align: -2px;
+
+    animation:
+        janmitraDeleteSpin 0.7s linear infinite;
+}
+
+
+@keyframes janmitraDeleteSpin {
+
+    to {
+
+        transform:
+            rotate(360deg);
+
+    }
+
+}
+
+
+/* ------------------------------------------------------------
+   ACCESSIBILITY FOCUS
+------------------------------------------------------------ */
+
+.janmitra-delete-cancel:focus-visible,
+.janmitra-delete-confirm:focus-visible {
+
+    outline:
+        2px solid rgba(67, 190, 255, 0.75);
+
+    outline-offset:
+        3px;
+}
+
+
+/* ------------------------------------------------------------
+   MOBILE
+------------------------------------------------------------ */
+
+@media (max-width: 576px) {
+
+    .janmitra-delete-modal {
+
+        padding: 15px;
+
+    }
+
+
+    .janmitra-delete-dialog {
+
+        width: 100%;
+
+        padding: 25px 22px;
+
+        border-radius: 22px;
+
+    }
+
+
+    .janmitra-delete-icon {
+
+        width: 58px;
+
+        height: 58px;
+
+        margin-bottom: 18px;
+
+        border-radius: 17px;
+
+        font-size: 24px;
+
+    }
+
+
+    .janmitra-delete-content h3 {
+
+        font-size: 21px;
+
+    }
+
+
+    .janmitra-delete-content p {
+
+        font-size: 14px;
+
+    }
+
+
+    .janmitra-delete-warning {
+
+        font-size: 12.5px;
+
+        padding: 12px;
+
+    }
+
+
+    .janmitra-delete-actions {
+
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+
+        width: 100%;
+
+        margin-top: 24px;
+
+    }
+
+
+    .janmitra-delete-cancel,
+    .janmitra-delete-confirm {
+
+        width: 100%;
+
+    }
+
+}
+
+
+/* ------------------------------------------------------------
+   REDUCED MOTION
+------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .janmitra-delete-modal,
+    .janmitra-delete-dialog,
+    .janmitra-delete-cancel,
+    .janmitra-delete-confirm {
+
+        transition: none;
+
+    }
+
+
+    .janmitra-delete-spinner {
+
+        animation: none;
+
+    }
+
+}

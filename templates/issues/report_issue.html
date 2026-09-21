@@ -1075,6 +1075,28 @@ document.addEventListener(
         const janmitraI18n =
             window.janmitraI18n || {};
 
+        /* =====================================================
+           CSRF TOKEN HELPER
+
+           The nearby-issue support buttons use fetch() to send
+           POST requests to the Django upvote endpoint.
+           Keep the token available to every function in this
+           page instead of defining it only inside the Gemini
+           function.
+        ====================================================== */
+
+        function getCsrfToken() {
+
+            const tokenElement =
+                document.querySelector(
+                    "[name=csrfmiddlewaretoken]"
+                );
+
+            return tokenElement
+                ? tokenElement.value
+                : "";
+        }
+
         console.log(
             "JanMitra: Report map initialized"
         );
@@ -1625,6 +1647,25 @@ document.addEventListener(
                 );
 
 
+            const rawStatus =
+                String(
+                    issue.status ||
+                    "reported"
+                ).toLowerCase().trim();
+
+
+            const statusCode =
+                [
+                    "reported",
+                    "under_review",
+                    "in_progress",
+                    "resolved",
+                    "rejected"
+                ].includes(rawStatus)
+                    ? rawStatus
+                    : "reported";
+
+
             const status =
                 escapeHtml(
                     issue.status_name ||
@@ -1720,7 +1761,7 @@ document.addEventListener(
                 <div class="issue-popup">
 
                     <div
-                        class="issue-popup-status"
+                        class="issue-popup-status issue-status-${issue.status}"
                     >
 
                         <span class="issue-popup-dot"></span>
@@ -2079,7 +2120,7 @@ document.addEventListener(
                             headers: {
 
                                 "X-CSRFToken":
-                                    csrfToken,
+                                    getCsrfToken(),
 
                                 "X-Requested-With":
                                     "XMLHttpRequest",
@@ -5836,9 +5877,7 @@ document.addEventListener(
             );
 
             const csrfToken =
-                document.querySelector(
-                    "[name=csrfmiddlewaretoken]"
-                )?.value;
+                getCsrfToken();
 
             if (!csrfToken) {
 

@@ -1898,3 +1898,36 @@ msgid "%(num)d year"
 msgid_plural "%(num)d years"
 msgstr[0] "%(num)d वर्ष"
 msgstr[1] "%(num)d वर्ष"
+
+
+msgid "OR"
+msgstr "या"
+
+
+# Custom Delete Modal
+msgid "Delete this issue?"
+msgstr "क्या आप इस समस्या को हटाना चाहते हैं?"
+
+msgid "Are you sure you want to permanently delete this issue?"
+msgstr "क्या आप वाकई इस समस्या को स्थायी रूप से हटाना चाहते हैं?"
+
+msgid "This will also delete its uploaded images and related records."
+msgstr "इससे अपलोड की गई तस्वीरें और संबंधित रिकॉर्ड भी हट जाएंगे।"
+
+msgid "Cancel"
+msgstr "रद्द करें"
+
+msgid "Delete Issue"
+msgstr "समस्या हटाएँ"
+# ============================================================
+# MY ISSUES PAGE AND DELETE MODAL - ADDITIONAL TRANSLATIONS
+# ============================================================
+
+msgid "Delete issue"
+msgstr "समस्या हटाएँ"
+
+msgid "Delete"
+msgstr "हटाएँ"
+
+msgid "Deleting..."
+msgstr "हटाया जा रहा है..."

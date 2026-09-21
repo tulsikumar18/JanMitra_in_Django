@@ -6,11 +6,16 @@
     {% translate "My Issues" %} | JanMitra
 {% endblock %}
 
+
 {% block content %}
 
 <section class="dashboard-page">
 
     <div class="dashboard-container">
+
+        <!-- =====================================================
+             PAGE HEADING
+        ====================================================== -->
 
         <div class="dashboard-heading">
 
@@ -31,6 +36,10 @@
         </div>
 
 
+        <!-- =====================================================
+             ISSUES LIST
+        ====================================================== -->
+
         {% if issues %}
 
             <div class="issues-list">
@@ -38,6 +47,10 @@
                 {% for issue in issues %}
 
                     <div class="issue-list-card">
+
+                        <!-- =================================================
+                             ISSUE MAIN CONTENT
+                        ================================================== -->
 
                         <a
                             href="{% url 'issues:issue_detail' issue.id %}"
@@ -72,11 +85,19 @@
                                     </span>
 
                                     <span>
+
                                         {% blocktranslate count count=issue.upvoted_by.count %}
-                                            <strong>{{ count }}</strong> citizen supporting
+
+                                            <strong>{{ count }}</strong>
+                                            citizen supporting
+
                                         {% plural %}
-                                            <strong>{{ count }}</strong> citizens supporting
+
+                                            <strong>{{ count }}</strong>
+                                            citizens supporting
+
                                         {% endblocktranslate %}
+
                                     </span>
 
                                 </div>
@@ -86,12 +107,20 @@
                         </a>
 
 
+                        <!-- =================================================
+                             ISSUE META
+                        ================================================== -->
+
                         <div class="issue-list-meta">
+
+                            <!-- STATUS -->
 
                             <span class="issue-status status-{{ issue.status }}">
                                 {{ issue.get_status_display }}
                             </span>
 
+
+                            <!-- DATE -->
 
                             <small>
 
@@ -101,6 +130,8 @@
 
                             </small>
 
+
+                            <!-- VIEW ISSUE -->
 
                             <a
                                 href="{% url 'issues:issue_detail' issue.id %}"
@@ -113,6 +144,40 @@
 
                             </a>
 
+
+                            <!-- =================================================
+                                 DELETE FORM
+                            ================================================== -->
+
+                            <form
+                                method="post"
+                                action="{% url 'issues:delete_issue' issue.id %}"
+                                class="issue-delete-form"
+                            >
+
+                                {% csrf_token %}
+
+                                <button
+                                    type="button"
+                                    class="issue-delete-button"
+                                    aria-label="{% translate 'Delete issue' %}"
+                                    title="{% translate 'Delete issue' %}"
+                                    data-delete-form
+                                >
+
+                                    <i
+                                        class="bi bi-trash3-fill"
+                                        aria-hidden="true"
+                                    ></i>
+
+                                    <span>
+                                        {% translate "Delete" %}
+                                    </span>
+
+                                </button>
+
+                            </form>
+
                         </div>
 
                     </div>
@@ -124,12 +189,14 @@
 
         {% else %}
 
+            <!-- =====================================================
+                 EMPTY STATE
+            ====================================================== -->
+
             <div class="empty-issues">
 
                 <div class="empty-issues-icon">
-
                     <i class="bi bi-inbox"></i>
-
                 </div>
 
 
@@ -161,5 +228,312 @@
     </div>
 
 </section>
+
+
+<!-- =============================================================
+     CUSTOM JANMITRA DELETE MODAL
+============================================================== -->
+
+<div
+    id="janmitraDeleteModal"
+    class="janmitra-delete-modal"
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="janmitraDeleteModalTitle"
+>
+
+    <!-- BACKDROP -->
+
+    <div
+        class="janmitra-delete-backdrop"
+        data-delete-cancel
+    ></div>
+
+
+    <!-- MODAL -->
+
+    <div
+        class="janmitra-delete-dialog"
+        role="document"
+    >
+
+        <!-- ICON -->
+
+        <div class="janmitra-delete-icon">
+
+            <i class="bi bi-trash3-fill"></i>
+
+        </div>
+
+
+        <!-- CONTENT -->
+
+        <div class="janmitra-delete-content">
+
+            <h3 id="janmitraDeleteModalTitle">
+
+                {% translate "Delete this issue?" %}
+
+            </h3>
+
+
+            <p>
+
+                {% translate "Are you sure you want to permanently delete this issue?" %}
+
+            </p>
+
+
+            <span class="janmitra-delete-warning">
+
+                <i class="bi bi-exclamation-triangle-fill"></i>
+
+                {% translate "This will also delete its uploaded images and related records." %}
+
+            </span>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="janmitra-delete-actions">
+
+            <button
+                type="button"
+                class="janmitra-delete-cancel"
+                data-delete-cancel
+            >
+
+                <i class="bi bi-x-lg"></i>
+
+                {% translate "Cancel" %}
+
+            </button>
+
+
+            <button
+                type="button"
+                class="janmitra-delete-confirm"
+                id="janmitraDeleteConfirm"
+            >
+
+                <i class="bi bi-trash3-fill"></i>
+
+                {% translate "Delete Issue" %}
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =============================================================
+     DELETE MODAL JAVASCRIPT
+============================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const modal =
+        document.getElementById("janmitraDeleteModal");
+
+    const confirmButton =
+        document.getElementById("janmitraDeleteConfirm");
+
+    const deleteButtons =
+        document.querySelectorAll("[data-delete-form]");
+
+    const cancelButtons =
+        document.querySelectorAll("[data-delete-cancel]");
+
+
+    let pendingDeleteForm = null;
+
+
+    /* =========================================================
+       OPEN MODAL
+    ========================================================== */
+
+    function openDeleteModal(form) {
+
+        pendingDeleteForm = form;
+
+        modal.classList.add("is-visible");
+
+        modal.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        document.body.classList.add(
+            "janmitra-modal-open"
+        );
+
+
+        /*
+         * Move focus to the Cancel button so
+         * keyboard users can interact immediately.
+         */
+
+        const cancelButton =
+            modal.querySelector(
+                ".janmitra-delete-cancel"
+            );
+
+        if (cancelButton) {
+
+            setTimeout(function () {
+
+                cancelButton.focus();
+
+            }, 50);
+
+        }
+
+    }
+
+
+    /* =========================================================
+       CLOSE MODAL
+    ========================================================== */
+
+    function closeDeleteModal() {
+
+        modal.classList.remove("is-visible");
+
+        modal.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        document.body.classList.remove(
+            "janmitra-modal-open"
+        );
+
+        pendingDeleteForm = null;
+
+    }
+
+
+    /* =========================================================
+       DELETE BUTTONS
+    ========================================================== */
+
+    deleteButtons.forEach(function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                const form =
+                    button.closest(
+                        ".issue-delete-form"
+                    );
+
+                if (!form) {
+                    return;
+                }
+
+                openDeleteModal(form);
+
+            }
+        );
+
+    });
+
+
+    /* =========================================================
+       CANCEL BUTTONS / BACKDROP
+    ========================================================== */
+
+    cancelButtons.forEach(function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                closeDeleteModal();
+
+            }
+        );
+
+    });
+
+
+    /* =========================================================
+       CONFIRM DELETE
+    ========================================================== */
+
+    confirmButton.addEventListener(
+        "click",
+        function () {
+
+            if (!pendingDeleteForm) {
+                return;
+            }
+
+
+            /*
+             * Prevent double-clicking while
+             * the form is being submitted.
+             */
+
+            confirmButton.disabled = true;
+
+            confirmButton.classList.add(
+                "is-deleting"
+            );
+
+
+            confirmButton.innerHTML = `
+                <span
+                    class="janmitra-delete-spinner"
+                    aria-hidden="true"
+                ></span>
+
+                {% translate "Deleting..." %}
+            `;
+
+
+            /*
+             * Submit the original Django form.
+             */
+
+            pendingDeleteForm.submit();
+
+        }
+    );
+
+
+    /* =========================================================
+       ESCAPE KEY
+    ========================================================== */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                modal.classList.contains("is-visible")
+            ) {
+
+                closeDeleteModal();
+
+            }
+
+        }
+    );
+
+});
+
+</script>
+
 
 {% endblock %}

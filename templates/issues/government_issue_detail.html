@@ -607,9 +607,8 @@
                 </div>
 
 
-
                 <!-- ==================================================
-                     GOVERNMENT PROOF UPLOAD
+                    GOVERNMENT PROOF UPLOAD
                 ================================================== -->
 
                 <div class="government-section proof-upload-section">
@@ -651,6 +650,52 @@
                         >
 
 
+                        <!-- ==========================================
+                            CAMERA CAPTURE
+                        =========================================== -->
+
+                        <label
+                            for="proof-camera"
+                            class="proof-camera-button"
+                            aria-label="{% translate 'Take Photo' %}"
+                            title="{% translate 'Take Photo' %}"
+                        >
+
+                            <i
+                                class="bi bi-camera-fill"
+                                aria-hidden="true"
+                            ></i>
+
+                            <strong>
+                                {% translate "Take Photo" %}
+                            </strong>
+
+                            <span>
+                                {% translate "Use your camera to capture proof" %}
+                            </span>
+
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="proof-camera"
+                            accept="image/*"
+                            capture="environment"
+                            class="proof-hidden-input"
+                            aria-label="{% translate 'Take Photo' %}"
+                        >
+
+
+                        <div class="proof-upload-divider">
+                            <span>{% translate "OR" %}</span>
+                        </div>
+
+
+                        <!-- ==========================================
+                            NORMAL FILE SELECTION
+                        =========================================== -->
+
                         <label
                             for="proof-images"
                             class="proof-upload-box"
@@ -684,12 +729,20 @@
                         >
 
 
+                        <!-- ==========================================
+                            SELECTED FILE PREVIEW
+                        =========================================== -->
+
                         <div
                             id="proof-file-preview"
                             class="proof-file-preview"
                             aria-live="polite"
                         ></div>
 
+
+                        <!-- ==========================================
+                            UPLOAD BUTTON
+                        =========================================== -->
 
                         <button
                             type="submit"
@@ -1180,17 +1233,21 @@ document.addEventListener(
 {% endif %}
 
 
-
 <script>
 
 document.addEventListener(
     "DOMContentLoaded",
     function () {
 
-
         const input =
             document.getElementById(
                 "proof-images"
+            );
+
+
+        const cameraInput =
+            document.getElementById(
+                "proof-camera"
             );
 
 
@@ -1200,20 +1257,130 @@ document.addEventListener(
             );
 
 
-        if (!input || !preview) {
+        if (!input || !cameraInput || !preview) {
             return;
         }
 
+
+        /* ============================================
+           STORE SELECTED FILES
+        ============================================ */
+
+        let selectedFiles = [];
+
+
+        /* ============================================
+           CREATE FILE PREVIEW
+        ============================================ */
+
+        function updatePreview() {
+
+            preview.innerHTML = "";
+
+
+            if (!selectedFiles.length) {
+                return;
+            }
+
+
+            selectedFiles.forEach(
+                function (file) {
+
+                    const item =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    item.className =
+                        "proof-selected-file";
+
+
+                    item.innerHTML = `
+                        <i
+                            class="bi bi-image"
+                            aria-hidden="true"
+                        ></i>
+
+                        <span>
+                            ${file.name}
+                        </span>
+                    `;
+
+
+                    preview.appendChild(
+                        item
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* ============================================
+           UPDATE MAIN FILE INPUT
+        ============================================ */
+
+        function updateMainInput() {
+
+            const dataTransfer =
+                new DataTransfer();
+
+
+            selectedFiles.forEach(
+                function (file) {
+
+                    dataTransfer.items.add(
+                        file
+                    );
+
+                }
+            );
+
+
+            input.files =
+                dataTransfer.files;
+
+        }
+
+
+        /* ============================================
+           NORMAL FILE SELECTION
+        ============================================ */
 
         input.addEventListener(
             "change",
             function () {
 
-                preview.innerHTML = "";
+                const files =
+                    Array.from(
+                        input.files
+                    );
 
+
+                selectedFiles =
+                    files;
+
+
+                updatePreview();
+
+            }
+        );
+
+
+        /* ============================================
+           CAMERA PHOTO
+        ============================================ */
+
+        cameraInput.addEventListener(
+            "change",
+            function () {
 
                 const files =
-                    Array.from(input.files);
+                    Array.from(
+                        cameraInput.files
+                    );
 
 
                 if (!files.length) {
@@ -1221,38 +1388,61 @@ document.addEventListener(
                 }
 
 
-                files.forEach(
-                    function (file) {
+                /*
+                 * Add the newly captured photo
+                 * to the existing selected files.
+                 */
 
-                        const item =
-                            document.createElement(
-                                "div"
+                selectedFiles =
+                    selectedFiles.concat(
+                        files
+                    );
+
+
+                /*
+                 * Remove accidental duplicates.
+                 */
+
+                selectedFiles =
+                    selectedFiles.filter(
+                        function (file, index, array) {
+
+                            return (
+                                index ===
+                                array.findIndex(
+                                    function (item) {
+
+                                        return (
+                                            item.name ===
+                                            file.name
+                                            &&
+                                            item.size ===
+                                            file.size
+                                        );
+
+                                    }
+                                )
                             );
 
-
-                        item.className =
-                            "proof-selected-file";
-
-
-                        item.innerHTML = `
-                            <i
-                                class="bi bi-image"
-                                aria-hidden="true"
-                            ></i>
-
-                            <span>${file.name}</span>
-                        `;
+                        }
+                    );
 
 
-                        preview.appendChild(
-                            item
-                        );
+                updateMainInput();
 
-                    }
-                );
+                updatePreview();
+
+
+                /*
+                 * Clear the camera input so
+                 * another photo can be captured.
+                 */
+
+                cameraInput.value = "";
 
             }
         );
+
 
     }
 );

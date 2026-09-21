@@ -25,6 +25,12 @@ urlpatterns = [
     ),
 
     path(
+        "<int:issue_id>/delete/",
+        views.delete_issue,
+        name="delete_issue"
+    ),
+
+    path(
         "map/",
         views.issue_map,
         name="issue_map"
@@ -68,11 +74,10 @@ urlpatterns = [
         name="toggle_upvote"
     ),
 
-
     path(
-    "api/gemini/analyze/",
-    views.gemini_analyze_issue,
-    name="gemini_analyze_issue"
+        "api/gemini/analyze/",
+        views.gemini_analyze_issue,
+        name="gemini_analyze_issue"
     ),
 
 ]

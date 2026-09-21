@@ -245,13 +245,11 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # WhiteNoise compression / caching
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
 
     "staticfiles": {
-        "BACKEND": (
-            "whitenoise.storage.CompressedManifestStaticFilesStorage"
-        ),
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
 
@@ -290,6 +288,16 @@ GEMINI_MODEL = os.getenv(
     "gemini-2.5-flash",
 )
 
+
+# ============================================================
+# CLOUDINARY MEDIA STORAGE
+# ============================================================
+
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
+}
 
 # =========================================================
 # CSRF / HTTPS

@@ -91,6 +91,131 @@ def my_issues(request):
     )
 
 
+
+# ==========================================================
+# CITIZEN - DELETE ISSUE
+# ==========================================================
+
+@login_required
+@require_POST
+def delete_issue(request, issue_id):
+
+    # Only allow the citizen who created the issue
+    # to delete that issue.
+    issue = get_object_or_404(
+        Issue.objects.filter(
+            citizen=request.user
+        ),
+        id=issue_id
+    )
+
+    issue_title = issue.title
+
+    # ------------------------------------------------------
+    # Collect uploaded files before deleting database rows
+    # ------------------------------------------------------
+
+    files_to_delete = []
+
+    if issue.image:
+        files_to_delete.append(
+            issue.image
+        )
+
+    proof_images = list(
+        issue.proof_images.all()
+    )
+
+    for proof in proof_images:
+
+        if proof.image:
+
+            files_to_delete.append(
+                proof.image
+            )
+
+    try:
+
+        # --------------------------------------------------
+        # DATABASE DELETION
+        # --------------------------------------------------
+
+        with transaction.atomic():
+
+            # Delete notifications belonging to this issue.
+            Notification.objects.filter(
+                issue=issue
+            ).delete()
+
+            # Issue.delete() will cascade to:
+            #
+            # - IssueProofImage
+            # - IssueStatusHistory
+            # - upvoted_by relationship rows
+            #
+            # because these relationships are connected
+            # to Issue with CASCADE / M2M behavior.
+
+            issue.delete()
+
+        # --------------------------------------------------
+        # DELETE ACTUAL MEDIA FILES
+        # --------------------------------------------------
+        #
+        # This is important for Cloudinary.
+        #
+        # FieldFile.delete() calls the configured Django
+        # storage backend, so the Cloudinary asset is removed
+        # instead of only removing the database reference.
+
+        for uploaded_file in files_to_delete:
+
+            try:
+
+                uploaded_file.delete(
+                    save=False
+                )
+
+            except Exception as storage_error:
+
+                print(
+                    "JanMitra: unable to delete issue media:",
+                    storage_error
+                )
+
+        # --------------------------------------------------
+        # SUCCESS MESSAGE
+        # --------------------------------------------------
+
+        messages.success(
+            request,
+            _(
+                'Issue "%(title)s" was deleted successfully.'
+            ) % {
+                "title": issue_title
+            }
+        )
+
+    except Exception as error:
+
+        print(
+            "JanMitra: issue deletion failed:",
+            error
+        )
+
+        messages.error(
+            request,
+            _(
+                "Unable to delete this issue right now. "
+                "Please try again."
+            )
+        )
+
+    return redirect(
+        "issues:my_issues"
+    )
+
+
 # ==========================================================
 # CITIZEN - ISSUE MAP
 # ==========================================================
