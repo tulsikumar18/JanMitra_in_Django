@@ -48,12 +48,20 @@ DEBUG = os.getenv("DEBUG", "True").lower() == "true"
 
 # Render will provide this in production.
 # Local development can continue with localhost.
+
+render_hostname = os.getenv("RENDER_EXTERNAL_HOSTNAME")
+
 ALLOWED_HOSTS = [
     host.strip()
-    for host in os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+    for host in os.getenv(
+        "ALLOWED_HOSTS",
+        "127.0.0.1,localhost"
+    ).split(",")
     if host.strip()
 ]
 
+if render_hostname:
+    ALLOWED_HOSTS.append(render_hostname)
 
 # =========================================================
 # APPLICATIONS
