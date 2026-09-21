@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
+
+{% block title %}{% translate "Report an Issue" %} | JanMitra{% endblock %}
+
+{% block content %}
+
 {% get_current_language as CURRENT_LANGUAGE %}
 
 <script>
@@ -60,10 +65,6 @@
         readyUpload: "{% translate 'Ready to upload' %}"
     };
 </script>
-
-{% block title %}{% translate "Report an Issue" %} | JanMitra{% endblock %}
-
-{% block content %}
 
 <section class="report-page">
 
@@ -721,11 +722,11 @@
                             <div>
 
                                 <strong id="evidence-file-name">
-                                    {% translate janmitraI18n.photoSelected %}
+                                    {% translate "Photo selected" %}
                                 </strong>
 
                                 <small id="evidence-file-size">
-                                   {% translate janmitraI18n.readyUpload %}
+                                   {% translate "Ready to upload" %}
                                 </small>
 
                             </div>
@@ -1070,6 +1071,9 @@
 document.addEventListener(
     "DOMContentLoaded",
     function () {
+
+        const janmitraI18n =
+            window.janmitraI18n || {};
 
         console.log(
             "JanMitra: Report map initialized"
@@ -3150,7 +3154,17 @@ document.addEventListener(
            SEARCH LOCATION
         ====================================================== */
 
+        let locationSearchInProgress = false;
+
+
         async function searchLocation() {
+
+            if (locationSearchInProgress) {
+
+                return;
+
+            }
+
 
             const query =
                 searchInput.value.trim();
@@ -3160,10 +3174,39 @@ document.addEventListener(
                 !query
             ) {
 
+                if (searchResults) {
+
+                    searchResults.innerHTML = `
+
+                        <div class="no-search-result">
+
+                            <i class="bi bi-info-circle"></i>
+
+                            ${janmitraI18n.enterLocation}
+
+                        </div>
+
+                    `;
+
+                }
+
                 return;
 
             }
 
+
+            if (!searchButton || !searchResults) {
+
+                console.error(
+                    "JanMitra: Location search elements are missing."
+                );
+
+                return;
+
+            }
+
+
+            locationSearchInProgress = true;
 
             searchButton.disabled =
                 true;
@@ -3383,6 +3426,8 @@ document.addEventListener(
 
 
             finally {
+
+                locationSearchInProgress = false;
 
                 searchButton.disabled =
                     false;
@@ -3744,6 +3789,9 @@ document.addEventListener(
 document.addEventListener(
     "DOMContentLoaded",
     function () {
+
+        const janmitraI18n =
+            window.janmitraI18n || {};
 
         console.log(
             "JanMitra: Intelligent Assistant loaded"
@@ -4354,9 +4402,8 @@ document.addEventListener(
 
 
         const text =
-            translations[
-                language
-            ];
+            translations[language] ||
+            translations.en;
 
 
         /* =====================================================
@@ -5652,6 +5699,18 @@ document.addEventListener(
         ====================================================== */
 
         function renderStep() {
+
+            if (!text || !Array.isArray(text.steps) || !Array.isArray(text.help)) {
+
+                console.error(
+                    "JanMitra: Assistant translation data is unavailable for language:",
+                    language
+                );
+
+                return;
+
+            }
+
 
             updateProgress();
 
@@ -7065,6 +7124,9 @@ document.addEventListener(
 <script>
 
 document.addEventListener("DOMContentLoaded", function () {
+
+    const janmitraI18n =
+        window.janmitraI18n || {};
 
     console.log("JanMitra: Evidence controller loaded");
 
