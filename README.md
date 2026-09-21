@@ -550,7 +550,6 @@ venv/
 staticfiles/
 __pycache__/
 ```
-
 ---
 
 ## 🛠️ Local Setup
