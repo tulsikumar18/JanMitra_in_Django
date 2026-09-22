@@ -16213,3 +16213,253 @@ body.janmitra-modal-open {
     }
 
 }
+
+
+
+
+/* ============================================================
+   MY ISSUES — MOBILE ACTION ALIGNMENT FIX
+============================================================ */
+
+@media (max-width: 760px) {
+
+    /* --------------------------------------------------------
+       ISSUE CARD
+    -------------------------------------------------------- */
+
+    .issue-list-card {
+
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        align-items: stretch;
+
+        gap: 16px;
+
+        padding: 18px;
+
+    }
+
+
+    /* --------------------------------------------------------
+       ISSUE MAIN CONTENT
+    -------------------------------------------------------- */
+
+    .issue-list-main {
+
+        width: 100%;
+
+        min-width: 0;
+
+        align-items: flex-start;
+
+    }
+
+
+    /* --------------------------------------------------------
+       ISSUE META / ACTION ROW
+    -------------------------------------------------------- */
+
+    .issue-list-meta {
+
+        width: 100%;
+
+        display: flex;
+
+        flex-direction: row;
+
+        align-items: center;
+
+        justify-content: flex-end;
+
+        gap: 10px;
+
+        min-height: 40px;
+
+        padding-top: 2px;
+
+    }
+
+
+    /* --------------------------------------------------------
+       STATUS
+    -------------------------------------------------------- */
+
+    .issue-list-meta .issue-status {
+
+        margin-right: auto;
+
+        flex-shrink: 0;
+
+    }
+
+
+    /* --------------------------------------------------------
+       DATE
+       Hidden on mobile as before
+    -------------------------------------------------------- */
+
+    .issue-list-meta small {
+
+        display: none;
+
+    }
+
+
+    /* --------------------------------------------------------
+       VIEW / ARROW BUTTON
+    -------------------------------------------------------- */
+
+    .issue-open-button {
+
+        width: 40px;
+
+        height: 40px;
+
+        flex: 0 0 40px;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border-radius: 11px;
+
+    }
+
+
+    /* --------------------------------------------------------
+       DELETE FORM
+    -------------------------------------------------------- */
+
+    .issue-delete-form {
+
+        display: flex;
+
+        align-items: center;
+
+        flex-shrink: 0;
+
+        margin: 0;
+
+    }
+
+
+    /* --------------------------------------------------------
+       DELETE BUTTON
+    -------------------------------------------------------- */
+
+    .issue-delete-button {
+
+        min-height: 40px;
+
+        height: 40px;
+
+        padding: 9px 14px;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+    }
+
+
+    /* --------------------------------------------------------
+       TITLE
+    -------------------------------------------------------- */
+
+    .issue-list-content h3 {
+
+        font-size: 14px;
+
+        line-height: 1.45;
+
+    }
+
+}
+
+
+/* ============================================================
+   SMALL PHONES
+============================================================ */
+
+@media (max-width: 520px) {
+
+    .issue-list-card {
+
+        gap: 14px;
+
+        padding: 16px;
+
+    }
+
+
+    .issue-list-main {
+
+        gap: 11px;
+
+    }
+
+
+    .issue-list-icon {
+
+        width: 40px;
+
+        height: 40px;
+
+        flex: 0 0 40px;
+
+        font-size: 15px;
+
+    }
+
+
+    .issue-location {
+
+        max-width: 100%;
+
+    }
+
+
+    .issue-list-meta {
+
+        justify-content: flex-end;
+
+        gap: 8px;
+
+    }
+
+
+    .issue-open-button {
+
+        width: 40px;
+
+        height: 40px;
+
+        flex-basis: 40px;
+
+    }
+
+
+    .issue-delete-button {
+
+        min-height: 40px;
+
+        height: 40px;
+
+        padding: 9px 13px;
+
+        font-size: 0.72rem;
+
+    }
+
+}
+
+
+
+
+
