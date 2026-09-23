@@ -7,10 +7,13 @@
 <p>
   <strong>Report • Locate • Track • Collaborate • Resolve • Reward</strong>
 </p>
+---
 
 <p>
-  <strong> **Live Demo : https://janmitra-in-django.onrender.com/ ** </strong>
+  <strong> Live Demo : https://janmitra-in-django.onrender.com </strong>
 </p>
+
+---
 
 <p>
   <img src="https://img.shields.io/badge/Python-3.13-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
