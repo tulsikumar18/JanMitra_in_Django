@@ -9,6 +9,10 @@
 </p>
 
 <p>
+  <strong> **Live Demo : https://janmitra-in-django.onrender.com/ ** </strong>
+</p>
+
+<p>
   <img src="https://img.shields.io/badge/Python-3.13-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/Django-6.1.1-092E20?style=for-the-badge&logo=django&logoColor=white" alt="Django">
   <img src="https://img.shields.io/badge/Gemini-2.5%20Flash-4285F4?style=for-the-badge&logo=google" alt="Gemini">
