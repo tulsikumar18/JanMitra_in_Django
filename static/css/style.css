@@ -16463,3 +16463,200 @@ body.janmitra-modal-open {
 
 
 
+/* ============================================================
+   CITIZEN DASHBOARD FOOTER
+============================================================ */
+
+.citizen-dashboard-footer {
+
+    width: 100%;
+
+    margin-top: 55px;
+    padding: 0 0 25px;
+
+    text-align: center;
+}
+
+
+/* ------------------------------------------------------------
+   DIVIDER
+------------------------------------------------------------ */
+
+.citizen-footer-divider {
+
+    width: 100%;
+    height: 1px;
+
+    margin-bottom: 22px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(56, 189, 248, 0.22),
+            rgba(129, 140, 248, 0.22),
+            transparent
+        );
+}
+
+
+/* ------------------------------------------------------------
+   FOOTER CONTENT
+------------------------------------------------------------ */
+
+.citizen-footer-content {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px 18px;
+}
+
+
+/* ------------------------------------------------------------
+   COPYRIGHT
+------------------------------------------------------------ */
+
+.citizen-footer-copyright {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 0.68rem;
+
+    line-height: 1.5;
+}
+
+
+/* ------------------------------------------------------------
+   SEPARATOR
+------------------------------------------------------------ */
+
+.footer-separator {
+
+    color: #334155;
+
+    font-size: 0.65rem;
+}
+
+
+/* ------------------------------------------------------------
+   BUILT WITH LOVE
+------------------------------------------------------------ */
+
+.citizen-footer-love {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 0.68rem;
+
+    line-height: 1.5;
+}
+
+
+/* ------------------------------------------------------------
+   HEART
+------------------------------------------------------------ */
+
+.footer-heart {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #f43f5e;
+
+    font-size: 0.72rem;
+
+    animation:
+        footer-heartbeat 2s ease-in-out infinite;
+}
+
+
+.footer-heart i {
+
+    display: block;
+}
+
+
+/* ------------------------------------------------------------
+   HEART ANIMATION
+------------------------------------------------------------ */
+
+@keyframes footer-heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+
+/* ============================================================
+   CITIZEN FOOTER — MOBILE
+============================================================ */
+
+@media (max-width: 650px) {
+
+    .citizen-dashboard-footer {
+
+        margin-top: 40px;
+
+        padding-bottom: 20px;
+    }
+
+
+    .citizen-footer-divider {
+
+        margin-bottom: 18px;
+    }
+
+
+    .citizen-footer-content {
+
+        flex-direction: column;
+
+        gap: 7px;
+    }
+
+
+    .citizen-footer-copyright {
+
+        font-size: 0.63rem;
+    }
+
+
+    .citizen-footer-love {
+
+        font-size: 0.63rem;
+    }
+
+}
